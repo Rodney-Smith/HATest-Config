@@ -1,0 +1,14 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.warning
+#   @description    :  Group of all smart speakers for warnings
+###############################################################################
+warning_players:
+  - media_player.lr_echo_show5
+  - media_player.bedroom_echo_dot
+  - media_player.guest1_echo_dot
+  - media_player.guest2_echo_dot
+  - media_player.of_echo_show8
+  - media_player.kitchen_echo_flex
+  - media_player.hall_echo_flex

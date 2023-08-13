@@ -1,0 +1,12 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  07/04/2023
+#  @package        :  Notify
+#  @description    :  My notify yaml
+###############################################################################
+  - platform: telegram
+    name: Telegram_Rodney
+    chat_id: !secret telegram_id_rs
+  - platform: telegram
+    name: Telegram_Meridian
+    chat_id: !secret telegram_id_ha

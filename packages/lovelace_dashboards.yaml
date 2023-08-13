@@ -1,0 +1,79 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/12/2023
+#  @package        :  Lovelace Dashboards
+#  @description    :  Configure and define multiple dashboards in Home Assistant. 
+#                     Each dashboard can be added to the sidebar. This makes it 
+#                     possible to create separate control dashboards for each 
+#                     individual part of your house.
+#                          https://www.home-assistant.io/dashboards/dashboards/
+###############################################################################
+lovelace:
+  mode: storage
+  # Add yaml dashboards
+  # Include external resources only add when mode is yaml, otherwise manage in the resources in the dashboard configuration panel.
+  resources:
+    - url: /local/community/atomic-calendar-revive/atomic-calendar-revive.js
+      type: module
+    - url: /local/community/config-template-card/config-template-card.js
+      type: module
+    - url: /local/community/formulaone-card/formulaone-card.js
+      type: module
+    - url: /local/community/garbage-collection-card/garbage-collection-card.js
+      type: module
+    - url: /local/community/home-assistant-sun-card/home-assistant-sun-card.js
+      type: module
+    - url: /local/community/kiosk-mode/kiosk-mode.js
+      type: module
+    - url: /local/community/lovelace-auto-entities/auto-entities.js
+      type: module
+    - url: /local/community/lovelace-card-templater/lovelace-card-templater.js
+      type: module
+    - url: /local/community/lovelace-card-tools/card-tools.js
+      type: module
+    - url: /local/community/lovelace-fold-entity-row/fold-entity-row.js
+      type: module
+    - url: /local/community/lovelace-hui-element/hui-element.js
+      type: module
+    - url: /local/community/lovelace-layout-card/layout-card.js
+      type: module
+    - url: /local/community/lovelace-multiple-entity-row/multiple-entity-row.js
+      type: module
+    - url: /local/community/lovelace-mushroom/mushroom.js
+      type: module
+    - url: /local/community/lovelace-rpi-monitor-card/rpi-monitor-card.js
+      type: module
+    - url: /local/community/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
+      type: module
+    - url: /local/community/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
+      type: module
+    - url: /local/community/MeteoalarmCard/meteoalarm-card.js
+      type: module
+    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /local/community/mini-media-player/mini-media-player-bundle.js
+      type: module
+    - url: /local/community/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+      type: module
+    - url: /local/community/timer-bar-card/timer-bar-card.js
+      type: module
+    - url: /local/community/uv-index-card/uv-index-card.js
+      type: module
+    - url: /local/community/vacuum-card/vacuum-card.js
+      type: module
+  dashboards:
+#    home-dash: # Needs to contain a hyphen (-)
+#      mode: yaml
+#      filename: ui-home-dash.yaml
+#      title: Home
+#      icon: mdi:home
+#      show_in_sidebar: true
+#      require_admin: true
+    tablet-dash: # Needs to contain a hyphen (-)
+      mode: yaml
+      filename: ui-tablet-dash.yaml
+      title: Tablet
+      icon: mdi:tablet
+      show_in_sidebar: true
+      require_admin: true
+

@@ -1,0 +1,309 @@
+# Required from HACS: Multiple Entity Row
+# Lovelace Card with team logos
+#title: Upcoming Sports
+#type: vertical-stack
+#cards:
+#  - type: entities
+#    entities:
+#      - type: custom:multiple-entity-row
+#        entity: sensor.giants_date
+#        image: /local/images/sports/sf.png
+#        name: Next Game
+#        secondary_info:
+#          entity: sensor.giants_opponent
+#          name: false
+#      - type: divider
+#      - type: custom:multiple-entity-row
+#        entity: sensor.dodgers_date
+#        image: /local/images/sports/lad.png
+#        name: Next Game
+#        secondary_info:
+#          entity: sensor.dodgers_opponent
+#          name: false
+#      - type: divider
+#      - type: custom:multiple-entity-row
+#        entity: sensor.athletics_date
+#        image: /local/images/sports/athletics.png
+#        name: Next Game
+#        secondary_info:
+#          entity: sensor.athletics_opponent
+#          name: false
+#      - type: divider
+#      - type: custom:multiple-entity-row
+#        entity: sensor.49ers_date
+#        image: /local/images/sports/49ers.png
+#        name: Next Game
+#        secondary_info:
+#          entity: sensor.49ers_opponent
+#          name: false
+#      - type: divider
+#      - type: custom:multiple-entity-row
+#        entity: sensor.raiders_date
+#        image: /local/images/sports/raiders.png
+#        name: Next Game
+#        secondary_info:
+#          entity: sensor.raiders_opponent
+#          name: false
+# Required from HACS: auto-entities, SecondaryInfo Entity Row, card-tools
+# Lovelace Card with default icons
+#type: 'custom:auto-entities'
+#card:
+#  show_header_toggle: false
+#  title: Upcoming Sports
+#  type: entities
+#filter:
+#  exclude:
+#    - state: No games scheduled
+#  include:
+#    - entity_id: /schedule/
+#      image: '[[ {entity}.attributes.icon ]]'
+#      options:
+#        secondary_info: '[[ {entity}.attributes.opponent ]]'
+#        type: 'custom:secondaryinfo-entity-row'
+#show_empty: true
+#sort:
+#  method: attribute
+#  numeric: true
+#  attribute: date_sortable
+# Example configuration entry
+# Example configuration.yaml entry with two sections
+#
+# San Francisco Giants
+- platform: template
+  sensors:
+    giants_schedule:
+      unique_id: a243cdf3-b8af-4160-af92-cc9a9e8cbc9e
+      friendly_name: Giants Schedule
+      value_template: >-
+        {% if is_state('calendar.san_francisco_giants', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.san_francisco_giants', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.san_francisco_giants', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.san_francisco_giants', 'start_time') }}
+# San Francisco Giants Next Up Date
+- platform: template
+  sensors:
+    giants_date:
+      unique_id: 4d7f1c23-e02e-4650-8878-9c9d5c042fd2
+      friendly_name: Giants Next Game
+      value_template: >-
+        {% if is_state('calendar.san_francisco_giants', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.san_francisco_giants', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+# San Francisco Giants Next Opponent
+- platform: template
+  sensors:
+    giants_opponent:
+      unique_id: de881f25-38d7-4622-8724-364cd9cfebcd
+      friendly_name: Giants Next Opponent
+      value_template: >-
+        {{ states.calendar.san_francisco_giants.attributes.message }}
+
+# Oakland Athletics
+- platform: template
+  sensors:
+    athletics_schedule:
+      unique_id: c457f361-b5b5-4ce9-b37f-f9fd7ff90e12
+      friendly_name: Athletics Schedule
+      value_template: >-
+        {% if is_state('calendar.oakland_athletics', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.oakland_athletics', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.oakland_athletics', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.oakland_athletics', 'start_time') }}
+# Oakland Athletics Next Up Date
+- platform: template
+  sensors:
+    athletics_date:
+      unique_id: 8b7b9e47-0dd2-4a44-a0e1-ab41031451be
+      friendly_name: Athletics Next Game
+      value_template: >-
+        {% if is_state('calendar.oakland_athletics', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.oakland_athletics', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+# San Francisco Athletics Next Opponent
+- platform: template
+  sensors:
+    athletics_opponent:
+      unique_id: 324ce0b0-60cb-471b-ae91-5a74bfec73fd
+      friendly_name: Athletics Next Opponent
+      value_template: >-
+        {{ states.calendar.oakland_athletics.attributes.message }}
+
+# Los Angeles Dodgers
+- platform: template
+  sensors:
+    dodgers_schedule:
+      unique_id: 78e71596-7a9e-4afc-9c69-abf165108c10
+      friendly_name: Dodgers Schedule
+      value_template: >-
+        {% if is_state('calendar.los_angeles_dodgers', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.los_angeles_dodgers', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.los_angeles_dodgers', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.los_angeles_dodgers', 'start_time') }}
+# Los Angeles Dodgers Next Up Date
+- platform: template
+  sensors:
+    dodgers_date:
+      unique_id: f336c4e7-e345-435e-99d7-285dbffc8500
+      friendly_name: Dodgers Next Game
+      value_template: >-
+        {% if is_state('calendar.los_angeles_dodgers', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.los_angeles_dodgers', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+# Los Angeles Dodgers Next Opponent
+- platform: template
+  sensors:
+    dodgers_opponent:
+      unique_id: dd05cac3-3660-4776-8a77-61f1aafcb2ab
+      friendly_name: Dodgers Next Opponent
+      value_template: >-
+        {{ states.calendar.los_angeles_dodgers.attributes.message }}
+
+# San Francisco 49ers
+- platform: template
+  sensors:
+    49ers_schedule:
+      unique_id: 7cf08870-6064-47fb-8c2d-5f24a67d06cd
+      friendly_name: 49ers Schedule
+      value_template: >-
+        {% if is_state('calendar.san_francisco_49ers', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.san_francisco_49ers', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.san_francisco_49ers', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.san_francisco_49ers', 'start_time') }}
+# San Francisco 49ers Next Up Date
+- platform: template
+  sensors:
+    49ers_date:
+      unique_id: ab1df89f-2d16-4f24-aead-4111ae22a8e0
+      friendly_name: 49ers Next Game
+      value_template: >-
+        {% if is_state('calendar.san_francisco_49ers', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.san_francisco_49ers', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+# San Francisco 49ers Next Opponent
+- platform: template
+  sensors:
+    49ers_opponent:
+      unique_id: 1a233b6a-a843-4574-a8ec-5ea3d025a45e
+      friendly_name: 49ers Next Opponent
+      value_template: >-
+        {{ states.calendar.san_francisco_49ers.attributes.message }}
+
+# Las Vegas Raiders
+- platform: template
+  sensors:
+    raiders_schedule:
+      unique_id: bb8fdbd9-d29b-48ac-bdf4-903035ce3aed
+      friendly_name: Raiders Schedule
+      value_template: >-
+        {% if is_state('calendar.las_vegas_raiders', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.las_vegas_raiders', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.las_vegas_raiders', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.las_vegas_raiders', 'start_time') }}
+# Las Vegas Raiders Next Up Date
+- platform: template
+  sensors:
+    raiders_date:
+      unique_id: ef53aeab-1fd3-4c9b-907d-1bfc8f5e7ade
+      friendly_name: Raiders Next Game
+      value_template: >-
+        {% if is_state('calendar.las_vegas_raiders', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.las_vegas_raiders', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No games scheduled
+          {% endif %}
+        {% endif %}
+# Las Vegas Raiders Next Opponent
+- platform: template
+  sensors:
+    raiders_opponent:
+      unique_id: 4043ddb8-23c2-486c-955c-f2032ab998a4
+      friendly_name: Raiders Next Opponent
+      value_template: >-
+        {{ states.calendar.las_vegas_raiders.attributes.message }}

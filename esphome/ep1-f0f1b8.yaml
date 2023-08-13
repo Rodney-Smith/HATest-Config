@@ -1,0 +1,40 @@
+substitutions:
+  name: ep1-f0f1b8
+  friendly_name: Office EP1
+
+packages:
+  Everything_Smart_Technology.Everything_Presence_One: github://everythingsmarthome/presence-one/everything-presence-one.yaml@main
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: !secret ip_ep1_f0f1b8
+    gateway: !secret ip_gateway
+    subnet: !secret ip_subnet
+    dns1: !secret ip_dns
+  ap:
+    ssid: ${name}_AP
+    password: !secret wifi_ap_pass
+    ap_timeout: 3min
+
+api:
+  encryption:
+    key: !secret ep1_f0f1b8
+
+ota:
+  password: !secret esphome_ota
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+    active: true
+
+bluetooth_proxy:
+  active: true

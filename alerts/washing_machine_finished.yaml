@@ -1,0 +1,23 @@
+washing_machine_finished:
+  name: Washing Machine Finished
+  message: >
+    The washing machine completed its cycle 
+      {% set seconds = (now() - states.sensor.washer_status.last_changed).seconds %}
+      {% set hours = seconds / 3600 %}
+      {% if hours | int == 1 %}
+        over an hour ago.
+      {% elif hours | int > 1 %}
+        over {{ hours | int }} hours ago.
+      {% else %}
+        {{ (seconds // 60) | int }} minutes ago.
+      {% endif %}
+  entity_id: input_boolean.washer_status
+  state: "on"
+  repeat:
+    - 15
+    - 30
+    - 45
+  can_acknowledge: false
+  skip_first: False
+  notifiers:
+    - mobile_app_einsteins_iphone

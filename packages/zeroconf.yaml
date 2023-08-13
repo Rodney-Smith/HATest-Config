@@ -1,0 +1,9 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package        :  zeroconf
+#  @description    :  Zeroconf, Bonjour, Rendezvous, and Avahi - disabled since
+#                      using default_config:
+#                          https://www.home-assistant.io/integrations/zeroconf/
+###############################################################################
+zeroconf:

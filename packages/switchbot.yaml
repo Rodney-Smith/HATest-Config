@@ -1,0 +1,123 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/06/2022
+#  @package        :  Switchbot
+#  @description    :  All the Switchbot related stuff. Built from
+#       https://community.home-assistant.io/t/switch-bot-api-integration/270550
+###############################################################################
+# Example configuration.yaml entry
+command_line:
+#sensor:
+#   Get switchbot Strip Light sensors
+#  - platform: command_line
+  - sensor:
+      name: 'LED Strip 10FE'
+      unique_id: sensor.led_strip_10fe
+      scan_interval: 30
+      command_timeout: 30
+      command: !secret switchbot_strip10fe_cmd
+      value_template: '{{ value_json }}'
+      json_attributes:
+        - power
+        - brightness
+        - color
+
+#   Get switchbot Strip Light sensors
+#  - platform: command_line
+  - sensor:
+      name: 'LED Strip 831A'
+      unique_id: sensor.led_strip_831a
+      scan_interval: 30
+      command_timeout: 30
+      command: !secret switchbot_strip831a_cmd
+      value_template: '{{ value_json }}'
+      json_attributes:
+        - power
+        - brightness
+        - color
+
+#Switchbot Light Strip
+light:
+  - platform: template
+    lights:
+      led_strip_10fe:
+        friendly_name: "LED Strip 10FE"
+        unique_id: light.led_strip_10fe
+        icon_template: mdi:led-strip-variant
+        level_template: "{{ state_attr('sensor.led_strip_10fe', 'brightness') | int(default=20) }}"
+        color_template: "{{ states('input_text.led_strip_10fe_hs').split(',')[0] | int(default=0)}},{{ states('input_text.led_strip_10fe_hs').split(',')[1] | int(default=0)}}"
+        value_template: "{{ state_attr('sensor.led_strip_10fe', 'power') }}"
+        turn_on:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip10fe_deviceId
+            command: "turnOn"
+            parameter: "default"
+            commandType: "command"
+        turn_off:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip10fe_deviceId
+            command: "turnOff"
+            parameter: "default"
+            commandType: "command"
+        set_level:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip10fe_deviceId
+            command: "setBrightness"
+            parameter: "{{brightness}}"
+            commandType: "command"
+        set_color:
+          - service: input_text.set_value
+            target:
+              entity_id: input_text.led_strip_10fe_hs
+            data:
+              value: "{{ h }},{{ s }},{{ states('input_text.led_strip_10fe_hs').split(',')[2] | int(default=100) }}"
+          - service: script.hs_to_rgb
+            data:
+              service_id: led_strip_10fe_set_color
+              h: "{{ h }}"
+              s: "{{ s }}"
+              l: "{{ states('input_text.led_strip_10fe_hs').split(',')[2] | int(default=100) }}"
+
+      led_strip_831a:
+        friendly_name: "LED Strip 831A"
+        unique_id: light.led_strip_831a
+        icon_template: mdi:led-strip-variant
+        level_template: "{{ state_attr('sensor.led_strip_831a', 'brightness') | int(default=20) }}"
+        color_template: "{{ states('input_text.led_strip_831a_hs').split(',')[0] | int(default=0)}},{{ states('input_text.led_strip_831a_hs').split(',')[1] | int(default=0)}}"
+        value_template: "{{ state_attr('sensor.led_strip_831a', 'power') }}"
+        turn_on:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip831a_deviceId
+            command: "turnOn"
+            parameter: "default"
+            commandType: "command"
+        turn_off:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip831a_deviceId
+            command: "turnOff"
+            parameter: "default"
+            commandType: "command"
+        set_level:
+          service: rest_command.switchbot_device_command
+          data:
+            deviceId: !secret switchbot_strip831a_deviceId
+            command: "setBrightness"
+            parameter: "{{brightness}}"
+            commandType: "command"
+        set_color:
+          - service: input_text.set_value
+            target:
+              entity_id: input_text.led_strip_831a_hs
+            data:
+              value: "{{ h }},{{ s }},{{ states('input_text.led_strip_831a_hs').split(',')[2] | int(default=100) }}"
+          - service: script.hs_to_rgb
+            data:
+              service_id: led_strip_831a_set_color
+              h: "{{ h }}"
+              s: "{{ s }}"
+              l: "{{ states('input_text.led_strip_831a_hs').split(',')[2] | int(default=100) }}"

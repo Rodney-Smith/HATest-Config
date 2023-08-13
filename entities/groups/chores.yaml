@@ -1,0 +1,14 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.chores
+#   @description    :  List of chores
+###############################################################################
+chores:
+  - input_boolean.clean_litterbox
+  - input_boolean.heartworm
+  - input_boolean.nextguard
+  - input_boolean.clean_washer
+  - input_boolean.clean_dishwasher
+  - input_boolean.clean_bathrooms
+  - input_boolean.mow_yard

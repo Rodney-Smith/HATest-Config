@@ -1,0 +1,15 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/23/2022
+#  @script         :  Rodney Headed Home Announcement
+#  @description    :  A collection of scripts split into individual files.
+#
+# Package modified from @SlackerLabs
+# https://github.com/thejeffreystone/home-assistant-configuration/blob/master/config/packages/notify.yaml
+###############################################################################
+
+rodney_headed_home_annc:
+  sequence:
+    - service: script.speech_engine
+      data:
+        call_rodney_headed_home: 1

@@ -1,0 +1,83 @@
+# Welcome !
+
+This is my Home Assistant TEST installation.
+
+[![GitHub stars](https://img.shields.io/github/stars/Rodney-Smith/HomeAssistant-Config?style=plastic)](https://github.com/Rodney-Smith/HomeAssistant-Config/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/rodney-smith/HomeAssistant-Config/main?style=plastic)](https://github.com/rodney-smith/HomeAssistant-Config/commits/main)
+[![HA Version](https://img.shields.io/badge/Running_Home_Assistant-{{states('sensor.current_version')}}-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Original_Home_Assistant-2020.12.1-darkblue)](https://github.com/home-assistant/core/releases/2020.12.1)
+[![HA Community](https://img.shields.io/badge/HA_Community-Forum-orange)](https://community.home-assistant.io/u/rodney.delauer/summary)
+
+### Add-ons
+[![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-{{states('sensor.advanced_ssh_web_terminal_version')}}-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
+[![ESPHome](https://img.shields.io/badge/ESPHome-{{states('sensor.esphome_version')}}-5294E2.svg)](https://esphome.io/)
+[![Grafana](https://img.shields.io/badge/Grafana-{{states('sensor.grafana_version')}}-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
+[![Home Assistant Google Drive Backup](https://img.shields.io/badge/Google_Drive_Backup-{{states('sensor.home_assistant_google_drive_backup_version')}}-5294E2.svg)](https://github.com/sabeechen/hassio-google-drive-backup)
+[![InfluxDB](https://img.shields.io/badge/InfluxDB-{{states('sensor.influxdb_version')}}-5294E2.svg)](https://github.com/hassio-addons/addon-influxdb)
+[![MariaDB](https://img.shields.io/badge/MariaDB-{{states('sensor.mariadb_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/mariadb)
+[![Matter Server](https://img.shields.io/badge/Matter_Server-{{states('sensor.matter_server_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/matter_server)
+[![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-{{states('sensor.phpmyadmin_version')}}-5294E2.svg)](https://github.com/hassio-addons/addon-phpmyadmin)
+[![Piper](https://img.shields.io/badge/Piper-{{states('sensor.piper_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/piper)
+[![Samba Share](https://img.shields.io/badge/Samba-{{states('sensor.samba_share_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/samba)
+[![Silicon Labs Multiprotocol](https://img.shields.io/badge/Silabs_Multiprotocol-{{states('sensor.silicon_labs_multiprotocol_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
+[![Studio Code Server](https://img.shields.io/badge/Studio_Code_Server-{{states('sensor.visual_studio_code_newest_version')}}-5294E2.svg)](https://github.com/hassio-addons/addon-vscode)
+[![Syncthing](https://img.shields.io/badge/Syncthing-{{states('sensor.syncthing_version')}}-5294E2.svg)](https://github.com/Poeschl/Hassio-Addons/tree/main/syncthing)
+[![TasmoBackup](https://img.shields.io/badge/TasmoBackup-{{states('sensor.whisper_version')}}-5294E2.svg)](https://github.com/danmed/TasmoBackupV1/)
+[![Whisper](https://img.shields.io/badge/Whisper-{{states('sensor.whisper_version')}}-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/whisper)
+[![Zigbee2MQTT](https://img.shields.io/badge/Zigbee2MQTT-{{states('sensor.zigbee2mqtt_version')}}-5294E2.svg)](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt)
+
+## Some statistics about my installation:
+Description | value
+-- | --
+Number of entities | {{states | count}}
+Count of alarm | {{ states.alarm_control_panel | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of alert | {{ states.alert | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of automation | {{ states.automation | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of binary_sensor | {{ states.binary_sensor | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of calendar | {{ states.calendar | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of camera | {{ states.camera | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of climate | {{ states.climate | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of cover | {{ states.cover | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of device_tracker | {{ states.device_tracker | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of fan | {{ states.fan | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of input_boolean | {{ states.input_boolean | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of input_datetime | {{ states.input_datetime | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of input_number | {{ states.input_number | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of input_select | {{ states.input_select | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of input_text | {{ states.input_text | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of lights | {{ states.light | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of media_player | {{ states.media_player | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of number | {{ states.number | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of person | {{ states.person | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of scene | {{ states.scene | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of script | {{ states.script | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of sensor | {{ states.sensor | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of sun | {{ states.sun | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of switch | {{ states.switch | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of timer | {{ states.timer | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of update | {{ states.update | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of vacuum | {{ states.vacuum | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of weather | {{ states.weather | rejectattr('state', 'eq', 'unavailable') | list | count }}
+Count of zone | {{ states.zone | rejectattr('state', 'eq', 'unavailable') | list | count }}
+
+## My installed extensions:
+
+### HACS integrations
+{%- for component in hacs_components | selectattr('category', 'equalto', 'integration') | sort(attribute='name') %}
+- [{{component.name}}]({{component.documentation}})
+{%- endfor %}
+
+### HACS Lovelace plugins
+{%- for component in hacs_components | selectattr('category', 'equalto', 'plugin') | sort(attribute='name') %}
+- [{{component.name}}]({{component.documentation}})
+{%- endfor %}
+
+### Themes
+{%- for component in hacs_components | selectattr('category', 'equalto', 'theme') | sort(attribute='name') %}
+- [{{component.name}}]({{component.documentation}})
+{%- endfor %}
+
+
+***
+
+Generated by the [readme custom integration](https://github.com/custom-components/readme)

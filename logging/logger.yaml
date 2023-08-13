@@ -1,0 +1,24 @@
+############################################################
+#
+# Logger  You can filter anything betwen the []'s in the logger.
+#
+############################################################
+
+# Log Severities: notset, debug, info, warn, warning, error, fatal, critical
+
+default: error
+logs:
+  root: warning
+  homeassistant.helpers.event: error
+  homeassistant.helpers.template: error
+  homeassistant.helpers.template_entity: error
+  hass_nabucasa: warning
+  snitun: warning
+  custom_components.alexa_media: error
+  custom_components.bhyve: error
+  custom_components.localtuya: error
+  custom_components.pirateweather: error
+  custom_components.watchman: fatal
+  aioesphomeapi: error
+  telegram: warning
+  aio_geojson_client: error

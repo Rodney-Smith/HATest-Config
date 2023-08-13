@@ -1,0 +1,134 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/06/2022
+#  @package        :  Switchbot
+#  @description    :  All the Switchbot related stuff. Built from
+#       https://community.home-assistant.io/t/switch-bot-api-integration/270550
+###############################################################################
+rgb_to_hs:
+  alias: RGB to HS
+  sequence:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.{{inputName}}
+    data:
+      value: >-
+        {% set h_dec = h/360 %} {% set s_dec = s/100 %}  {% set l_dec = l/100%} 
+        {% if l_dec < 0.5 %} 
+        {% set temp1 = l_dec * (s_dec + 1) %} 
+        {% elif l_dec >= 0.5 %}
+          {% set temp1 = l_dec + s_dec - (l_dec * s_dec) %}
+        {% endif %} 
+        {% set temp2 = (2 * l_dec) - temp1 %} 
+        {% if h_dec + 0.333 > 1%}
+          {% set r_temp = h_dec - 0.667 %}
+        {% else %}
+          {% set r_temp = h_dec + 0.333 %}
+        {% endif %}
+          {% set g_temp = h_dec %}
+        {% if h_dec - 0.333 < 0 %}
+          {% set b_temp = h_dec + 0.667 %}
+        {% else %}
+          {% set b_temp = h_dec - 0.333 %}
+        {% endif %} {% if s == 0 %} 
+          {% set r = (l_dec*255) | round(0) %}
+          {% set g = (l_dec*255) | round(0) %}
+          {% set b = (l_dec*255) | round(0) %} 
+        {% else %}
+          {% if r_temp * 6 < 1 %}
+            {% set r = ((temp2 + (temp1 - temp2) * 6 * r_temp) * 255) | round(0) %}
+          {% elif r_temp * 2 < 1 %}
+            {% set r = (temp1 * 255) | round(0) %}
+          {% elif r_temp * 3 < 2 %}
+            {% set r = ((temp2 + (temp1 - temp2) * (0.666 * r_temp) * 6) * 255) | round(0) %}
+          {% else %} 
+            {% set r = (temp2 * 255) | round(0) %} 
+          {% endif %} 
+          {% if g_temp * 6 < 1 %}
+            {% set g = ((temp2 + (temp1 - temp2) * 6 * g_temp) * 255) | round(0) %}
+          {% elif g_temp * 2 < 1 %}
+            {% set g = (temp1 * 255) | round(0) %}
+          {% elif g_temp * 3 < 2 %}
+            {% set g = ((temp2 + (temp1 - temp2) * (0.666 * g_temp) * 6) * 255) | round(0) %} 
+          {% else %}
+            {% set g = (temp2 * 255) | round(0) %}
+          {% endif %}
+          {% if b_temp * 6 < 1 %} 
+            {% set b = ((temp2 + (temp1 - temp2) * 6 * b_temp) * 255) | round(0) %}
+          {% elif b_temp * 2 < 1 %}
+            {% set b = (temp1 * 255) | round(0) %}
+          {% elif b_temp * 3 < 2 %} 
+            {% set b = ((temp2 + (temp1 - temp2) * (0.666 * b_temp) * 6) * 255) | round(0) %}
+          {% else %}
+            {% set b = (temp2 * 255) | round(0) %} 
+          {% endif %}
+        {% endif %}    {{ r }},{{ g }},{{ b }}
+  mode: single
+  icon: mdi:palette
+
+hs_to_rgb:
+  alias: HS to RGB
+  sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.{{ service_id }}
+    data:
+      variables:
+        rgb_color: |-
+          {% set r_dec = (r | int)/255 %}
+          {% set g_dec = (g | int)/255 %} 
+          {% set b_dec = (b | int)/255 %}
+          {% set rgb_decimal = r_dec,g_dec,b_dec %}
+          {% set maxc = rgb_decimal | max %} 
+          {% set minc = rgb_decimal | min %} 
+          {% set l_dec = (maxc + minc) / 2 %} 
+          {% set l = (l_dec * 100) | int %}
+          {% if maxc == minc %}  
+            {% set s_dec = 0 %}
+          {% elif l_dec <= 0.5 %}
+            {% set s_dec = (maxc - minc) / (maxc + minc + 0.001) %}
+          {% else %}
+            {% set s_dec = (maxc - minc) / (2.0 - maxc - minc) %}
+          {% endif %}
+          {% set s = (s_dec * 100) | int %} 
+          {% if r_dec == maxc %}
+            {% set h_deg = ((g_dec - b_dec) / (maxc - minc + 0.001)) * 60 %}
+          {% elif g_dec == maxc %}
+            {% set h_deg = ((2.0 + (b_dec - r_dec)) / (maxc - minc + 0.001)) * 60 %}
+          {% else %}
+            {% set h_deg = ((4.0 + (r_dec - g_dec)) / (maxc - minc + 0.001)) * 60 %}
+          {% endif %}
+          {% if h_deg < 0 %}
+            {% set h = h_deg + 360 %}
+          {% elif h_deg > 360 %}
+            {% set h = h_deg - 360 %}
+          {% else %}
+            {% set h = h_deg %}
+          {% endif %}
+          {{ h | round(0)}},{{ s | round(0)}},{{ l | round(0) }}
+  mode: single
+  icon: mdi:palette
+
+led_strip_10fe_set_color:
+  alias: LED Strip 10FE - Set Color
+  sequence:
+  - service: rest_command.switchbot_device_command
+    data:
+      deviceId: 6055F92410FE
+      command: setColor
+      parameter: '{{rgb_color[0]}}:{{rgb_color[1]}}:{{rgb_color[2]}}'
+      commandType: command
+  mode: single
+  icon: mdi:palette
+
+led_strip_831a_set_color:
+  alias: LED Strip 831A - Set Color
+  sequence:
+  - service: rest_command.switchbot_device_command
+    data:
+      deviceId: 6055F92A831A
+      command: setColor
+      parameter: '{{rgb_color[0]}}:{{rgb_color[1]}}:{{rgb_color[2]}}'
+      commandType: command
+  mode: single
+  icon: mdi:palette

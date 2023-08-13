@@ -1,0 +1,13 @@
+#####
+# SwitchBot API
+# https://community.home-assistant.io/t/switch-bot-api-integration/270550/16
+# https://github.com/OpenWonderLabs/SwitchBotAPI
+#####
+switchbot_device_command:
+  url: "https://api.switch-bot.com/v1.0/devices/{{ deviceId }}/commands"
+  method: post
+  headers:
+    Authorization: !secret switchbot_api
+    Content_Type: 'application/json'
+  payload: '{"command": "{{ command }}","parameter": "{{ parameter }}","commandType": "{{ commandtype }}"}'
+

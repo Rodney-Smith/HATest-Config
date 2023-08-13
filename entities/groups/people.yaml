@@ -1,0 +1,13 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.people
+#   @description    :  Devices for people group
+###############################################################################
+people:
+  - person.rodney_smith
+  - person.gina_delauer
+  - person.reannon_haight
+  - person.spencer_smith
+  - person.victoria_morgan
+  - person.lydia_smith

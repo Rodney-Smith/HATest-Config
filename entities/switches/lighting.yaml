@@ -1,0 +1,17 @@
+  - platform: circadian_lighting
+    name: "Office Circadian"
+    lights_rgb:
+      - light.light_strip_10fe
+      - light.light_strip_831a
+
+  - platform: circadian_lighting
+    name: "Living Room Circadian"
+    lights_rgb:
+      - light.gina_light
+      - light.rodney_light
+
+  - platform: circadian_lighting
+    name: "Main Bedroom Circadian"
+    lights_rgb:
+      - light.gina_nightstand
+      - light.rodney_nightstand

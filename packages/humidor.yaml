@@ -1,0 +1,33 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package        :  Humidor
+#  @description    :  Create template sensors that average the values of the
+#                     devices in my humidor.
+###############################################################################
+sensor:
+  - platform: template
+    sensors:
+      humidor_temperature:
+        icon_template: mdi:thermometer
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.of_snzb02_hr_temperature') | float(default=0)),
+            (states('sensor.humidor_sbm_temperature') | float(default=0)),
+            (states('sensor.of_wsdcgq11lm_hr_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+
+  - platform: template
+    sensors:
+      humidor_humidity:
+        icon_template: mdi:water-percent
+        value_template: >
+          {% set humidity = [
+            (states('sensor.of_snzb02_hr_humidity') | float(default=0)),
+            (states('sensor.humidor_sbm_humidity') | float(default=0)),
+            (states('sensor.of_wsdcgq11lm_hr_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(2) }}  
+        unit_of_measurement: '%'

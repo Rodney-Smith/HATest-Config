@@ -1,0 +1,11 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.gina
+#   @description    :  Devices in this area
+###############################################################################
+gina:
+  name: Gina
+  entities:
+    - device_tracker.ginas_iphone
+    - device_tracker.ginas_iphone_icloud

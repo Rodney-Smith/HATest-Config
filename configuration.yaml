@@ -1,0 +1,48 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+# Including Directories
+# !include_dir_list will return the content of a directory as a list with each file content being an entry in the list. The list entries are ordered based on the alphanumeric ordering of the names of the files.
+# !include_dir_named will return the content of a directory as a dictionary which maps filename => content of file.
+# !include_dir_merge_list will return the content of a directory as a list by merging all files (which should contain a list) into 1 big list.
+# !include_dir_merge_named will return the content of a directory as a dictionary by loading each file and merging it into 1 big dictionary.
+homeassistant:
+  packages: !include_dir_named packages
+
+alert: !include_dir_merge_named alerts/
+
+automation: !include automations.yaml
+
+camera: !include_dir_list entities/cameras
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+group: !include_dir_list entities/group
+
+input_boolean: !include_dir_merge_named input_boolean #!include input_booleans.yaml
+
+input_number: !include input_number.yaml
+
+input_text: !include input_text.yaml
+
+light: !include_dir_list entities/lights
+
+#localtuya: !include localtuya.yaml
+
+media_player: !include entities/media_players.yaml
+
+#mqtt: !include entities/mqtt.yaml
+
+notify: !include notify.yaml
+
+scene: !include scenes.yaml
+
+sensor: !include_dir_merge_list entities/sensors
+
+switch: !include_dir_merge_list entities/switches
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+shell_command:
+  mount_music_folder: "mkdir -p /media/nas;mount -t cifs -o vers=3.0,noserverino,username=!secret sysnology_user,password=!secret synology_pass,domain=WORKGROUP //synology.local/music /media/nas"

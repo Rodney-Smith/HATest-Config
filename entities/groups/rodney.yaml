@@ -1,0 +1,13 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.rodney
+#   @description    :  Devices in this area
+###############################################################################
+rodney:
+  name: Rodney
+  entities:
+    - device_tracker.einsteins_iphone
+    - device_tracker.einsteins_iphone_icloud
+    - device_tracker.fenix5_ble_tracker
+    - device_tracker.work_phone

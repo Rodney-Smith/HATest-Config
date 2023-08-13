@@ -1,0 +1,103 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/30/2022
+#  @package        :  Jarvis
+#  @description    :  Bringing some Jarvis to Home Assistant
+#                     This was borrowed from SlackerLabs
+#  https://github.com/thejeffreystone/homeassistant-config/blob/main/config/packages/jarvis.yaml
+###############################################################################
+
+input_select:
+  jarvis_voice:
+    name: Jarvis voice
+    options:
+      - Brian
+      - Emma
+    initial: Brian
+
+# Sensors to see last message and location of audible notification
+mqtt:
+  sensor:
+    - name: "Jarvis Last Msg"
+      state_topic: "house/polly/lastmsg"
+    - name: "Jarvis Last Location"
+      state_topic: "house/polly/lastloc"
+    - name: "Jarvis Last Msg Time"
+      state_topic: "house/polly/msgtime"  
+
+automation:
+  #  - alias: Lightning Detected Announcement
+  #    trigger:
+  #      - platform: state
+  #        entity_id: sensor.lightning_warning
+  #        to: 'Unsafe'
+  #    action:
+  #      - service: notify.alexa_media
+  #        data:
+  #          message: >
+  #            <voice name="{{ states('input_select.jarvis_voice') }}">
+  #            <amazon:auto-breaths>
+  #            <prosody rate="fast">
+  #            Pardon me, Lightning has been detected.
+  #            </prosody>
+  #            </amazon:auto-breaths>
+  #            </voice>
+  #          target: media_player.kitchen_echo
+  #          data:
+  #            type: tts
+
+  - alias: Lightning Detected Announcement
+    trigger:
+      - platform: state
+        entity_id: sensor.lightning_warning
+        to: "Unsafe"
+    action:
+      - service: script.speech_engine_demo
+        data:
+          message: "Pardon me, Lightning has been detected."
+          who: office
+          voice: "{{ states('input_select.jarvis_voice') }}"
+          #voice: Brian
+
+script:
+  speech_engine_demo:
+    sequence:
+      - condition: state
+        entity_id: input_boolean.audible_notifications
+        state: "on"
+      #      - condition: state
+      #        entity_id: group.family
+      #        state: 'home'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: "off"
+      - service: notify.alexa_media
+        data:
+          message: >
+            <voice name="{{ voice }}">
+            <amazon:auto-breaths>
+            <prosody rate="fast">
+            {{ message }}
+            </prosody>
+            </amazon:auto-breaths>
+            </voice>
+          target: >
+            {% if who in ['livingroom','living_room','media_player.lr_echo_show5','main'] %}
+              media_player.lr_echo_show5
+            {% elif who in ['main_bedroom','media_player.bedroom_echo_dot'] %}
+              media_player.bedroom_echo_dot
+            {% elif who in ['guest1','media_player.guest1_echo_dot'] %}
+              media_player.guest1_echo_dot
+            {% elif who in ['guest2','media_player.guest2_echo_dot'] %}
+              media_player.guest2_echo_dot
+            {% elif who in ['kitchen','media_player.kitchen_echo_flex'] %}
+              media_player.kitchen_echo_flex
+            {% elif who in ['all'] %}
+              group.all_echos
+            {% elif who in ['office','media_player.of_echo_show8'] %}
+              media_player.of_echo_show8
+            {% else %}
+              media_player.lr_echo_show5
+            {% endif %}
+          data:
+            type: tts

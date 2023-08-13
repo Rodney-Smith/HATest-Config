@@ -1,0 +1,8 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.main_bedroom
+#   @description    :  Devices in this area
+###############################################################################
+main_bedroom:
+  - light.bedroom_light

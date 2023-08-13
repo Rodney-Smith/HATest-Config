@@ -1,0 +1,104 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package.       :  Humidity
+#  @description    :  Create template sensors that average the humidity values
+#                     of the devices in the same area.
+###############################################################################
+# Legacy Format
+sensor:
+  - platform: template
+    sensors:
+      bedrooms_humidity:
+        unique_id: 5b0adec4-791d-4db8-ba4f-dfeba769fee2
+        friendly_name: Bedroom Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_main_bedroom_humidity') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_humidity') | float(default=0)),
+            (states('sensor.espresense_guest1_humidity') | float(default=0)),
+            (states('sensor.espresense_guest2_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity
+
+  - platform: template
+    sensors:
+      main_bedroom_humidity:
+        unique_id: 082ba376-274c-41b6-a08e-bc6d0bb1611e
+        friendly_name: Main Bedroom Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_main_bedroom_humidity') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity
+
+  - platform: template
+    sensors:
+      living_room_humidity:
+        unique_id: ce04d51e-af90-40a0-a243-169148d36205
+        friendly_name: Living Room Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_living_room_humidity') | float(default=0)),
+            (states('sensor.living_room_ep1_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity
+
+  - platform: template
+    sensors:
+      office_humidity:
+        unique_id: f0fa2053-fb74-4726-8b2e-bb78d1c04ce0
+        friendly_name: Office Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_office_humidity') | float(default=0)),
+            (states('sensor.office_ep1_humidity') | float(default=0)),
+            (states('sensor.funhouse_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity
+
+  - platform: template
+    sensors:
+      kitchen_humidity:
+        unique_id: 64716182-c496-4d98-9334-263639e1507b
+        friendly_name: Kitchen Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_kitchen_humidity') | float(default=0)),
+            (states('sensor.meterplus_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity
+
+  - platform: template
+    sensors:
+      inside_humidity:
+        unique_id: 6338d50e-79e6-4b2f-a627-52e7c5edd29b
+        friendly_name: Inside Humidity
+        value_template: >
+          {% set humidity = [
+            (states('sensor.espresense_main_bedroom_humidity') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_humidity') | float(default=0)),
+            (states('sensor.espresense_guest1_humidity') | float(default=0)),
+            (states('sensor.espresense_guest2_humidity') | float(default=0)),
+            (states('sensor.espresense_living_room_humidity') | float(default=0)),
+            (states('sensor.living_room_ep1_humidity') | float(default=0)),
+            (states('sensor.espresense_office_humidity') | float(default=0)),
+            (states('sensor.office_ep1_humidity') | float(default=0)),
+            (states('sensor.funhouse_humidity') | float(default=0)),
+            (states('sensor.espresense_kitchen_humidity') | float(default=0)),
+            (states('sensor.meterplus_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}  
+        unit_of_measurement: '%'
+        device_class: humidity

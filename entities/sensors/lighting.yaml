@@ -1,0 +1,20 @@
+  - platform: template
+    sensors:
+      light_brightness:
+        friendly_name: 'Light Brightness'
+        value_template: >
+          {% if (now().hour >= 23) or (now().hour <= 7) %}
+            10
+          {% else %}
+            30
+          {% endif %}
+
+      light_color_temp:
+        friendly_name: 'Light Color Temp'
+        value_template: >
+          {% if states('sun.sun') == 'below_horizon' %}
+            375
+          {% else %}
+            200
+          {% endif %} 
+

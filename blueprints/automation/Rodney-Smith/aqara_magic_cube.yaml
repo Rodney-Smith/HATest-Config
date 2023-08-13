@@ -1,0 +1,109 @@
+blueprint:
+  name: Aqara Magic Cube
+  description: Control anything using the Aqara Magic Cube. v1.0
+  domain: automation
+  input:
+    remote:
+      name: Magic Cube
+      description: Select the Aqara Magic Cube device
+      selector:
+        entity:
+          integration: mqtt
+          domain: sensor
+    cube_slide:
+      name: Slide cube on any side
+      description: Action to run when cube slides on any side.
+      default: []
+      selector:
+        action: {}
+    cube_tap:
+      name: Knock cube on any side
+      description: Action to run when knocking cube on any side.
+      default: []
+      selector:
+        action: {}
+    cube_flip90:
+      name: Flip cube 90 degrees
+      description: Action to run when cube flips 90 degrees.
+      default: []
+      selector:
+        action: {}
+    cube_flip180:
+      name: Flip cube 180 degrees
+      description: Action to run when cube flips 180 degrees.
+      default: []
+      selector:
+        action: {}
+    rotate_right:
+      name: Rotate right
+      description: Action to run when cube rotates right on any side.
+      default: []
+      selector:
+        action: {}
+    rotate_left:
+      name: Rotate left
+      description: Action to run when cube rotates left on any side.
+      default: []
+      selector:
+        action: {}
+    cube_wake:
+      name: Wake up the cube
+      description: Action to run when cube wakes up
+      default: []
+      selector:
+        action: {}
+    cube_fall:
+      name: Cube drops
+      description: Action to run when you drop the cube
+      default: []
+      selector:
+        action: {}
+    cube_shake:
+      name: Shake cube
+      description: Action to run when you shake the cube
+      default: []
+      selector:
+        action: {}
+  source_url: https://gist.github.com/Rodney-Smith/eacc7e7d8366582e38f83f59a909b07d
+mode: queued
+max: 5
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input 'remote'
+condition:
+- condition: and
+  conditions:
+  - condition: template
+    value_template: '{{ trigger.from_state.attributes.action != trigger.to_state.attributes.action
+      }} '
+  - condition: template
+    value_template: '{{ trigger.to_state.attributes.action in (''rotate_right'', ''rotate_left'',
+      ''flip90'', ''flip180'', ''slide'', ''tap'', ''shake'', ''fall'', ''wakeup'')
+      }}'
+action:
+- variables:
+    event: '{{ trigger.to_state.attributes.action }}'
+- service: system_log.write
+  data:
+    level: info
+    message: 'Blueprint Script: {{ event }}'
+- choose:
+  - conditions: '{{ event == "wakeup" }}'
+    sequence: !input 'cube_wake'
+  - conditions: '{{ event == "flip90" }}'
+    sequence: !input 'cube_flip90'
+  - conditions: '{{ event == "flip180" }}'
+    sequence: !input 'cube_flip180'
+  - conditions: '{{ event == "tap" }}'
+    sequence: !input 'cube_tap'
+  - conditions: '{{ event == "slide" }}'
+    sequence: !input 'cube_slide'
+  - conditions: '{{ event == "rotate_left" }}'
+    sequence: !input 'rotate_left'
+  - conditions: '{{ event == "rotate_right" }}'
+    sequence: !input 'rotate_right'
+  - cconditions: '{{ event == "shake" }}'
+    sequence: !input 'cube_shake'
+  - conditions: '{{ event == "fall" }}'
+    sequence: !input 'cube_fall'

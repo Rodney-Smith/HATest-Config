@@ -1,0 +1,22 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/12/2023
+#  @script         :  Get Tagline
+#  @description    :  Automate your House just by adding Devices to Home Assistant 
+#
+# Package modified from @SlackerLabs
+# https://github.com/thejeffreystone/SlackerLabVideoExamples/tree/main/2023-ResponseVariables
+###############################################################################
+
+get_taglines:
+  sequence:
+  - variables:
+      slackerlabs: "Automate the Boring Stuff!"
+      paulhibbert: "ooooh the Zigbee."
+      everythingsmarthome: "Nice!"
+      taglines: >
+        {"slackerlabs": "{{slackerlabs}}",
+        "paulhibbert":"{{paulhibbert}}",
+        "everythingsmarthome":"{{everythingsmarthome}}"}
+  - stop: "Alight, Im done."
+    response_variable: "taglines"

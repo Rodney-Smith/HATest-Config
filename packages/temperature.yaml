@@ -1,0 +1,201 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package        :  Temperature
+#  @description    :  Create template sensors that average the temperature
+#                     values of the devices in the same area.
+###############################################################################
+# Legacy Format
+sensor:
+  - platform: template
+    sensors:
+      bedrooms_temperature:
+        unique_id: 54ce7dc9-2aaf-436a-9d7a-e0c38c85f459
+        friendly_name: Bedroom Temperatures
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.main_bedroom_temperature') | float(default=0)),
+            (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
+            (states('sensor.mb_motion_device_temperature') | float(default=0)),
+            (states('sensor.br1_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest1_temperature') | float(default=0)),
+            (states('sensor.br2_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest2_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+#  - platform: template
+#    sensors:
+#      lt_echo_temperature:
+#        value_template: >-
+#          {{ (((states ('sensor.left_echo_temperature') | float(default=0)) * 9 / 5)+ 32) | round(1) }}
+#        unit_of_measurement: '°F'
+
+#  - platform: template
+#    sensors:
+#      rt_echo_temperature:
+#        value_template: >-
+#          {{ (((states ('sensor.right_echo_temperature') | float(default=0)) * 9 / 5)+ 32) | round(1) }}
+#        unit_of_measurement: '°F'
+
+  - platform: template
+    sensors:
+      mainbedroom_temperature:
+        unique_id: 21ae677f-6088-4297-9114-c5357e02f542
+        friendly_name: Main Bedroom Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.main_bedroom_temperature') | float(default=0)),
+            (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
+            (states('sensor.mb_motion_device_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      br1_temperature:
+        unique_id: df2008c2-894a-4484-8857-e79dcf55fb27
+        friendly_name: Guest1 Bedroom Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.br1_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest1_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      br2_temperature:
+        unique_id: 2d98f752-6939-4319-aad1-ab2a7fd47895
+        friendly_name: Guest2 Bedroom Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.br2_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest2_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      livingroom_temperature:
+        unique_id: 122a9fd3-cd54-40c1-95ee-9ea1590ad2fe
+        friendly_name: Living Room Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.living_room_temperature') | float(default=0)),
+            (states('sensor.lr_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_living_room_temperature') | float(default=0)),
+            (states('sensor.living_room_ep1_temperature') | float(default=0)),
+            (states('sensor.blink_living_room_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      office_temperature:
+        unique_id: 1bbb94b0-2886-49aa-985e-4aa94bcce2a4
+        friendly_name: Office Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.p1_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_office_temperature') | float(default=0)),
+            (states('sensor.office_ep1_temperature') | float(default=0)),
+            (states('sensor.funhouse_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      kitchen_temperature:
+        unique_id: ce3638d8-adf3-441e-8ac0-75d3f6ed35cc
+        friendly_name: Kitchen Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.meterplus_temperature') | float(default=0)),
+            (states('sensor.espresense_kitchen_temperature') | float(default=0)),
+            (states('sensor.kn_motion_device_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      outside_temperature:
+        unique_id: a5d21ebf-07e4-4525-b52b-0fe03acbd3f6
+        friendly_name: Outside Temperature
+        value_template: >
+          {% set temperatures = [
+            (state_attr('weather.kmyv_daynight','temperature') | float(default=0)),
+            (state_attr('weather.meridian','temperature') | float(default=0)),
+            (states('sensor.patio_meter_temperature') | float(default=0)),
+            (states('sensor.wall_meter_temperature') | float(default=0)),
+            (states('sensor.blink_back_patio_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{(temps | sum / temps | count) | round(1)}}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      living_space_temperature:
+        unique_id: 8e57bcee-1bca-48ff-afd9-58e77ad4cade
+        friendly_name: Living Space Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.kitchen_temperature') | float(default=0)),
+            (states('sensor.livingroom_temperature') | float(default=0)),
+            (states('sensor.my_ecobee_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      inside_temperature:
+        unique_id: 4aca7b98-10a2-495a-bd3f-ca4feaf5c71a
+        friendly_name: Inside Temperature
+        value_template: >
+          {% set temperatures = [
+            (states('sensor.main_bedroom_temperature') | float(default=0)),
+            (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
+            (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
+            (states('sensor.mb_motion_device_temperature') | float(default=0)),
+            (states('sensor.br1_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest1_temperature') | float(default=0)),
+            (states('sensor.br2_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_guest2_temperature') | float(default=0)),
+            (states('sensor.living_room_temperature') | float(default=0)),
+            (states('sensor.espresense_living_room_temperature') | float(default=0)),
+            (states('sensor.living_room_ep1_temperature') | float(default=0)),
+            (states('sensor.lr_motion_device_temperature') | float(default=0)),
+            (states('sensor.blink_living_room_temperature') | float(default=0)),
+            (states('sensor.p1_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_office_temperature') | float(default=0)),
+            (states('sensor.office_ep1_temperature') | float(default=0)),
+            (states('sensor.funhouse_temperature') | float(default=0)),
+            (states('sensor.meterplus_temperature') | float(default=0)),
+            (states('sensor.kn_motion_device_temperature') | float(default=0)),
+            (states('sensor.espresense_kitchen_temperature') | float(default=0)),
+            (states('sensor.my_ecobee_temperature') | float(default=0)),
+            (states('sensor.blink_sun_room_temperature') | float(default=0)),
+            (states('sensor.blink_front_door_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{ ( temps | sum / temps | count ) | round(1) }}  
+        unit_of_measurement: '°F'
+        device_class: temperature

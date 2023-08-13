@@ -1,0 +1,197 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  05/28/2023
+#  @homeassistant  :  mqtt
+#  @description    :  Integrate these mqtt sensors into Home Assistant
+#                       https://www.home-assistant.io/integrations/sensor.mqtt/
+###############################################################################
+# Example configuration.yaml entry
+#mqtt:
+#  sensor:
+#    - name: "Timer 1"
+#      state_topic: "tele/sonoff/sensor"
+#      value_template: "{{ value_json.Timer1.Arm }}"
+#      json_attributes_topic: "tele/sonoff/sensor"
+#      json_attributes_template: "{{ value_json.Timer1 | tojson }}"
+#    - name: "Timer 2"
+#      state_topic: "tele/sonoff/sensor"
+#      value_template: "{{ value_json.Timer2.Arm }}"
+#      json_attributes_topic: "tele/sonoff/sensor"
+#      json_attributes_template: "{{ value_json.Timer2 | tojson }}"
+mqtt:
+  binary_sensor:
+    - name: "FunHouse Motion Sensor"
+      unique_id: 77a25302-7389-4ccb-8b16-92d39d46eac0
+      state_topic: "funhouse/state"
+      value_template: "{{ value_json.pir_sensor }}"
+      payload_on: "on"
+      payload_off: "off"
+      device_class: motion
+
+  sensor:
+    - name: "Funhouse Humidity"
+      unique_id: 9793f4cf-220d-4088-bfaf-44ad4fa6b4b5
+      state_topic: "funhouse/state"
+      value_template: "{{ value_json.humidity | round (2) }}"
+      device_class: humidity
+
+    - name: "Funhouse Pressure"
+      unique_id: 74018f26-0c31-4e35-bcd1-5cba5c5a7c19
+      state_topic: "funhouse/state"
+      value_template: "{{ value_json.pressure | round (2) }}"
+      unit_of_measurement: kPa
+      device_class: pressure
+
+    - name: "Funhouse Temperature"
+      unique_id: 0dadd2fd-1bd2-4751-aca1-c05e080da7e8
+      state_topic: "funhouse/state"
+      value_template: "{{ value_json.temperature | round(1) }}"
+      unit_of_measurement: '°F'
+      device_class: temperature
+
+    - name: Bridge state
+      state_topic: "zigbee2mqtt/bridge/state"
+      icon: mdi:router-wireless
+
+    - name: "Pi0dev Temperature"
+      unique_id: 7745f652-1baa-4f90-b52c-70fade5c7520
+      state_topic: "linux/pi0dev/temp"
+      value_template: >-
+        {{ (states('sensor.pi0dev_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi0w1 Temperature"
+      unique_id: 2e46c4df-1465-4535-9034-b6dd193a1bad
+      state_topic: "linux/pi0w1/temp"
+      value_template: >-
+        {{ (states('sensor.pi0w1_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi0w2 Temperature"
+      unique_id: 0724e801-29a3-4bff-81e6-fbdd6503c384
+      state_topic: "linux/pi0w2/temp"
+      value_template: >-
+        {{ (states('sensor.pi0w2_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi0wh1 Temperature"
+      unique_id: eb6bb275-8c47-47d2-a184-887455196ab8
+      state_topic: "linux/pi0wh1/temp"
+      value_template: >-
+        {{ (states('sensor.pi0wh1_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi0wh2 Temperature"
+      unique_id: 941f77db-f5b7-4bcd-91f1-0a24656db0b5
+      state_topic: "linux/pi0wh2/temp"
+      value_template: >-
+        {{ (states('sensor.pi0wh2_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi3 Temperature"
+      unique_id: 211ccd1f-a3b1-4642-a634-e3271243193f
+      state_topic: "linux/pi3/temp"
+      value_template: >-
+        {{ (states('sensor.pi3_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Pi4 Temperature"
+      unique_id: a89c0757-081e-4343-8c3b-9c21317dfc62
+      state_topic: "linux/pi4/temp"
+      value_template: >-
+        {{ (states('sensor.pi4_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node1 Temperature"
+      unique_id: 266eda12-3fde-4a01-a52a-bd4d7e02a0f0
+      state_topic: "linux/node1/temperature"
+      value_template: >-
+        {{ (states('sensor.node1_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node2 Temperature"
+      unique_id: 3d907f72-a13d-4df3-b1f9-ed0c4f403904
+      state_topic: "linux/node2/temperature"
+      value_template: >-
+        {{ (states('sensor.node2_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node3 Temperature"
+      unique_id: a239a276-1c39-4290-9ce4-ae461b4ddfd8
+      state_topic: "linux/node3/temperature"
+      value_template: >-
+        {{ (states('sensor.node3_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node4 Temperature"
+      unique_id: 52911b8e-cb13-453c-b370-a91c3f7b5da4
+      state_topic: "linux/node4/temperature"
+      value_template: >-
+        {{ (states('sensor.node4_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node5 Temperature"
+      unique_id: 7d4e57e1-8ffb-4414-a7e2-a1b39808e1a3
+      state_topic: "linux/node5/temperature"
+      value_template: >-
+        {{ (states('sensor.node5_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    - name: "Node6 Temperature"
+      unique_id: 562a58e9-b348-409c-90fd-115261308b1a
+      state_topic: "linux/node6/temperature"
+      value_template: >-
+        {{ (states('sensor.node6_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      device_class: temperature
+
+    # - name: "Macropad Blank"
+    #   unique_id: e1d0aac0-387e-4e9f-ac89-7bd1dc1a0e04
+    #   state_topic: "macropad/peripheral"
+    #   unit_of_measurement: ""
+    #   value_template: "9"
+
+    # - name: "Macropad Phone"
+    #   unique_id: 748622ea-c7a7-4285-b4a2-af496da1d545
+    #   state_topic: "macropad/peripheral"
+    #   unit_of_measurement: ""
+    #   value_template: "10"
+
+    # - name: "Macropad Meeting"
+    #   unique_id: 09c42aa9-ec77-4a33-9e58-c9465629f1a7
+    #   state_topic: "macropad/peripheral"
+    #   unit_of_measurement: ""
+    #   value_template: "11"
+
+  light:
+    - name: "FunHouse Light"
+      schema: template
+      command_topic: "funhouse/light/set"
+      state_topic: "funhouse/light/state"
+      command_on_template: >
+        {"state": "on"
+        {%- if brightness is defined -%}
+        , "brightness": {{ brightness }}
+        {%- endif -%}
+        {%- if red is defined and green is defined and blue is defined -%}
+        , "color": [{{ red }}, {{ green }}, {{ blue }}]
+        {%- endif -%}
+        }
+      command_off_template: '{"state": "off"}'
+      state_template: "{{ value_json.state }}"
+      brightness_template: "{{ value_json.brightness }}"
+      red_template: "{{ value_json.color[0] }}"
+      green_template: "{{ value_json.color[1] }}"
+      blue_template: "{{ value_json.color[2] }}"

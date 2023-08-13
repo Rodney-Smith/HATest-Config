@@ -1,0 +1,24 @@
+  - platform: mqtt_room
+    name: "Fenix 5"
+    device_id: "known:dcfad60078c3"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "iPhone 13 Pro Max"
+    device_id: "Rodneys iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "Work iPhone"
+    device_id: "Work iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "iPhone 13 Pro"
+    device_id: "Ginas iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120

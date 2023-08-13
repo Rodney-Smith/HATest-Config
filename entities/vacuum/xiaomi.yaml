@@ -1,0 +1,10 @@
+- platform: xiaomi_cloud_map_extractor
+  name: Ernie
+  country: us
+  host: !secret xiaomi_host
+  token: !secret xiaomi_token
+  username: !secret xiaomi_cloud_username
+  password: !secret xiaomi_cloud_password
+  draw: ['all']
+  attributes:
+    - calibration_points

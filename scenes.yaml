@@ -1,0 +1,1716 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  07/04/2023
+#  @package        :  Scenes
+#  @description    :  My Home Assistant Scenes
+###############################################################################
+- id: '1632365883297'
+  name: Blue Lives Matter
+  entities:
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 225
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      effect: '0'
+      state: 'on'
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 225
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      effect: '0'
+      state: 'on'
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 225
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      effect: '0'
+      state: 'on'
+  icon: mdi:car-emergency
+- id: '1632366515585'
+  name: Support the Troops
+  entities:
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+    light.side_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Side Porch 1
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+    light.side_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Side Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+  icon: mdi:bugle
+- id: '1632366694367'
+  name: Red Light District
+  entities:
+    light.gina_nightstand:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Nightstand
+      supported_features: 40
+      color_mode: rgb
+      brightness: 89
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+    light.rodney_nightstand:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Nightstand
+      supported_features: 40
+      color_mode: rgb
+      brightness: 89
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+  icon: mdi:emoticon-wink-outline
+  metadata: {}
+- id: '1632366694368'
+  name: Halloween
+  entities:
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 30
+      - 100
+      rgb_color:
+      - 255
+      - 127
+      - 0
+      xy_color:
+      - 0.612
+      - 0.374
+      effect: '0'
+      state: 'on'
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 30
+      - 100
+      rgb_color:
+      - 255
+      - 127
+      - 0
+      xy_color:
+      - 0.612
+      - 0.374
+      effect: '0'
+      state: 'on'
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 30
+      - 100
+      rgb_color:
+      - 255
+      - 127
+      - 0
+      xy_color:
+      - 0.612
+      - 0.374
+      effect: '0'
+      state: 'on'
+  icon: mdi:halloween
+- id: '1632366694369'
+  name: Christmas
+  entities:
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      effect: '0'
+      state: 'on'
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 105
+      - 100
+      rgb_color:
+      - 63
+      - 255
+      - 0
+      xy_color:
+      - 0.199
+      - 0.724
+      effect: '0'
+      state: 'on'
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 120
+      - 100
+      rgb_color:
+      - 0
+      - 255
+      - 0
+      xy_color:
+      - 0.172
+      - 0.747
+      effect: '0'
+      state: 'on'
+  icon: mdi:pine-tree
+- id: '1632366694370'
+  name: 4th of July
+  entities:
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      effect: '0'
+      state: 'on'
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 225
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      effect: '0'
+      state: 'on'
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: hs
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      effect: '0'
+      state: 'on'
+  icon: mdi:firework
+- id: '1651438465468'
+  name: Warm White
+  icon: mdi:lightbulb-group-outline
+  entities:
+    light.entrance:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Entrance
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      effect: '0'
+      color_temp: 500
+      state: 'on'
+    light.front_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 1
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      color_temp: 500
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      effect: '0'
+      state: 'on'
+    light.front_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Front Porch 2
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      effect: '0'
+      color_temp: 500
+      state: 'on'
+    light.side_porch_1:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Side Porch 1
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      effect: '0'
+      color_temp: 500
+      state: 'on'
+    light.side_porch_2:
+      min_mireds: 153
+      max_mireds: 500
+      effect_list:
+      - '0'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+      supported_color_modes:
+      - color_temp
+      - hs
+      friendly_name: Side Porch 2
+      supported_features: 4
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 30.601
+      - 94.547
+      rgb_color:
+      - 255
+      - 136
+      - 13
+      xy_color:
+      - 0.599
+      - 0.382
+      effect: '0'
+      color_temp: 500
+      state: 'on'
+- id: '1651438847129'
+  name: Cool White
+  entities:
+    light.entrance:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6667
+      min_mireds: 149
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Entrance
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.front_porch_1:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6667
+      min_mireds: 149
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch  1
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.front_porch_2:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6667
+      min_mireds: 149
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch 2
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.side_porch_1:
+      min_color_temp_kelvin: 3000
+      max_color_temp_kelvin: 6000
+      min_mireds: 166
+      max_mireds: 333
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Side Porch 1 Side Porch 1
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6000
+      color_temp: 166
+      hs_color:
+      - 30.754
+      - 7.122
+      rgb_color:
+      - 255
+      - 246
+      - 236
+      xy_color:
+      - 0.34
+      - 0.339
+      state: 'on'
+    light.side_porch_2:
+      min_color_temp_kelvin: 3000
+      max_color_temp_kelvin: 6000
+      min_mireds: 166
+      max_mireds: 333
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Side Porch 2 Side Porch 2
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6000
+      color_temp: 166
+      hs_color:
+      - 30.754
+      - 7.122
+      rgb_color:
+      - 255
+      - 246
+      - 236
+      xy_color:
+      - 0.34
+      - 0.339
+      state: 'on'
+  icon: mdi:lightbulb-group-outline
+  metadata: {}
+- id: '1685284908996'
+  name: Main Bedroom - Cool White
+  entities:
+    light.gina_nightstand:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Nightstand
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 128
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+    light.rodney_nightstand:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Nightstand
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 128
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+  icon: mdi:autorenew
+  metadata: {}
+- id: '1685213337606'
+  name: Movie Time
+  entities:
+    light.rodney_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 89
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+    light.gina_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 89
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+  icon: mdi:movie-cog-outline
+  metadata: {}
+- id: '1685242885746'
+  name: Living Room - Cool White
+  entities:
+    light.rodney_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 178
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+    light.gina_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 178
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+  icon: mdi:autorenew
+  metadata: {}
+- id: '1685761550729'
+  name: Watch Movie
+  entities:
+    light.gina_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 89
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+    light.rodney_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Light
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 89
+      color_temp_kelvin: 6666
+      color_temp: 150
+      hs_color:
+      - 300
+      - 2.084
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      state: 'on'
+    media_player.65_tcl_roku_tv:
+      source_list:
+      - Home
+      - A&E
+      - Apple TV
+      - Crackle
+      - Discovery GO
+      - Disney Plus
+      - Dolby Access
+      - ESPN
+      - Freevee
+      - Hulu
+      - Jellyfin
+      - Lifetime
+      - Max
+      - Mirror Screen to Roku
+      - NBC
+      - Netflix
+      - NewsON
+      - Nowhere USB
+      - Paramount Network
+      - Peacock TV
+      - Philo
+      - Plex - Free Movies & TV
+      - Pluto TV - It's Free TV
+      - Prime Video
+      - Roku Media Player
+      - Roku TV Intro
+      - Roku Tips & Tricks
+      - STARZ
+      - Showtime Anytime
+      - Soundbar
+      - Streaming box
+      - Sundance Now
+      - TCL Audio
+      - The Roku Channel
+      - Tubi - Free Movies & TV
+      - USA Network
+      - Vevo
+      - Vudu
+      - Vudu Movie & TV Store
+      - YouTube
+      - YouTube TV
+      device_class: tv
+      supported_features: 151481
+      media_content_type: app
+      app_id: tvinput.hdmi2
+      app_name: Streaming box
+      source: Streaming box
+      entity_picture: /api/media_player_proxy/media_player.65_tcl_roku_tv?token=7e715799be16f5c6b63286a2f1289eff2c75d64ccc9f195250ed337e296a06c8&cache=d84d881710abe586
+      friendly_name: 65" TCL Roku TV
+      state: 'on'
+    remote.65_tcl_roku_tv:
+      supported_features: 0
+      friendly_name: 65" TCL Roku TV
+      state: 'on'
+    select.65_tcl_roku_tv_application:
+      options:
+      - Home
+      - A&E
+      - Apple TV
+      - Crackle
+      - Discovery GO
+      - Disney Plus
+      - Dolby Access
+      - ESPN
+      - Freevee
+      - Hulu
+      - Jellyfin
+      - Lifetime
+      - Max
+      - Mirror Screen to Roku
+      - NBC
+      - Netflix
+      - NewsON
+      - Nowhere USB
+      - Paramount Network
+      - Peacock TV
+      - Philo
+      - Plex - Free Movies & TV
+      - Pluto TV - It's Free TV
+      - Prime Video
+      - Roku Media Player
+      - Roku TV Intro
+      - Roku Tips & Tricks
+      - STARZ
+      - Showtime Anytime
+      - Soundbar
+      - Streaming box
+      - Sundance Now
+      - TCL Audio
+      - The Roku Channel
+      - Tubi - Free Movies & TV
+      - USA Network
+      - Vevo
+      - Vudu
+      - Vudu Movie & TV Store
+      - YouTube
+      - YouTube TV
+      icon: mdi:application
+      friendly_name: 65" TCL Roku TV Application
+      state: Streaming box
+    media_player.fire_tv_cube:
+      source_list:
+      - Local Speaker
+      - Einstein’s iPhone
+      volume_level: 0.3
+      is_volume_muted: false
+      media_content_type: standby
+      media_position_updated_at: '2023-06-03T01:29:54.745288+00:00'
+      source: Local Speaker
+      available: true
+      last_called: false
+      last_called_timestamp:
+      last_called_summary:
+      connected_bluetooth:
+      bluetooth_list:
+      - Einstein’s iPhone
+      friendly_name: Fire TV Cube
+      supported_features: 56253
+      state: standby
+  icon: mdi:movie-open
+  metadata: {}
+- id: '1685763311759'
+  name: End Movie
+  entities:
+    media_player.65_tcl_roku_tv:
+      source_list:
+      - Home
+      - A&E
+      - Apple TV
+      - Crackle
+      - Discovery GO
+      - Disney Plus
+      - Dolby Access
+      - ESPN
+      - Freevee
+      - Hulu
+      - Jellyfin
+      - Lifetime
+      - Max
+      - Mirror Screen to Roku
+      - NBC
+      - Netflix
+      - NewsON
+      - Nowhere USB
+      - Paramount Network
+      - Peacock TV
+      - Philo
+      - Plex - Free Movies & TV
+      - Pluto TV - It's Free TV
+      - Prime Video
+      - Roku Media Player
+      - Roku TV Intro
+      - Roku Tips & Tricks
+      - STARZ
+      - Showtime Anytime
+      - Soundbar
+      - Streaming box
+      - Sundance Now
+      - TCL Audio
+      - The Roku Channel
+      - Tubi - Free Movies & TV
+      - USA Network
+      - Vevo
+      - Vudu
+      - Vudu Movie & TV Store
+      - YouTube
+      - YouTube TV
+      device_class: tv
+      supported_features: 151481
+      friendly_name: 65" TCL Roku TV
+      state: standby
+    remote.65_tcl_roku_tv:
+      supported_features: 0
+      friendly_name: 65" TCL Roku TV
+      state: 'off'
+    select.65_tcl_roku_tv_application:
+      options:
+      - Home
+      - A&E
+      - Apple TV
+      - Crackle
+      - Discovery GO
+      - Disney Plus
+      - Dolby Access
+      - ESPN
+      - Freevee
+      - Hulu
+      - Jellyfin
+      - Lifetime
+      - Max
+      - Mirror Screen to Roku
+      - NBC
+      - Netflix
+      - NewsON
+      - Nowhere USB
+      - Paramount Network
+      - Peacock TV
+      - Philo
+      - Plex - Free Movies & TV
+      - Pluto TV - It's Free TV
+      - Prime Video
+      - Roku Media Player
+      - Roku TV Intro
+      - Roku Tips & Tricks
+      - STARZ
+      - Showtime Anytime
+      - Soundbar
+      - Streaming box
+      - Sundance Now
+      - TCL Audio
+      - The Roku Channel
+      - Tubi - Free Movies & TV
+      - USA Network
+      - Vevo
+      - Vudu
+      - Vudu Movie & TV Store
+      - YouTube
+      - YouTube TV
+      icon: mdi:application
+      friendly_name: 65" TCL Roku TV Application
+      state: unknown
+    media_player.fire_tv_cube:
+      source_list:
+      - Local Speaker
+      - Einstein’s iPhone
+      volume_level: 0.3
+      is_volume_muted: false
+      media_content_type: standby
+      media_position_updated_at: '2023-06-03T01:29:54.745288+00:00'
+      source: Local Speaker
+      available: true
+      last_called: false
+      last_called_timestamp:
+      last_called_summary:
+      connected_bluetooth:
+      bluetooth_list:
+      - Einstein’s iPhone
+      friendly_name: Fire TV Cube
+      supported_features: 56253
+      state: standby
+    light.gina_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Gina's Light
+      supported_features: 40
+      state: 'off'
+    light.rodney_light:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Rodney's Light
+      supported_features: 40
+      state: 'off'
+  icon: mdi:movie
+  metadata: {}
+- id: '1688771731941'
+  name: LED Reset Color
+  entities:
+    light.light_strip_10fe:
+      supported_color_modes:
+      - rgb
+      color_mode: rgb
+      brightness: 127
+      rgb_color:
+      - 38
+      - 136
+      - 121
+      icon: mdi:led-strip-variant
+      friendly_name: Light Strip 10FE
+      state: 'on'
+    light.light_strip_831a:
+      supported_color_modes:
+      - rgb
+      color_mode: rgb
+      brightness: 127
+      rgb_color:
+      - 38
+      - 136
+      - 121
+      icon: mdi:led-strip-variant
+      friendly_name: Light Strip 831A
+      state: 'on'
+  icon: mdi:led-strip-variant
+  metadata:
+    light.light_strip_10fe:
+      entity_only: true
+    light.light_strip_831a:
+      entity_only: true
+- id: '1688772749709'
+  name: Office - Cool White
+  entities:
+    light.light_strip_10fe:
+      supported_color_modes:
+      - rgb
+      color_mode: rgb
+      brightness: 127
+      hs_color:
+      - 48
+      - 1.961
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      last_run_success:
+      friendly_name: Light Strip 10FE
+      supported_features: 0
+      state: 'on'
+    light.light_strip_831a:
+      supported_color_modes:
+      - rgb
+      last_run_success:
+      friendly_name: Light Strip 831A
+      supported_features: 0
+      color_mode: rgb
+      brightness: 127
+      hs_color:
+      - 48
+      - 1.961
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.wled_soundreactive:
+      effect_list:
+      - ' ♪ 2D Swirl@!,Sensitivity=64,Blur;,Bg Swirl;!'
+      - ' ♪ 2D Waverly@Amplification,Sensitivity=64;;!'
+      - ' ♪ Gravcenter@Rate of fall,Sensitivity=128;,!;!'
+      - ' ♪ Gravcentric@Rate of fall,Sensitivity=128;!;!'
+      - ' ♪ Gravimeter@Rate of fall,Sensitivity=128;,!;!'
+      - ' ♪ Juggles@!,# of balls;,!;!'
+      - ' ♪ Matripix@!,Brightness=64;,!;!'
+      - ' ♪ Midnoise@Fade rate,Maximum length=128;,!;!'
+      - ' ♪ Noisefire@!,!;;'
+      - ' ♪ Noisemeter@Fade rate,Width=128;!,!;!'
+      - ' ♪ Pixels@Fade rate,# of pixels;,!;!'
+      - ' ♪ Pixelwave@!,Sensitivity=64;!,!;!'
+      - ' ♪ Plasmoid@Phase=128,# of pixels=128;,!;!'
+      - ' ♪ Puddlepeak@Fade rate,Puddle size,,Select bin,Volume (minimum);!,!;!'
+      - ' ♪ Puddles@Fade rate,Puddle size;!,!;!'
+      - ' ♪ Ripple Peak@Fade rate,Max # of ripples,,Select bin,Volume (minimum);!,!;!'
+      - ' ♫ 2D Akemi@Color speed,Dance ☑;Head palette,Arms & Legs,Eyes & Mouth;Face
+        palette'
+      - ' ♫ 2D CenterBars@Bar speed=250,Ripple decay=250,Center ↔ ☑=192,Center ↕ ☑=192,
+        Color ↕ ☑=192;,,Peak Color;!=11'
+      - ' ♫ 2D Funky Plank@Scroll speed,,# of bands;;'
+      - ' ♫ 2D GEQ@Bar speed,Ripple decay;,,Peak Color;!'
+      - ' ♫ Binmap@;!,!;!'
+      - ' ♫ Blurz@Fade rate,Blur amount;,Color mix;!'
+      - ' ♫ DJ Light@Speed;;'
+      - ' ♫ Freqmap@Fade rate,Starting color;,!;!'
+      - ' ♫ Freqmatrix@Time delay,Sound effect,Low bin,High bin,Sensivity;;'
+      - ' ♫ Freqpixels@Fade rate,Starting colour and # of pixels;;'
+      - ' ♫ Freqwave@Time delay,Sound effect,Low bin,High bin,Pre-amp;;'
+      - ' ♫ Gravfreq@Rate of fall,Sensivity=128;,!;!'
+      - ' ♫ Noisemove@Speed of perlin movement,Fade rate;,!;!'
+      - ' ♫ Rocktaves@;,!;!'
+      - ' ♫ Waterfall@!,Adjust color,,Select bin, Volume (minimum);!,!;!'
+      - ' ⚙️ Custom Effect@Speed,Intensity,Custom 1, Custom 2, Custom 3;!;!'
+      - 2D Black Hole@Outer X frequency,Inner X frequency,Inner Y frequency;;
+      - 2D Colored Bursts@Speed,Number of lines;;!
+      - 2D DNA Spiral@Speed,Frequency;;!
+      - 2D DNA@Scroll speed,Blur;;!
+      - 2D Drift@Rotation speed,Blur amount;;!
+      - 2D Fire2012@Speed;;
+      - 2D FireNoise@X scale,Y scale;;
+      - 2D Frizzles@X frequency,Y frequency;;!
+      - 2D Game Of Life@!,Use Palette ☑;!,!;!
+      - 2D Hiphotic@X scale,Y scale;;!
+      - 2D Julia@,Max iterations per pixel,X center,Y center,Area size;;!
+      - 2D Lissajous@X frequency,Fadetime;;!
+      - 2D Matrix@Falling speed,Spawning rate,Trail,Custom color ☑;Spawn,Trail;
+      - 2D Metaballs@;;
+      - 2D Noise@Speed,Scale;;!
+      - 2D Plasma Ball@Speed;;!
+      - 2D Polar Lights@Speed,X scale,Palette;;
+      - 2D Pulser@Speed,Blur;;!
+      - 2D Sindots@Speed,Dot distance;;!
+      - 2D Squared Swirl@,,,,Blur;,,;!
+      - 2D Sun Radiation@Variance,Brightness;;
+      - 2D Tartan@X scale,Y scale;;!
+      - 3D Ripples@Speed=128,Interval=128;!;!
+      - 3D Sphere Move@Speed=128,Interval=128;!;!
+      - Android@!,Width;!,!,;!
+      - Aurora@!=24,!;1,2,3;!=50
+      - Blends@Shift speed,Blend speed;1,2,3,!
+      - Blink Rainbow@Frequency,Blink duration;!,!,;!
+      - Blink@!,;!,!,;!
+      - Bouncing Balls@Gravity,# of balls;!,!,;!
+      - Bpm@!=64,;1,2,3;!
+      - Breathe@!,;!,!;!
+      - Candle Multi@Flicker rate=96,Flicker intensity=224;!,!,;0
+      - Candle@Flicker rate=96,Flicker intensity=224;!,!,;0
+      - Candy Cane@!,Width;;
+      - Chase 2@!,Width;!,!,;!
+      - Chase Flash Rnd@!,;,Fx,;!
+      - Chase Flash@!,;Bg,Fx,!;!
+      - Chase Rainbow@!,Width;!,!,;0
+      - Chase Random@!,Width;!,,!;!
+      - Chase@!,Width;!,!,!;!
+      - Chunchun@!,Gap size;!,!,;!
+      - Colorful@!,Saturation;1,2,3;!
+      - Colorloop@!,Saturation;1,2,3;!
+      - Colortwinkles@Fade speed,Spawn speed;1,2,3;!
+      - Colorwaves
+      - Dancing Shadows@!,# of shadows;!,,;!
+      - Dissolve Rnd@Repeat speed,Dissolve speed;,!,;!
+      - Dissolve@Repeat speed,Dissolve speed;!,!,;!
+      - Drip@Gravity,# of drips;!,!;!
+      - Dynamic Smooth
+      - Dynamic@!,!;1,2,3;!
+      - Fade@!,;!,!,;!
+      - Fairy
+      - Fairy Twinkle
+      - Fill Noise
+      - Fire 2012@Spark rate=120,Decay=64;1,2,3;!
+      - Fire Flicker@!,!;!,,;!
+      - Fireworks 1D@Gravity,Firing side;!,!,;!
+      - Fireworks Starburst
+      - Fireworks@Sharpness=96,Frequency=192;!,2,;!=11
+      - Flow
+      - Flow Stripe@Hue speed,Effect speed;;
+      - Glitter
+      - Gradient@!,Spread=16;!,!,;!
+      - Halloween
+      - Halloween Eyes
+      - Heartbeat@!,!;!,!,;!
+      - ICU
+      - Juggle@!=16,Trail=240;!,!,;!
+      - Lake@!,;1,2,3;!
+      - Lighthouse
+      - Lightning
+      - Loading@!,Fade=16;!,!,;!
+      - Meteor Smooth@!,Trail length;!,!,;!
+      - Meteor@!,Trail length;!,!,;!
+      - Multi Comet
+      - Noise 1
+      - Noise 2
+      - Noise 3
+      - Noise 4
+      - Noise Pal
+      - Oscillate
+      - Pacifica
+      - Palette@!,;1,2,3;!
+      - Percent@,% of fill;!,!,;!
+      - Perlin Move@!,# of pixels,fade rate;,!;!
+      - Phased
+      - Phased Noise
+      - Plasma@Phase,;1,2,3;!
+      - Police@!,Width;,Bg,;0
+      - Popcorn
+      - Pride 2015@!,;;
+      - Railway
+      - Rain@Fade rate=128,Frequency=128;!,2,;!
+      - Rainbow Runner@!,Size;Bg,,;!
+      - Rainbow@!,Size;1,2,3;!
+      - Random Colors@!,Fade time;1,2,3;!
+      - Reserved for Elementary
+      - Reserved for PoolNoise
+      - Reserved for Twister
+      - Reserved0
+      - Reserved1
+      - Reserved2
+      - Reserved3
+      - Reserved4
+      - Reserved5
+      - Reserved6
+      - Reserved7
+      - Reserved8
+      - Reserved9
+      - Ripple
+      - Ripple Rainbow
+      - Running Dual
+      - Running@!,Wave width;!,!,;!
+      - Saw@!,Width;!,!,;!
+      - Scan Dual@!,# of dots;!,!,;!
+      - Scan@!,# of dots;!,!,;!
+      - Scanner
+      - Scanner Dual
+      - Sine
+      - Sinelon
+      - Sinelon Dual
+      - Sinelon Rainbow
+      - Solid Glitter@,!;!,,;0
+      - Solid Pattern Tri@,Size;1,2,3;!=0
+      - Solid Pattern@Fg size,Bg size;Fg,Bg,;!=0
+      - Solid@;!;
+      - Sparkle Dark@!,!;Bg,Fx,;!
+      - Sparkle+@!,!;Bg,Fx,;!
+      - Sparkle@!,;!,!,;!
+      - Spots Fade@Spread,Width;!,!,;!
+      - Spots@Spread,Width;!,!,;!
+      - Stream
+      - Stream 2
+      - Strobe Mega@!,!;!,!,;!
+      - Strobe Rainbow@!,;,!,;!
+      - Strobe@!,;!,!,;!
+      - Sunrise@Time [min]=60,;;0
+      - Sweep Random
+      - Sweep@!,!;!,!,;!
+      - TV Simulator
+      - Tetrix@!=224,Width=0;!,!,;!=11
+      - Theater Rainbow@!,Gap size;1,2,3;!
+      - Theater@!,Gap size;!,!,;!
+      - Traffic Light@!,;,!,;!
+      - Tri Chase@!,Size;1,2,3;0
+      - Tri Fade
+      - Tri Wipe@!,Width;1,2,3;0
+      - Twinkle@!,;!,!,;!
+      - Twinklecat
+      - Twinklefox
+      - Twinkleup@!,Intensity;!,!,;!
+      - Two Dots@!,Dot size;1,2,Bg;!
+      - Washing Machine
+      - Wavesins@Speed,Brightness variation,Starting Color,Range of Colors,Color variation;;!
+      - Wipe Random@!,;1,2,3;!
+      - Wipe@!,!;!,!,;!
+      supported_color_modes:
+      - rgbw
+      color_mode: rgbw
+      brightness: 128
+      hs_color:
+      - 0
+      - 0
+      rgb_color:
+      - 255
+      - 255
+      - 255
+      rgbw_color:
+      - 255
+      - 255
+      - 255
+      - 0
+      xy_color:
+      - 0.323
+      - 0.329
+      effect: Solid@;!;
+      icon: mdi:led-strip-variant
+      friendly_name: WLED-SoundReactive
+      supported_features: 36
+      state: 'on'
+    light.h61e1_led_strip:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - brightness
+      - color_temp
+      - rgb
+      color_mode: color_temp
+      brightness: 127
+      hs_color:
+      - 300
+      - 2.095
+      rgb_color:
+      - 255
+      - 249
+      - 255
+      xy_color:
+      - 0.325
+      - 0.322
+      http_enabled: true
+      ble_enabled: true
+      lan_enabled: true
+      update_status: ok at Thu Aug  3 12:27:25 2023
+      timeout_count: 0
+      friendly_name: Humidor LED Strip
+      supported_features: 0
+      color_temp_kelvin: 6667
+      color_temp: 149
+      state: 'on'
+    light.right_floor_lamp:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - brightness
+      - color_temp
+      - rgb
+      color_mode: color_temp
+      brightness: 255
+      hs_color:
+      - 289.817
+      - 2.567
+      rgb_color:
+      - 253
+      - 248
+      - 255
+      xy_color:
+      - 0.323
+      - 0.321
+      http_enabled: true
+      ble_enabled: true
+      lan_enabled: true
+      update_status: ok at Thu Aug  3 12:27:25 2023
+      timeout_count: 0
+      friendly_name: Right Floor Lamp
+      supported_features: 0
+      color_temp_kelvin: 6711
+      color_temp: 149
+      state: 'on'
+    light.left_floor_lamp:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - brightness
+      - color_temp
+      - rgb
+      http_enabled: true
+      ble_enabled: true
+      lan_enabled: true
+      update_status: ok at Thu Aug  3 12:27:25 2023
+      timeout_count: 0
+      friendly_name: Left Floor Lamp
+      supported_features: 0
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6711
+      color_temp: 149
+      hs_color:
+      - 289.817
+      - 2.567
+      rgb_color:
+      - 253
+      - 248
+      - 255
+      xy_color:
+      - 0.323
+      - 0.321
+      state: 'on'
+  icon: mdi:lightbulb-group
+  metadata:
+    light.light_strip_10fe:
+      entity_only: true
+    light.light_strip_831a:
+      entity_only: true
+    light.wled_soundreactive:
+      entity_only: true
+    light.h61e1_led_strip:
+      entity_only: true
+    light.right_floor_lamp:
+      entity_only: true
+    light.left_floor_lamp:
+      entity_only: true

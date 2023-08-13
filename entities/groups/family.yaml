@@ -1,0 +1,9 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.family
+#   @description    :  Devices for family group
+###############################################################################
+family:
+  - person.rodney_smith
+  - person.gina_delauer

@@ -1,0 +1,28 @@
+substitutions:
+  name: kauf-bulb-48ae16
+  friendly_name: Foyer
+
+packages:
+  Kauf.RGBWW: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb.yaml
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+api:
+  encryption:
+    key: !secret kauf_48ae16
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: !secret ip_kauf_48ae16
+    gateway: !secret ip_gateway
+    subnet: !secret ip_subnet
+    dns1: !secret ip_dns
+  ap:
+    ssid: ${name}_AP
+    password: !secret wifi_ap_pass
+    ap_timeout: 3min

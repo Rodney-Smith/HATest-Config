@@ -1,0 +1,4 @@
+MQTT:
+  entities:
+    - sensor.medicine_time
+    - sensor.last_message

@@ -1,0 +1,91 @@
+###############################################################################
+#  @author         :  Rodney Smith 
+#  @date           :  08/12/2023
+#  @package        :  Integrations
+#  @description    :  All the Integrations 
+#
+# Package modified from @SlackerLabs
+# https://github.com/thejeffreystone/homeassistant-config/blob/main/config/packages/integrations.yaml
+###############################################################################
+
+circadian_lighting:
+
+# https://www.home-assistant.io/components/config/
+config:
+
+# Using the HACS Daily Snapshot Clean Up Plugin 
+#clean_up_snapshots_service:
+#  host: !secret ha_internal_url
+#  token: !secret snapshot_token
+#  number_of_snapshots_to_keep: 3
+
+# https://www.home-assistant.io/integrations/default_config
+default_config: ~
+
+# Ecobee Thermostat
+ecobee:
+  api_key: !secret ecobee_token
+
+emulated_hue:
+  #  type: alexa
+  expose_by_default: false
+
+gdacs:
+  categories:
+    - Earthquake
+    - Tropical Cyclone
+  radius: 500
+  latitude: !secret ha_latitude
+  longitude: !secret ha_longitude
+
+# Google Calendar
+#google:
+#  client_id: !secret google_client_id
+#  client_secret: !secret google_client_secret
+
+intent:
+
+intent_script:
+  HassGetTemperature:
+    speech:
+      text: >-
+        {% set sensor =  "sensor." + name %}
+        The temperature is currently {{ states(sensor) | int }} degrees
+
+### Logging ###
+history: !include ../logging/history.yaml
+logbook: !include ../logging/logbook.yaml
+logger: !include ../logging/logger.yaml
+recorder: !include ../logging/recorder.yaml
+
+person:
+
+# https://www.home-assistant.io/integrations/python_script/
+python_script:
+
+readme:
+  convert_lovelace: true
+
+# https://www.home-assistant.io/integrations/rest_command/
+rest_command: !include_dir_merge_named ../entities/rest_command
+
+# https://www.home-assistant.io/integrations/ssdp/
+ssdp:
+
+# https://www.home-assistant.io/integrations/stream/
+stream:
+
+# https://www.home-assistant.io/integrations/sun/
+sun:
+  elevation: !secret ha_elevation
+
+# https://www.home-assistant.io/integrations/system_health
+system_health:
+
+# https://www.home-assistant.io/integrations/telegram_bot/
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    allowed_chat_ids:
+      - !secret telegram_id_rs
+      - !secret telegram_id_ha

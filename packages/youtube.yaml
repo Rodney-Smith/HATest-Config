@@ -1,0 +1,126 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  11/20/2022
+#  @package        :  YouTube
+#  @description    :  Setting up subscribed YouTube channels
+#
+# Package modified from 
+# https://github.com/CCOSTAN/Home-AssistantConfig
+# with inspiration from @Pinkywafer
+# https://github.com/pinkywafer/Home-Assistant_Config/tree/master/packages/youtube
+#  
+# More information found here in these issues
+#                                  https://github.com/custom-components/youtube
+###############################################################################
+
+sensor:
+# SmartHome
+  - platform: youtube
+    channel_id: UCbX3YkedQunLt7EQAdVxh7w # Home Assistant
+  - platform: youtube
+    channel_id: UCtRSKEipM17PF7n0mi66btQ # Automate Your Life
+  - platform: youtube
+    channel_id: UCuqokNoK8ZFNQdXxvlE129g # Bearded Tinker
+  - platform: youtube
+    channel_id: UCSKQutOXuNLvFetrKuwudpg # BurnsHA
+  - platform: youtube
+    channel_id: UC5ZdPKE2ckcBhljTc2R_qNA # digiblurDIY
+  - platform: youtube
+    channel_id: UC7G4tLa4Kt6A9e3hJ-HO8ng # DrZzs
+  - platform: youtube
+    channel_id: UCrVLgIniVg6jW38uVqDRIiQ # Everything Smart Home
+  - platform: youtube
+    channel_id: UC2gyzKcHbYfqoXA5xbyGXtQ # The Hook Up
+  - platform: youtube
+    channel_id: UCQRm_z7seHnGsBiWDNEWr6A # Mark Watt Tech
+  - platform: youtube
+    channel_id: UCYLnawaM-36HncBBUeWrlGA # Paul Hibbert
+  - platform: youtube
+    channel_id: UCipZJ6748kd8TbelSxcvcVg # SlackerLabs
+  - platform: youtube
+    channel_id: UCa-_T4_g4T_11YMlxn80LaQ # Smart Home Makers
+  - platform: youtube
+    channel_id: UCwOBG77Tm8cE24FPxHb_abw # Smart Home Solver
+  - platform: youtube
+    channel_id: UC301G8JJFzY0BZ_0lshpKpQ # vCloudInfo - https://www.youtube.com/c/vCloudInfo
+  - platform: youtube
+    channel_id: UC7Wy-UuuwOqHxu4JeVWVX4g # SteveDOES - https://www.youtube.com/@SteveDOES
+  - platform: youtube
+    channel_id: UC7V__uBIaZotHn_smHJShGQ # NotEnoughTECH - https://www.youtube.com/@notenoughtech
+  - platform: youtube
+    channel_id: UCR7Xa7cU9wfkSY9v3yN2Vtw # JuanMTech - https://www.youtube.com/@JuanMTech
+  - platform: youtube
+    channel_id: UCpOlOeQjj7EsVnDh3zuCgsA # Adafruit Industries - https://www.youtube.com/@adafruit
+  - platform: youtube
+    channel_id: UCR-DXc1voovS8nhAvccRZhg # Jeff Geerling - https://www.youtube.com/c/JeffGeerling
+  - platform: youtube
+    channel_id: UCZDA1kA3y3EIg25BpcHSpwQ # Tinkernut - https://www.youtube.com/c/Tinkernut
+# Automotive
+  - platform: youtube
+    channel_id: UCXlfi8sf6cKGQ8sOd0-yRuw # Hoonigan - https://www.youtube.com/c/TheHoonigans
+  - platform: youtube
+    channel_id: UC2LnjzvWORxZ1b8im7ZwzCw # Stadium SUPER Trucks - https://www.youtube.com/c/StadiumSUPERTrucks
+  - platform: youtube
+    channel_id: UC9Fj-4oQzaEPkg-XHjqZE0g # GasMonkeyGarage - https://www.youtube.com/@GasMonkeyGarage/
+  - platform: youtube
+    channel_id: UCKSVUHI9rbbkXhvAXK-2uxA # Supercar Blondie - https://www.youtube.com/@SupercarBlondie
+  - platform: youtube
+    channel_id: UCgeGealT0QYcrnoYRMltDZg # TheSmokingTire - https://www.youtube.com/@TheSmokingTire
+  - platform: youtube
+    channel_id: UC5rBpVgv83gYPZ593XwQUsA # The Drive - https://www.youtube.com/@drive
+  - platform: youtube
+    channel_id: UCGTKwjs1ctvgwCRa67RNO-Q # HeavyDSparks
+# Music
+  - platform: youtube
+    channel_id: UCpV5A65O3mvaJmlc669cI1A # Mary Spender - https://www.youtube.com/@MarySpender
+  - platform: youtube
+    channel_id: UCJquYOG5EL82sKTfH9aMA9Q # Rick Beato - https://www.youtube.com/@RickBeato
+  - platform: youtube
+    channel_id: UCEuOwB9vSL1oPKGNdONB4ig # Red Hot Chili Peppers - https://www.youtube.com/@RedHotChiliPeppers
+# Motivation
+  - platform: youtube
+    channel_id: UCPmfPl-BsCd3wmE8i45LAoA # Simon Sinek - https://www.youtube.com/@SimonSinek
+  - platform: youtube
+    channel_id: UCNrp1IS3h3jeo3zymgPahQA # Echelon Front - https://www.youtube.com/c/EchelonFront
+  - platform: youtube
+    channel_id: UCY1kMZp36IQSyNx_9h4mpCg # Mark Rober - https://www.youtube.com/c/MarkRober
+  - platform: youtube
+    channel_id: UCRijo3ddMTht_IHyNSNXpNQ # Dude Perfect - https://www.youtube.com/@dudeperfect6261
+# Common
+  - platform: youtube
+    channel_id: UCR4S-cL1C1X8kqgDwm5BdCg # Kalamazoo Snack Boys
+  - platform: youtube
+    channel_id: UCFmU1NHKcFioUL18-j7tPGQ # Lenni Revel
+  - platform: youtube
+    channel_id: UCvSWpue05ed6kDviZe4cNTQ # Scary Snowman - https://www.youtube.com/c/TheScarySnowman
+  - platform: youtube
+    channel_id: UCdpL2wZbyULpimONNYTlCMg # Meredith Capella: The Connected
+
+#  - alias: YouTube Notification - SlackerLabs
+#    id: 5e751352-067e-4706-978a-2479b6f5fd96
+#    trigger:
+#      - platform: state
+#        entity_id: sensor.slackerlabs
+#        attribute: url
+#    condition:
+#      - condition: template
+#        value_template: "{{ trigger.from_state.attributes.url != trigger.to_state.attributes.url }}"
+#    action:
+#      - service: script.text_notify
+#        data_template:
+#          who: "rodney"
+#          message: "{{ trigger.to_state.state }}"
+#          title: |
+#            {% if trigger.to_state.attributes.live -%}
+#              {{trigger.to_state.attributes.friendly_name}} is Live!
+#            {%- else -%}
+#              New video from {{trigger.to_state.attributes.friendly_name}}
+#            {%- endif %}
+#          data:
+#            image: "{{ trigger.to_state.attributes.entity_picture }}"
+#            tag: "{{ trigger.entity_id }}"
+#            color: green
+#            actions:
+#              - action: URI
+#                title: Watch Now
+#                uri: "{{ trigger.to_state.attributes.url }}"

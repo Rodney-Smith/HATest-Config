@@ -1,0 +1,13 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  03/15/2022
+#  @package        :  Destinations
+#  @description    :  Get GPS desitination information
+###############################################################################
+
+mqtt:
+  sensor:
+    - name: Rodney Destination
+      state_topic: "house/rodney/destination"
+    - name: Gina Destination
+      state_topic: "house/gina/destination"

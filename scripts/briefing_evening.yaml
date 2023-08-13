@@ -1,0 +1,20 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @script         :  Briefing Evening
+#  @description    :  Currently hardcoded for now and using generic briefing
+#                     file
+#  @where          :  Location of the speaker
+#  @when           :  Check TOD (morning/evening)
+#
+# Package modified from @SlackerLabs
+# https://github.com/thejeffreystone/home-assistant-configuration/blob/master/config/packages/announcements.yaml
+###############################################################################
+
+evening_briefing:
+  sequence:
+  - service: script.speech_engine
+    data:
+      where: 'kitchen'
+      when: 'evening'
+      speech_message: !include ../templates/speech/briefing.yaml

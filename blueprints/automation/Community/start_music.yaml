@@ -1,0 +1,129 @@
+blueprint:
+  name: Start music on Alexa when a tag is scanned
+  description:
+    When a tag is scanned, start the associated music on the selected Alexa media player.
+    You can also run commands with the "universal function"
+  domain: automation
+  input:
+    tag_id:
+      name: Tag ID
+      description:
+        The tag ID of your NFC trigger. Can be found under Settings --> NFC Tags
+        and then click on the NFC Tag you want to choose.
+    alexa_entity_id:
+      name: Alexa player
+      description: The entity ID of the alexa player to use
+      selector:
+        entity:
+          domain: media_player
+    song_name:
+      name: Song name.
+      description: The name of the song to play. The source is specified below.
+        Make sure to select only one source. If its known that a source must be formatted right
+        then its specified in the source you can select.
+    source_amazon:
+      name: Amazon Music
+      description: Music is from Amazon Music. The Song name can be the songname
+      default: false
+      selector:
+        boolean:
+    source_spotify:
+      name: Spotify
+      description:
+        Music is from Spotify. Song name must be songname (e.g. Still Alive),
+        songname and interpret (e.g. Still alive from Red ),
+        "playlist" and playlist name (e.g. Playlist Oldies)
+        or the name of a featured playlist from Spotify (e.g. Missed Hits).
+      default: false
+      selector:
+        boolean:
+    source_apple:
+      name: Apple Music
+      description: Music is from Apple Music.
+      default: true
+      selector:
+        boolean:
+    source_deezer:
+      name: Deezer
+      description: Music is from Deezer.
+      default: false
+      selector:
+        boolean:
+    source_tunein:
+      name: TuneIn
+      description: Music is from TuneIn.
+      default: false
+      selector:
+        boolean:
+    source_custom:
+      name: Universal
+      description:
+        You can put a command in the songname which you would say to your Alexa device e.g.
+        "Play my playlist Oldies on Spotify" (leave out your trigger word from your device).
+        Requires Alexa Media Player version 3.4.0 or newer.
+      default: false
+      selector:
+        boolean:
+    message:
+      default: []
+      name: Input of Song input from the UI
+      description: Input text where the Song comes from
+      selector:
+        entity:
+          domain: input_text
+    target:
+      default: []
+      name: Target of the notification (Input Select)
+      description: The alexa device where the notification should be played. Must be in a input select. Options can be the Friendly Name, Serial Number, entity_id, or Home Assistant Group.
+      selector:
+        entity:
+          domain: input_select
+
+variables:
+  is_spotify: !input "source_spotify"
+  is_amazon: !input "source_amazon"
+  is_apple: !input "source_apple"
+  is_deezer: !input "source_deezer"
+  is_tunein: !input "source_tunein"
+  is_costum: !input "source_custom"
+  alexa_entity_id: !input alexa_entity_id
+  message: !input message
+  target_for_message: !input target
+  song: !input song_name
+
+trigger:
+  - platform: tag
+    tag_id: !input tag_id
+  - platform: event
+    event_type: state_changed
+    event_data:
+      entity_id: !input message
+action:
+  - service: media_player.play_media
+    data_template:
+      entity_id: >
+        {% if trigger.platform == "event" %}
+          {{states.media_player| selectattr("attributes.friendly_name","equalto", states(target_for_message)) |map(attribute="entity_id") |first}}
+        {% else%}
+          {{alexa_entity_id}}
+        {% endif%}
+      media_content_id: >
+        {% if trigger.platform == "event" %}
+          {{states(message)}}
+        {% else%}
+          {{song}}
+        {%endif%}
+      media_content_type: >
+        {% if is_amazon %}
+          AMAZON_MUSIC
+        {% elif is_spotify %}
+          SPOTIFY
+        {% elif is_apple %}
+          APPLE_MUSIC
+        {% elif is_deezer %}
+          DEEZER
+        {% elif is_tunein %}
+          TUNEIN
+        {% elif is_costum%}
+          custom
+        {% endif%}

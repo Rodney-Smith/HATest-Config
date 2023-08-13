@@ -1,0 +1,16 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package        :  USGS
+#  @description    :  The USGS earthquakes platform lets you integrate a 
+#                     GeoJSON feed provided by the U.S. Geological Survey with
+#                     information about seismic events like earthquakes.
+#             https://www.home-assistant.io/integrations/usgs_earthquakes_feed/
+###############################################################################
+geo_location:
+  - platform: usgs_earthquakes_feed
+    feed_type: "past_month_all_earthquakes"
+    radius: 100
+    minimum_magnitude: 3.0
+    latitude: !secret ha_latitude
+    longitude: !secret ha_longitude

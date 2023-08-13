@@ -1,0 +1,9 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.hall
+#   @description    :  Devices in this area
+###############################################################################
+hall:
+  - light.rice_lights
+  - light.stairs

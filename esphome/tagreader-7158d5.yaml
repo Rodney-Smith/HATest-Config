@@ -1,0 +1,70 @@
+# https://esphome.io/components/wifi.html
+wifi:
+  networks:
+    - ssid: !secret wifi_iot_ssid      # Enter your WiFi SSID here. Example: `ssid: 'your_network_name'`
+      password: !secret wifi_iot_pass  # Enter your wifi password here. Example: `password: 'abcde123456'`
+
+  # using fast_connect as default since it is required for hidden networks.
+  fast_connect: true
+
+  ap: {} # This spawns an AP with the device name and mac address with no password.
+
+# https://esphome.io/components/captive_portal.html
+captive_portal:
+
+# https://esphome.io/components/logger.html
+logger:
+
+# https://esphome.io/guides/configuration-types.html#substitutions
+substitutions:
+  # substitutions can be changed here if you are using this file directly in the ESPHome dashboard.  The better approach is
+  # to incorporate this file as a package using the following lines, and then overwrite these substitutions in your local
+  # yaml file by redefining them.
+  #
+  # packages:
+  #   kauf.rgbww: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb.yaml
+  #
+  name: tagreader-7158d5       # **** CHANGE DEVICE NAME TO SOMETHING UNIQUE PER DEVICE.  RENAME YAML FILE TO SAME NAME.    ****
+                                # **** USE DASHES (-) INSTEAD OF SPACES OR UNDERSCORE (_).  USE ONLY LOWER CASE LETTERS.     ****
+  friendly_name: Tag Reader    # **** CHANGE FRIENDLY NAME TO SOMETHING UNIQUE PER DEVICE ****
+  disable_entities: "false"    # set to "false" to have all entities show up in Home Assistant automatically
+
+# https://esphome.io/guides/configuration-types.html#packages
+packages:
+  adonno.tag_reader: github://adonno/tagreader/tagreader.yaml
+
+# https://esphome.io/components/esphome.html
+esphome:
+  name: ${name}
+  # Automatically add the mac address to the name
+  # so you can use a single firmware for all devices
+  name_add_mac_suffix: false
+
+# https://esphome.io/components/api.html
+api:
+  id: tagreader_api
+  encryption:
+    key: !secret esphome_api
+
+# https://esphome.io/components/ota.html
+ota:
+  id: tagreader_ota
+  password: !secret esphome_ota
+  on_begin:
+    then:
+      - logger.log: "OTA start"
+  on_progress:
+    then:
+      - logger.log:
+          format: "OTA progress %0.1f%%"
+          args: ["x"]
+  on_end:
+    then:
+      - logger.log: "OTA end"
+#  on_error:
+#    then:
+#      - button.press: restart_button
+
+# https://esphome.io/components/web_server.html
+web_server:
+  local: true

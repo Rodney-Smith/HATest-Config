@@ -1,0 +1,71 @@
+###############################################################################
+#   @author         :   Rodney Smith
+#   @date           :   07/06/2022
+#   @description    :   Group configuration.
+#   @notes          :   This package assumes you are running version .115.0 or greater.
+#
+###############################################################################
+
+all_media_players:
+  name: All Media Players
+  entities:
+    # Living Room
+    - media_player.lr_echo_show5
+    - media_player.left_echo
+    - media_player.right_echo
+    - media_player.65_tcl_roku_tv
+    # Master Bedroom
+    - media_player.bedroom_echo_dot
+    # Guest Bedroom1
+    - media_player.guest1_echo_dot
+    - media_player.guest_fire_tv
+    - media_player.xboxone
+    # Guest Bedroom2
+    - media_player.guest2_echo_dot
+    # Office
+    - media_player.of_echo_show8
+    - media_player.left_echo_dot
+    - media_player.right_echo_dot
+    - media_player.fire_tv_max
+    - media_player.xboxseriesx
+    # Hallway
+    - media_player.hall_echo_flex
+    # Kitchen
+    - media_player.kitchen_echo_flex
+    # Patio
+    - media_player.patio_fire_tv
+    # Extra
+    - media_player.echo_show5
+
+audio_devices:
+  name: Audio Devices
+  entities:
+    - media_player.lr_echo_show5
+    - media_player.left_echo
+    - media_player.right_echo
+    - media_player.of_echo_show8
+    - media_player.left_echo_dot
+    - media_player.right_echo_dot
+    - media_player.bedroom_echo_dot
+    - media_player.guest1_echo_dot
+    - media_player.guest2_echo_dot
+    - media_player.hall_echo_flex
+    - media_player.kitchen_echo_flex
+    - media_player.echo_show5
+
+lr_media_players:
+  name: Living Room Media Players
+  entities:
+    - media_player.lr_echo_show5
+    - media_player.left_echo
+    - media_player.right_echo
+    - media_player.fire_tv_cube
+
+of_media_Players:
+  name: Office Media Players
+  entities:
+    - media_player.of_echo_show8
+    - media_player.left_echo_dot
+    - media_player.right_echo_dot
+    - media_player.fire_tv_max
+    - media_player.xboxseriesx

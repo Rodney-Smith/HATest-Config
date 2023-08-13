@@ -1,0 +1,51 @@
+- platform: template
+  sensors:
+    doors_open:
+      friendly_name: "Doors"
+      unit_of_measurement: 'open'
+      value_template: >
+        {% set doors = [
+            states.binary_sensor.front_door_contact,
+            states.binary_sensor.back_door_contact,
+            states.binary_sensor.sliding_door_contact,
+            ] -%}
+        {% set doors_open = doors | selectattr('state','eq','on') | list | count -%}
+        {{ doors_open }}
+    doors_closed:
+      friendly_name: "Doors"
+      unit_of_measurement: 'closed'
+      value_template: >
+        {% set doors = [
+            states.binary_sensor.front_door_contact,
+            states.binary_sensor.back_door_contact,
+            states.binary_sensor.sliding_door_contact,
+            ] -%}
+        {% set doors_closed = doors | selectattr('state','eq','off') | list | count -%}
+        {{ doors_closed }}
+
+    windows_open:
+      friendly_name: "Windows"
+      unit_of_measurement: 'open'
+      value_template: >
+        {% set windows = [
+            states.binary_sensor.office_window_contact,
+            states.binary_sensor.hall_window_contact,
+            states.binary_sensor.main_bedroom_window_contact,
+            states.binary_sensor.kitchen_sink_contact,
+            states.binary_sensor.kitchen_nook_contact,
+            ] -%}
+        {% set windows_open = windows | selectattr('state','eq','on') | list | count -%}
+        {{ windows_open }}
+    windows_closed:
+      friendly_name: "Windows"
+      unit_of_measurement: 'closed'
+      value_template: >
+        {% set windows = [
+            states.binary_sensor.office_window_contact,
+            states.binary_sensor.hall_window_contact,
+            states.binary_sensor.main_bedroom_window_contact,
+            states.binary_sensor.kitchen_sink_contact,
+            states.binary_sensor.kitchen_nook_contact,
+            ] -%}
+        {% set windows_closed = windows | selectattr('state','eq','off') | list | count -%}
+        {{ windows_closed }}

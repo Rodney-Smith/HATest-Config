@@ -1,0 +1,331 @@
+# https://esphome.io/guides/configuration-types.html#substitutions
+substitutions:
+  # substitutions can be changed here if you are using this file directly in the
+  # ESPHome dashboard.  The better approach is to incorporate this file as a
+  # package.
+  name: nodemcu-ed8b2e
+  room: Laundry
+  friendly_name: Orange and Green Kegs
+  update_raw: 0.5s
+
+globals:
+  - id: orange_zero
+    type: float
+    restore_value: yes
+    # NOTE: make sure to align this value to the one used in "calibrate_linear" below!
+    initial_value: '-481989'
+  - id: green_zero
+    type: float
+    restore_value: yes
+    # NOTE: make sure to align this value to the one used in "calibrate_linear" below!
+    initial_value: '-481989'
+  - id: auto_tare_orange
+    type: bool
+    restore_value: yes
+    initial_value: 'true'
+  - id: auto_tare_green
+    type: bool
+    restore_value: yes
+    initial_value: 'true'
+  - id: auto_tare_diff_orange
+    type: float
+    restore_value: yes
+    initial_value: '0'
+  - id: auto_tare_diff_green
+    type: float
+    restore_value: yes
+    initial_value: '0'
+
+# https://esphome.io/components/esphome.html
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+  platform: ESP8266
+  board: nodemcuv2
+
+# https://esphome.io/components/api.html
+api:
+  encryption:
+    key: !secret nodemcu_ed8b2e
+
+# https://esphome.io/components/wifi.html
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: !secret ip_nodemcu_ed8b2e
+    gateway: !secret ip_gateway
+    subnet: !secret ip_subnet
+    dns1: !secret ip_dns
+  ap:
+    ssid: ${name}_AP
+    password: !secret wifi_ap_pass
+    ap_timeout: 3min
+
+# https://esphome.io/components/captive_portal.html
+captive_portal:
+
+# https://esphome.io/components/logger.html
+logger:
+
+# https://esphome.io/components/ota.html
+ota:
+  id: nodemcu_ota
+  password: !secret esphome_ota
+  on_begin:
+    then:
+      - logger.log: "OTA start"
+  on_progress:
+    then:
+      - logger.log:
+          format: "OTA progress %0.1f%%"
+          args: ["x"]
+  on_end:
+    then:
+      - logger.log: "OTA end"
+#  on_error:
+#    then:
+#      - button.press: restart_button
+
+# https://esphome.io/components/web_server.html
+web_server:
+  local: true
+
+status_led:
+  pin:
+    number: GPIO2
+    inverted: True
+
+button:
+  ## Button used to initiate a manual tare
+  - platform: template
+    id: orange_manual_tare_action_switch
+    name: "Orange Keg Manual Tare Action"
+    icon: mdi:scale-balance
+    on_press:
+      - lambda: |-
+          id(auto_tare_diff_orange) = id(orange_zero) - id(orange_keg_value_raw).state;
+
+  - platform: template
+    id: green_manual_tare_action_switch
+    name: "Green Keg Manual Tare Action"
+    icon: mdi:scale-balance
+    on_press:
+      - lambda: |-
+          id(auto_tare_diff_green) = id(green_zero) - id(green_keg_value_raw).state;
+
+switch:
+  ## Switch to enable/disable the auto tare feature
+  - platform: template
+    id: orange_continuous_tare_enabled
+    name: "Orange Keg Continuous Tare Enabled"
+    lambda: |-
+      return id(auto_tare_orange);
+    turn_on_action:
+      - lambda: |-
+          id(auto_tare_orange) = true;
+    turn_off_action:
+      - lambda: |-
+          id(auto_tare_orange) = false;
+
+  - platform: template
+    id: green_continuous_tare_enabled
+    name: "Green Keg Continuous Tare Enabled"
+    lambda: |-
+      return id(auto_tare_green);
+    turn_on_action:
+      - lambda: |-
+          id(auto_tare_green) = true;
+    turn_off_action:
+      - lambda: |-
+          id(auto_tare_green) = false;
+
+## Sensor Configuration ##
+sensor:
+  # template sensors from global variables
+  - platform: template
+    id: orange_initial_zero
+    name: "Orange Keg Initial Zero"
+    lambda: |-
+      return id(orange_zero);
+    update_interval: 1s
+    
+  - platform: template
+    id: orange_auto_tare_difference
+    name: "Orange Keg Auto Tare Difference"
+    lambda: |-
+      return id(auto_tare_diff_orange);
+    update_interval: 1s
+    
+  # sensors imported from home assistant
+  - platform: homeassistant
+    id: homeassistant_orange_initial_zero
+    entity_id: input_number.orange_initial_zero
+    on_value:
+      then:
+        - lambda: |-
+            id(orange_zero) = x;
+  
+# https://esphome.io/components/sensor/hx711.html
+  # RAW Scale input
+  - platform: hx711
+    id: orange_keg_value_raw
+    internal: True
+    dout_pin: GPIO4
+    clk_pin: GPIO5
+    gain: 128
+    update_interval: ${update_raw}
+    filters:
+      - quantile:
+          window_size: 10
+          send_every: 1
+          send_first_at: 1
+          quantile: .9
+    on_value:
+      then:
+        - sensor.template.publish:
+            id: orange_keg_value
+            state: !lambda 'return id(orange_keg_value_raw).state;'
+        - if:
+            condition:
+              and:
+                - lambda: 'return id(auto_tare_orange);'
+                # current smart scale value is below approx. 10KG (raw value -275743) aka nobody is standing on the scale
+                - lambda: 'return id(orange_keg_value).state < 10.0;'
+            then:
+              - if:
+                  condition:
+                    # current raw scale value is below expected zero value
+                    - lambda: 'return id(orange_keg_value_raw).state < (id(orange_zero) - id(auto_tare_diff_orange));'
+                  then:
+                    # INcrease Auto-Tare offset to slowly align real zero value with expected zero value
+                    - lambda: |-
+                        id(auto_tare_diff_orange) += 10;
+                  else:
+                    # DEcrease Auto-Tare offset to slowly align real zero value with expected zero value
+                    - lambda: |-
+                        id(auto_tare_diff_orange) -= 10;
+    
+  # Mapped value to KG
+  - platform: template
+    id: orange_keg_value
+    name: "Orange Keg Value"
+    internal: False
+    filters:
+      # apply auto_tare difference
+      - lambda: 'return x + id(auto_tare_diff_orange);'
+      # apply rough calibration
+      - calibrate_linear:
+          # retrieve these values by evaluating the raw values with loads of known mass.
+          # note that a bigger difference between measurements usually results in higher resolution,
+          # so measure 0 Kg and the highest known mass you have (like f.ex. your own weight, measured by a normal scale with good accuracy)
+          - -481989 -> 0
+          - 1339163 -> 88.3
+      # map values below 0.1 to 0 (to decrease value changes due to random fluctuation)
+      - lambda: |-
+          if (x <= 0.1) {
+            return 0.0;
+          } else {
+            return x;
+          }
+    icon: "mdi:weight-kg"
+    device_class: "weight"
+    state_class: "measurement"
+    unit_of_measurement: kg
+    accuracy_decimals: 2
+    # the sensor will automatically update through the 'sensor.template.publish' call
+    update_interval: never
+
+  - platform: template
+    id: green_initial_zero
+    name: "Green Keg Initial Zero"
+    lambda: |-
+      return id(green_zero);
+    update_interval: 1s
+    
+  - platform: template
+    id: green_auto_tare_difference
+    name: "Green Keg Auto Tare Difference"
+    lambda: |-
+      return id(auto_tare_diff_green);
+    update_interval: 1s
+    
+  # sensors imported from home assistant
+  - platform: homeassistant
+    id: homeassistant_green_initial_zero
+    entity_id: input_number.green_initial_zero
+    on_value:
+      then:
+        - lambda: |-
+            id(green_zero) = x;
+
+# https://esphome.io/components/sensor/hx711.html
+  # RAW Scale input
+  - platform: hx711
+    id: green_keg_value_raw
+    internal: True
+    dout_pin: GPIO13
+    clk_pin: GPIO15
+    gain: 128
+    update_interval: ${update_raw}
+    filters:
+      - quantile:
+          window_size: 10
+          send_every: 1
+          send_first_at: 1
+          quantile: .9
+    on_value:
+      then:
+        - sensor.template.publish:
+            id: green_keg_value
+            state: !lambda 'return id(green_keg_value_raw).state;'
+        - if:
+            condition:
+              and:
+                - lambda: 'return id(auto_tare_green);'
+                # current smart scale value is below approx. 10KG (raw value -275743) aka nobody is standing on the scale
+                - lambda: 'return id(green_keg_value).state < 10.0;'
+            then:
+              - if:
+                  condition:
+                    # current raw scale value is below expected zero value
+                    - lambda: 'return id(green_keg_value_raw).state < (id(green_zero) - id(auto_tare_diff_green));'
+                  then:
+                    # INcrease Auto-Tare offset to slowly align real zero value with expected zero value
+                    - lambda: |-
+                        id(auto_tare_diff_green) += 10;
+                  else:
+                    # DEcrease Auto-Tare offset to slowly align real zero value with expected zero value
+                    - lambda: |-
+                        id(auto_tare_diff_green) -= 10;
+    
+  # Mapped value to KG
+  - platform: template
+    id: green_keg_value
+    name: "Green Keg Value"
+    internal: False
+    filters:
+      # apply auto_tare difference
+      - lambda: 'return x + id(auto_tare_diff_green);'
+      # apply rough calibration
+      - calibrate_linear:
+          # retrieve these values by evaluating the raw values with loads of known mass.
+          # note that a bigger difference between measurements usually results in higher resolution,
+          # so measure 0 Kg and the highest known mass you have (like f.ex. your own weight, measured by a normal scale with good accuracy)
+          - -481989 -> 0
+          - 1339163 -> 88.3
+      # map values below 0.1 to 0 (to decrease value changes due to random fluctuation)
+      - lambda: |-
+          if (x <= 0.1) {
+            return 0.0;
+          } else {
+            return x;
+          }
+    icon: "mdi:weight-kg"
+    device_class: "weight"
+    state_class: "measurement"
+    unit_of_measurement: kg
+    accuracy_decimals: 2
+    # the sensor will automatically update through the 'sensor.template.publish' call
+    update_interval: never

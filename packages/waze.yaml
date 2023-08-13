@@ -1,0 +1,53 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  11/06/2022
+#  @package        :  Waze
+#  @description    :  The Waze travel time sensor provides travel time from
+#                     home to the destination using Waze.
+#                  https://www.home-assistant.io/integrations/waze_travel_time/
+###############################################################################
+
+binary_sensor:
+- platform: template
+  sensors:
+    person_rodney_url:
+      value_template: "{{ state_attr('person.rodney_smith', 'latitude') and state_attr('person.rodney_smith', 'longitude') }}"
+      attribute_templates:
+        url: >
+          {% set lat = state_attr('person.rodney_smith', 'latitude') %}
+          {% set lon = state_attr('person.rodney_smith', 'longitude') %}
+          {% set zoom = 10 %}
+          https://embed.waze.com/en/iframe?zoom={{ zoom }}&lat={{ lat }}&lon={{ lon }}&pin=1&desc=1
+    person_gina_url:
+      value_template: "{{ state_attr('person.gina_delauer', 'latitude') and state_attr('person.gina_delauer', 'longitude') }}"
+      attribute_templates:
+        url: >
+          {% set lat = state_attr('person.gina_delauer', 'latitude') %}
+          {% set lon = state_attr('person.gina_delauer', 'longitude') %}
+          {% set zoom = 10 %}
+          https://embed.waze.com/en/iframe?zoom={{ zoom }}&lat={{ lat }}&lon={{ lon }}&pin=1&desc=1
+
+template:
+  - sensor:
+    - name: "Destination Zone"
+      state: >-
+        {%- if is_state("input_select.destination", "Home")  -%}
+          zone.home
+        {%- elif is_state("input_select.destination", "Work")  -%}
+          zone.work
+        {%- elif is_state("input_select.destination", "Reannon")  -%}
+          zone.reannon_s
+        {%- elif is_state("input_select.destination", "Spencer")  -%}
+          zone.spencer_and_catelynn_s
+        {%- elif is_state("input_select.destination", "Tori")  -%}
+          zone.tori_s
+        {%- elif is_state("input_select.destination", "Lydia")  -%}
+          zone.lydia_and_kelen_s
+        {%- elif is_state("input_select.destination", "Mom")  -%}
+          zone.mom_s
+        {%- elif is_state("input_select.destination", "Natalie")  -%}
+          zone.natalie_and_eric_s
+        {%- else -%}
+          Unknown
+        {%- endif %}
+

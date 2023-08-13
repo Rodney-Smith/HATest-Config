@@ -1,0 +1,10 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.kitchen
+#   @description    :  Devices in this area
+###############################################################################
+kitchen:
+  - light.fridge
+  - light.oven
+  - light.sink

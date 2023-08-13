@@ -1,0 +1,43 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  07/27/2023
+#  @package        :  powercalc
+#  @description    :  Automatically configure power usage
+#                     https://homeassistant-powercalc.readthedocs.io/en/latest/
+###############################################################################
+powercalc:
+#  enable_autodiscovery: false
+  sensors:
+    - entities:
+      - entity_id: light.entrance
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.front_porch_1
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.front_porch_2
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.foyer
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.gina_light
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.gina_nightstand
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.rodney_light
+        linear:
+          min_power: 0.005
+          max_power: 10
+      - entity_id: light.rodney_nightstand
+        linear:
+          min_power: 0.005
+          max_power: 10

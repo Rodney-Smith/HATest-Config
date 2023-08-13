@@ -1,0 +1,117 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  07/04/2023
+#  @package        :  Scripts
+#  @description    :  My Home Assistant Scripts
+###############################################################################
+change_led_color:
+  alias: Change LED Strip Color
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: led_strip_color
+      snapshot_entities:
+      - light.light_strip_10fe
+      - light.light_strip_831a
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.light_strip_10fe
+      - light.light_strip_831a
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+  mode: single
+reset_led_color:
+  alias: Reset LED Strip Color
+  sequence:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.led_strip_color
+    data: {}
+  mode: single
+test:
+  alias: MatrixPortal - Test
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: matrixportal/peripheral
+      payload: Welcome to the Jungle
+    alias: MatrixPortal - Welcome to the Jungle
+  mode: single
+  icon: mdi:camera-metering-matrix
+'1688849062577':
+  alias: MatrixPortal - Meeting
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: matrixportal/peripheral
+      payload: In a Meeting
+    alias: MatrixPortal - In a Meeting
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.change_led_strip_color
+    alias: Call Script Change LED Strip Color
+  mode: single
+  icon: mdi:camera-metering-matrix
+'1688849174042':
+  alias: MatrixPortal - Phone
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: matrixportal/peripheral
+      payload: On the Phone
+    alias: MatrixPortal - On the Phone
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.change_led_strip_color
+    alias: Call Script Change LED Strip Color
+  mode: single
+  icon: mdi:camera-metering-matrix
+'1688849217022':
+  alias: MatrixPortal - Blank
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: macropad/peripheral
+      payload_template: '{"key_number": 9}'
+  - service: scene.turn_on
+    target:
+      entity_id: scene.led_reset_color
+    metadata: {}
+  mode: single
+  icon: mdi:camera-metering-matrix
+'1688849304955':
+  alias: LED - Reset Strip Color
+  sequence:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.led_strip_color
+    data: {}
+  mode: single
+  icon: mdi:led-strip-variant
+'1688849345172':
+  alias: LED - Change Strip Color
+  sequence:
+  - service: scene.create
+    data:
+      scene_id: led_strip_color
+      snapshot_entities:
+      - light.light_strip_10fe
+      - light.light_strip_831a
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.light_strip_10fe
+      - light.light_strip_831a
+    data:
+      rgb_color:
+      - 255
+      - 0
+      - 0
+  mode: single
+  icon: mdi:led-strip-variant

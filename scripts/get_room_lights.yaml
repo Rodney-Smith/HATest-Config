@@ -1,0 +1,24 @@
+###############################################################################
+#  @author         :  Rodney Smith 
+#  @date           :  08/12/2023
+#  @script         :  Get Room Lights
+#  @description    :  Automate your House just by adding Devices to Home Assistant
+#
+# Package modified from @SlackerLabs
+# https://github.com/thejeffreystone/SlackerLabVideoExamples/tree/main/2023-ResponseVariables
+###############################################################################
+
+get_room_lights:
+  sequence:
+    - variables:
+#        area: >
+#          {{ room }}
+        entities: >
+          {% set lights = states.light | 
+             selectattr('entity_id', 'in', area_entities(room)) |
+             rejectattr('state', 'eq', 'unavailable') |
+             map(attribute='entity_id') |
+             list | join(',') %}
+          {"lights":"{{lights}}"}
+    - stop: "Alright, Im done."
+      response_variable: "entities"

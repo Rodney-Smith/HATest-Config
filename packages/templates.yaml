@@ -1,0 +1,61 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @package        :  Templates
+#  @description    :  Create template sensors
+###############################################################################
+# Determine when the washing machine has a load running.
+binary_sensor:
+  - platform: template
+    sensors:
+      washing_machine_running:
+        friendly_name: "Washing Machine Running"
+        icon_template: mdi:washing-machine
+        device_class: power
+        value_template: "{{ states('sensor.sonoff_9ed202_energy_power') | float > 3 }}"  # Adjust the threshold value as needed
+
+      washing_machine_complete:
+        friendly_name: "Washing Machine Complete"
+        icon_template: mdi:washing-machine-off
+        device_class: power
+        value_template: "{{ states('sensor.sonoff_9ed202_energy_power') == '0' }}"
+
+sensor:
+  - platform: template
+    sensors:
+      washing_machine_status:
+        friendly_name: "Washing Machine Status"
+        icon_template: mdi:washing-machine
+        value_template: >
+          {% if states('sensor.sonoff_9ed202_energy_power') | float > 3 %}
+          running
+          {% else %}
+          complete
+          {% endif %}
+
+      trash_day:
+        friendly_name: "Trash Day"
+        icon_template: mdi:trash-can
+        value_template: >
+          {% set midnight = today_at() %}
+          {% set next_event = state_attr('calendar.garbage_collection','start_time') | as_datetime | as_local %}
+          {% set delta = next_event - midnight %}
+          {% if delta.days == 0 %}
+          Today
+          {% elif delta.days == 1 %}
+          Tomorrow
+          {% elif delta.days == 2 %}
+          Day After Tomorrow
+          {% else %}
+          In {{ delta.days }} Days
+          {% endif %}
+
+      next_collection:
+        friendly_name: "Next Trash Collection"
+        icon_template: mdi:trash-can
+        unit_of_measurement: 'days'
+        value_template: >
+          {% set midnight = today_at() %}
+          {% set next_event = state_attr('calendar.garbage_collection','start_time') | as_datetime | as_local %}
+          {% set delta = next_event - midnight %}
+          {{ delta.days }}

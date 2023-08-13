@@ -1,0 +1,56 @@
+- platform: template
+  sensors:
+    office_last_entered:
+      friendly_name: "Office Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.office_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}
+    kitchen_last_entered:
+      friendly_name: "Kitchen Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.kitchen_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}
+    living_room_last_entered:
+      friendly_name: "Living Room Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.living_room_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}
+    main_bedroom_last_entered:
+      friendly_name: "Main Bedroom Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.main_bedroom_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}
+    guest1_last_entered:
+      friendly_name: "Guest Bedroom1 Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.guest1_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}
+    guest2_last_entered:
+      friendly_name: "Guest Bedroom2 Last Entered"
+      value_template: >-
+        {% set last_changed = as_local(states.sensor.guest2_occupied.last_changed) %}
+        {% if last_changed %}
+          {{ (as_timestamp(now()) - as_timestamp(last_changed)) | int }} seconds ago
+        {% else %}
+          Unknown
+        {% endif %}

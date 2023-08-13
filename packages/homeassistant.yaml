@@ -1,0 +1,46 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  06/22/2022
+#  @homeassistant  :  configuration
+#  @description    :  Sets up Home Assistant.
+#                     Basically, everything that doesn't have to be in the main
+#                     configuration.yaml.
+###############################################################################
+homeassistant:
+  name: Home
+  latitude: !secret ha_latitude
+  longitude: !secret ha_longitude
+  elevation: !secret ha_elevation
+  unit_system: imperial
+  currency: USD
+  time_zone: !secret ha_time_zone
+  internal_url: !secret ha_internal_url
+  #external_url: !secret ha_external_url
+  auth_providers:
+    - type: homeassistant
+  #whitelist_external_dirs:
+  #  - '/share/blink'
+  media_dirs:
+    haunted_sounds: /media/sounds/haunted
+    images: /media/images
+    music: /media/music
+    sounds: /media/sounds
+    speechcons: /media/speechcons
+    sports: /media/sports
+
+  customize:
+    # Add an entry for each entity that you want to overwrite.
+#    binary_sensor.raspberry_pi_2_model_b:
+#      icon: mdi:raspberry-pi
+    sensor.iphone_13_pro:
+      person: gina_delauer
+    sensor.iphone_13_pro_max:
+      person: rodney_smith
+  # Customize all entities in a domain
+#  customize_domain:
+  # Customize entities matching a pattern
+  customize_glob:
+    "*_linkquality":
+      icon: mdi:signal
+    "*_power":
+      icon: mdi:speedometer

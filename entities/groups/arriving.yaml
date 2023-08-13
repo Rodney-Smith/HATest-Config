@@ -1,0 +1,9 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.arriving
+#   @description    :  Devices in this area
+###############################################################################
+arriving:
+  name: Arriving
+  entities: []

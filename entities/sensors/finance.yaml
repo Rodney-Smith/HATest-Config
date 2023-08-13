@@ -1,0 +1,287 @@
+- platform: avanza_stock
+  stock:
+    - id: 3986
+      name: Amazon
+#- platform: mqtt
+#  name: "Amazon"
+#  state_topic: "stock/AMZ/price"
+- platform: history_stats
+  name: Amazon Last Month
+  entity_id: sensor.amazon
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Amazon Last 24
+  entity_id: sensor.amazon
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 450548
+      name: AMC
+#- platform: mqtt
+#  name: "AMC"
+#  state_topic: "stock/AMC/price"
+- platform: history_stats
+  name: AMC Last Month
+  entity_id: sensor.amc
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: AMC Last 24
+  entity_id: sensor.amc
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 3323
+      name: Apple
+#- platform: mqtt
+#  name: "Apple"
+#  state_topic: "stock/AAPL/price"
+- platform: history_stats
+  name: Apple Last Month
+  entity_id: sensor.apple
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Apple Last 24
+  entity_id: sensor.apple
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 4089
+      name: BoA
+#- platform: mqtt
+#  name: "BoA"
+#  state_topic: "stock/BOA/price"
+- platform: history_stats
+  name: BoA Last Month
+  entity_id: sensor.boa
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: BoA Last 24
+  entity_id: sensor.boa
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 3432
+      name: Chevron
+#- platform: mqtt
+#  name: "Chevron"
+#  state_topic: "stock/CVX/price"
+- platform: history_stats
+  name: Chevron Last Month
+  entity_id: sensor.chevron
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Chevron Last 24
+  entity_id: sensor.chevron
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 3997
+      name: Disney
+#- platform: mqtt
+#  name: "Disney"
+#  state_topic: "stock/DIS/price"
+- platform: history_stats
+  name: Disney Last Month
+  entity_id: sensor.disney
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Disney Last 24
+  entity_id: sensor.disney
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 194698
+      name: GameStop
+#- platform: mqtt
+#  name: "GameStop"
+#  state_topic: "stock/GME/price"
+- platform: history_stats
+  name: GameStop Last Month
+  entity_id: sensor.gamestop
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: GameStop Last 24
+  entity_id: sensor.gamestop
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 4457
+      name: Google
+#- platform: mqtt
+#  name: "Google"
+#  state_topic: "stock/GOOG/price"
+- platform: history_stats
+  name: Google Last Month
+  entity_id: sensor.google
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Google Last 24
+  entity_id: sensor.google
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 3658
+      name: Intel
+#- platform: mqtt
+#  name: "Intel"
+#  state_topic: "stock/INTC/price"
+- platform: history_stats
+  name: Intel Last Month
+  entity_id: sensor.intel
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Intel Last 24
+  entity_id: sensor.intel
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 4127
+      name: Nike
+#- platform: mqtt
+#  name: "Nike"
+#  state_topic: "stock/NKE/price"
+- platform: history_stats
+  name: Nike Last Month
+  entity_id: sensor.nike
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Nike Last 24
+  entity_id: sensor.nike
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 168311
+      name: Sirius
+#- platform: mqtt
+#  name: "Sirius"
+#  state_topic: "stock/SIRI/price"
+- platform: history_stats
+  name: Sirius Last Month
+  entity_id: sensor.sirius
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Sirius Last 24
+  entity_id: sensor.sirius
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24
+
+- platform: avanza_stock
+  stock:
+    - id: 3469
+      name: Verizon
+#- platform: mqtt
+#  name: "Verizon"
+#  state_topic: "stock/VZ/price"
+- platform: history_stats
+  name: Verizon Last Month
+  entity_id: sensor.verizon
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    days: 30
+- platform: history_stats
+  name: Verizon Last 24
+  entity_id: sensor.verizon
+  state: change
+  type: time
+  end: "{{ now() }}"
+  duration:
+    hours: 24

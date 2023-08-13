@@ -1,0 +1,46 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/27/2022
+#  @homeassistant  :  panel_custom
+#  @description    :  Allows you to write your own panels in JavaScript and add
+#                     them to Home Assistant. See the developer documentation
+#                     on instructions how to build your own panels.
+#                      https://www.home-assistant.io/integrations/panel_custom/
+###############################################################################
+panel_custom:
+  - name: ha_server_con
+    sidebar_title: Add-ons
+    sidebar_icon: mdi:cog-transfer
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'hassio/dashboard'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_integ
+    sidebar_title: Integrations
+    sidebar_icon: mdi:chip
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/integrations'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_auto
+    sidebar_title: Automations
+    sidebar_icon: mdi:cog-outline
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/automation'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator
+  - name: ha_helpers
+    sidebar_title: Helpers
+    sidebar_icon: mdi:toggle-switch
+    js_url: /api/hassio/app/entrypoint.js
+    url_path: 'config/helpers'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator

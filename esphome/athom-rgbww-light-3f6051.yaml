@@ -1,0 +1,28 @@
+substitutions:
+  name: athom-rgbww-light-3f6051
+  friendly_name: Side Porch 1
+
+packages:
+  athom.rgbww-light: github://athom-tech/athom-configs/athom-rgbww-light.yaml
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+api:
+  encryption:
+    key: !secret athom_3f6051
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: !secret ip_athom_3f6051
+    gateway: !secret ip_gateway
+    subnet: !secret ip_subnet
+    dns1: !secret ip_dns
+  ap: 
+    ssid: ${name}_AP
+    password: !secret wifi_ap_pass
+    ap_timeout: 3min

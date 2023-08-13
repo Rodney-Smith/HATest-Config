@@ -1,0 +1,16 @@
+###############################################################################
+#   @author         :  Rodney Smith
+#   @date           :  06/22/2022
+#   @homeassistant  :  group.outside_lights
+#   @description    :  Devices in this area
+###############################################################################
+outside_lights:
+  name: Outside Lights
+  entities:
+    - light.entrance
+    - light.front_porch_1
+    - light.front_porch_2
+    - light.side_porch_1
+    - light.side_porch_2
+    - light.first_light
+    - switch.mj_s01_b71a3c

@@ -1,0 +1,18 @@
+# Example configuration.yaml entry
+# my_entity:
+#   url: https://localhost:8123/api/states/person.entity_id
+#   method: POST
+#   headers:
+#     authorization: !secret rest_token
+#     content_type:  'application/json'
+#   payload: '{"state": "{{ state }}","attributes":{"editable": true,"id": "{{ id }}","latitude": {{ latitude }},"longitude": {{ longitude }},"gps_accuracy": {{ gps_accuracy }},"source": "{{ source }}","user_id": "{{ user_id }}","device_trackers": ["{{ device_trackers }}"],"entity_picture": "{{ entity_picture }}","friendly_name": "{{ friendly_name }}"}}'
+#   payload: '{"state": "{{ state }}","attributes":{"editable": true,"id": "{{ id }}","latitude": {{ latitude }},"longitude": {{ longitude }},"gps_accuracy": {{ gps_accuracy }},"source": "{{ source }}","user_id": "{{ user_id }}","device_trackers": ["{{ device_trackers }}"],"entity_picture": "{{ entity_picture }}","friendly_name": "{{ friendly_name }}","room": "{{ room }}","media_player": "{{ media_player }}","notify": "{{ notify }}","phone": "{{ phone }}","sensor": "{{ sensor }}"}}'
+#   verify_ssl: true
+#
+update_person_entity:
+  url: https://10.0.20.252:8123/api/states/person.{{ id }}
+  method: POST
+  headers:
+    authorization: !secret rest_token
+    content_type: 'application/json'
+  payload: '{"state": "home","attributes":{"editable": true,"id": "{{ id }}","latitude": {{state_attr("person." ~ id,"latitude")}},"longitude": {{state_attr("person." ~ id,"longitude")}},"gps_accuracy": {{state_attr("person." ~ id,"gps_accuracy")}},"source": "{{state_attr("person." ~ id,"source")}}","user_id": "{{state_attr("person." ~ id,"user_id")}}","device_trackers": ["{{state_attr("person." ~ id,"device_trackers")}}"],"entity_picture": "{{state_attr("person." ~ id,"entity_picture")}}","friendly_name": "{{state_attr("person." ~ id,"friendly_name")}},"room": "{{ room }}","media_player": "{{ media_player }}","notify": "{{ notify }}","phone": "{{ phone }}","sensor": "{{ sensor }}"}}'

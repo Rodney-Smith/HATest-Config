@@ -1,0 +1,10 @@
+gina_heading_home:
+  name: Gina will be home in {{states.sensor.gina_ett_home | round}} minutes.
+  done_message: Gina Travel Monitor Disabled
+  entity_id: input_boolean.gina_travel_monitor
+  state: 'on'
+  repeat: 20
+  can_acknowledge: false
+  skip_first: False
+  notifiers:
+  - ios_einsteins_iphone
