@@ -2,8 +2,8 @@
 
 This is my Home Assistant TEST installation.
 
-[![GitHub stars](https://img.shields.io/github/stars/Rodney-Smith/HomeAssistant-Config?style=plastic)](https://github.com/Rodney-Smith/HomeAssistant-Config/stargazers)
-[![GitHub last commit](https://img.shields.io/github/last-commit/rodney-smith/HomeAssistant-Config/main?style=plastic)](https://github.com/rodney-smith/HomeAssistant-Config/commits/main)
+[![GitHub stars](https://img.shields.io/github/stars/Rodney-Smith/HATest-Config?style=plastic)](https://github.com/Rodney-Smith/HATest-Config/stargazers)
+[![GitHub last commit](https://img.shields.io/github/last-commit/rodney-smith/HATest-Config/main?style=plastic)](https://github.com/rodney-smith/HATest-Config/commits/main)
 [![HA Version](https://img.shields.io/badge/Running_Home_Assistant-2023.8.2-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original_Home_Assistant-2020.12.1-darkblue)](https://github.com/home-assistant/core/releases/2020.12.1)
 [![HA Community](https://img.shields.io/badge/HA_Community-Forum-orange)](https://community.home-assistant.io/u/rodney.delauer/summary)
