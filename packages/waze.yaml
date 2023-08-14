@@ -32,21 +32,21 @@ template:
     - name: "Destination Zone"
       state: >-
         {%- if is_state("input_select.destination", "Home")  -%}
-          zone.home
+          {{ state_attr('zone.home','latitude')}},{{state_attr('zone.home','longitude')}}
         {%- elif is_state("input_select.destination", "Work")  -%}
-          zone.work
+          {{ state_attr('zone.work','latitude')}},{{state_attr('zone.work','longitude')}}
         {%- elif is_state("input_select.destination", "Reannon")  -%}
-          zone.reannon_s
+          {{ state_attr('zone.reannon_s','latitude')}},{{state_attr('zone.reannon_s','longitude')}}
         {%- elif is_state("input_select.destination", "Spencer")  -%}
-          zone.spencer_and_catelynn_s
+          {{ state_attr('zone.spencer_and_catelynn_s','latitude')}},{{state_attr('zone.spencer_and_catelynn_s','longitude')}}
         {%- elif is_state("input_select.destination", "Tori")  -%}
-          zone.tori_s
+          {{ state_attr('zone.tori_s','latitude')}},{{state_attr('zone.tori_s','longitude')}}
         {%- elif is_state("input_select.destination", "Lydia")  -%}
-          zone.lydia_and_kelen_s
+          {{ state_attr('zone.lydia_and_kelen_s','latitude')}},{{state_attr('zone.lydia_and_kelen_s','longitude')}}
         {%- elif is_state("input_select.destination", "Mom")  -%}
-          zone.mom_s
+          {{ state_attr('zone.mom_s','latitude')}},{{state_attr('zone.mom_s','longitude')}}
         {%- elif is_state("input_select.destination", "Natalie")  -%}
-          zone.natalie_and_eric_s
+          {{ state_attr('zone.natalie_and_eric_s','latitude')}},{{state_attr('zone.natalie_and_eric_s','longitude')}}
         {%- else -%}
           Unknown
         {%- endif %}
