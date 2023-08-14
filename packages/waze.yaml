@@ -29,24 +29,24 @@ binary_sensor:
 
 template:
   - sensor:
-    - name: "Destination Zone"
+    - name: "Destination Address"
       state: >-
         {%- if is_state("input_select.destination", "Home")  -%}
           {{ state_attr('zone.home','latitude')}},{{state_attr('zone.home','longitude')}}
         {%- elif is_state("input_select.destination", "Work")  -%}
           {{ state_attr('zone.work','latitude')}},{{state_attr('zone.work','longitude')}}
         {%- elif is_state("input_select.destination", "Reannon")  -%}
-          {{ state_attr('zone.reannon_s','latitude')}},{{state_attr('zone.reannon_s','longitude')}}
+          {{ state_attr('zone.reannon_s_place','latitude')}},{{state_attr('zone.reannon_s_place','longitude')}}
         {%- elif is_state("input_select.destination", "Spencer")  -%}
-          {{ state_attr('zone.spencer_and_catelynn_s','latitude')}},{{state_attr('zone.spencer_and_catelynn_s','longitude')}}
+          {{ state_attr('zone.spencer_catelynn_s','latitude')}},{{state_attr('zone.spencer_catelynn_s','longitude')}}
         {%- elif is_state("input_select.destination", "Tori")  -%}
-          {{ state_attr('zone.tori_s','latitude')}},{{state_attr('zone.tori_s','longitude')}}
+          {{ state_attr('zone.tori_s_place','latitude')}},{{state_attr('zone.tori_s_place','longitude')}}
         {%- elif is_state("input_select.destination", "Lydia")  -%}
-          {{ state_attr('zone.lydia_and_kelen_s','latitude')}},{{state_attr('zone.lydia_and_kelen_s','longitude')}}
+          {{ state_attr('zone.lydia_kelen_s','latitude')}},{{state_attr('zone.lydia_kelen_s','longitude')}}
         {%- elif is_state("input_select.destination", "Mom")  -%}
-          {{ state_attr('zone.mom_s','latitude')}},{{state_attr('zone.mom_s','longitude')}}
+          {{ state_attr('zone.mom_s_house','latitude')}},{{state_attr('zone.mom_s_house','longitude')}}
         {%- elif is_state("input_select.destination", "Natalie")  -%}
-          {{ state_attr('zone.natalie_and_eric_s','latitude')}},{{state_attr('zone.natalie_and_eric_s','longitude')}}
+          {{ state_attr('zone.natalie_eric_s','latitude')}},{{state_attr('zone.natalie_eric_s','longitude')}}
         {%- else -%}
           Unknown
         {%- endif %}

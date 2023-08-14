@@ -9,7 +9,7 @@ This is my Home Assistant TEST installation.
 [![HA Community](https://img.shields.io/badge/HA_Community-Forum-orange)](https://community.home-assistant.io/u/rodney.delauer/summary)
 
 ### Add-ons
-[![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-15.0.6-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
+[![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-15.0.7-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
 [![ESPHome](https://img.shields.io/badge/ESPHome-2023.7.1-5294E2.svg)](https://esphome.io/)
 [![Grafana](https://img.shields.io/badge/Grafana-unknown-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
 [![Home Assistant Google Drive Backup](https://img.shields.io/badge/Google_Drive_Backup-0.111.1-5294E2.svg)](https://github.com/sabeechen/hassio-google-drive-backup)
@@ -29,16 +29,16 @@ This is my Home Assistant TEST installation.
 ## Some statistics about my installation:
 Description | value
 -- | --
-Number of entities | 2152
+Number of entities | 2141
 Count of alarm | 2
 Count of alert | 4
-Count of automation | 60
+Count of automation | 64
 Count of binary_sensor | 127
 Count of calendar | 17
 Count of camera | 10
 Count of climate | 1
 Count of cover | 4
-Count of device_tracker | 10
+Count of device_tracker | 7
 Count of fan | 8
 Count of input_boolean | 51
 Count of input_datetime | 28
@@ -50,8 +50,8 @@ Count of media_player | 23
 Count of number | 56
 Count of person | 6
 Count of scene | 15
-Count of script | 45
-Count of sensor | 825
+Count of script | 48
+Count of sensor | 832
 Count of sun | 1
 Count of switch | 91
 Count of timer | 1
