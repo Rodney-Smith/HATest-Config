@@ -1,6 +1,6 @@
 ###############################################################################
 #  @author         :  Rodney Smith
-#  @date           :  06/22/2022
+#  @date           :  08/14/2023
 #  @package        :  Occupancy
 #  @description    :  Create template sensors that just need a single sensor to
 #                     trigger room occupancy.
@@ -12,8 +12,9 @@ binary_sensor:
         unique_id: 74406402-58e7-48c0-b0e0-913d050c0348
         friendly_name: "Office Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'office')
-             or is_state('sensor.iphone_13_pro', 'office')
+          {% if is_state('sensor.rodney_phone', 'office')
+             or is_state('sensor.gina_phone', 'office')
+             or is_state('sensor.spencer_phone', 'office')
              or is_state('binary_sensor.p1_motion_occupancy', 'on') 
              or is_state('binary_sensor.office_ep1_occupancy', 'on')
              or is_state('binary_sensor.espresense_office_motion', 'on') 
@@ -28,8 +29,9 @@ binary_sensor:
         unique_id: 4d065b2d-f162-4a1b-961d-a10cac1a7e06
         friendly_name: "Kitchen Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'kitchen')
-             or is_state('sensor.iphone_13_pro', 'kitchen')
+          {% if is_state('sensor.rodney_phone', 'kitchen')
+             or is_state('sensor.gina_phone', 'kitchen')
+             or is_state('sensor.spencer_phone', 'kitchen')
              or is_state('binary_sensor.kn_motion_occupancy', 'on')
              or is_state('binary_sensor.espresense_kitchen_motion', 'on') %}
              True
@@ -42,8 +44,9 @@ binary_sensor:
         unique_id: 6a863670-2bd2-4cef-8dd3-d295d99b924e
         friendly_name: "Living Room Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'living_room')
-             or is_state('sensor.iphone_13_pro', 'living_room')
+          {% if is_state('sensor.rodney_phone', 'living_room')
+             or is_state('sensor.gina_phone', 'living_room')
+             or is_state('sensor.spencer_phone', 'living_room')
              or is_state('binary_sensor.lr_motion_occupancy', 'on') 
              or is_state('binary_sensor.living_room_ep1_occupancy', 'on') 
              or is_state('binary_sensor.living_room_occupancy', 'on') %}
@@ -57,8 +60,9 @@ binary_sensor:
         unique_id: 1c0fe49f-9c07-44f3-b4bb-3d8124c7a451
         friendly_name: "Main Bedroom Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'main_bedroom')
-             or is_state('sensor.iphone_13_pro', 'main_bedroom')
+          {% if is_state('sensor.rodney_phone', 'main_bedroom')
+             or is_state('sensor.gina_phone', 'main_bedroom')
+             or is_state('sensor.spencer_phone', 'main_bedroom')
              or is_state('binary_sensor.mb_motion_occupancy', 'on') 
              or is_state('binary_sensor.main_bedroom_occupancy', 'on') %}
              True
@@ -71,8 +75,9 @@ binary_sensor:
         unique_id: 328cdbe4-ca6c-4cdf-8a9b-fa5a308f06b8
         friendly_name: "Guest Bedroom1 Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'guest1')
-             or is_state('sensor.iphone_13_pro', 'guest1')
+          {% if is_state('sensor.rodney_phone', 'guest1')
+             or is_state('sensor.gina_phone', 'guest1')
+             or is_state('sensor.spencer_phone', 'guest1')
              or is_state('binary_sensor.br1_motion_occupancy', 'on') %}
              True
           {% else %}
@@ -84,8 +89,9 @@ binary_sensor:
         unique_id: 7618fb27-7c6c-4bfc-8eb2-aed1d60341ad
         friendly_name: "Guest Bedroom2 Occupied"
         value_template: >-
-          {% if is_state('sensor.iphone_13_pro_max', 'guest2')
-             or is_state('sensor.iphone_13_pro', 'guest2')
+          {% if is_state('sensor.rodney_phone', 'guest2')
+             or is_state('sensor.gina_phone', 'guest2')
+             or is_state('sensor.spencer_phone', 'guest2')
              or is_state('binary_sensor.br2_motion_occupancy', 'on') %}
              True
           {% else %}
@@ -104,7 +110,8 @@ binary_sensor:
           {% endif %}
         value_template: >-
           {% if is_state('person.rodney_smith','home')
-             or is_state('person.gina_delauer','home') %}
+             or is_state('person.gina_delauer','home')
+             or is_state('person.spencer_smith','home') %}
              True
           {% else %}
              False

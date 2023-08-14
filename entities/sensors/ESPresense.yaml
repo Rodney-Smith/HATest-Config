@@ -1,3 +1,11 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/14/2023
+#  @entity         :  ESPresense
+#  @description    :  ESPresense entities to track room presense
+#                                                       https://espresense.com/
+###############################################################################
+
   - platform: mqtt_room
     name: "Fenix 5"
     device_id: "known:dcfad60078c3"
@@ -5,20 +13,34 @@
     timeout: 5
     away_timeout: 120
   - platform: mqtt_room
-    name: "iPhone 13 Pro Max"
+    name: "Rodney Phone"
+#    sensor.iphone_13_pro_max"
     device_id: "Rodneys iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
     away_timeout: 120
   - platform: mqtt_room
-    name: "Work iPhone"
+    name: "Work Phone"
     device_id: "Work iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
     away_timeout: 120
   - platform: mqtt_room
-    name: "iPhone 13 Pro"
+    name: "Gina Phone"
+#    sensor.iphone_13_pro"
     device_id: "Ginas iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "iPad"
+    device_id: "iPad 9th Gen"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "Spencer Phone"
+    device_id: "Spencers iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
     away_timeout: 120

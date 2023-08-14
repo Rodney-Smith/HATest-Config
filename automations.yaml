@@ -246,7 +246,7 @@
   trigger:
   - platform: state
     entity_id:
-    - sensor.iphone_13_pro_max
+    - sensor.rodney_phone
     for:
       hours: 0
       minutes: 5
@@ -488,8 +488,8 @@
   trigger:
   - platform: state
     entity_id:
-    - sensor.iphone_13_pro
-    - sensor.iphone_13_pro_max
+    - sensor.gina_phone
+    - sensor.rodney_phone
     to: Kitchen
   condition:
   - condition: sun

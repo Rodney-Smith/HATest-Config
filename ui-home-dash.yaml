@@ -615,16 +615,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - Office
           - office
@@ -887,16 +889,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - Living Room
           - living_room
@@ -1088,16 +1092,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - Kitchen
           - kitchen
@@ -1188,16 +1194,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - Main Bedroom
           - main_bedroom
@@ -1367,16 +1375,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - guest1
         card:
@@ -1484,16 +1494,18 @@ views:
         entities:
           - entity: device_tracker.einsteins_iphone
             name: Rodney
-          - entity: sensor.iphone_13_pro_max
+          - entity: sensor.rodney_phone
             name: Rodney
           - entity: device_tracker.ginas_iphone
             name: Gina
-          - entity: sensor.iphone_13_pro
+          - entity: sensor.gina_phone
             name: Gina
           - entity: sensor.fenix_5
             name: Garmin
           - entity: sensor.ipad
             name: iPad
+          - entity: sensor.spencer_phone
+            name: Spencer
         state_filter:
           - guest2
         card:

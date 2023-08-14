@@ -488,7 +488,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.iphone_13_pro_max
+    - entity: sensor.rodney_phone
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -496,8 +496,10 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.iphone_13_pro
+    - entity: sensor.gina_phone
       name: Gina
+    - entity: sensor.spencer_phone
+      name: Spencer
     show_empty: false
     state_filter:
     - Office
@@ -515,7 +517,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.iphone_13_pro_max
+    - entity: sensor.rodney_phone
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -523,8 +525,10 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.iphone_13_pro
+    - entity: sensor.gina_phone
       name: Gina
+    - entity: sensor.spencer_phone
+      name: Spencer
     show_empty: false
     state_filter:
     - Living Room
@@ -542,7 +546,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.iphone_13_pro_max
+    - entity: sensor.rodney_phone
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -550,8 +554,10 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.iphone_13_pro
+    - entity: sensor.gina_phone
       name: Gina
+    - entity: sensor.spencer_phone
+      name: Spencer
     show_empty: false
     state_filter:
     - Kitchen
@@ -569,7 +575,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.iphone_13_pro_max
+    - entity: sensor.rodney_phone
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -577,8 +583,10 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.iphone_13_pro
+    - entity: sensor.gina_phone
       name: Gina
+    - entity: sensor.spencer_phone
+      name: Spencer
     show_empty: false
     state_filter:
     - Main Bedroom
@@ -620,7 +628,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.iphone_13_pro_max
+    - entity: sensor.rodney_phone
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -628,8 +636,10 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.iphone_13_pro
+    - entity: sensor.gina_phone
       name: Gina
+    - entity: sensor.spencer_phone
+      name: Spencer
     show_empty: false
     state_filter:
     - guest1

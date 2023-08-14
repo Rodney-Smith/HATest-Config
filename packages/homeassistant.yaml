@@ -32,10 +32,12 @@ homeassistant:
     # Add an entry for each entity that you want to overwrite.
 #    binary_sensor.raspberry_pi_2_model_b:
 #      icon: mdi:raspberry-pi
-    sensor.iphone_13_pro:
+    sensor.gina_phone:
       person: gina_delauer
-    sensor.iphone_13_pro_max:
+    sensor.rodney_phone:
       person: rodney_smith
+    sensor.spencer_phone:
+      person: spencer_smith
   # Customize all entities in a domain
 #  customize_domain:
   # Customize entities matching a pattern
