@@ -5,9 +5,9 @@
 #   @description    :  Devices for people group
 ###############################################################################
 people:
-  - person.rodney_smith
-  - person.gina_delauer
-  - person.reannon_haight
-  - person.spencer_smith
-  - person.victoria_morgan
-  - person.lydia_smith
+  - person.gina
+  - person.rodney
+  - person.reannon
+  - person.spencer
+  - person.victoria
+  - person.lydia

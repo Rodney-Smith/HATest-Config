@@ -8,17 +8,17 @@ sensor:
   - platform: template
     sensors:
       wind_speed:
-        value_template: "{{ (state_attr('weather.meridian','wind_speed') | float) }}"
+        value_template: "{{ (state_attr('weather.local','wind_speed') | float) }}"
         unit_of_measurement: 'mph'
   - platform: template
     sensors:
       visibility:
-        value_template: "{{ (state_attr('weather.meridian', 'visibility') | float) }}"
+        value_template: "{{ (state_attr('weather.local', 'visibility') | float) }}"
         unit_of_measurement: 'miles'
   - platform: template
     sensors:
       humidity:
-        value_template: "{{ (state_attr('weather.meridian', 'humidity') | float) }}"
+        value_template: "{{ (state_attr('weather.local', 'humidity') | float) }}"
         unit_of_measurement: '%'
 
 ### You first need to find either your NWS Zone ID or County ID. I’m not sure which is better but I used my Zone ID here.
@@ -45,23 +45,23 @@ sensor:
         friendly_name: Current Forecast
         icon_template: mdi:weather-sunny
         value_template: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+            {% set forecast = state_attr('weather.local','forecast')[0] %}
             {{ forecast.condition }}
         attribute_templates:
           high_temp: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+            {% set forecast = state_attr('weather.local','forecast')[0] %}
             {{ forecast.temperature }}
           overnight_low: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.templow }}
           wind_bearing: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+            {% set forecast = state_attr('weather.local','forecast')[0] %}
             {{ forecast.wind_bearing }}
           wind_speed: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+            {% set forecast = state_attr('weather.local','forecast')[0] %}
             {{ forecast.wind_speed }}
           precipitation: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+            {% set forecast = state_attr('weather.local','forecast')[0] %}
             {{ forecast.precipitation }}
       current_forecast_detail:
         friendly_name: Current Forecast Detail
@@ -185,23 +185,23 @@ sensor:
         friendly_name: Tomorrows Forecast
         icon_template: mdi:weather-sunny
         value_template: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.condition }}
         attribute_templates:
           high_temp: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.temperature }}
           overnight_low: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[2] %}
+            {% set forecast = state_attr('weather.local','forecast')[2] %}
             {{ forecast.templow }}
           wind_bearing: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.wind_bearing }}
           wind_speed: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.wind_speed }}
           precipitation: >-
-            {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+            {% set forecast = state_attr('weather.local','forecast')[1] %}
             {{ forecast.precipitation }}
       tomorrow_forecast_detail:
         friendly_name: Tomorrow Forecast Detail
@@ -321,23 +321,23 @@ sensor:
               ' is currently '
               ] | random }}
               {{states('sensor.outside_temperature')|round}} degrees
-            {% if is_state('weather.meridian', 'rainy') %}
+            {% if is_state('weather.local', 'rainy') %}
               {{ [
               'with rain.',
               'with showers.'
               ] | random }}
-            {% elif is_state('weather.meridian', 'cloudy') %}
+            {% elif is_state('weather.local', 'cloudy') %}
               {{ [
               'with clouds.',
               'with cloudy skies.'
               ] | random }}
-            {% elif is_state('weather.meridian', 'partlycloudy') %}
+            {% elif is_state('weather.local', 'partlycloudy') %}
               {{ [
               'with some clouds.',
               'with partly cloudy skies.',
               'with scatterd clouds'
               ] | random }}
-            {% elif is_state('weather.meridian', 'sunny') %}
+            {% elif is_state('weather.local', 'sunny') %}
               {% if is_state('sun.sun', 'above_horizon') %}
                 {{ [
                 'and sunny.',
@@ -350,7 +350,7 @@ sensor:
                 ] | random }}
               {% endif %}
             {% else %}
-              and {{ states.weather.meridian.state }}
+              and {{ states.weather.local.state }}
             {% endif %}
           {%- endmacro -%}
           {# a macro that removes all newline characters, empty spaces, and returns formatted text  #}
@@ -375,23 +375,23 @@ sensor:
               ' is currently '
               ] | random }}
               {{states('sensor.outside_temperature')|round}} degrees
-            {% if is_state('weather.meridian', 'rainy') %}
+            {% if is_state('weather.local', 'rainy') %}
               {{ [
               'with rain.',
               'with showers.'
               ] | random }}
-            {% elif is_state('weather.meridian', 'cloudy') %}
+            {% elif is_state('weather.local', 'cloudy') %}
               {{ [
               'with clouds.',
               'with cloudy skies.'
               ] | random }}
-            {% elif is_state('weather.meridian', 'partlycloudy') %}
+            {% elif is_state('weather.local', 'partlycloudy') %}
               {{ [
               'with some clouds.',
               'with partly cloudy skies.',
               'with scatterd clouds'
               ] | random }}
-            {% elif is_state('weather.meridian', 'sunny') %}
+            {% elif is_state('weather.local', 'sunny') %}
               {% if is_state('sun.sun', 'above_horizon') %}
                 {{ [
                 'and sunny.',
@@ -404,7 +404,7 @@ sensor:
                 ] | random }}
               {% endif %}
             {% else %}
-              and {{ states.weather.meridian.state }}
+              and {{ states.weather.local.state }}
             {% endif %}
             {%- if is_state('binary_sensor.night','off')%}
               {{ [
@@ -535,28 +535,28 @@ sensor:
         unit_of_measurement: '°F'
         device_class: temperature
         value_template: >-
-          {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+          {% set forecast = state_attr('weather.local','forecast')[0] %}
           {{ forecast.templow }}
       todays_high_temp:
         friendly_name: "Today's High Temp"
         unit_of_measurement: '°F'
         device_class: temperature
         value_template: >-
-          {% set forecast = state_attr('weather.meridian','forecast')[0] %}
+          {% set forecast = state_attr('weather.local','forecast')[0] %}
           {{ forecast.temperature }}
       tonights_low_temp:
         friendly_name: "Tonight's Low Temp"
         unit_of_measurement: '°F'
         device_class: temperature
         value_template: >-
-          {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+          {% set forecast = state_attr('weather.local','forecast')[1] %}
           {{ forecast.templow }}
       tomorrows_high_temp:
         friendly_name: "Tomorrow's High Temp"
         unit_of_measurement: '°F'
         device_class: temperature
         value_template: >-
-          {% set forecast = state_attr('weather.meridian','forecast')[1] %}
+          {% set forecast = state_attr('weather.local','forecast')[1] %}
           {{ forecast.temperature }}
       clothing_forecast:
         friendly_name: "Clothing Forecast"
@@ -663,7 +663,7 @@ sensor:
         friendly_name: "Current Temperature"
         value_template: >
           {% set temperatures = [
-            (state_attr('weather.meridian','temperature') | float(default=0)),
+            (state_attr('weather.local','temperature') | float(default=0)),
             (state_attr('weather.kmyv_daynight','temperature') | float(default=0)) ] %}
           {% set temps = temperatures | reject("==", 0) | list %}
           {{ ( temps | sum / temps | count ) | round(1) }}
@@ -672,7 +672,7 @@ sensor:
         friendly_name: "Current Humidity"
         value_template: >
           {% set humidity = [
-            (state_attr('weather.meridian','humidity') | float(default=0)),
+            (state_attr('weather.local','humidity') | float(default=0)),
             (state_attr('weather.kmyv_daynight','humidity') | float(default=0)) ] %}
           {% set humid = humidity | reject("==", 0) | list %}
           {{ ( humid | sum / humid | count ) | round(1) }}
@@ -681,7 +681,7 @@ sensor:
         friendly_name: "Current Pressure"
         value_template: >
           {% set pressure = [
-            (state_attr('weather.meridian','pressure') | float(default=0)),
+            (state_attr('weather.local','pressure') | float(default=0)),
             (state_attr('weather.kmyv_daynight','pressure') | float(default=0)) ] %}
           {% set bpress = pressure | reject("==", 0) | list %}
           {{ ( bpress | sum / bpress | count ) | round(1) }}
@@ -689,14 +689,14 @@ sensor:
       my_visibility:
         friendly_name: "Current Visability"
         value_template: >-
-          {{ ((((state_attr('weather.meridian','visibility') | int)
+          {{ ((((state_attr('weather.local','visibility') | int)
             + (state_attr('weather.kmyv_daynight','visibility') | int)) /2 ) * 0.621371) | round }}
         unit_of_measurement: 'miles'
       my_windspeed:
         friendly_name: "Current Wind Speed"
         value_template: >
           {% set windspeed =  [
-            (state_attr('weather.meridian','wind_speed') | float(default=0)),
+            (state_attr('weather.local','wind_speed') | float(default=0)),
             (state_attr('weather.kmyv_daynight','wind_speed') | float(default=0)) ] %}
           {% set wspeed = windspeed | reject("==", 0) | list %}
           {{ ( wspeed | sum / wspeed | count ) | round(1) }}
@@ -709,7 +709,7 @@ weather:
     latitude: !secret ha_latitude
     longitude: !secret ha_longitude
     mode: "daily"
-    name: Meridian
+    name: Local
 
 automation:
   - alias: Forecast Low Near Freezing

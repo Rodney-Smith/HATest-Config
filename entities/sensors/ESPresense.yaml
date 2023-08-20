@@ -14,7 +14,6 @@
     away_timeout: 120
   - platform: mqtt_room
     name: "Rodney Phone"
-#    sensor.iphone_13_pro_max"
     device_id: "Rodneys iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
@@ -27,7 +26,6 @@
     away_timeout: 120
   - platform: mqtt_room
     name: "Gina Phone"
-#    sensor.iphone_13_pro"
     device_id: "Ginas iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
@@ -39,8 +37,26 @@
     timeout: 5
     away_timeout: 120
   - platform: mqtt_room
+    name: "Reannon Phone"
+    device_id: "Reannons Phone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
     name: "Spencer Phone"
     device_id: "Spencers iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "Tori Phone"
+    device_id: "Toris iPhone"
+    state_topic: "espresense/rooms"
+    timeout: 5
+    away_timeout: 120
+  - platform: mqtt_room
+    name: "Lydia Phone"
+    device_id: "Lydias iPhone"
     state_topic: "espresense/rooms"
     timeout: 5
     away_timeout: 120

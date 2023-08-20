@@ -11,19 +11,19 @@ binary_sensor:
 - platform: template
   sensors:
     person_rodney_url:
-      value_template: "{{ state_attr('person.rodney_smith', 'latitude') and state_attr('person.rodney_smith', 'longitude') }}"
+      value_template: "{{ state_attr('person.rodney', 'latitude') and state_attr('person.rodney', 'longitude') }}"
       attribute_templates:
         url: >
-          {% set lat = state_attr('person.rodney_smith', 'latitude') %}
-          {% set lon = state_attr('person.rodney_smith', 'longitude') %}
+          {% set lat = state_attr('person.rodney', 'latitude') %}
+          {% set lon = state_attr('person.rodney', 'longitude') %}
           {% set zoom = 10 %}
           https://embed.waze.com/en/iframe?zoom={{ zoom }}&lat={{ lat }}&lon={{ lon }}&pin=1&desc=1
     person_gina_url:
-      value_template: "{{ state_attr('person.gina_delauer', 'latitude') and state_attr('person.gina_delauer', 'longitude') }}"
+      value_template: "{{ state_attr('person.gina', 'latitude') and state_attr('person.gina', 'longitude') }}"
       attribute_templates:
         url: >
-          {% set lat = state_attr('person.gina_delauer', 'latitude') %}
-          {% set lon = state_attr('person.gina_delauer', 'longitude') %}
+          {% set lat = state_attr('person.gina', 'latitude') %}
+          {% set lon = state_attr('person.gina', 'longitude') %}
           {% set zoom = 10 %}
           https://embed.waze.com/en/iframe?zoom={{ zoom }}&lat={{ lat }}&lon={{ lon }}&pin=1&desc=1
 

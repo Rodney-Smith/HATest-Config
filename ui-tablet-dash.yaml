@@ -19,7 +19,7 @@ views:
       - type: custom:mushroom-chips-card
         chips:
           - type: weather
-            entity: weather.super_weather_station
+            entity: weather.local
             show_conditions: true
             show_temperature: true
           - type: alarm-control-panel
@@ -312,7 +312,7 @@ views:
                 primary: Outside
                 secondary: >-
                   {{states('sensor.outside_temperature')}}°F
-                  {{states('weather.meridian')}} - Inside
+                  {{states('weather.local')}} - Inside
                   {{states('sensor.living_space_temperature')}}°F 
                 entity: group.outside_lights
                 tap_action:
@@ -1757,7 +1757,7 @@ views:
           - show_current: true
             show_forecast: true
             type: weather-forecast
-            entity: weather.meridian
+            entity: weather.local
       - square: false
         columns: 2
         type: grid
@@ -2971,6 +2971,9 @@ views:
           - type: entity
             entity: sensor.disk_use_percent_config
             icon_color: deep-purple
+            tap_action:
+              action: navigate
+              navigation_path: 'synology'
         alignment: start
       - square: false
         columns: 2
@@ -3100,10 +3103,10 @@ views:
         type: grid
         cards:
           - type: custom:mushroom-person-card
-            entity: person.rodney_smith
+            entity: person.rodney
             icon_type: entity-picture
           - type: custom:mushroom-person-card
-            entity: person.gina_delauer
+            entity: person.gina
             icon_type: entity-picture
           - type: custom:mushroom-entity-card
             entity: sensor.rodney_info
@@ -3300,8 +3303,8 @@ views:
         alignment: start
       - type: map
         entities:
-          - entity: person.gina_delauer
-          - entity: person.rodney_smith
+          - entity: person.gina
+          - entity: person.rodney
         default_zoom: 5
         geo_location_sources:
           - all
@@ -4773,7 +4776,7 @@ views:
           - show_current: true
             show_forecast: true
             type: weather-forecast
-            entity: weather.super_weather_station
+            entity: weather.local
       - square: false
         columns: 1
         type: grid
@@ -4881,4 +4884,136 @@ views:
           - type: custom:mushroom-entity-card
             entity: sensor.pirateweather_precip_probability
             name: Precip Probapility
+  - title: Synology
+    path: synology
+    icon: mdi:harddisk
+    subview: true
+    theme: Mushroom
+    badges: []
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: action
+            tap_action:
+              action: navigate
+              navigation_path: '0'
+            icon: mdi:home
+            hold_action:
+              action: navigate
+              navigation_path: '0'
+            double_tap_action:
+              action: navigate
+              navigation_path: '0'
+          - type: entity
+            entity: sensor.synology_temperature
+            icon_color: orange
+          - type: entity
+            entity: sensor.synology_cpu_utilization_total
+            icon_color: light-blue
+          - type: entity
+            entity: sensor.synology_memory_usage_real
+            icon_color: amber
+          - type: entity
+            entity: update.synology_dsm_update
+            icon_color: deep-purple
+        alignment: start
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Synology
+            subtitle: ''
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: button.synology_reboot
+                name: Reboot
+                tap_action:
+                  action: toggle
+                secondary_info: none
+              - type: custom:mushroom-entity-card
+                entity: button.synology_shutdown
+                name: Shutdown
+                tap_action:
+                  action: toggle
+                secondary_info: none
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Disk Volumes
+            subtitle: Volume 1
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_status
+                name: Status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_used_space
+                name: Used space
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_volume_used
+                name: Percent Used
+          - type: custom:mushroom-title-card
+            subtitle: Volume 2
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_status
+                name: Status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_used_space
+                name: Used space
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_volume_used
+                name: Percent Used
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Stats
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_load_average_15_min
+                name: CPU average (15 min)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_load_average_5_min
+                name: CPU average (5 min)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_utilization_total
+                name: CPU utilization (total)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_utilization_user
+                name: CPU utilization (user)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_download_throughput
+                name: Download throughput
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_available_real
+                name: Real Memory Available
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_available_swap
+                name: Swap Memory Available
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_total_real
+                name: Real Memory Total
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_total_swap
+                name: Swap Memory Total
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_usage_real
+                name: Real Memory Usage
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.synology_security_status
+                name: Security status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_upload_throughput
+                name: Upload throughput
 title: Tablet

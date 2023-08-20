@@ -399,8 +399,8 @@
   trigger:
   - platform: state
     entity_id:
-    - person.rodney_smith
-    - person.gina_delauer
+    - person.rodney
+    - person.gina
     for:
       hours: 0
       minutes: 2
@@ -445,21 +445,21 @@
   trigger:
   - platform: state
     entity_id:
-    - person.rodney_smith
+    - person.rodney
     from: home
   - platform: state
     entity_id:
-    - person.gina_delauer
+    - person.gina
     from: home
   condition:
   - condition: not
     conditions:
     - condition: state
-      entity_id: person.rodney_smith
+      entity_id: person.rodney
       state: home
       alias: Confirm Rodney is home
     - condition: state
-      entity_id: person.gina_delauer
+      entity_id: person.gina
       state: home
       alias: Confirm Gina is home
   action:

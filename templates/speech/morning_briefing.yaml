@@ -48,7 +48,7 @@
       {{states.sensor.today_is.state }}.
       </p>
       <p>
-        It is currently {{states.weather.meridian.state}} and {{states.weather.meridian.temperature|round}} degrees in Meridian.
+        It is currently {{states.weather.local.state}} and {{states.weather.local.temperature|round}} degrees in Meridian.
       </p>
       <p>
         {% if states.sensor.nws_alerts.state | int > 0 %}

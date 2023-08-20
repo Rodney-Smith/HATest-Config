@@ -109,9 +109,12 @@ binary_sensor:
             mdi:home-outline
           {% endif %}
         value_template: >-
-          {% if is_state('person.rodney_smith','home')
-             or is_state('person.gina_delauer','home')
-             or is_state('person.spencer_smith','home') %}
+          {% if is_state('person.gina','home')
+             or is_state('person.rodney','home')
+             or is_state('person.reannon','home')
+             or is_state('person.spencer','home')
+             or is_state('person.victoria','home')
+             or is_state('person.lydia','home') %}
              True
           {% else %}
              False

@@ -5,5 +5,5 @@
 #   @description    :  Devices for family group
 ###############################################################################
 family:
-  - person.rodney_smith
-  - person.gina_delauer
+  - person.rodney
+  - person.gina

@@ -141,7 +141,7 @@ sensor:
         value_template: >
           {% set temperatures = [
             (state_attr('weather.kmyv_daynight','temperature') | float(default=0)),
-            (state_attr('weather.meridian','temperature') | float(default=0)),
+            (state_attr('weather.local','temperature') | float(default=0)),
             (states('sensor.patio_meter_temperature') | float(default=0)),
             (states('sensor.wall_meter_temperature') | float(default=0)),
             (states('sensor.blink_back_patio_temperature') | float(default=0)) ] %}

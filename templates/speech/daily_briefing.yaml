@@ -34,23 +34,23 @@
 
       <p>
         The Weather in Meridian is {{states('sensor.pirateweather_temperature')|round}} degrees 
-        {% if is_state('weather.meridian', 'rainy') %}
+        {% if is_state('weather.local', 'rainy') %}
           {{ [
           'with rain.',
           'with showers.'
           ] | random }}
-        {% elif is_state('weather.meridian', 'cloudy') %}
+        {% elif is_state('weather.local', 'cloudy') %}
           {{ [
           'with clouds.',
           'with cloudy skies.'
           ] | random }}
-        {% elif is_state('weather.meridian', 'partlycloudy') %}
+        {% elif is_state('weather.local', 'partlycloudy') %}
           {{ [
           'with some clouds.',
           'with partly cloudy skies.',
           'with scattered clouds'
           ] | random }}
-        {% elif is_state('weather.meridian', 'sunny') %}
+        {% elif is_state('weather.local', 'sunny') %}
           {% if is_state('sun.sun', 'above_horizon') %}
             {{ [
             'and sunny.',
@@ -63,7 +63,7 @@
             ] | random }}
           {% endif %}
         {% else %}
-          and {{ states.weather.meridian.state }}
+          and {{ states.weather.local.state }}
         {% endif %}
 
       {% if states.sensor.weatheralerts_active_alerts.state | int > 0 %}
