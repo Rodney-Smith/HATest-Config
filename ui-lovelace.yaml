@@ -9,7 +9,7 @@ swipe_nav:
 title: HASS OS
 views:
 - badges:
-  - entity: person.rodney
+  - entity: person.rodney_smith
   - entity: sun.sun
   - entity: sensor.my_ecobee_temperature
   - entity: sensor.bedrooms_temperature
@@ -22,8 +22,10 @@ views:
     secondary_info_attribute: wind_speed
     type: weather-forecast
   - entities:
-    - entity: light.gina_light
-    - entity: light.rodney_light
+    - entity: light.ginas_light
+    - entity: light.rodneys_light
+    - entity: switch.p2_171df2_outlet1
+    - entity: switch.p2_171df2_usb
     - entity: fan.maxx_air
     - entity: fan.black_fan
     - entity: light.foyer
@@ -33,15 +35,25 @@ views:
     type: entities
   - entities:
     - entity: light.main_bedroom_light
-    - entity: light.gina_nightstand
-    - entity: light.rodney_nightstand
+    - entity: light.ginas_nightstand
+    - entity: light.rodneys_nightstand
     - entity: switch.big_fan
+    - entity: switch.wp9_145829_usb
+    - entity: switch.wp9_145829_outlet1
+    - entity: switch.wp9_145829_outlet3
+    - entity: switch.ahr_083_outlet1
+    - entity: switch.ahr_083_outlet2
+    - entity: switch.ahr_083_outlet4
     show_header_toggle: false
     state_color: true
     title: Main Bedroom
     type: entities
   - entities:
     - entity: switch.wp6_ae7ac1
+    - entity: switch.wp9_1580ef_outlet1
+    - entity: switch.wp9_1580ef_outlet2
+    - entity: switch.wp9_1580ef_outlet3
+    - entity: switch.wp9_1580ef_usb
     - entity: switch.br1_s31_zb
     - entity: light.br1_bulb_cl
     - entity: binary_sensor.br1_snzb03_cl_occupancy
@@ -54,6 +66,10 @@ views:
     type: entities
   - entities:
     - entity: light.br2_ceiling_light
+    - entity: switch.wp9_2415be_outlet1
+    - entity: switch.wp9_2415be_outlet2
+    - entity: switch.wp9_2415be_outlet3
+    - entity: switch.wp9_2415be_usb
     - entity: light.br2_bulb_cf1
     - entity: light.br2_bulb_cf2
     - entity: light.br2_bulb_cf3
@@ -110,8 +126,6 @@ views:
     type: entities
   - entities:
     - vacuum.bert
-    - vacuum.ernie
-    - vacuum.oscar
     type: entities
   - entities:
     - entity: input_boolean.big_fan_override
@@ -332,6 +346,7 @@ views:
     title: Tuya Bulbs
     type: entities
   icon: mdi:lightbulb-group
+  panel: false
   path: lights
   theme: ''
   title: Lights
@@ -410,6 +425,7 @@ views:
   - entity: media_player.fire_tv_max
     type: media-control
   - entity: media_player.patio_fire_tv
+    theme: iOS Dark Mode
     type: media-control
   - entity: media_player.guest_fire_tv
     type: media-control
@@ -472,7 +488,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.rodney_phone
+    - entity: sensor.iphone_13_pro_max
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -480,10 +496,8 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.gina_phone
+    - entity: sensor.iphone_13_pro
       name: Gina
-    - entity: sensor.spencer_phone
-      name: Spencer
     show_empty: false
     state_filter:
     - Office
@@ -501,7 +515,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.rodney_phone
+    - entity: sensor.iphone_13_pro_max
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -509,10 +523,8 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.gina_phone
+    - entity: sensor.iphone_13_pro
       name: Gina
-    - entity: sensor.spencer_phone
-      name: Spencer
     show_empty: false
     state_filter:
     - Living Room
@@ -530,7 +542,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.rodney_phone
+    - entity: sensor.iphone_13_pro_max
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -538,10 +550,8 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.gina_phone
+    - entity: sensor.iphone_13_pro
       name: Gina
-    - entity: sensor.spencer_phone
-      name: Spencer
     show_empty: false
     state_filter:
     - Kitchen
@@ -559,7 +569,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.rodney_phone
+    - entity: sensor.iphone_13_pro_max
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -567,10 +577,8 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.gina_phone
+    - entity: sensor.iphone_13_pro
       name: Gina
-    - entity: sensor.spencer_phone
-      name: Spencer
     show_empty: false
     state_filter:
     - Main Bedroom
@@ -612,7 +620,7 @@ views:
       name: Rodney
     - entity: sensor.rodney_iphone_bleid_room_presence
       name: Rodney
-    - entity: sensor.rodney_phone
+    - entity: sensor.iphone_13_pro_max
       name: Rodney
     - entity: device_tracker.ginas_iphone
       name: Gina
@@ -620,10 +628,8 @@ views:
       name: Gina
     - entity: sensor.gina_iphone_bleid_room_presence
       name: Gina
-    - entity: sensor.gina_phone
+    - entity: sensor.iphone_13_pro
       name: Gina
-    - entity: sensor.spencer_phone
-      name: Spencer
     show_empty: false
     state_filter:
     - guest1

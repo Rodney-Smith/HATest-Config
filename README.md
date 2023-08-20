@@ -4,13 +4,13 @@ This is my Home Assistant TEST installation.
 
 [![GitHub stars](https://img.shields.io/github/stars/Rodney-Smith/HATest-Config?style=plastic)](https://github.com/Rodney-Smith/HATest-Config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rodney-smith/HATest-Config/main?style=plastic)](https://github.com/rodney-smith/HATest-Config/commits/main)
-[![HA Version](https://img.shields.io/badge/Running_Home_Assistant-2023.8.2-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running_Home_Assistant-2023.8.3-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original_Home_Assistant-2020.12.1-darkblue)](https://github.com/home-assistant/core/releases/2020.12.1)
 [![HA Community](https://img.shields.io/badge/HA_Community-Forum-orange)](https://community.home-assistant.io/u/rodney.delauer/summary)
 
 ### Add-ons
 [![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-15.0.7-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
-[![ESPHome](https://img.shields.io/badge/ESPHome-2023.7.1-5294E2.svg)](https://esphome.io/)
+[![ESPHome](https://img.shields.io/badge/ESPHome-2023.8.1-5294E2.svg)](https://esphome.io/)
 [![Grafana](https://img.shields.io/badge/Grafana-unknown-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
 [![Home Assistant Google Drive Backup](https://img.shields.io/badge/Google_Drive_Backup-0.111.1-5294E2.svg)](https://github.com/sabeechen/hassio-google-drive-backup)
 [![InfluxDB](https://img.shields.io/badge/InfluxDB-unknown-5294E2.svg)](https://github.com/hassio-addons/addon-influxdb)
@@ -20,7 +20,7 @@ This is my Home Assistant TEST installation.
 [![Piper](https://img.shields.io/badge/Piper-1.2.0-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/piper)
 [![Samba Share](https://img.shields.io/badge/Samba-10.0.2-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/samba)
 [![Silicon Labs Multiprotocol](https://img.shields.io/badge/Silabs_Multiprotocol-2.3.1-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
-[![Studio Code Server](https://img.shields.io/badge/Studio_Code_Server-5.10.0-5294E2.svg)](https://github.com/hassio-addons/addon-vscode)
+[![Studio Code Server](https://img.shields.io/badge/Studio_Code_Server-5.10.1-5294E2.svg)](https://github.com/hassio-addons/addon-vscode)
 [![Syncthing](https://img.shields.io/badge/Syncthing-1.16.3-5294E2.svg)](https://github.com/Poeschl/Hassio-Addons/tree/main/syncthing)
 [![TasmoBackup](https://img.shields.io/badge/TasmoBackup-1.0.0-5294E2.svg)](https://github.com/danmed/TasmoBackupV1/)
 [![Whisper](https://img.shields.io/badge/Whisper-1.0.0-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/whisper)
@@ -29,11 +29,11 @@ This is my Home Assistant TEST installation.
 ## Some statistics about my installation:
 Description | value
 -- | --
-Number of entities | 2141
+Number of entities | 2228
 Count of alarm | 2
 Count of alert | 4
 Count of automation | 64
-Count of binary_sensor | 127
+Count of binary_sensor | 136
 Count of calendar | 17
 Count of camera | 10
 Count of climate | 1
@@ -47,17 +47,17 @@ Count of input_select | 2
 Count of input_text | 3
 Count of lights | 65
 Count of media_player | 23
-Count of number | 56
+Count of number | 58
 Count of person | 6
 Count of scene | 15
 Count of script | 48
-Count of sensor | 832
+Count of sensor | 867
 Count of sun | 1
-Count of switch | 91
+Count of switch | 96
 Count of timer | 1
-Count of update | 101
-Count of vacuum | 3
-Count of weather | 4
+Count of update | 102
+Count of vacuum | 2
+Count of weather | 5
 Count of zone | 29
 
 ## My installed extensions:
