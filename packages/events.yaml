@@ -86,10 +86,20 @@ input_datetime:
     has_time: false
     initial: !secret meredith_bday
     icon: mdi:cake-variant
+  mark_bday:
+    has_date: true
+    has_time: false
+    initial: !secret mark_bday
+    icon: mdi:cake-variant
   natalie_bday:
     has_date: true
     has_time: false
     initial: !secret natalie_bday
+    icon: mdi:cake-variant
+  eric_bday:
+    has_date: true
+    has_time: false
+    initial: !secret eric_bday
     icon: mdi:cake-variant
   mel_bday:
     has_date: true
@@ -216,10 +226,22 @@ anniversaries:
       icon_normal: mdi:calendar-account
       days_as_soon: 14
       icon_soon: mdi:calendar-star
+    - name: Mark's Birthday
+      date_template: "{{ states('input_datetime.mark_bday') }}"
+      id_prefix: event_
+      icon_normal: mdi:cake
+      days_as_soon: 14
+      icon_soon: mdi:calendar-star
     - name: Natalie's Birthday
       date_template: "{{ states('input_datetime.natalie_bday') }}"
       id_prefix: event_
-      icon_normal: mdi:calendar-account
+      icon_normal: mdi:cake
+      days_as_soon: 14
+      icon_soon: mdi:calendar-star
+    - name: Eric's Birthday
+      date_template: "{{ states('input_datetime.eric_bday') }}"
+      id_prefix: event_
+      icon_normal: mdi:cake
       days_as_soon: 14
       icon_soon: mdi:calendar-star
     - name: Mel's Birthday
@@ -236,6 +258,12 @@ anniversaries:
       icon_soon: mdi:calendar-star
     - name: Griff's Birthday
       date_template: "{{ states('input_datetime.griff_bday') }}"
+      id_prefix: event_
+      icon_normal: mdi:cake
+      days_as_soon: 14
+      icon_soon: mdi:calendar-star
+    - name: Justin's Birthday
+      date_template: "{{ states('input_datetime.justin_bday') }}"
       id_prefix: event_
       icon_normal: mdi:cake
       days_as_soon: 14

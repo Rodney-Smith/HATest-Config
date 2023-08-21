@@ -2497,7 +2497,7 @@ views:
             entities:
               - type: custom:multiple-entity-row
                 entity: sensor.event_reannon_s_birthday
-                image: /local/images/people/reannon_haight.png
+                image: /local/images/people/reannon.png
                 name: Reannon's Birthday
                 secondary_info:
                   type: attribute
@@ -2539,7 +2539,7 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_spencer_s_birthday
-                image: /local/images/people/spencer_smith.png
+                image: /local/images/people/spencer.png
                 name: Spencer's Birthday
                 secondary_info:
                   type: attribute
@@ -2548,7 +2548,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_catelynn_s_birthday
-                image: /local/images/people/catelynn_danell.png
+                image: /local/images/people/catelynn.png
                 name: Catelynn's Birthday
                 secondary_info:
                   type: attribute
@@ -2558,8 +2558,8 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_tori_s_birthday
-                image: /local/images/people/victoria_morgan.png
-                name: Victoria's Birthday
+                image: /local/images/people/tori.png
+                name: Tori's Birthday
                 secondary_info:
                   type: attribute
                   entity: sensor.event_tori_s_birthday
@@ -2568,7 +2568,7 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_lydia_s_birthday
-                image: /local/images/people/lydia_smith.png
+                image: /local/images/people/lydia.png
                 name: Lydia's Birthday
                 secondary_info:
                   type: attribute
@@ -2577,7 +2577,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_kelen_s_birthday
-                image: /local/images/people/lydia_smith.png
+                image: /local/images/people/lydia.png
                 name: Kelen's Birthday
                 secondary_info:
                   type: attribute
@@ -2595,7 +2595,7 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_gina_s_birthday
-                image: /local/images/people/gina_delauer.png
+                image: /local/images/people/gina.png
                 name: Gina's Birthday
                 secondary_info:
                   type: attribute
@@ -2604,7 +2604,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_rodney_s_birthday
-                image: /local/images/people/rodney_smith.png
+                image: /local/images/people/rodney.png
                 name: Rodney's Birthday
                 secondary_info:
                   type: attribute
@@ -2623,7 +2623,7 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_judy_s_birthday
-                image: /local/images/people/judy_reitzell.png
+                image: /local/images/people/judy.png
                 name: Judy's Birthday
                 secondary_info:
                   type: attribute
@@ -2632,6 +2632,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_meredith_s_birthday
+                image: /local/images/people/meredith.png
                 name: Meredith's Birthday
                 secondary_info:
                   type: attribute
@@ -2640,6 +2641,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_mark_s_birthday
+                image: /local/images/people/mark.png
                 name: Mark's Birthday
                 secondary_info:
                   type: attribute
@@ -2648,6 +2650,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_natalie_s_birthday
+                image: /local/images/people/natalie.png
                 name: Natalie's Birthday
                 secondary_info:
                   type: attribute
@@ -2665,6 +2668,7 @@ views:
               - type: divider
               - type: custom:multiple-entity-row
                 entity: sensor.event_mel_s_birthday
+                image: /local/images/people/mel.png
                 name: Mel's Birthday
                 secondary_info:
                   type: attribute
@@ -2673,6 +2677,7 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_cliff_s_birthday
+                image: /local/images/people/cliff.png
                 name: Cliff's Birthday
                 secondary_info:
                   type: attribute
@@ -2681,10 +2686,20 @@ views:
                   name: Current age
               - type: custom:multiple-entity-row
                 entity: sensor.event_griff_s_birthday
+                image: /local/images/people/griff.png
                 name: Griff's Birthday
                 secondary_info:
                   type: attribute
                   entity: sensor.event_griff_s_birthday
+                  attribute: current_years
+                  name: Current age
+              - type: custom:multiple-entity-row
+                entity: sensor.event_justin_s_birthday
+                image: /local/images/people/justin.png
+                name: Justin's Birthday
+                secondary_info:
+                  type: attribute
+                  entity: sensor.event_justin_s_birthday
                   attribute: current_years
                   name: Current age
       - type: entities

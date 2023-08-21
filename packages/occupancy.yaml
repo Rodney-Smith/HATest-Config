@@ -113,7 +113,7 @@ binary_sensor:
              or is_state('person.rodney','home')
              or is_state('person.reannon','home')
              or is_state('person.spencer','home')
-             or is_state('person.victoria','home')
+             or is_state('person.tori','home')
              or is_state('person.lydia','home') %}
              True
           {% else %}
