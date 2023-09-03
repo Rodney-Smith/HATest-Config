@@ -3116,8 +3116,12 @@ views:
             icon_type: entity-picture
           - type: custom:mushroom-entity-card
             entity: sensor.rodney_info
+            primary_info: state
+            secondary_info: name
           - type: custom:mushroom-entity-card
             entity: sensor.gina_info
+            primary_info: state
+            secondary_info: name
           - type: custom:mushroom-entity-card
             entity: input_boolean.notify_to_close
             icon_color: pink

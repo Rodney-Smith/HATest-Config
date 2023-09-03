@@ -30,13 +30,14 @@ emulated_hue:
   #  type: alexa
   expose_by_default: false
 
-gdacs:
-  categories:
-    - Earthquake
-    - Tropical Cyclone
-  radius: 500
-  latitude: !secret ha_latitude
-  longitude: !secret ha_longitude
+# Depricated in 2024.2.0
+#gdacs:
+#  categories:
+#    - Earthquake
+#    - Tropical Cyclone
+#  radius: 500
+#  latitude: !secret ha_latitude
+#  longitude: !secret ha_longitude
 
 # Google Calendar
 #google:
