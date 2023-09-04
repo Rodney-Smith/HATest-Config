@@ -33,12 +33,6 @@ sensor:
   - platform: nws_alerts
     zone_id: 'CAZ016,CAC101'
 
-  - platform: statistics
-    name: Inside Humidity Stats
-    entity_id: sensor.current_inside_humidity
-    state_characteristic: mean
-    sampling_size: 500
-
   - platform: template
     sensors:
       current_forecast:

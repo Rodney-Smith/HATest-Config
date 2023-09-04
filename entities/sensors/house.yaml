@@ -48,45 +48,44 @@
     days: 7
 
 - platform: statistics
-  entity_id: sensor.br1_motion_device_temperature
-  name: "Bedroom1 Temp Stats"
+  entity_id: sensor.br1_temperature
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 - platform: statistics
-  entity_id: sensor.br2_motion_device_temperature
-  name: "Bedroom2 Temp Stats"
+  entity_id: sensor.br2_temperature
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 - platform: statistics
   entity_id: sensor.livingroom_temperature
-  name: "Living Room Temp Stats"
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 - platform: statistics
   entity_id: sensor.mainbedroom_temperature
-  name: "Main Bedroom Temp Stats"
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 - platform: statistics
   entity_id: sensor.kitchen_temperature
-  name: "Kitchen Temp Stats"
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 - platform: statistics
   entity_id: sensor.office_temperature
-  name: "Office Temp Stats"
   state_characteristic: mean
-  sampling_size: 30
+  sampling_size: 500
 
 - platform: min_max
   name: Inside Temp Stats
   entity_ids:
-    - sensor.br1_motion_device_temperature
-    - sensor.br2_motion_device_temperature
+    - sensor.br1_temperature
+    - sensor.br2_temperature
     - sensor.livingroom_temperature
     - sensor.mainbedroom_temperature
     - sensor.kitchen_temperature
     - sensor.office_temperature
+
+- platform: statistics
+  entity_id: sensor.inside_humidity
+  state_characteristic: mean
+  sampling_size: 500
 
 - platform: history_stats
   name: Outside Lights
@@ -118,7 +117,7 @@
   sampling_size: 500
 - platform: statistics
   name: Washer Power Stats
-  entity_id: sensor.washer_switch_electric_consumed_kwh
+  entity_id: sensor.sonoff_9ed202_energy_power
   state_characteristic: mean
   sampling_size: 500
 

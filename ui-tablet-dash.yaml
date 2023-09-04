@@ -224,13 +224,13 @@ views:
                 show_icon: true
                 entities:
                   - entity: light.left_floor_lamp
-                    name: Gina
+                    name: Left
                     tap_action:
                       action: toggle
                     icon: mdi:floor-lamp
                     show_icon: true
                   - entity: light.right_floor_lamp
-                    name: Rodney
+                    name: Right
                     tap_action:
                       action: toggle
                     icon: mdi:floor-lamp
@@ -308,12 +308,6 @@ views:
                       action: toggle
                     icon: mdi:fan
                     show_icon: true
-                  - entity: light.foyer
-                    name: Foyer
-                    tap_action:
-                      action: toggle
-                    icon: mdi:lightbulb
-                    show_icon: true
                   - entity: climate.my_ecobee
                     name: Thermostat
                     tap_action:
@@ -322,6 +316,18 @@ views:
                       conditions:
                         - condition: equals
                           value: 'off'
+                  - entity: light.foyer
+                    name: Foyer
+                    tap_action:
+                      action: toggle
+                    icon: mdi:lightbulb
+                    show_icon: true
+                  - entity: fan.black_fan
+                    name: Fan
+                    tap_action:
+                      action: toggle
+                    icon: mdi:fan
+                    show_icon: true
                 info_entities:
                   - entity: binary_sensor.living_room_occupied
                     show_icon: true
@@ -330,8 +336,8 @@ views:
                         - condition: equals
                           value: 'off'
                   - sensor.livingroom_temperature
-                  - sensor.living_room_humidity
-                  - sensor.living_room_lux
+                  - sensor.livingroom_humidity
+                  - sensor.livingroom_lux
                 cards:
                   - type: custom:simple-thermostat
                     entity: climate.my_ecobee
@@ -387,6 +393,24 @@ views:
                       action: toggle
                     icon: mdi:fan
                     show_icon: true
+                  - entity: light.h61e0_gina_led_strip
+                    name: Gina
+                    tap_action:
+                      action: toggle
+                    icon: mdi:led-strip-variant
+                    show_icon: true
+                  - entity: light.h61e0_rodney_led_strip
+                    name: Rodney
+                    tap_action:
+                      action: toggle
+                    icon: mdi:led-strip-variant
+                    show_icon: true
+                  - entity: switch.mb_plug1_zb
+                    name: Plug
+                    tap_action:
+                      action: toggle
+                    icon: mdi:power-socket-us
+                    show_icon: true
                 info_entities:
                   - entity: binary_sensor.main_bedroom_occupied
                     show_icon: true
@@ -395,8 +419,8 @@ views:
                         - condition: equals
                           value: 'off'
                   - sensor.mainbedroom_temperature
-                  - sensor.main_bedroom_humidity
-                  - sensor.main_bedroom_lux
+                  - sensor.mainbedroom_humidity
+                  - sensor.mainbedroom_lux
               - type: custom:room-card
                 title: Kitchen
                 entity: light.kitchen_lights
@@ -412,11 +436,29 @@ views:
                   {% endif %}
                 show_icon: true
                 entities:
+                  - entity: light.kitchen_lights
+                    name: Kitchen
+                    tap_action:
+                      action: toggle
+                    icon: mdi:lightbulb-group
+                    show_icon: true
+                  - entity: light.dining_room
+                    name: Dining
+                    tap_action:
+                      action: toggle
+                    icon: mdi:lightbulb-group
+                    show_icon: true
                   - entity: fan.dog_fan
                     name: Fan
                     tap_action:
                       action: toggle
                     icon: mdi:fan
+                    show_icon: true
+                  - entity: switch.washing_machine
+                    name: Washer
+                    tap_action:
+                      action: toggle
+                    icon: mdi:washing-machine
                     show_icon: true
                 info_entities:
                   - entity: binary_sensor.kitchen_occupied
@@ -455,6 +497,18 @@ views:
                     tap_action:
                       action: toggle
                     icon: mdi:lamp
+                    show_icon: true
+                  - entity: fan.guest1_fan
+                    name: Fan
+                    tap_action:
+                      action: toggle
+                    icon: mdi:fan
+                    show_icon: true
+                  - entity: switch.br1_s31_zb
+                    name: Heater
+                    tap_action:
+                      action: toggle
+                    icon: mdi:radiator
                     show_icon: true
                 info_entities:
                   - entity: binary_sensor.guest1_occupied
@@ -556,7 +610,7 @@ views:
                     icon: mdi:lightbulb
                     show_icon: true
                   - entity: light.first_light
-                    name: Back
+                    name: Back Porch
                     tap_action:
                       action: toggle
                     icon: mdi:lightbulb

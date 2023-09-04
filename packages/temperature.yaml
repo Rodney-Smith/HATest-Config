@@ -14,32 +14,13 @@ sensor:
         friendly_name: Bedroom Temperatures
         value_template: >
           {% set temperatures = [
-            (states('sensor.main_bedroom_temperature') | float(default=0)),
-            (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
-            (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
-            (states('sensor.mb_motion_device_temperature') | float(default=0)),
-            (states('sensor.br1_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_guest1_temperature') | float(default=0)),
-            (states('sensor.br2_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_guest2_temperature') | float(default=0)) ] %}
+            (states('sensor.mainbedroom_temperature') | float(default=0)),
+            (states('sensor.br1_temperature') | float(default=0)),
+            (states('sensor.br2_temperature') | float(default=0)) ] %}
           {% set temps = temperatures | reject("==", 0) | list %}
           {{ ( temps | sum / temps | count ) | round(1) }}  
         unit_of_measurement: '°F'
         device_class: temperature
-
-#  - platform: template
-#    sensors:
-#      lt_echo_temperature:
-#        value_template: >-
-#          {{ (((states ('sensor.left_echo_temperature') | float(default=0)) * 9 / 5)+ 32) | round(1) }}
-#        unit_of_measurement: '°F'
-
-#  - platform: template
-#    sensors:
-#      rt_echo_temperature:
-#        value_template: >-
-#          {{ (((states ('sensor.right_echo_temperature') | float(default=0)) * 9 / 5)+ 32) | round(1) }}
-#        unit_of_measurement: '°F'
 
   - platform: template
     sensors:
@@ -48,7 +29,7 @@ sensor:
         friendly_name: Main Bedroom Temperature
         value_template: >
           {% set temperatures = [
-            (states('sensor.main_bedroom_temperature') | float(default=0)),
+            (states('sensor.mb_ecobee_temperature') | float(default=0)),
             (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
             (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
             (states('sensor.mb_motion_device_temperature') | float(default=0)) ] %}
@@ -92,7 +73,7 @@ sensor:
         friendly_name: Living Room Temperature
         value_template: >
           {% set temperatures = [
-            (states('sensor.living_room_temperature') | float(default=0)),
+            (states('sensor.lr_ecobee_temperature') | float(default=0)),
             (states('sensor.lr_motion_device_temperature') | float(default=0)),
             (states('sensor.espresense_living_room_temperature') | float(default=0)),
             (states('sensor.living_room_ep1_temperature') | float(default=0)),
@@ -172,26 +153,12 @@ sensor:
         friendly_name: Inside Temperature
         value_template: >
           {% set temperatures = [
-            (states('sensor.main_bedroom_temperature') | float(default=0)),
-            (states('sensor.espresense_main_bedroom_temperature') | float(default=0)),
-            (states('sensor.main_bedroom_ep1_temperature') | float(default=0)),
-            (states('sensor.mb_motion_device_temperature') | float(default=0)),
-            (states('sensor.br1_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_guest1_temperature') | float(default=0)),
-            (states('sensor.br2_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_guest2_temperature') | float(default=0)),
-            (states('sensor.living_room_temperature') | float(default=0)),
-            (states('sensor.espresense_living_room_temperature') | float(default=0)),
-            (states('sensor.living_room_ep1_temperature') | float(default=0)),
-            (states('sensor.lr_motion_device_temperature') | float(default=0)),
-            (states('sensor.blink_living_room_temperature') | float(default=0)),
-            (states('sensor.p1_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_office_temperature') | float(default=0)),
-            (states('sensor.office_ep1_temperature') | float(default=0)),
-            (states('sensor.funhouse_temperature') | float(default=0)),
-            (states('sensor.meterplus_temperature') | float(default=0)),
-            (states('sensor.kn_motion_device_temperature') | float(default=0)),
-            (states('sensor.espresense_kitchen_temperature') | float(default=0)),
+            (states('sensor.mainbedroom_temperature') | float(default=0)),
+            (states('sensor.br1_temperature') | float(default=0)),
+            (states('sensor.br2_temperature') | float(default=0)),
+            (states('sensor.livingroom_temperature') | float(default=0)),
+            (states('sensor.office_temperature') | float(default=0)),
+            (states('sensor.kitchen_temperature') | float(default=0)),
             (states('sensor.my_ecobee_temperature') | float(default=0)),
             (states('sensor.blink_sun_room_temperature') | float(default=0)),
             (states('sensor.blink_front_door_temperature') | float(default=0)) ] %}
