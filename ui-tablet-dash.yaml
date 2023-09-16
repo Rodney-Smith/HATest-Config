@@ -263,10 +263,14 @@ views:
                     name: Fans
                     tap_action:
                       action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                 info_entities:
                   - entity: binary_sensor.office_occupied
+                    show_icon: true
+                    hide_if:
+                      conditions:
+                        - condition: equals
+                          value: 'off'
+                  - entity: binary_sensor.office_window_contact
                     show_icon: true
                     hide_if:
                       conditions:
@@ -306,8 +310,6 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                   - entity: climate.my_ecobee
                     name: Thermostat
                     tap_action:
@@ -316,18 +318,6 @@ views:
                       conditions:
                         - condition: equals
                           value: 'off'
-                  - entity: light.foyer
-                    name: Foyer
-                    tap_action:
-                      action: toggle
-                    icon: mdi:lightbulb
-                    show_icon: true
-                  - entity: fan.black_fan
-                    name: Fan
-                    tap_action:
-                      action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                 info_entities:
                   - entity: binary_sensor.living_room_occupied
                     show_icon: true
@@ -391,8 +381,6 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                   - entity: light.h61e0_gina_led_strip
                     name: Gina
                     tap_action:
@@ -413,6 +401,12 @@ views:
                     show_icon: true
                 info_entities:
                   - entity: binary_sensor.main_bedroom_occupied
+                    show_icon: true
+                    hide_if:
+                      conditions:
+                        - condition: equals
+                          value: 'off'
+                  - entity: binary_sensor.main_bedroom_window_contact
                     show_icon: true
                     hide_if:
                       conditions:
@@ -452,8 +446,6 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                   - entity: switch.washing_machine
                     name: Washer
                     tap_action:
@@ -462,6 +454,18 @@ views:
                     show_icon: true
                 info_entities:
                   - entity: binary_sensor.kitchen_occupied
+                    show_icon: true
+                    hide_if:
+                      conditions:
+                        - condition: equals
+                          value: 'off'
+                  - entity: binary_sensor.kitchen_nook_contact
+                    show_icon: true
+                    hide_if:
+                      conditions:
+                        - condition: equals
+                          value: 'off'
+                  - entity: binary_sensor.kitchen_sink_contact
                     show_icon: true
                     hide_if:
                       conditions:
@@ -502,8 +506,6 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                    icon: mdi:fan
-                    show_icon: true
                   - entity: switch.br1_s31_zb
                     name: Heater
                     tap_action:
@@ -558,6 +560,34 @@ views:
                   - sensor.br2_temperature
                   - sensor.espresense_guest2_humidity
                   - sensor.br2_motion_illuminance_lux
+              - type: custom:room-card
+                title: Hall
+                icon: mdi:wall-sconce
+                show_icon: true
+                entities:
+                  - entity: light.foyer
+                    name: Foyer
+                    tap_action:
+                      action: toggle
+                  - entity: fan.black_fan
+                    name: Fan
+                    tap_action:
+                      action: toggle
+                  - entity: cover.curtain_f2b9
+                    name: Left Curtains
+                    tap_action:
+                      action: toggle
+                  - entity: cover.curtain_2a6f
+                    name: Right Curtains
+                    tap_action:
+                      action: toggle
+                info_entities:
+                  - entity: binary_sensor.hall_window_contact
+                    show_icon: true
+                    hide_if:
+                      conditions:
+                        - condition: equals
+                          value: 'off'
               - type: custom:room-card
                 title: Outside
                 entity: group.outside_lights
@@ -1165,6 +1195,8 @@ views:
         columns: 2
         type: grid
         cards:
+          - type: tile
+            entity: input_boolean.humidor_notify
           - type: tile
             entity: sensor.of_snzb02_hr_battery
           - type: tile
