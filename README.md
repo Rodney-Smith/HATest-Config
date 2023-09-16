@@ -11,9 +11,9 @@ This is my Home Assistant TEST installation.
 ### Add-ons
 [![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-15.0.8-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
 [![ESPHome](https://img.shields.io/badge/ESPHome-2023.8.3-5294E2.svg)](https://esphome.io/)
-[![Grafana](https://img.shields.io/badge/Grafana-unknown-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
+[![Grafana](https://img.shields.io/badge/Grafana-9.0.3-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
 [![Home Assistant Google Drive Backup](https://img.shields.io/badge/Google_Drive_Backup-0.111.1-5294E2.svg)](https://github.com/sabeechen/hassio-google-drive-backup)
-[![InfluxDB](https://img.shields.io/badge/InfluxDB-unknown-5294E2.svg)](https://github.com/hassio-addons/addon-influxdb)
+[![InfluxDB](https://img.shields.io/badge/InfluxDB-4.7.0-5294E2.svg)](https://github.com/hassio-addons/addon-influxdb)
 [![MariaDB](https://img.shields.io/badge/MariaDB-2.6.1-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/mariadb)
 [![Matter Server](https://img.shields.io/badge/Matter_Server-4.9.0-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/matter_server)
 [![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-0.8.8-5294E2.svg)](https://github.com/hassio-addons/addon-phpmyadmin)
@@ -29,11 +29,11 @@ This is my Home Assistant TEST installation.
 ## Some statistics about my installation:
 Description | value
 -- | --
-Number of entities | 2248
+Number of entities | 2258
 Count of alarm | 2
 Count of alert | 4
 Count of automation | 64
-Count of binary_sensor | 140
+Count of binary_sensor | 142
 Count of calendar | 17
 Count of camera | 10
 Count of climate | 1
@@ -51,7 +51,7 @@ Count of number | 56
 Count of person | 6
 Count of scene | 15
 Count of script | 48
-Count of sensor | 876
+Count of sensor | 879
 Count of sun | 1
 Count of switch | 91
 Count of timer | 1

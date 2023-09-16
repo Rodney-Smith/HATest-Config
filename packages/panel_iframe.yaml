@@ -11,25 +11,25 @@
 panel_iframe:
 #  file_editor:
 #    title: 'File Editor'
-#    url: http://hass.home.lan:3218
+#    url: http://ha-test.iot.local:3218
 #    icon: mdi:wrench-outline
 #  grafana:
 #    title: 'Grafana'
-#    url: https://hass.home.lan:3000
+#    url: https://ha-test.iot.local:3000
 #    icon: mdi:chart-timeline
 #  node_red:
 #    title: 'Node-RED'
-#    url: http://nodered.home.lan:1880
+#    url: http://nodered.iot.local:1880
 #    icon: mdi:sitemap
 #  rhasspy:
 #    title: "Rhasspy"
 #    icon: mdi:speaker-wireless
-#    url: http://test-ha.home.lan:12101
+#    url: http://ha-test.iot.local:12101
 #  tasmoadmin:
 #    title: 'TasmoAdmin'
 #    icon: mdi:lightbulb-on
-#    url: https://ha.home.lan:9541
+#    url: https://ha-test.iot.local:9541
   tasmobackup:
     title: 'TasmoBackup'
     icon: mdi:backup-restore
-    url: http://hass.home.lan:9540/
+    url: http://hass.home.local:9540/
