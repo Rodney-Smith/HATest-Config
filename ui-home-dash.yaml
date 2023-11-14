@@ -7,11 +7,12 @@ views:
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
-    type: custom:grid-layout
     badges: []
     cards:
       - type: custom:mushroom-chips-card
         chips:
+          - type: entity
+            entity: sensor.todays_high_temp
           - type: weather
             entity: weather.local
             show_conditions: true
@@ -19,10 +20,6 @@ views:
           - type: alarm-control-panel
             entity: alarm_control_panel.blink_home
             name: blink
-            content_info: state
-          - type: alarm-control-panel
-            entity: alarm_control_panel.alexa_guard_f1292
-            name: Alexa
             content_info: state
           - type: alarm-control-panel
             entity: alarm_control_panel.alarmo
@@ -50,10 +47,10 @@ views:
                 primary: House
                 icon: mdi:home
                 icon_color: blue
+                layout: vertical
                 tap_action:
                   action: navigate
                   navigation_path: house
-                layout: vertical
               - type: custom:mushroom-template-card
                 primary: Lights
                 icon: mdi:lightbulb
@@ -86,9 +83,7 @@ views:
                   or is_state('light.side_porch_1', 'on')
                   or is_state('light.side_porch_2', 'on')
                   or is_state('light.front_porch_1', 'on')
-                  or is_state('light.front_porch_2', 'on')
-                  or is_state('light.first_light', 'on') 
-                  or is_state('switch.mj_s01_b71a3c', 'on') %}
+                  or is_state('light.front_porch_2', 'on') %}
                     amber
                   {% else %}
                     grey
@@ -119,95 +114,31 @@ views:
                 tap_action:
                   action: navigate
                   navigation_path: vacuum
-              - type: custom:mushroom-template-card
-                primary: Calendar
-                icon: mdi:calendar
-                icon_color: amber
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: calendar
-              - type: custom:mushroom-template-card
-                primary: Stocks
-                icon: mdi:cash
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: stocks
-                icon_color: ''
-              - type: custom:mushroom-template-card
-                primary: Sports
-                icon: mdi:baseball-bat
-                icon_color: green
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: sports
-              - type: custom:mushroom-template-card
-                primary: HA
-                icon: mdi:home-assistant
-                layout: vertical
-                icon_color: |-
-                  {% if is_state('update.home_assistant_core_update', 'on') 
-                     or is_state('update.home_assistant_operating_system_update', 'on')
-                     or is_state('update.home_assistant_supervisor_update', 'on')
-                     or is_state('update.esphome_update', 'on')
-                     or is_state('update.file_editor_update', 'on')
-                     or is_state('update.git_pull_update', 'on')
-                     or is_state('update.grafana_update', 'on')
-                     or is_state('update.influxdb_update', 'on')
-                     or is_state('update.mariadb_update', 'on')
-                     or is_state('update.phpmyadmin_update', 'on')
-                     or is_state('update.samba_share_update', 'on')
-                     or is_state('update.studio_code_server_update', 'on') 
-                     or is_state('update.tasmobackup_update', 'on') 
-                     or is_state('update.advanced_ssh_web_terminal_update', 'on')
-                     or is_state('update.home_assistant_google_drive_backup_update', 'on')
-                     or is_state('update.matter_server_update', 'on')
-                     or is_state('update.piper_update', 'on')
-                     or is_state('update.whisper_update', 'on')
-                     or is_state('update.zigbee2mqtt_update', 'on') %}
-                     orange
-                  {% elif is_state('update.pi_hole_core_update_available', 'on')
-                     or is_state('update.pi_hole_ftl_update_available', 'on')
-                     or is_state('update.pi_hole_web_update_available', 'on') %}
-                     pink
-                  {% elif is_state('update.hacs_update', 'on') %}
-                     yellow
-                  {% else %}
-                     blue
-                  {% endif %}
-                tap_action:
-                  action: navigate
-                  navigation_path: home-assistant
-              - type: custom:mushroom-template-card
-                icon_color: red
-                primary: Earth
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: earth
-                icon: mdi:earth
+          - type: horizontal-stack
+            cards:
+              - type: custom:mushroom-person-card
+                entity: person.rodney
+                name: Rodney
+                use_entity_picture: true
+              - type: custom:mushroom-person-card
+                entity: person.gina
+                name: Gina
+                use_entity_picture: true
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card
-            subtitle: Rooms
+            title: Rooms
           - type: grid
-            columns: 4
+            columns: 2
             square: false
             cards:
               - type: custom:mushroom-template-card
-                primary: Office
-                secondary: >-
-                  {{states('sensor.office_temperature')}}°F 
-                  {{states('sensor.office_lux')}} lux
-                entity: switch.of_light_zb
+                icon: mdi:desk
                 tap_action:
                   action: navigate
                   navigation_path: office
                 hold_action:
                   action: toggle
-                icon: mdi:desk
                 icon_color: |-
                   {% if is_state('light.of_light_zb', 'on') 
                   or is_state('light.wled_soundreactive', 'on')
@@ -217,34 +148,34 @@ views:
                   or is_state('light.h61e1_led_strip', 'on') %}
                     amber
                   {% endif %}
+                secondary: >-
+                  {{states('sensor.office_temperature')}}°F 
+                  {{states('sensor.office_lux')}} lux
+                entity: switch.of_light_zb
+                primary: Office
               - type: custom:mushroom-template-card
                 primary: Living Room
-                secondary: >-
-                  {{states('sensor.livingroom_temperature')}}°F
-                  {{states('sensor.lr_motion_illuminance_lux')}} lux
+                icon: mdi:sofa
                 entity: light.living_room_lamps
                 tap_action:
                   action: navigate
                   navigation_path: livingroom
                 hold_action:
                   action: toggle
-                icon: mdi:sofa
+                secondary: >-
+                  {{states('sensor.livingroom_temperature')}}°F
+                  {{states('sensor.lr_motion_illuminance_lux')}} lux
                 icon_color: |-
                   {% if is_state('light.living_room_lamps', 'on') %}
                     amber
                   {% endif %}
               - type: custom:mushroom-template-card
-                primary: Main Bedroom
-                secondary: >-
-                  {{states('sensor.mainbedroom_temperature')}}°F
-                  {{states('sensor.main_bedroom_lux')}} lux
-                entity: light.main_bedroom_nightstands
+                icon: mdi:bed
                 tap_action:
                   action: navigate
                   navigation_path: mainbedroom
                 hold_action:
                   action: toggle
-                icon: mdi:bed
                 icon_color: |-
                   {% if is_state('light.main_bedroom_light', 'on')
                   or is_state('light.main_bedroom_nightstands', 'on')
@@ -252,81 +183,86 @@ views:
                   or is_state('light.rodney_led_strip', 'on') %}
                     amber
                   {% endif %}
+                secondary: >-
+                  {{states('sensor.mainbedroom_temperature')}}°F
+                  {{states('sensor.main_bedroom_lux')}} lux
+                entity: light.main_bedroom_nightstands
+                primary: Main Bedroom
               - type: custom:mushroom-template-card
                 primary: Kitchen
-                secondary: >-
-                  {{states('sensor.kitchen_temperature')}}°F
-                  {{states('sensor.kn_motion_illuminance_lux')}} lux
-                entity: light.kitchen_lights
+                entity: switch.kitchen_lights
                 tap_action:
                   action: navigate
                   navigation_path: kitchen
                 hold_action:
                   action: toggle
-                icon: mdi:knife
                 icon_color: |-
                   {% if is_state('light.kitchen_lights', 'on') %}
                     amber
                   {% endif %}
-              - type: custom:mushroom-template-card
-                primary: Guest Room1
+                icon: mdi:knife
                 secondary: >-
-                  {{states('sensor.br1_temperature')}}°F
-                  {{states('sensor.br1_motion_illuminance_lux')}} lux
-                entity: light.br1_ceiling_lights
+                  {{states('sensor.kitchen_temperature')}}°F
+                  {{states('sensor.kn_motion_illuminance_lux')}} lux
+              - type: custom:mushroom-template-card
+                icon: mdi:bed-outline
                 tap_action:
                   action: navigate
                   navigation_path: guest1
                 hold_action:
                   action: toggle
-                icon: mdi:bed-outline
                 icon_color: |-
                   {% if is_state('light.br1_ceiling_lights', 'on')
                   or is_state('light.bedroom1_light', 'on') %}
                     amber
                   {% endif %}
+                secondary: >-
+                  {{states('sensor.br1_temperature')}}°F
+                  {{states('sensor.br1_motion_illuminance_lux')}} lux
+                entity: switch.0x282c02bfffe97113
+                primary: Guest Room1
               - type: custom:mushroom-template-card
                 primary: Guest Room2
-                secondary: >-
-                  {{states('sensor.br2_temperature')}}°F
-                  {{states('sensor.br2_motion_illuminance_lux')}} lux
-                entity: light.br2_ceiling_lights
+                entity: switch.0x282c02bfffe96d85
                 tap_action:
                   action: navigate
                   navigation_path: guest2
                 hold_action:
                   action: toggle
-                icon: mdi:bed-outline
                 icon_color: |-
                   {% if is_state('light.br2_ceiling_lights', 'on')
                   or is_state('light.bedroom2_light', 'on') %}
                     amber
                   {% endif %}
-              - type: custom:mushroom-template-card
-                primary: Outside
+                icon: mdi:bed-outline
                 secondary: >-
-                  {{states('sensor.outside_temperature')}}°F
-                  {{states('weather.local')}} - Inside
-                  {{states('sensor.living_space_temperature')}}°F 
-                entity: group.outside_lights
-                tap_action:
-                  action: navigate
-                  navigation_path: patio
-                hold_action:
-                  action: toggle
-                icon: mdi:forest
-                icon_color: |-
-                  {% if is_state('light.entrance', 'on')
-                     or is_state('light.front_porch_1', 'on')
-                     or is_state('light.front_porch_2', 'on')
-                     or is_state('light.side_porch_1', 'on')
-                     or is_state('light.side_porch_2', 'on')
-                     or is_state('light.first_light', 'on')
-                     or is_state('switch.mj_s01_b71a3c', 'on') %}
-                     amber
-                  {% endif %}
+                  {{states('sensor.br2_temperature')}}°F
+                  {{states('sensor.br2_motion_illuminance_lux')}} lux
+          - type: custom:mushroom-template-card
+            icon: mdi:forest
+            tap_action:
+              action: navigate
+              navigation_path: patio
+            hold_action:
+              action: toggle
+            icon_color: |-
+              {% if is_state('light.entrance', 'on')
+                 or is_state('light.front_porch_1', 'on')
+                 or is_state('light.front_porch_2', 'on')
+                 or is_state('light.side_porch_1', 'on')
+                 or is_state('light.side_porch_2', 'on')
+                 or is_state('light.first_light', 'on')
+                 or is_state('switch.mj_s01_b71a3c', 'on') %}
+                 amber
+              {% endif %}
+            secondary: >-
+              {{states('sensor.outside_temperature')}}°F
+              {{states('weather.local')}} - Inside
+              {{states('sensor.living_space_temperature')}}°F 
+            entity: group.outside_lights
+            primary: Outside
           - type: grid
-            columns: 4
+            columns: 2
             square: false
             cards:
               - type: custom:mushroom-entity-card
@@ -345,15 +281,11 @@ views:
                 entity: input_boolean.gina_pill_reminder
                 tap_action:
                   action: toggle
-              - type: custom:mushroom-entity-card
-                entity: input_boolean.guest_mode
-                tap_action:
-                  action: toggle
-  - layout_type: custom:masonry-layout
-    layout:
-      width: 300
-      max_cols: 3
-      max_width: 300
+          - type: custom:mushroom-entity-card
+            entity: input_boolean.guest_mode
+            tap_action:
+              action: toggle
+  - theme: Backend-selected
     title: House
     path: house
     icon: ''
@@ -383,6 +315,9 @@ views:
             entity: sensor.inside_humidity
             icon_color: deep-purple
         alignment: start
+      - type: thermostat
+        entity: climate.my_ecobee
+        theme: Mushroom
       - square: false
         columns: 1
         type: grid
@@ -393,9 +328,77 @@ views:
               states('sensor.month_is') }} {{ now().day }}, {{ now().year }}
             secondary: '{{ states(''sensor.holiday'') }}'
             icon: mdi:calendar
-      - type: thermostat
-        entity: climate.my_ecobee
-        theme: Mushroom
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: Calendar
+            icon: mdi:calendar
+            icon_color: amber
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: calendar
+          - type: custom:mushroom-template-card
+            primary: Stocks
+            icon: mdi:cash
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: stocks
+            icon_color: ''
+          - type: custom:mushroom-template-card
+            primary: Sports
+            icon: mdi:baseball-bat
+            icon_color: green
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: sports
+          - type: custom:mushroom-template-card
+            primary: HA
+            icon: mdi:home-assistant
+            layout: vertical
+            icon_color: |-
+              {% if is_state('update.home_assistant_core_update', 'on') 
+                 or is_state('update.home_assistant_operating_system_update', 'on')
+                 or is_state('update.home_assistant_supervisor_update', 'on')
+                 or is_state('update.advanced_ssh_web_terminal_update', 'on')
+                 or is_state('update.esphome_update', 'on')
+                 or is_state('update.home_assistant_google_drive_backup_update', 'on')
+                 or is_state('update.grafana_update', 'on')
+                 or is_state('update.influxdb_update', 'on')
+                 or is_state('update.mariadb_update', 'on')
+                 or is_state('update.matter_server_update', 'on')
+                 or is_state('update.phpmyadmin_update', 'on')
+                 or is_state('update.piper_update', 'on')
+                 or is_state('update.samba_share_update', 'on')
+                 or is_state('update.silicon_labs_multiprotocol_update', 'on')
+                 or is_state('update.studio_code_server_update', 'on') 
+                 or is_state('update.syncthing_update', 'on')
+                 or is_state('update.tasmobackup_update', 'on') 
+                 or is_state('update.whisper_update', 'on')
+                 or is_state('update.zigbee2mqtt_update', 'on') %}
+                 orange
+              {% elif is_state('update.pi_hole_core_update_available', 'on')
+                 or is_state('update.pi_hole_ftl_update_available', 'on')
+                 or is_state('update.pi_hole_web_update_available', 'on') %}
+                 pink
+              {% elif is_state('update.hacs_update', 'on') %}
+                 yellow
+              {% else %}
+                 blue
+              {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: home-assistant
+          - type: custom:mushroom-template-card
+            icon_color: red
+            primary: Earth
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: earth
+            icon: mdi:earth
       - square: false
         columns: 2
         type: grid
@@ -439,72 +442,20 @@ views:
             name: Right Curtains
             show_position_control: true
             show_buttons_control: true
-      - square: false
+      - type: grid
+        square: false
         columns: 1
-        type: grid
         cards:
-          - type: custom:mushroom-template-card
-            primary: YouTube
-            icon: mdi:youtube-subscription
-            tap_action:
-              action: navigate
-              navigation_path: youtube
-            hold_action:
-              action: toggle
-            icon_color: |-
-              {% if is_state('sensor.home_assistant.channel_is_live', 'true')
-                 or is_state('sensor.automate_your_life.channel_is_live', 'true')
-                 or is_state('sensor.digiblurdiy.channel_is_live', 'true')
-                 or is_state('sensor.drzzs.channel_is_live', 'true')
-                 or is_state('sensor.everything_smart_home.channel_is_live', 'true')
-                 or is_state('sensor.the_hook_up.channel_is_live', 'true')
-                 or is_state('sensor.mark_watt_tech.channel_is_live', 'true')
-                 or is_state('sensor.paul_hibbert.channel_is_live', 'true')
-                 or is_state('sensor.slackerlabs.channel_is_live', 'true')
-                 or is_state('sensor.smart_home_makers.channel_is_live', 'true')
-                 or is_state('sensor.smart_home_solver.channel_is_live', 'true') %}
-                 orange
-              {% else %}
-                 red
-              {% endif %}
-          - type: custom:mushroom-template-card
-            primary: Updates
-            icon: mdi:update
-            tap_action:
-              action: navigate
-              navigation_path: updates
-            hold_action:
-              action: toggle
-            icon_color: |-
-              {% if is_state('update.home_assistant_core_update', 'on')
-                 or is_state('update.home_assistant_operating_system_update', 'on')
-                 or is_state('update.home_assistant_supervisor_update', 'on')
-                 or is_state('update.esphome_update', 'on')
-                 or is_state('update.file_editor_update', 'on')
-                 or is_state('update.git_pull_update', 'on')
-                 or is_state('update.grafana_update', 'on')
-                 or is_state('update.influxdb_update', 'on')
-                 or is_state('update.mariadb_update', 'on')
-                 or is_state('update.phpmyadmin_update', 'on')
-                 or is_state('update.samba_share_update', 'on')
-                 or is_state('update.studio_code_server_update', 'on')
-                 or is_state('update.tasmobackup_update', 'on')
-                 or is_state('update.advanced_ssh_web_terminal_update', 'on')
-                 or is_state('update.home_assistant_google_drive_backup_update', 'on')
-                 or is_state('update.matter_server_update', 'on')
-                 or is_state('update.piper_update', 'on')
-                 or is_state('update.whisper_update', 'on')
-                 or is_state('update.zigbee2mqtt_update', 'on') %}
-                 orange
-              {% elif is_state('update.pi_hole_core_update_available', 'on')
-                 or is_state('update.pi_hole_ftl_update_available', 'on')
-                 or is_state('update.pi_hole_web_update_available', 'on') %}
-                 pink
-              {% elif is_state('update.hacs_update', 'on') %}
-                 yellow
-              {% else %}
-                 green
-              {% endif %}
+          - type: custom:mushroom-alarm-control-panel-card
+            entity: alarm_control_panel.alarmo
+            states:
+              - armed_home
+              - armed_away
+          - type: custom:mushroom-alarm-control-panel-card
+            entity: alarm_control_panel.blink_home
+            states:
+              - armed_home
+              - armed_away
       - square: false
         columns: 2
         type: grid
@@ -605,26 +556,72 @@ views:
               navigation_path: door_windows
           - type: custom:mushroom-entity-card
             entity: binary_sensor.home_occupied
-      - type: grid
-        square: false
+      - square: false
         columns: 1
+        type: grid
         cards:
-          - type: custom:mushroom-alarm-control-panel-card
-            entity: alarm_control_panel.alarmo
-            states:
-              - armed_home
-              - armed_away
-          - type: custom:mushroom-alarm-control-panel-card
-            entity: alarm_control_panel.alexa_guard_f1292
-            states:
-              - armed_home
-              - armed_away
-            name: Alexa Guard
-          - type: custom:mushroom-alarm-control-panel-card
-            entity: alarm_control_panel.blink_home
-            states:
-              - armed_home
-              - armed_away
+          - type: custom:mushroom-template-card
+            primary: YouTube
+            icon: mdi:youtube-subscription
+            tap_action:
+              action: navigate
+              navigation_path: youtube
+            hold_action:
+              action: toggle
+            icon_color: |-
+              {% if is_state('sensor.home_assistant.channel_is_live', 'true')
+                 or is_state('sensor.automate_your_life.channel_is_live', 'true')
+                 or is_state('sensor.digiblurdiy.channel_is_live', 'true')
+                 or is_state('sensor.drzzs.channel_is_live', 'true')
+                 or is_state('sensor.everything_smart_home.channel_is_live', 'true')
+                 or is_state('sensor.the_hook_up.channel_is_live', 'true')
+                 or is_state('sensor.mark_watt_tech.channel_is_live', 'true')
+                 or is_state('sensor.paul_hibbert.channel_is_live', 'true')
+                 or is_state('sensor.slackerlabs.channel_is_live', 'true')
+                 or is_state('sensor.smart_home_makers.channel_is_live', 'true')
+                 or is_state('sensor.smart_home_solver.channel_is_live', 'true') %}
+                 orange
+              {% else %}
+                 red
+              {% endif %}
+          - type: custom:mushroom-template-card
+            primary: Updates
+            icon: mdi:update
+            tap_action:
+              action: navigate
+              navigation_path: updates
+            hold_action:
+              action: toggle
+            icon_color: |-
+              {% if is_state('update.home_assistant_core_update', 'on')
+                 or is_state('update.home_assistant_operating_system_update', 'on')
+                 or is_state('update.home_assistant_supervisor_update', 'on')
+                 or is_state('update.esphome_update', 'on')
+                 or is_state('update.file_editor_update', 'on')
+                 or is_state('update.git_pull_update', 'on')
+                 or is_state('update.grafana_update', 'on')
+                 or is_state('update.influxdb_update', 'on')
+                 or is_state('update.mariadb_update', 'on')
+                 or is_state('update.phpmyadmin_update', 'on')
+                 or is_state('update.samba_share_update', 'on')
+                 or is_state('update.studio_code_server_update', 'on')
+                 or is_state('update.tasmobackup_update', 'on')
+                 or is_state('update.advanced_ssh_web_terminal_update', 'on')
+                 or is_state('update.home_assistant_google_drive_backup_update', 'on')
+                 or is_state('update.matter_server_update', 'on')
+                 or is_state('update.piper_update', 'on')
+                 or is_state('update.whisper_update', 'on')
+                 or is_state('update.zigbee2mqtt_update', 'on') %}
+                 orange
+              {% elif is_state('update.pi_hole_core_update_available', 'on')
+                 or is_state('update.pi_hole_ftl_update_available', 'on')
+                 or is_state('update.pi_hole_web_update_available', 'on') %}
+                 pink
+              {% elif is_state('update.hacs_update', 'on') %}
+                 yellow
+              {% else %}
+                 green
+              {% endif %}
   - theme: Backend-selected
     title: Office
     path: office
@@ -718,14 +715,6 @@ views:
             columns: 2
             cards:
               - type: custom:mushroom-light-card
-                entity: light.of_light_zb
-                name: Office Lights
-                tap_action:
-                  action: toggle
-              - type: custom:mushroom-light-card
-                entity: light.funhouse_light
-                use_light_color: true
-              - type: custom:mushroom-light-card
                 entity: light.left_floor_lamp
                 use_light_color: true
                 tap_action:
@@ -741,7 +730,7 @@ views:
                   action: more-info
               - type: custom:mushroom-light-card
                 entity: light.h61e1_led_strip
-                name: Humidor LED Strip
+                name: Govee LED Strip
                 use_light_color: true
                 tap_action:
                   action: toggle
@@ -749,15 +738,6 @@ views:
                   action: more-info
               - type: custom:mushroom-light-card
                 entity: light.wled_soundreactive
-                name: Desk LED Strip
-                use_light_color: true
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
-              - type: custom:mushroom-light-card
-                entity: light.light_strip_831a
-                name: Window LED Strip
                 use_light_color: true
                 tap_action:
                   action: toggle
@@ -771,6 +751,21 @@ views:
                   action: toggle
                 hold_action:
                   action: more-info
+              - type: custom:mushroom-light-card
+                entity: light.light_strip_831a
+                use_light_color: true
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+              - type: custom:mushroom-light-card
+                entity: light.of_light_zb
+                name: Office Lights
+                tap_action:
+                  action: toggle
+              - type: custom:mushroom-light-card
+                entity: light.funhouse_light
+                use_light_color: true
               - type: custom:mushroom-entity-card
                 entity: select.wled_soundreactive_preset
               - type: custom:mushroom-fan-card
@@ -778,6 +773,11 @@ views:
                 icon_animation: true
                 tap_action:
                   action: toggle
+              - type: custom:mushroom-entity-card
+                entity: input_boolean.officefans_override
+                tap_action:
+                  action: toggle
+                icon_color: red
               - type: custom:mushroom-fan-card
                 entity: fan.box_fan
                 icon_animation: false
@@ -789,10 +789,10 @@ views:
                 tap_action:
                   action: toggle
               - type: custom:mushroom-entity-card
-                entity: input_boolean.officefans_override
+                entity: switch.office_fan_auto
                 tap_action:
                   action: toggle
-                icon_color: red
+                icon_color: green
               - type: custom:mushroom-entity-card
                 entity: switch.ahr_085_outlet2
                 tap_action:
@@ -866,11 +866,46 @@ views:
         type: grid
         cards:
           - type: tile
+            entity: input_boolean.humidor_notify
+          - type: tile
             entity: sensor.of_snzb02_hr_battery
           - type: tile
             entity: sensor.aqara_humidor_battery
           - type: tile
             entity: sensor.p1_motion_battery
+      - type: entities
+        entities:
+          - entity: input_button.macropad_blank
+            name: Blank
+          - entity: input_button.macropad_phone
+            name: Phone
+          - entity: input_button.macropad_meeting
+            name: Meeting
+      - card:
+          type: glance
+          show_header_toggle: false
+          title: Scenes
+          columns: 2
+        filter:
+          exclude:
+            - state: 'off'
+            - state: offline
+            - state: unavailable
+            - state: unknown
+            - area: Main Bedroom
+            - area: Outside
+            - area: Living Room
+            - entity_id: '*watch*'
+            - entity_id: '*movie*'
+          include:
+            - domain: scene
+              options:
+                tap_action:
+                  action: toggle
+        show_empty: false
+        sort:
+          method: last_changed
+        type: custom:auto-entities
       - type: vertical-stack
         cards:
           - type: custom:mushroom-chips-card
@@ -905,30 +940,6 @@ views:
                 content_info: name
                 tap_action:
                   action: toggle
-      - card:
-          type: glance
-          show_header_toggle: false
-          columns: 2
-        filter:
-          exclude:
-            - state: 'off'
-            - state: offline
-            - state: unavailable
-            - state: unknown
-            - area: Main Bedroom
-            - area: Outside
-            - area: Living Room
-            - entity_id: '*watch*'
-            - entity_id: '*movie*'
-          include:
-            - domain: scene
-              options:
-                tap_action:
-                  action: toggle
-        show_empty: true
-        sort:
-          method: last_changed
-        type: custom:auto-entities
   - theme: Backend-selected
     title: Living Room
     path: livingroom
@@ -1507,7 +1518,7 @@ views:
                 tap_action:
                   action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.br1_snzb03_cl_battery
+                entity: sensor.br1_motion_cl_battery
                 name: Closet Sensor
       - square: false
         columns: 1
@@ -1515,11 +1526,6 @@ views:
         cards:
           - type: custom:mini-media-player
             entity: media_player.guest1_echo_dot
-            artwork: cover-fit
-            tts:
-              platform: alexa
-          - type: custom:mini-media-player
-            entity: media_player.guest_fire_tv
             artwork: cover-fit
             tts:
               platform: alexa
@@ -1752,6 +1758,7 @@ views:
             show_forecast: true
             type: weather-forecast
             entity: weather.local
+            forecast_type: legacy
       - square: false
         columns: 2
         type: grid
@@ -1781,13 +1788,13 @@ views:
             name: Temperature
             tap_action:
               action: navigate
-              navigation_path: /tablet-dash/temps
+              navigation_path: /home-dash/temps
           - type: custom:mushroom-entity-card
             entity: sensor.my_humidity
             name: Humidity
             tap_action:
               action: navigate
-              navigation_path: /tablet-dash/temps
+              navigation_path: /home-dash/temps
           - type: custom:mushroom-entity-card
             entity: sensor.my_pressure
             name: Pressure
@@ -1996,7 +2003,16 @@ views:
                 hold_action:
                   action: more-info
               - type: custom:mushroom-light-card
-                entity: light.h61e1_led_strip
+                entity: light.light_strip_831a
+                name: Window LED Strip
+                use_light_color: true
+                tap_action:
+                  action: toggle
+                hold_action:
+                  action: more-info
+              - type: custom:mushroom-light-card
+                entity: light.light_strip_10fe
+                name: Window LED Strip
                 use_light_color: true
                 tap_action:
                   action: toggle
@@ -2011,16 +2027,7 @@ views:
                 hold_action:
                   action: more-info
               - type: custom:mushroom-light-card
-                entity: light.light_strip_831a
-                name: Window LED Strip
-                use_light_color: true
-                tap_action:
-                  action: toggle
-                hold_action:
-                  action: more-info
-              - type: custom:mushroom-light-card
-                entity: light.light_strip_10fe
-                name: Window LED Strip
+                entity: light.h61e1_led_strip
                 use_light_color: true
                 tap_action:
                   action: toggle
@@ -2478,7 +2485,7 @@ views:
             entity: sensor.event_election_day
         alignment: start
       - type: custom:garbage-collection-card
-        entity: sensor.trash_day
+        entity: sensor.next_collection
         hide_before: 4
         icon_color: '#0561ba'
       - initial_view: listWeek
@@ -2496,92 +2503,92 @@ views:
           - type: entities
             entities:
               - type: custom:multiple-entity-row
-                entity: sensor.event_reannon_s_birthday
+                entity: sensor.bday_reannon
                 image: /local/images/people/reannon.png
                 name: Reannon's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_reannon_s_birthday
+                  entity: sensor.bday_reannon
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_michael_s_birthday
+                entity: sensor.bday_michael
                 name: Michael's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_michael_s_birthday
+                  entity: sensor.bday_michael
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_ethan_s_birthday
+                entity: sensor.bday_riley
                 name: Riley's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_ethan_s_birthday
+                  entity: sensor.bday_riley
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_jo_s_birthday
+                entity: sensor.bday_jo
                 name: Jo's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_jo_s_birthday
+                  entity: sensor.bday_jo
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_arie_s_birthday
+                entity: sensor.bday_arie
                 name: Arie's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_arie_s_birthday
+                  entity: sensor.bday_arie
                   attribute: current_years
                   name: Current age
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_spencer_s_birthday
+                entity: sensor.bday_spencer
                 image: /local/images/people/spencer.png
                 name: Spencer's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_spencer_s_birthday
+                  entity: sensor.bday_spencer
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_catelynn_s_birthday
+                entity: sensor.bday_catelynn
                 image: /local/images/people/catelynn.png
                 name: Catelynn's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_catelynn_s_birthday
+                  entity: sensor.bday_catelynn
                   attribute: current_years
                   name: Current age
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_tori_s_birthday
+                entity: sensor.bday_tori
                 image: /local/images/people/tori.png
-                name: Tori's Birthday
+                name: Victoria's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_tori_s_birthday
+                  entity: sensor.bday_tori
                   attribute: current_years
                   name: Current age
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_lydia_s_birthday
+                entity: sensor.bday_lydia
                 image: /local/images/people/lydia.png
                 name: Lydia's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_lydia_s_birthday
+                  entity: sensor.bday_lydia
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_kelen_s_birthday
+                entity: sensor.bday_kelen
                 image: /local/images/people/lydia.png
                 name: Kelen's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_kelen_s_birthday
+                  entity: sensor.bday_kelen
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
@@ -2594,21 +2601,21 @@ views:
                   name: Years Married
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_gina_s_birthday
+                entity: sensor.bday_gina
                 image: /local/images/people/gina.png
                 name: Gina's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_gina_s_birthday
+                  entity: sensor.bday_gina
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_rodney_s_birthday
+                entity: sensor.bday_rodney
                 image: /local/images/people/rodney.png
                 name: Rodney's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_rodney_s_birthday
+                  entity: sensor.bday_rodney
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
@@ -2622,84 +2629,84 @@ views:
                   name: Years Married
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_judy_s_birthday
+                entity: sensor.bday_judy
                 image: /local/images/people/judy.png
                 name: Judy's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_judy_s_birthday
+                  entity: sensor.bday_judy
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_meredith_s_birthday
+                entity: sensor.bday_meredith
                 image: /local/images/people/meredith.png
                 name: Meredith's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_meredith_s_birthday
+                  entity: sensor.bday_meredith
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_mark_s_birthday
+                entity: sensor.bday_mark
                 image: /local/images/people/mark.png
                 name: Mark's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_mark_s_birthday
+                  entity: sensor.bday_mark
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_natalie_s_birthday
+                entity: sensor.bday_natalie
                 image: /local/images/people/natalie.png
                 name: Natalie's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_natalie_s_birthday
+                  entity: sensor.bday_natalie
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_eric_s_birthday
+                entity: sensor.bday_eric
                 name: Eric's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_eric_s_birthday
+                  entity: sensor.bday_eric
                   attribute: current_years
                   name: Current age
               - type: divider
               - type: custom:multiple-entity-row
-                entity: sensor.event_mel_s_birthday
+                entity: sensor.bday_mel
                 image: /local/images/people/mel.png
                 name: Mel's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_mel_s_birthday
+                  entity: sensor.bday_mel
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_cliff_s_birthday
+                entity: sensor.bday_cliff
                 image: /local/images/people/cliff.png
                 name: Cliff's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_cliff_s_birthday
+                  entity: sensor.bday_cliff
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_griff_s_birthday
+                entity: sensor.bday_griff
                 image: /local/images/people/griff.png
                 name: Griff's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_griff_s_birthday
+                  entity: sensor.bday_griff
                   attribute: current_years
                   name: Current age
               - type: custom:multiple-entity-row
-                entity: sensor.event_justin_s_birthday
+                entity: sensor.bday_justin
                 image: /local/images/people/justin.png
                 name: Justin's Birthday
                 secondary_info:
                   type: attribute
-                  entity: sensor.event_justin_s_birthday
+                  entity: sensor.bday_justin
                   attribute: current_years
                   name: Current age
       - type: entities
@@ -2737,126 +2744,123 @@ views:
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
-    type: custom:grid-layout
     badges: []
     cards:
-      - type: vertical-stack
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: action
+            icon: mdi:home
+            tap_action:
+              action: navigate
+              navigation_path: '0'
+            hold_action:
+              action: navigate
+              navigation_path: '0'
+            double_tap_action:
+              action: navigate
+              navigation_path: '0'
+        alignment: start
+      - square: false
+        columns: 2
+        type: grid
         cards:
-          - type: custom:mushroom-chips-card
-            chips:
-              - type: back
-              - type: action
-                icon: mdi:home
-                tap_action:
-                  action: navigate
-                  navigation_path: '0'
-                hold_action:
-                  action: navigate
-                  navigation_path: '0'
-                double_tap_action:
-                  action: navigate
-                  navigation_path: '0'
-            alignment: start
-          - square: false
-            type: grid
-            columns: 5
-            cards:
-              - type: custom:mini-graph-card
-                name: Amazon - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.amazon
-                line_color: orange
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: AMC - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.amc
-                line_color: red
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Apple - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.apple
-                line_color: green
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: BoA - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.boa
-                line_color: blue
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Chevron - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.chevron
-                line_color: blue
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Disney - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.disney
-                line_color: purple
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: GameStop - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.gamestop
-                line_color: red
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Google - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.google
-                line_color: green
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Intel - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.intel
-                line_color: blue
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Nike - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.nike
-                line_color: orange
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Sirius - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.sirius
-                line_color: purple
-                hours_to_show: 24
-                points_per_hour: 0.25
-              - type: custom:mini-graph-card
-                name: Verizon - Last 24hrs
-                icon: hass:currency-usd
-                entities:
-                  - sensor.verizon
-                line_color: red
-                hours_to_show: 24
-                points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Amazon - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.amazon
+            line_color: orange
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: AMC - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.amc
+            line_color: red
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Apple - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.apple
+            line_color: green
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: BoA - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.boa
+            line_color: blue
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Chevron - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.chevron
+            line_color: blue
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Disney - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.disney
+            line_color: purple
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: GameStop - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.gamestop
+            line_color: red
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Google - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.google
+            line_color: green
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Intel - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.intel
+            line_color: blue
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Nike - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.nike
+            line_color: orange
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Sirius - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.sirius
+            line_color: purple
+            hours_to_show: 24
+            points_per_hour: 0.25
+          - type: custom:mini-graph-card
+            name: Verizon - Last 24hrs
+            icon: hass:currency-usd
+            entities:
+              - sensor.verizon
+            line_color: red
+            hours_to_show: 24
+            points_per_hour: 0.25
   - theme: Backend-selected
     title: Sports
     path: sports
@@ -2944,6 +2948,24 @@ views:
           - calendar.las_vegas_raiders
         theme: Mushroom
         title: Sports
+      - type: custom:auto-entities
+        card:
+          show_header_toggle: false
+          title: Upcoming Sports
+          type: entities
+        filter:
+          exclude:
+            - state: No games scheduled
+          include:
+            - entity_id: /schedule/
+              options:
+                secondary_info: '[[ {entity}.attributes.opponent ]]'
+                type: custom:secondaryinfo-entity-row
+        show_empty: true
+        sort:
+          method: attribute
+          numeric: true
+          attribute: date_sortable
   - theme: Backend-selected
     title: Home Assistant
     path: home-assistant
@@ -2980,6 +3002,9 @@ views:
           - type: entity
             entity: sensor.disk_use_percent_config
             icon_color: deep-purple
+            tap_action:
+              action: navigate
+              navigation_path: synology
         alignment: start
       - square: false
         columns: 2
@@ -3064,20 +3089,20 @@ views:
               {% if is_state('update.home_assistant_core_update', 'on')
                  or is_state('update.home_assistant_operating_system_update', 'on')
                  or is_state('update.home_assistant_supervisor_update', 'on')
+                 or is_state('update.advanced_ssh_web_terminal_update', 'on')
                  or is_state('update.esphome_update', 'on')
-                 or is_state('update.file_editor_update', 'on')
-                 or is_state('update.git_pull_update', 'on')
+                 or is_state('update.home_assistant_google_drive_backup_update', 'on')
                  or is_state('update.grafana_update', 'on')
                  or is_state('update.influxdb_update', 'on')
                  or is_state('update.mariadb_update', 'on')
-                 or is_state('update.phpmyadmin_update', 'on')
-                 or is_state('update.samba_share_update', 'on')
-                 or is_state('update.studio_code_server_update', 'on')
-                 or is_state('update.tasmobackup_update', 'on')
-                 or is_state('update.advanced_ssh_web_terminal_update', 'on')
-                 or is_state('update.home_assistant_google_drive_backup_update', 'on')
                  or is_state('update.matter_server_update', 'on')
+                 or is_state('update.phpmyadmin_update', 'on')
                  or is_state('update.piper_update', 'on')
+                 or is_state('update.samba_share_update', 'on')
+                 or is_state('update.silicon_labs_multiprotocol_update', 'on')
+                 or is_state('update.studio_code_server_update', 'on') 
+                 or is_state('update.syncthing_update', 'on')
+                 or is_state('update.tasmobackup_update', 'on') 
                  or is_state('update.whisper_update', 'on')
                  or is_state('update.zigbee2mqtt_update', 'on') %}
                  orange
@@ -4114,7 +4139,7 @@ views:
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card
-            title: Advanced SSH & Web Terminal
+            title: 'Advanced SSH & Web Terminal '
             subtitle: >-
               Installed v{{ states('sensor.advanced_ssh_web_terminal_version')
               }} - Latest v{{
@@ -4169,33 +4194,6 @@ views:
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card
-            title: Grafana
-            subtitle: >-
-              Installed v{{ states('sensor.grafana_version') }} - Latest v{{
-              states('sensor.grafana_newest_version') }}  
-          - type: custom:mushroom-chips-card
-            chips:
-              - type: entity
-                entity: binary_sensor.grafana_running
-                icon_color: green
-              - type: entity
-                entity: sensor.grafana_version
-                icon_color: light-green
-                icon: mdi:package-variant-closed
-              - type: entity
-                entity: sensor.grafana_cpu_percent
-                icon_color: light-blue
-              - type: entity
-                entity: sensor.grafana_memory_percent
-                icon_color: amber
-          - type: custom:mushroom-update-card
-            entity: update.grafana_update
-            show_buttons_control: true
-            icon_type: entity-picture
-            layout: horizontal
-      - type: vertical-stack
-        cards:
-          - type: custom:mushroom-title-card
             title: Google Drive Backup
             subtitle: >-
               Installed v{{
@@ -4220,6 +4218,33 @@ views:
                 icon_color: amber
           - type: custom:mushroom-update-card
             entity: update.home_assistant_google_drive_backup_update
+            show_buttons_control: true
+            icon_type: entity-picture
+            layout: horizontal
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Grafana
+            subtitle: >-
+              Installed v{{ states('sensor.grafana_version') }} - Latest v{{
+              states('sensor.grafana_newest_version') }}  
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: binary_sensor.grafana_running
+                icon_color: green
+              - type: entity
+                entity: sensor.grafana_version
+                icon_color: light-green
+                icon: mdi:package-variant-closed
+              - type: entity
+                entity: sensor.grafana_cpu_percent
+                icon_color: light-blue
+              - type: entity
+                entity: sensor.grafana_memory_percent
+                icon_color: amber
+          - type: custom:mushroom-update-card
+            entity: update.grafana_update
             show_buttons_control: true
             icon_type: entity-picture
             layout: horizontal
@@ -4403,7 +4428,7 @@ views:
                 icon_color: light-green
                 icon: mdi:package-variant-closed
               - type: entity
-                entity: sensor.zsilicon_labs_multiprotocol_cpu_percent
+                entity: sensor.silicon_labs_multiprotocol_cpu_percent
                 icon_color: light-blue
               - type: entity
                 entity: sensor.silicon_labs_multiprotocol_memory_percent
@@ -4758,10 +4783,10 @@ views:
         card_type: schedule
         standings:
           show_flag: true
-  - icon: mdi:weather-cloudy
+  - title: Weather
     path: temps
+    icon: mdi:weather-cloudy
     subview: true
-    title: Weather
     badges: []
     cards:
       - type: custom:mushroom-chips-card
@@ -4812,7 +4837,7 @@ views:
             name: Outside Temperature
           - type: custom:mushroom-entity-card
             entity: sensor.patio_meter_temperature
-            name: FPatio Temperature
+            name: Patio Temperature
           - type: custom:mushroom-entity-card
             entity: sensor.wall_meter_temperature
             name: Wall Temperature
@@ -4894,4 +4919,136 @@ views:
           - type: custom:mushroom-entity-card
             entity: sensor.pirateweather_precip_probability
             name: Precip Probapility
-title: Tablet
+  - title: Synology
+    path: synology
+    icon: mdi:harddisk
+    subview: true
+    theme: Mushroom
+    badges: []
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: back
+          - type: action
+            tap_action:
+              action: navigate
+              navigation_path: '0'
+            icon: mdi:home
+            hold_action:
+              action: navigate
+              navigation_path: '0'
+            double_tap_action:
+              action: navigate
+              navigation_path: '0'
+          - type: entity
+            entity: sensor.synology_temperature
+            icon_color: orange
+          - type: entity
+            entity: sensor.synology_cpu_utilization_total
+            icon_color: light-blue
+          - type: entity
+            entity: sensor.synology_memory_usage_real
+            icon_color: amber
+          - type: entity
+            entity: update.synology_dsm_update
+            icon_color: deep-purple
+        alignment: start
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Synology
+            subtitle: ''
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: button.synology_reboot
+                name: Reboot
+                tap_action:
+                  action: toggle
+                secondary_info: none
+              - type: custom:mushroom-entity-card
+                entity: button.synology_shutdown
+                name: Shutdown
+                tap_action:
+                  action: toggle
+                secondary_info: none
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Disk Volumes
+            subtitle: Volume 1
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_status
+                name: Status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_used_space
+                name: Used space
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_1_volume_used
+                name: Percent Used
+          - type: custom:mushroom-title-card
+            subtitle: Volume 2
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_status
+                name: Status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_used_space
+                name: Used space
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_volume_2_volume_used
+                name: Percent Used
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: Stats
+          - type: grid
+            square: false
+            columns: 2
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_load_average_15_min
+                name: CPU average (15 min)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_load_average_5_min
+                name: CPU average (5 min)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_utilization_total
+                name: CPU utilization (total)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_cpu_utilization_user
+                name: CPU utilization (user)
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_download_throughput
+                name: Download throughput
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_available_real
+                name: Real Memory Available
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_available_swap
+                name: Swap Memory Available
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_total_real
+                name: Real Memory Total
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_total_swap
+                name: Swap Memory Total
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_memory_usage_real
+                name: Real Memory Usage
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.synology_security_status
+                name: Security status
+              - type: custom:mushroom-entity-card
+                entity: sensor.synology_upload_throughput
+                name: Upload throughput
+title: Home

@@ -696,14 +696,14 @@ sensor:
           {{ ( wspeed | sum / wspeed | count ) | round(1) }}
         unit_of_measurement: 'mph'
 
-weather:
-  - platform: pirateweather
-    api_key: !secret pirate_weather_token
-    # Additional optional values:
-    latitude: !secret ha_latitude
-    longitude: !secret ha_longitude
-    mode: "daily"
-    name: Local
+# weather:
+#   - platform: pirateweather
+#     api_key: !secret pirate_weather_token
+#     # Additional optional values:
+#     latitude: !secret ha_latitude
+#     longitude: !secret ha_longitude
+#     mode: "daily"
+#     name: Local
 
 automation:
   - alias: Forecast Low Near Freezing

@@ -12,7 +12,7 @@ binary_sensor:
         friendly_name: "Washing Machine Running"
         icon_template: mdi:washing-machine
         device_class: power
-        value_template: "{{ states('sensor.sonoff_9ed202_energy_power') | float > 3 }}"  # Adjust the threshold value as needed
+        value_template: "{{ states('sensor.sonoff_9ed202_energy_power') | float > 3 }}" # Adjust the threshold value as needed
 
       washing_machine_complete:
         friendly_name: "Washing Machine Complete"
@@ -53,9 +53,37 @@ sensor:
       next_collection:
         friendly_name: "Next Trash Collection"
         icon_template: mdi:trash-can
-        unit_of_measurement: 'days'
+        unit_of_measurement: "days"
         value_template: >
           {% set midnight = today_at() %}
           {% set next_event = state_attr('calendar.garbage_collection','start_time') | as_datetime | as_local %}
           {% set delta = next_event - midnight %}
           {{ delta.days }}
+
+template:
+  - trigger:
+      - platform: time_pattern
+        hours: /1
+    action:
+      - service: weather.get_forecast
+        target:
+          entity_id: weather.home
+        data:
+          type: hourly
+        response_variable: home_forecast
+    sensor:
+      - name: Expected Percipitation
+        unique_id: 3d9d1968-9d0c-4aa4-a3bb-f1c0af3a4675
+        icon: mdi:weather-pouring
+        unit_of_measurement: in
+        state: >
+          {% set ns = namespace() %}
+          {% set ns.totalprecipitation = 0 %}
+          {% for daypart in range(0, 1) %}
+            {% set precipitation = home_forecast.forecast[daypart].precipitation %}
+            {% set precipitation_probability = home_forecast.forecast[daypart].precipitation_probability %}
+            {% if precipitation_probability > 0 %}
+              {% set ns.totalprecipitation = precipitation * precipitation_probability %}
+            {% endif %}
+          {% endfor %}
+          {{ ns.totalprecipitation | float(0) | round(2) }}
