@@ -69,9 +69,9 @@ views:
                   or is_state('light.rodney_nightstand', 'on')
                   or is_state('light.h61e0_gina_led_strip', 'on')
                   or is_state('light.h61e0_rodney_led_strip', 'on')
-                  or is_state('light.br1_ceiling_lights', 'on')
+                  or is_state('light.bedroom1_ceiling_lights', 'on')
                   or is_state('light.bedroom1_light', 'on')
-                  or is_state('light.br2_ceiling_lights', 'on')
+                  or is_state('light.bedroom2_ceiling_lights', 'on')
                   or is_state('light.bedroom2_light', 'on')
                   or is_state('light.gina_light', 'on')
                   or is_state('light.rodney_light', 'on')
@@ -164,7 +164,7 @@ views:
                   action: toggle
                 secondary: >-
                   {{states('sensor.livingroom_temperature')}}°F
-                  {{states('sensor.lr_motion_illuminance_lux')}} lux
+                  {{states('sensor.living_room_motion_illuminance')}} lux
                 icon_color: |-
                   {% if is_state('light.living_room_lamps', 'on') %}
                     amber
@@ -203,7 +203,7 @@ views:
                 icon: mdi:knife
                 secondary: >-
                   {{states('sensor.kitchen_temperature')}}°F
-                  {{states('sensor.kn_motion_illuminance_lux')}} lux
+                  {{states('sensor.kitchen_motion_illuminance')}} lux
               - type: custom:mushroom-template-card
                 icon: mdi:bed-outline
                 tap_action:
@@ -212,13 +212,13 @@ views:
                 hold_action:
                   action: toggle
                 icon_color: |-
-                  {% if is_state('light.br1_ceiling_lights', 'on')
+                  {% if is_state('light.bedroom1_ceiling_lights', 'on')
                   or is_state('light.bedroom1_light', 'on') %}
                     amber
                   {% endif %}
                 secondary: >-
-                  {{states('sensor.br1_temperature')}}°F
-                  {{states('sensor.br1_motion_illuminance_lux')}} lux
+                  {{states('sensor.bedroom1_temperature')}}°F
+                  {{states('sensor.bedroom1_motion_illuminance')}} lux
                 entity: switch.0x282c02bfffe97113
                 primary: Guest Room1
               - type: custom:mushroom-template-card
@@ -230,14 +230,14 @@ views:
                 hold_action:
                   action: toggle
                 icon_color: |-
-                  {% if is_state('light.br2_ceiling_lights', 'on')
+                  {% if is_state('light.bedroom2_ceiling_lights', 'on')
                   or is_state('light.bedroom2_light', 'on') %}
                     amber
                   {% endif %}
                 icon: mdi:bed-outline
                 secondary: >-
-                  {{states('sensor.br2_temperature')}}°F
-                  {{states('sensor.br2_motion_illuminance_lux')}} lux
+                  {{states('sensor.bedroom2_temperature')}}°F
+                  {{states('sensor.bedroom2_motion_illuminance')}} lux
           - type: custom:mushroom-template-card
             icon: mdi:forest
             tap_action:
@@ -258,7 +258,7 @@ views:
             secondary: >-
               {{states('sensor.outside_temperature')}}°F
               {{states('weather.local')}} - Inside
-              {{states('sensor.living_space_temperature')}}°F 
+              {{states('sensor.living_space_temperature')}}°F
             entity: group.outside_lights
             primary: Outside
           - type: grid
@@ -288,7 +288,7 @@ views:
   - theme: Backend-selected
     title: House
     path: house
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -300,14 +300,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.inside_temperature
             icon_color: orange
@@ -326,7 +326,7 @@ views:
             primary: >-
               TEST SYSTEM: Today is {{ states('sensor.today_is') }}, {{
               states('sensor.month_is') }} {{ now().day }}, {{ now().year }}
-            secondary: '{{ states(''sensor.holiday'') }}'
+            secondary: "{{ states('sensor.holiday') }}"
             icon: mdi:calendar
       - type: horizontal-stack
         cards:
@@ -345,7 +345,7 @@ views:
             tap_action:
               action: navigate
               navigation_path: stocks
-            icon_color: ''
+            icon_color: ""
           - type: custom:mushroom-template-card
             primary: Sports
             icon: mdi:baseball-bat
@@ -518,7 +518,7 @@ views:
               action: toggle
           - type: custom:mushroom-template-card
             primary: Doors
-            secondary: '{{states(''sensor.doors_open'')}} Open'
+            secondary: "{{states('sensor.doors_open')}} Open"
             entity: sensor.doors_open
             icon: |-
               {% if is_state('sensor.doors_open','0') %}
@@ -537,7 +537,7 @@ views:
               navigation_path: door_windows
           - type: custom:mushroom-template-card
             primary: Windows
-            secondary: '{{states(''sensor.windows_open'')}} Open'
+            secondary: "{{states('sensor.windows_open')}} Open"
             entity: sensor.windows_open
             icon: |-
               {% if is_state('sensor.windows_open','0') %}
@@ -625,7 +625,7 @@ views:
   - theme: Backend-selected
     title: Office
     path: office
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -638,13 +638,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.office_temperature
             icon_color: orange
@@ -677,11 +677,11 @@ views:
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -872,7 +872,7 @@ views:
           - type: tile
             entity: sensor.aqara_humidor_battery
           - type: tile
-            entity: sensor.p1_motion_battery
+            entity: sensor.office_motion_battery
       - type: entities
         entities:
           - entity: input_button.macropad_blank
@@ -888,15 +888,15 @@ views:
           columns: 2
         filter:
           exclude:
-            - state: 'off'
+            - state: "off"
             - state: offline
             - state: unavailable
             - state: unknown
             - area: Main Bedroom
             - area: Outside
             - area: Living Room
-            - entity_id: '*watch*'
-            - entity_id: '*movie*'
+            - entity_id: "*watch*"
+            - entity_id: "*movie*"
           include:
             - domain: scene
               options:
@@ -943,7 +943,7 @@ views:
   - theme: Backend-selected
     title: Living Room
     path: livingroom
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -955,14 +955,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.livingroom_temperature
             icon_color: orange
@@ -975,11 +975,11 @@ views:
         name: Thermostat
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -1072,7 +1072,7 @@ views:
             entity: sensor.espresense_living_room_humidity
             name: Humidity
           - type: custom:mushroom-entity-card
-            entity: sensor.lr_motion_illuminance_lux
+            entity: sensor.living_room_motion_illuminance
             name: Lux
           - type: custom:mushroom-entity-card
             entity: binary_sensor.living_room_occupied
@@ -1112,7 +1112,7 @@ views:
   - theme: Backend-selected
     title: Kitchen
     path: kitchen
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -1125,13 +1125,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.kitchen_temperature
             icon_color: orange
@@ -1156,18 +1156,18 @@ views:
             detail: 1
             name: Humidity
           - type: custom:mushroom-entity-card
-            entity: sensor.kn_motion_illuminance_lux
+            entity: sensor.kitchen_motion_illuminance
             name: Lux
           - type: custom:mushroom-entity-card
             entity: binary_sensor.kitchen_occupied
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -1222,7 +1222,7 @@ views:
   - theme: Backend-selected
     title: Main Bedroom
     path: mainbedroom
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -1234,14 +1234,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.main_bedroom_temperature
             icon_color: orange
@@ -1273,11 +1273,11 @@ views:
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -1411,7 +1411,7 @@ views:
   - theme: Backend-selected
     title: Guest Room 1
     path: guest1
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -1423,14 +1423,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.espresense_guest1_temperature
             icon_color: orange
@@ -1445,7 +1445,7 @@ views:
           - hours_to_show: 24
             graph: line
             type: sensor
-            entity: sensor.br1_temperature
+            entity: sensor.bedroom1_temperature
             detail: 1
             name: Temperature
           - hours_to_show: 24
@@ -1455,18 +1455,18 @@ views:
             detail: 1
             name: Humidity
           - type: custom:mushroom-entity-card
-            entity: sensor.br1_motion_illuminance_lux
+            entity: sensor.bedroom1_motion_illuminance
             name: Lux
           - type: custom:mushroom-entity-card
-            entity: binary_sensor.guest1_occupied
+            entity: binary_sensor.bedroom1_occupied
             name: Motion
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -1491,7 +1491,7 @@ views:
             columns: 2
             cards:
               - type: custom:mushroom-light-card
-                entity: light.br1_ceiling_lights
+                entity: light.bedroom1_ceiling_lights
                 name: Ceiling Lights
                 tap_action:
                   action: toggle
@@ -1507,18 +1507,18 @@ views:
                   action: toggle
                 name: Fan
               - type: custom:mushroom-entity-card
-                entity: switch.br1_s31_zb
+                entity: switch.bedroom1_s31_zb
                 icon_color: red
                 tap_action:
                   action: toggle
               - type: custom:mushroom-entity-card
-                entity: light.br1_bulb_cl
+                entity: light.bedroom1_bulb_cl
                 name: Closet
                 icon_color: amber
                 tap_action:
                   action: toggle
               - type: custom:mushroom-entity-card
-                entity: sensor.br1_motion_cl_battery
+                entity: sensor.bedroom1_motion_cl_battery
                 name: Closet Sensor
       - square: false
         columns: 1
@@ -1532,7 +1532,7 @@ views:
   - theme: Backend-selected
     title: Guest Room 2
     path: guest2
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -1545,13 +1545,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.espresense_guest2_temperature
             icon_color: orange
@@ -1566,7 +1566,7 @@ views:
           - hours_to_show: 24
             graph: line
             type: sensor
-            entity: sensor.br2_temperature
+            entity: sensor.bedroom2_temperature
             detail: 1
             name: Temperature
           - hours_to_show: 24
@@ -1576,18 +1576,18 @@ views:
             detail: 1
             name: Humidity
           - type: custom:mushroom-entity-card
-            entity: sensor.br2_motion_illuminance_lux
+            entity: sensor.bedroom2_motion_illuminance
             name: Lux
           - type: custom:mushroom-entity-card
-            entity: binary_sensor.guest2_occupied
+            entity: binary_sensor.bedroom2_occupied
             name: Motion
       - type: entity-filter
         entities:
-          - entity: device_tracker.einsteins_iphone
+          - entity: device_tracker.einstein_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
-          - entity: device_tracker.ginas_iphone
+          - entity: device_tracker.gina_iphone
             name: Gina
           - entity: sensor.gina_phone
             name: Gina
@@ -1612,7 +1612,7 @@ views:
             columns: 2
             cards:
               - type: custom:mushroom-light-card
-                entity: light.br2_ceiling_lights
+                entity: light.bedroom2_ceiling_lights
                 name: Ceiling Lights
                 tap_action:
                   action: toggle
@@ -1633,7 +1633,7 @@ views:
   - theme: Backend-selected
     title: Outside
     path: patio
-    icon: ''
+    icon: ""
     visible:
       - user: d2fcb98b323e47cfa359ef19282d91e9
       - user: 0490f5256ca34bffa055bab3a33e0f6e
@@ -1645,14 +1645,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: template
             content: >-
               Sunrise  {% if states.sun.sun %} {{
@@ -1671,7 +1671,7 @@ views:
             entity: sensor.moon
         alignment: start
       - type: markdown
-        content: '{{ states(''sensor.clothing_forecast_detail'') }}'
+        content: "{{ states('sensor.clothing_forecast_detail') }}"
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card
@@ -1862,13 +1862,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - card:
           type: glance
@@ -1877,7 +1877,7 @@ views:
           columns: 2
         filter:
           exclude:
-            - state: 'off'
+            - state: "off"
             - state: offline
             - state: unavailable
             - state: unknown
@@ -2044,7 +2044,7 @@ views:
             columns: 2
             cards:
               - type: custom:mushroom-light-card
-                entity: light.br1_ceiling_lights
+                entity: light.bedroom1_ceiling_lights
                 name: Ceiling Lights
                 tap_action:
                   action: toggle
@@ -2054,7 +2054,7 @@ views:
                 tap_action:
                   action: toggle
               - type: custom:mushroom-light-card
-                entity: light.br1_bulb_cl
+                entity: light.bedroom1_bulb_cl
                 name: Closet
                 tap_action:
                   action: toggle
@@ -2067,7 +2067,7 @@ views:
             columns: 2
             cards:
               - type: custom:mushroom-light-card
-                entity: light.br2_ceiling_lights
+                entity: light.bedroom2_ceiling_lights
                 name: Ceiling Lights
                 tap_action:
                   action: toggle
@@ -2202,14 +2202,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - type: custom:mushroom-title-card
         subtitle: Cameras
@@ -2288,13 +2288,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.ibbq_probe_4
             icon_color: orange
@@ -2378,13 +2378,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
       - type: custom:vacuum-card
         image: default
         entity: vacuum.bert
@@ -2468,14 +2468,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.event_annual_herf
             icon_color: deep-orange
@@ -2487,7 +2487,7 @@ views:
       - type: custom:garbage-collection-card
         entity: sensor.next_collection
         hide_before: 4
-        icon_color: '#0561ba'
+        icon_color: "#0561ba"
       - initial_view: listWeek
         type: calendar
         entities:
@@ -2753,13 +2753,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - square: false
         columns: 2
@@ -2877,14 +2877,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - title: Upcoming Sports
         type: vertical-stack
@@ -2959,7 +2959,7 @@ views:
           include:
             - entity_id: /schedule/
               options:
-                secondary_info: '[[ {entity}.attributes.opponent ]]'
+                secondary_info: "[[ {entity}.attributes.opponent ]]"
                 type: custom:secondaryinfo-entity-row
         show_empty: true
         sort:
@@ -2982,14 +2982,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.processor_temperature
             icon_color: orange
@@ -3028,10 +3028,10 @@ views:
           include:
             - domain: automation
               attributes:
-                current: '! 0'
+                current: "! 0"
             - domain: script
               attributes:
-                current: '! 0'
+                current: "! 0"
         show_empty: false
         sort:
           method: last_triggered
@@ -3043,9 +3043,9 @@ views:
         filter:
           include:
             - entity_id: sensor.pi*_temperature
-              state: '> 110'
+              state: "> 110"
             - entity_id: sensor.node*_temperature
-              state: '> 110'
+              state: "> 110"
         show_empty: false
         sort:
           method: last_triggered
@@ -3205,7 +3205,7 @@ views:
             name: Water Heater - Sec
           - type: custom:mushroom-template-card
             primary: Doors
-            secondary: '{{states(''sensor.doors_open'')}} Open'
+            secondary: "{{states('sensor.doors_open')}} Open"
             entity: sensor.doors_open
             icon: |-
               {% if is_state('sensor.doors_open','0') %}
@@ -3224,7 +3224,7 @@ views:
               navigation_path: door_windows
           - type: custom:mushroom-template-card
             primary: Windows
-            secondary: '{{states(''sensor.windows_open'')}} Open'
+            secondary: "{{states('sensor.windows_open')}} Open"
             entity: sensor.windows_open
             icon: |-
               {% if is_state('sensor.windows_open','0') %}
@@ -3327,14 +3327,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - type: map
         entities:
@@ -3348,10 +3348,10 @@ views:
         type: grid
         cards:
           - type: custom:mushroom-entity-card
-            entity: sensor.einsteins_iphone_geocoded_location
+            entity: sensor.einstein_iphone_geocoded_location
             name: Rodney's Location
           - type: custom:mushroom-entity-card
-            entity: sensor.ginas_iphone_geocoded_location
+            entity: sensor.gina_iphone_geocoded_location
             name: Gina's Location
           - type: custom:mushroom-entity-card
             entity: sensor.rodney_ett_home
@@ -3368,7 +3368,7 @@ views:
           - entity: sensor.gina_ett_home
             name: Gina
         state_filter:
-          - operator: '>'
+          - operator: ">"
             value: 0
         card:
           type: glance
@@ -3399,14 +3399,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.processor_temperature
             icon_color: orange
@@ -3444,14 +3444,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.processor_temperature
             icon_color: orange
@@ -3987,14 +3987,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.processor_temperature
             icon_color: orange
@@ -4139,11 +4139,11 @@ views:
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card
-            title: 'Advanced SSH & Web Terminal '
+            title: "Advanced SSH & Web Terminal "
             subtitle: >-
               Installed v{{ states('sensor.advanced_ssh_web_terminal_version')
               }} - Latest v{{
-              states('sensor.advanced_ssh_web_terminal_newest_version') }}  
+              states('sensor.advanced_ssh_web_terminal_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4170,7 +4170,7 @@ views:
             title: ESPHome
             subtitle: >-
               Installed v{{ states('sensor.esphome_version') }} - Latest v{{
-              states('sensor.esphome_newest_version') }}  
+              states('sensor.esphome_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4200,7 +4200,7 @@ views:
               states('sensor.home_assistant_google_drive_backup_version') }} -
               Latest v{{
               states('sensor.home_assistant_google_drive_backup_newest_version')
-              }}  
+              }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4227,7 +4227,7 @@ views:
             title: Grafana
             subtitle: >-
               Installed v{{ states('sensor.grafana_version') }} - Latest v{{
-              states('sensor.grafana_newest_version') }}  
+              states('sensor.grafana_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4254,7 +4254,7 @@ views:
             title: InfluxDB
             subtitle: >-
               Installed v{{ states('sensor.influxdb_version') }} - Latest v{{
-              states('sensor.influxdb_newest_version') }}  
+              states('sensor.influxdb_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4281,7 +4281,7 @@ views:
             title: MariaDB
             subtitle: >-
               Installed v{{ states('sensor.mariadb_version') }} - Latest v{{
-              states('sensor.mariadb_newest_version') }}  
+              states('sensor.mariadb_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4308,7 +4308,7 @@ views:
             title: Matter Server
             subtitle: >-
               Installed v{{ states('sensor.matter_server_version') }} - Latest
-              v{{ states('sensor.matter_server_newest_version') }}  
+              v{{ states('sensor.matter_server_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4335,7 +4335,7 @@ views:
             title: phpMyAdmin
             subtitle: >-
               Installed v{{ states('sensor.phpmyadmin_version') }} - Latest v{{
-              states('sensor.phpmyadmin_newest_version') }}  
+              states('sensor.phpmyadmin_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4362,7 +4362,7 @@ views:
             title: Piper
             subtitle: >-
               Installed v{{ states('sensor.piper_version') }} - Latest v{{
-              states('sensor.piper_newest_version') }}  
+              states('sensor.piper_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4389,7 +4389,7 @@ views:
             title: Samba Share
             subtitle: >-
               Installed v{{ states('sensor.samba_share_version') }} - Latest v{{
-              states('sensor.samba_share_newest_version') }}  
+              states('sensor.samba_share_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4417,7 +4417,7 @@ views:
             subtitle: >-
               Installed v{{ states('sensor.silicon_labs_multiprotocol_version')
               }} - Latest v{{
-              states('sensor.silicon_labs_multiprotocol_newest_version') }}  
+              states('sensor.silicon_labs_multiprotocol_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4444,7 +4444,7 @@ views:
             title: Studio Code Server
             subtitle: >-
               Installed v{{ states('sensor.studio_code_server_version') }} -
-              Latest v{{ states('sensor.studio_code_server_newest_version') }}  
+              Latest v{{ states('sensor.studio_code_server_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4471,7 +4471,7 @@ views:
             title: Syncthing
             subtitle: >-
               Installed v{{ states('sensor.syncthing_version') }} - Latest v{{
-              states('sensor.syncthing_newest_version') }}  
+              states('sensor.syncthing_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4498,7 +4498,7 @@ views:
             title: TasmoBackup
             subtitle: >-
               Installed v{{ states('sensor.tasmobackup_version') }} - Latest v{{
-              states('sensor.tasmobackup_newest_version') }}  
+              states('sensor.tasmobackup_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4525,7 +4525,7 @@ views:
             title: Whisper
             subtitle: >-
               Installed v{{ states('sensor.whisper_version') }} - Latest v{{
-              states('sensor.whisper_newest_version') }}  
+              states('sensor.whisper_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4552,7 +4552,7 @@ views:
             title: Zigbee2MQTT
             subtitle: >-
               Installed v{{ states('sensor.zigbee2mqtt_version') }} - Latest v{{
-              states('sensor.zigbee2mqtt_newest_version') }}  
+              states('sensor.zigbee2mqtt_newest_version') }}
           - type: custom:mushroom-chips-card
             chips:
               - type: entity
@@ -4677,8 +4677,8 @@ views:
               - entity: update.vacuum_card_update
                 name: Vacuum Card
             state_filter:
-              - 'On'
-              - 'on'
+              - "On"
+              - "on"
             card:
               type: glance
               title: HACS that need updating
@@ -4696,13 +4696,13 @@ views:
             icon: mdi:home
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - type: vertical-stack
         cards:
@@ -4746,14 +4746,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - type: custom:formulaone-card
         title: Next Race
@@ -4795,14 +4795,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
         alignment: start
       - square: false
         columns: 1
@@ -4932,14 +4932,14 @@ views:
           - type: action
             tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             icon: mdi:home
             hold_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
             double_tap_action:
               action: navigate
-              navigation_path: '0'
+              navigation_path: "0"
           - type: entity
             entity: sensor.synology_temperature
             icon_color: orange
@@ -4957,7 +4957,7 @@ views:
         cards:
           - type: custom:mushroom-title-card
             title: Synology
-            subtitle: ''
+            subtitle: ""
           - type: grid
             square: false
             columns: 2

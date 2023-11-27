@@ -2,14 +2,14 @@ motion:
   name: Motion Detectors
   entities:
     - binary_sensor.funhouse_motion_sensor
-    - binary_sensor.p1_motion_occupancy
+    - binary_sensor.office_motion_occupancy
     - binary_sensor.espresense_office_motion
-    - binary_sensor.office_ep1_pir
-    - binary_sensor.lr_motion_occupancy
-    - binary_sensor.living_room_ep1_pir
-    - binary_sensor.kn_motion_occupancy
+    - binary_sensor.ep1_f0f1b8_pir
+    - binary_sensor.living_room_motion_occupancy
+    - binary_sensor.ep1_70cd58_pir
+    - binary_sensor.kitchen_motion_occupancy
     - binary_sensor.espresense_kitchen_motion
     - binary_sensor.mb_motion_occupancy
-    - binary_sensor.main_bedroom_ep1_pir
-    - binary_sensor.br1_motion_occupancy
-    - binary_sensor.br2_motion_occupancy
+    - binary_sensor.ep1_70c1d0_pir
+    - binary_sensor.bedroom1_motion_occupancy
+    - binary_sensor.bedroom2_motion_occupancy

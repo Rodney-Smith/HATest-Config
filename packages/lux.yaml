@@ -7,41 +7,41 @@
 ###############################################################################
 # Legacy Format
 #sensor:
-  # - platform: template
-  #   sensors:
-  #     livingroom_lux:
-  #       unique_id: 56f11aad5-8c00-4021-b583-71e26e38f853
-  #       friendly_name: Living Room Lux
-  #       value_template: >
-  #         {% set illuminance = [
-  #           (states('sensor.lr_motion_illuminance_lux') | float(default=0)),
-  #           (states('sensor.living_room_ep1_illuminance') | float(default=0))] %}
-  #         {% set lux = illuminance | reject("==", 0) | list %}
-  #         {{ ( lux | sum / lux | count ) | round(1) }}  
-  #       unit_of_measurement: 'lx'
+# - platform: template
+#   sensors:
+#     living_room_lux:
+#       unique_id: 56f11aad5-8c00-4021-b583-71e26e38f853
+#       friendly_name: Living Room Lux
+#       value_template: >
+#         {% set illuminance = [
+#           (states('sensor.living_room_motion_illuminance') | float(default=0)),
+#           (states('sensor.ep1_70cd58_illuminance') | float(default=0))] %}
+#         {% set lux = illuminance | reject("==", 0) | list %}
+#         {{ ( lux | sum / lux | count ) | round(1) }}
+#       unit_of_measurement: 'lx'
 
-  # - platform: template
-  #   sensors:
-  #     office_lux:
-  #       unique_id: 89e791c7-b2a8-44c8-9794-23aa7ffd4017
-  #       friendly_name: Office Lux
-  #       value_template: >
-  #         {% set illuminance = [
-  #           (states('sensor.p1_motion_illuminance_lux') | float(default=0)),
-  #           (states('sensor.office_ep1_illuminance') | float(default=0))] %}
-  #         {% set lux = illuminance | reject("==", 0) | list %}
-  #         {{ ( lux | sum / lux | count ) | round(1) }}  
-  #       unit_of_measurement: 'lx'
+# - platform: template
+#   sensors:
+#     office_lux:
+#       unique_id: 89e791c7-b2a8-44c8-9794-23aa7ffd4017
+#       friendly_name: Office Lux
+#       value_template: >
+#         {% set illuminance = [
+#           (states('sensor.office_motion_illuminance') | float(default=0)),
+#           (states('sensor.ep1_f0f1b8_illuminance') | float(default=0))] %}
+#         {% set lux = illuminance | reject("==", 0) | list %}
+#         {{ ( lux | sum / lux | count ) | round(1) }}
+#       unit_of_measurement: 'lx'
 
-  # - platform: template
-  #   sensors:
-  #     main_bedroom_lux:
-  #       unique_id: 8a3e0843-0cb4-4100-b2e7-586c587df83a
-  #       friendly_name: Main Bedroom Lux
-  #       value_template: >
-  #         {% set illuminance = [
-  #           (states('sensor.mb_motion_illuminance_lux') | float(default=0)),
-  #           (states('sensor.main_bedroom_ep1_illuminance') | float(default=0))] %}
-  #         {% set lux = illuminance | reject("==", 0) | list %}
-  #         {{ ( lux | sum / lux | count ) | round(1) }}  
-  #       unit_of_measurement: 'lx'
+# - platform: template
+#   sensors:
+#     main_bedroom_lux:
+#       unique_id: 8a3e0843-0cb4-4100-b2e7-586c587df83a
+#       friendly_name: Main Bedroom Lux
+#       value_template: >
+#         {% set illuminance = [
+#           (states('sensor.mb_motion_illuminance') | float(default=0)),
+#           (states('sensor.ep1_70c1d0_illuminance') | float(default=0))] %}
+#         {% set lux = illuminance | reject("==", 0) | list %}
+#         {{ ( lux | sum / lux | count ) | round(1) }}
+#       unit_of_measurement: 'lx'

@@ -1,7 +1,7 @@
 ###############################################################################
 #   @author         :  Rodney Smith
 #   @date           :  06/22/2022
-#   @homeassistant  :  group.guest2_bedroom
+#   @homeassistant  :  group.bedroom2
 #   @description    :  Devices in this area
 ###############################################################################
-guest2_bedroom:
+bedroom2:

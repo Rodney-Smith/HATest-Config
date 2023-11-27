@@ -2,9 +2,9 @@ rodney_bad_traffic_home:
   name: Leave Now! Currently {{states.sensor.rodney_ett_home | round}} mins home!
   done_message: Canceling Traffic Alert
   entity_id: input_boolean.rodney_traffic_alert_home
-  state: 'on'
+  state: "on"
   repeat: 10
   can_acknowledge: false
   skip_first: False
   notifiers:
-  - ios_einsteins_iphone
+    - ios_einstein_iphone

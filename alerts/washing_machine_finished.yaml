@@ -20,4 +20,4 @@ washing_machine_finished:
   can_acknowledge: false
   skip_first: False
   notifiers:
-    - mobile_app_einsteins_iphone
+    - mobile_app_einstein_iphone

@@ -7,5 +7,5 @@
 gina:
   name: Gina
   entities:
-    - device_tracker.ginas_iphone
-    - device_tracker.ginas_iphone_icloud
+    - device_tracker.gina_iphone
+    - device_tracker.gina_iphone_icloud

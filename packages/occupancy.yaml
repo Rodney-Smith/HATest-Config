@@ -12,8 +12,8 @@ binary_sensor:
         unique_id: 74406402-58e7-48c0-b0e0-913d050c0348
         friendly_name: "Office Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.p1_motion_occupancy', 'on') 
-             or is_state('binary_sensor.office_ep1_occupancy', 'on')
+          {% if is_state('binary_sensor.office_motion_occupancy', 'on') 
+             or is_state('binary_sensor.ep1_f0f1b8_occupancy', 'on')
              or is_state('binary_sensor.espresense_office_motion', 'on') 
              or is_state('binary_sensor.funhouse_motion_sensor', 'on') %}
              True
@@ -26,7 +26,7 @@ binary_sensor:
         unique_id: 4d065b2d-f162-4a1b-961d-a10cac1a7e06
         friendly_name: "Kitchen Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.kn_motion_occupancy', 'on')
+          {% if is_state('binary_sensor.kitchen_motion_occupancy', 'on')
              or is_state('binary_sensor.espresense_kitchen_motion', 'on') %}
              True
           {% else %}
@@ -38,8 +38,8 @@ binary_sensor:
         unique_id: 6a863670-2bd2-4cef-8dd3-d295d99b924e
         friendly_name: "Living Room Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.lr_motion_occupancy', 'on') 
-             or is_state('binary_sensor.living_room_ep1_occupancy', 'on') 
+          {% if is_state('binary_sensor.living_room_motion_occupancy', 'on') 
+             or is_state('binary_sensor.ep1_70cd58_occupancy', 'on') 
              or is_state('binary_sensor.living_room_occupancy', 'on') %}
              True
           {% else %}
@@ -51,7 +51,7 @@ binary_sensor:
         unique_id: 1c0fe49f-9c07-44f3-b4bb-3d8124c7a451
         friendly_name: "Main Bedroom Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.mb_motion_occupancy', 'on') 
+          {% if is_state('binary_sensor.main_bedroom_motion_occupancy', 'on') 
              or is_state('binary_sensor.main_bedroom_occupancy', 'on') %}
              True
           {% else %}
@@ -59,11 +59,11 @@ binary_sensor:
           {% endif %}
         device_class: occupancy
 
-      guest1_occupied:
+      bedroom1_occupied:
         unique_id: 328cdbe4-ca6c-4cdf-8a9b-fa5a308f06b8
         friendly_name: "Guest Bedroom1 Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.br1_motion_occupancy', 'on') 
+          {% if is_state('binary_sensor.bedroom1_motion_occupancy', 'on') 
              or is_state('binary_sensor.epl24ea74_occupancy', 'on') %}
              True
           {% else %}
@@ -71,11 +71,11 @@ binary_sensor:
           {% endif %}
         device_class: occupancy
 
-      guest2_occupied:
+      bedroom2_occupied:
         unique_id: 7618fb27-7c6c-4bfc-8eb2-aed1d60341ad
         friendly_name: "Guest Bedroom2 Occupied"
         value_template: >-
-          {% if is_state('binary_sensor.br2_motion_occupancy', 'on') 
+          {% if is_state('binary_sensor.bedroom2_motion_occupancy', 'on') 
              or is_state('binary_sensor.epl_24e988_occupancy', 'on') %}
              True
           {% else %}
@@ -104,4 +104,3 @@ binary_sensor:
              False
           {% endif %}
         device_class: occupancy
-

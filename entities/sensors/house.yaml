@@ -48,11 +48,11 @@
     days: 7
 
 - platform: statistics
-  entity_id: sensor.br1_temperature
+  entity_id: sensor.bedroom1_temperature
   state_characteristic: mean
   sampling_size: 500
 - platform: statistics
-  entity_id: sensor.br2_temperature
+  entity_id: sensor.bedroom2_temperature
   state_characteristic: mean
   sampling_size: 500
 - platform: statistics
@@ -75,8 +75,8 @@
 - platform: min_max
   name: Inside Temp Stats
   entity_ids:
-    - sensor.br1_temperature
-    - sensor.br2_temperature
+    - sensor.bedroom1_temperature
+    - sensor.bedroom2_temperature
     - sensor.livingroom_temperature
     - sensor.mainbedroom_temperature
     - sensor.kitchen_temperature

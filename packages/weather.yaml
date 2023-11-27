@@ -5,21 +5,6 @@
 #  @description    :  Create template sensors that pull in weather information
 ###############################################################################
 sensor:
-  - platform: template
-    sensors:
-      wind_speed:
-        value_template: "{{ (state_attr('weather.local','wind_speed') | float) }}"
-        unit_of_measurement: 'mph'
-  - platform: template
-    sensors:
-      visibility:
-        value_template: "{{ (state_attr('weather.local', 'visibility') | float) }}"
-        unit_of_measurement: 'miles'
-  - platform: template
-    sensors:
-      humidity:
-        value_template: "{{ (state_attr('weather.local', 'humidity') | float) }}"
-        unit_of_measurement: '%'
 
 ### You first need to find either your NWS Zone ID or County ID. I’m not sure which is better but I used my Zone ID here.
 ### You can find your Zone ID by going to https://alerts.weather.gov/, scroll down to your state and click on the “zone
@@ -653,48 +638,6 @@ sensor:
                 It is {{ states.sensor.clothing_forecast.state }} right now so I suggest wearing shorts.
               {% endif %}
             {% endif %}
-      my_temperature:
-        friendly_name: "Current Temperature"
-        value_template: >
-          {% set temperatures = [
-            (state_attr('weather.local','temperature') | float(default=0)),
-            (state_attr('weather.kmyv_daynight','temperature') | float(default=0)) ] %}
-          {% set temps = temperatures | reject("==", 0) | list %}
-          {{ ( temps | sum / temps | count ) | round(1) }}
-        unit_of_measurement: '°F'
-      my_humidity:
-        friendly_name: "Current Humidity"
-        value_template: >
-          {% set humidity = [
-            (state_attr('weather.local','humidity') | float(default=0)),
-            (state_attr('weather.kmyv_daynight','humidity') | float(default=0)) ] %}
-          {% set humid = humidity | reject("==", 0) | list %}
-          {{ ( humid | sum / humid | count ) | round(1) }}
-        unit_of_measurement: '%'
-      my_pressure:
-        friendly_name: "Current Pressure"
-        value_template: >
-          {% set pressure = [
-            (state_attr('weather.local','pressure') | float(default=0)),
-            (state_attr('weather.kmyv_daynight','pressure') | float(default=0)) ] %}
-          {% set bpress = pressure | reject("==", 0) | list %}
-          {{ ( bpress | sum / bpress | count ) | round(1) }}
-        unit_of_measurement: 'Hg'
-      my_visibility:
-        friendly_name: "Current Visability"
-        value_template: >-
-          {{ ((((state_attr('weather.local','visibility') | int)
-            + (state_attr('weather.kmyv_daynight','visibility') | int)) /2 ) * 0.621371) | round }}
-        unit_of_measurement: 'miles'
-      my_windspeed:
-        friendly_name: "Current Wind Speed"
-        value_template: >
-          {% set windspeed =  [
-            (state_attr('weather.local','wind_speed') | float(default=0)),
-            (state_attr('weather.kmyv_daynight','wind_speed') | float(default=0)) ] %}
-          {% set wspeed = windspeed | reject("==", 0) | list %}
-          {{ ( wspeed | sum / wspeed | count ) | round(1) }}
-        unit_of_measurement: 'mph'
 
 # weather:
 #   - platform: pirateweather
@@ -704,52 +647,3 @@ sensor:
 #     longitude: !secret ha_longitude
 #     mode: "daily"
 #     name: Local
-
-automation:
-  - alias: Forecast Low Near Freezing
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.tonights_low_temp
-        below: 35
-      - platform: numeric_state
-        entity_id: sensor.outside_temperature
-        below: 35
-    condition:
-      - condition: state
-        entity_id: input_boolean.freeze_warning
-        state: 'off'
-    action:
-      - service: input_boolean.turn_on
-        entity_id: input_boolean.freeze_warning
-
-  - alias: Forecast Low Above Freezing
-    trigger:
-      - platform: numeric_state
-        entity_id: sensor.tonights_low_temp
-        above: 33
-    condition:
-      - condition: state
-        entity_id: input_boolean.freeze_warning
-        state: 'on'
-      - condition: numeric_state
-        entity_id: sensor.tonights_low_temp
-        above: 35
-    action:
-      - service: input_boolean.turn_off
-        entity_id: input_boolean.freeze_warning
-
-script:
-  refresh_weather_alert_sensors:
-    sequence:
-      - service: homeassistant.update_entity
-        entity_id: sensor.tornado_warning
-      - service: homeassistant.update_entity
-        entity_id: sensor.tornado_watch
-      - service: homeassistant.update_entity
-        entity_id: sensor.tstorm_warning
-      - service: homeassistant.update_entity
-        entity_id: sensor.tstorm_watch
-      - service: homeassistant.update_entity
-        entity_id: sensor.flood_warning
-      - service: homeassistant.update_entity
-        entity_id: sensor.flood_watch

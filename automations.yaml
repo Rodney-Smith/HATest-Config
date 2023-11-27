@@ -5,14 +5,14 @@
   - platform: device
     device_id: 092725b593e9ccb0e4272f3ccd1f8685
     domain: device_tracker
-    entity_id: device_tracker.ginas_iphone
+    entity_id: device_tracker.gina_iphone
     type: enters
     zone: zone.home
   condition:
   - condition: device
     device_id: 092725b593e9ccb0e4272f3ccd1f8685
     domain: device_tracker
-    entity_id: device_tracker.ginas_iphone
+    entity_id: device_tracker.gina_iphone
     type: is_home
   action:
   - type: turn_off
@@ -32,14 +32,14 @@
   - platform: device
     device_id: 092725b593e9ccb0e4272f3ccd1f8685
     domain: device_tracker
-    entity_id: device_tracker.ginas_iphone
+    entity_id: device_tracker.gina_iphone
     type: leaves
     zone: zone.home
   condition:
   - condition: device
     device_id: 092725b593e9ccb0e4272f3ccd1f8685
     domain: device_tracker
-    entity_id: device_tracker.ginas_iphone
+    entity_id: device_tracker.gina_iphone
     type: is_not_home
   action:
   - type: turn_off
@@ -59,14 +59,14 @@
   - platform: device
     device_id: 96c538d28429bc4d9bb8bcff078540bf
     domain: device_tracker
-    entity_id: device_tracker.einsteins_iphone
+    entity_id: device_tracker.einstein_iphone
     type: enters
     zone: zone.home
   condition:
   - condition: device
     device_id: 96c538d28429bc4d9bb8bcff078540bf
     domain: device_tracker
-    entity_id: device_tracker.einsteins_iphone
+    entity_id: device_tracker.einstein_iphone
     type: is_home
   action:
   - type: turn_off
@@ -86,14 +86,14 @@
   - platform: device
     device_id: 96c538d28429bc4d9bb8bcff078540bf
     domain: device_tracker
-    entity_id: device_tracker.einsteins_iphone
+    entity_id: device_tracker.einstein_iphone
     type: leaves
     zone: zone.home
   condition:
   - condition: device
     device_id: 96c538d28429bc4d9bb8bcff078540bf
     domain: device_tracker
-    entity_id: device_tracker.einsteins_iphone
+    entity_id: device_tracker.einstein_iphone
     type: is_not_home
   action:
   - type: turn_off
@@ -114,7 +114,7 @@
     entity_id: sensor.grill_alert_temp
     to: Alert
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: Smoker temperature outside limits. Currently {{ states.sensor.ibbq_probe_4_2.state
         }} F
@@ -132,7 +132,7 @@
     entity_id: sensor.grill_alert_temp
     to: Normal
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: Smoker temperature within limits. Currently {{ states.sensor.ibbq_probe_4_2.state
         }} F
@@ -150,7 +150,7 @@
     to: Alert
     from: Normal
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: Probe 1 has reached the target temp. Currently {{ states.sensor.ibbq_probe_1_2.state
         }} F
@@ -167,7 +167,7 @@
     entity_id: sensor.target_alert_temp_probe_2
     to: Alert
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: Probe 2 has reached the target temp. Currently {{ states.sensor.ibbq_probe_2_2.state
         }} F
@@ -184,7 +184,7 @@
     entity_id: sensor.target_alert_temp_probe_3
     to: Alert
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: Probe 3 has reached the target temp. Currently {{ states.sensor.ibbq_probe_3_2.state
         }} F
@@ -235,7 +235,7 @@
       event_response_type: ResponseYes
   condition: []
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       title: Notificiation
       message: The front door is open
@@ -498,7 +498,7 @@
   - condition: or
     conditions:
     - condition: numeric_state
-      entity_id: sensor.kn_motion_illuminance_lux
+      entity_id: sensor.kitchen_motion_illuminance
       attribute: illuminance_lux
       below: 20
     alias: Lux below 20
@@ -529,12 +529,12 @@
   trigger:
   - platform: state
     entity_id:
-    - binary_sensor.br1_motion_occupancy
+    - binary_sensor.bedroom1_motion_occupancy
     to: 'on'
     alias: When Occupancy changes to On
   condition:
   - condition: numeric_state
-    entity_id: sensor.br1_motion_illuminance_lux
+    entity_id: sensor.bedroom1_motion_illuminance
     below: 20
     attribute: illuminance_lux
     alias: Lux below 20
@@ -546,7 +546,7 @@
     data: {}
     alias: Turn on Lights
     target:
-      entity_id: light.br1_lamp
+      entity_id: light.bedroom1_lamp
   - delay:
       hours: 0
       minutes: 5
@@ -556,7 +556,7 @@
     data: {}
     alias: Turn off Lights
     target:
-      entity_id: light.br1_lamp
+      entity_id: light.bedroom1_lamp
   mode: single
 - id: '1664064268724'
   alias: Illuminate Bedroom2
@@ -564,12 +564,12 @@
   trigger:
   - platform: state
     entity_id:
-    - binary_sensor.br2_motion_occupancy
+    - binary_sensor.bedroom2_motion_occupancy
     to: 'on'
     alias: When Occupancy changes to On
   condition:
   - condition: numeric_state
-    entity_id: sensor.br2_motion_illuminance_lux
+    entity_id: sensor.bedroom2_motion_illuminance
     below: 20
     attribute: illuminance_lux
     alias: Lux below 20
@@ -582,7 +582,7 @@
     alias: Turn on Lights
     target:
       entity_id:
-      - light.br2_lamp
+      - light.bedroom2_lamp
   - delay:
       hours: 0
       minutes: 5
@@ -593,7 +593,7 @@
     alias: Turn off Lights
     target:
       entity_id:
-      - light.br2_lamp
+      - light.bedroom2_lamp
   mode: single
 - id: '1672788636381'
   alias: Open Front Door at Night
@@ -637,11 +637,10 @@
     entity_id: calendar.garbage_collection
   condition: []
   action:
-  - device_id: 9fa8d0c48027387c6683f62b59ab84a9
-    domain: mobile_app
-    type: notify
-    message: TEST SYSTEM Trash Day Tomorrow!
-    title: Just to let you know...
+  - service: notify.mobile_app_einstein_iphone
+    data:
+      message: TEST SYSTEM Trash Day Tomorrow!
+      title: Just to let you know...
   - service: notify.alexa_media
     data:
       message: 'From the Test System: Don''t forget to put out the Trash Tomorrow!'
@@ -808,7 +807,7 @@
     to: 'on'
   condition: []
   action:
-  - service: notify.mobile_app_einsteins_iphone
+  - service: notify.mobile_app_einstein_iphone
     data:
       message: HA Test Backup experienced a problem
       title: ALERT - TEST

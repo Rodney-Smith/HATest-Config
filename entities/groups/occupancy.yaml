@@ -5,10 +5,10 @@
 #   @description    :  Devices in this area
 ###############################################################################
 occupancy:
-  - binary_sensor.br1_motion_occupancy
-  - binary_sensor.br2_motion_occupancy
-  - binary_sensor.kn_motion_occupancy
-  - binary_sensor.p1_motion_occupancy
-  - binary_sensor.lr_motion_occupancy
+  - binary_sensor.bedroom1_motion_occupancy
+  - binary_sensor.bedroom2_motion_occupancy
+  - binary_sensor.kitchen_motion_occupancy
+  - binary_sensor.office_motion_occupancy
+  - binary_sensor.living_room_motion_occupancy
   - binary_sensor.bedroom_occupancy
   - binary_sensor.living_room_occupancy
