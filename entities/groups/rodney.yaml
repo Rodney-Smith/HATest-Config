@@ -7,7 +7,7 @@
 rodney:
   name: Rodney
   entities:
-    - device_tracker.einstein_iphone
-    - device_tracker.einstein_iphone_icloud
+    - device_tracker.rodney_iphone
+    - device_tracker.rodney_iphone_icloud
     - device_tracker.fenix5_ble_tracker
     - device_tracker.work_phone

@@ -6,4 +6,4 @@ rodney_heading_home:
   can_acknowledge: false
   skip_first: False
   notifiers:
-    - ios_gina_iphone
+    - ios_gina

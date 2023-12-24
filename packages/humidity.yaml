@@ -102,3 +102,19 @@ sensor:
           {{ ( humid | sum / humid | count ) | round(1) }}
         unit_of_measurement: "%"
         device_class: humidity
+
+  - platform: template
+    sensors:
+      outside_humidity:
+        unique_id: a47b4552-0fda-43c1-a3e3-1957c7659777
+        friendly_name: Outside Humidity
+        value_template: >
+          {% set humidity = [
+            (state_attr('weather.local','humidity') | float(default=0)),
+            (states('sensor.back_meter_humidity') | float(default=0)),
+            (states('sensor.patio_meter_humidity') | float(default=0)),
+            (states('sensor.wall_meter_humidity') | float(default=0)) ] %}
+          {% set humid = humidity | reject("==", 0) | list %}
+          {{ ( humid | sum / humid | count ) | round(1) }}
+        unit_of_measurement: "%"
+        device_class: humidity

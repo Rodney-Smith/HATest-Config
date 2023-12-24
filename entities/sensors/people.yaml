@@ -3,10 +3,10 @@
     rodney_speed:
       friendly_name: "Rodney Speed"
       unit_of_measurement: "mph"
-      value_template: "{{ state_attr('device_tracker.einstein_iphone', 'speed') | float / 1.609 | round(0) }}"
+      value_template: "{{ state_attr('device_tracker.rodney_iphone', 'speed') | float / 1.609 | round(0) }}"
     rodney_county:
       friendly_name: "Rodney County"
-      value_template: "{{ state_attr('sensor.einstein_iphone_geocoded_location', 'Sub Administrative Area') }}"
+      value_template: "{{ state_attr('sensor.rodney_iphone_geocoded_location', 'Sub Administrative Area') }}"
     gina_speed:
       friendly_name: "Gina Speed"
       unit_of_measurement: "mph"

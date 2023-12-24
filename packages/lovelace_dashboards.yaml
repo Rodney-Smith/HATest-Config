@@ -45,8 +45,6 @@ lovelace:
       type: module
     - url: /local/community/lovelace-xiaomi-vacuum-card/xiaomi-vacuum-card.js
       type: module
-    - url: /local/community/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
-      type: module
     - url: /local/community/MeteoalarmCard/meteoalarm-card.js
       type: module
     - url: /local/community/mini-graph-card/mini-graph-card-bundle.js

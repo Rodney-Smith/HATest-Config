@@ -1,7 +1,7 @@
 ###############################################################################
 #  @author         :  Rodney Smith
 #  @date           :  06/22/2022
-#  @homeassistant  :  Lux
+#  @homeassistant  :  NWS
 #  @description    :  This is the package for NWS ALERTS USING THE CUSTOM 
 #                     COMPONENT
 #                               https://www.home-assistant.io/integrations/nws/

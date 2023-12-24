@@ -9,20 +9,12 @@ homeassistant:
 
 alert: !include_dir_merge_named alerts/
 
-automation: !include automations.yaml
-
 camera: !include_dir_list entities/cameras
-
-frontend:
-  themes: !include_dir_merge_named themes
 
 group: !include_dir_list entities/group
 
-input_boolean: !include_dir_merge_named input_boolean #!include input_booleans.yaml
-
-input_number: !include input_number.yaml
-
-input_text: !include input_text.yaml
+#HACS  Add-On
+battery_notes:
 
 light: !include_dir_list entities/lights
 
@@ -30,11 +22,24 @@ light: !include_dir_list entities/lights
 
 media_player: !include entities/media_players.yaml
 
-#mqtt: !include entities/mqtt.yaml
-
 notify: !include notify.yaml
 
-scene: !include scenes.yaml
+proximity:
+  home:
+    devices:
+      - device_tracker.rodney_iphone
+      - device_tracker.rodney_iphone_icloud
+      - device_tracker.gina_iphone
+      - device_tracker.gina_iphone_icloud
+    tolerance: 10
+    unit_of_measurement: 'mi'
+  work:
+    devices:
+      - device_tracker.rodney_iphone
+      - device_tracker.rodney_iphone_icloud
+      - device_tracker.work_phone
+    tolerance: 10
+    unit_of_measurement: 'mi'
 
 sensor: !include_dir_merge_list entities/sensors
 

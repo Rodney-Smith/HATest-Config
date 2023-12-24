@@ -1,0 +1,60 @@
+substitutions:
+  name: btproxy-9910b8
+  friendly_name: Office Bluetooth Proxy
+
+#packages:
+#  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: false
+  project:
+    name: esphome.bluetooth-proxy
+    version: "1.0"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  manual_ip:
+    static_ip: !secret ip_btproxy_9910b8
+    gateway: !secret ip_gateway
+    subnet: !secret ip_subnet
+    dns1: !secret ip_dns
+  ap: 
+    ssid: ${name}_AP
+    password: !secret wifi_ap_pass
+    ap_timeout: 3min
+
+api:
+  encryption:
+    key: !secret btproxy_9910b8
+
+ota:
+  password: !secret esphome_ota
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+logger:
+improv_serial:
+
+dashboard_import:
+  package_import_url: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+
+esp32_ble_tracker:
+  scan_parameters:
+    # We currently use the defaults to ensure Bluetooth
+    # can co-exist with WiFi In the future we may be able to
+    # enable the built-in coexistence logic in ESP-IDF
+    active: true
+
+bluetooth_proxy:
+  active: true
+
+button:
+- platform: safe_mode
+  name: Safe Mode Boot
+  entity_category: diagnostic

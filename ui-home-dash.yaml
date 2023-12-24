@@ -12,7 +12,7 @@ views:
       - type: custom:mushroom-chips-card
         chips:
           - type: entity
-            entity: sensor.todays_high_temp
+            entity: sensor.high_temp
           - type: weather
             entity: weather.local
             show_conditions: true
@@ -677,7 +677,7 @@ views:
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -975,7 +975,7 @@ views:
         name: Thermostat
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -1163,7 +1163,7 @@ views:
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -1273,7 +1273,7 @@ views:
             name: Occupancy
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -1462,7 +1462,7 @@ views:
             name: Motion
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -1583,7 +1583,7 @@ views:
             name: Motion
       - type: entity-filter
         entities:
-          - entity: device_tracker.einstein_iphone
+          - entity: device_tracker.rodney_iphone
             name: Rodney
           - entity: sensor.rodney_phone
             name: Rodney
@@ -1805,7 +1805,7 @@ views:
             entity: sensor.my_windspeed
             name: Wind Speed
           - type: custom:mushroom-entity-card
-            entity: sensor.todays_high_temp
+            entity: sensor.high_temp
           - type: custom:mushroom-entity-card
             entity: sensor.tomorrows_high_temp
           - type: custom:mushroom-entity-card
@@ -1813,9 +1813,9 @@ views:
           - type: custom:mushroom-entity-card
             entity: sensor.tomorrow_forecast
           - type: custom:mushroom-entity-card
-            entity: sensor.todays_low_temp
+            entity: sensor.low_temp
           - type: custom:mushroom-entity-card
-            entity: sensor.tonights_low_temp
+            entity: sensor.tomorrow_low_temp
           - type: custom:mushroom-entity-card
             entity: sensor.my_visibility
             name: Visibility
@@ -3348,7 +3348,7 @@ views:
         type: grid
         cards:
           - type: custom:mushroom-entity-card
-            entity: sensor.einstein_iphone_geocoded_location
+            entity: sensor.rodney_iphone_geocoded_location
             name: Rodney's Location
           - type: custom:mushroom-entity-card
             entity: sensor.gina_iphone_geocoded_location

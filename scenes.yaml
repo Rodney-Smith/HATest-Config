@@ -458,24 +458,21 @@
       state: 'on'
   icon: mdi:pine-tree
 - id: '1632366694370'
-  name: 4th of July
+  name: 4th of July-1
   entities:
     light.front_porch_1:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - '0'
-      - '1'
-      - '2'
-      - '3'
-      - '4'
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
       supported_color_modes:
       - color_temp
-      - hs
+      - rgb
       friendly_name: Front Porch 1
-      supported_features: 4
+      supported_features: 40
       color_mode: color_temp
       brightness: 255
+      color_temp_kelvin: 6535
       color_temp: 153
       hs_color:
       - 54.768
@@ -487,26 +484,21 @@
       xy_color:
       - 0.326
       - 0.333
-      effect: '0'
       state: 'on'
     light.front_porch_2:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - '0'
-      - '1'
-      - '2'
-      - '3'
-      - '4'
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
       supported_color_modes:
       - color_temp
-      - hs
+      - rgb
       friendly_name: Front Porch 2
-      supported_features: 4
-      color_mode: hs
+      supported_features: 40
+      color_mode: rgb
       brightness: 255
       hs_color:
-      - 225
+      - 225.176
       - 100
       rgb_color:
       - 0
@@ -515,23 +507,18 @@
       xy_color:
       - 0.137
       - 0.065
-      effect: '0'
       state: 'on'
     light.entrance:
-      min_mireds: 153
-      max_mireds: 500
-      effect_list:
-      - '0'
-      - '1'
-      - '2'
-      - '3'
-      - '4'
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
       supported_color_modes:
       - color_temp
-      - hs
+      - rgb
       friendly_name: Entrance
-      supported_features: 4
-      color_mode: hs
+      supported_features: 40
+      color_mode: rgb
       brightness: 255
       hs_color:
       - 0
@@ -543,9 +530,161 @@
       xy_color:
       - 0.701
       - 0.299
-      effect: '0'
       state: 'on'
   icon: mdi:firework
+  metadata: {}
+- id: '1688242623909'
+  name: 4th of July-2
+  entities:
+    light.front_porch_2:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch 2
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.entrance:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Entrance
+      supported_features: 40
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 225.176
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      state: 'on'
+    light.front_porch_1:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch 1
+      supported_features: 40
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+  icon: mdi:firework
+  metadata: {}
+- id: '1688242642460'
+  name: 4th of July-3
+  entities:
+    light.entrance:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Entrance
+      supported_features: 40
+      color_mode: color_temp
+      brightness: 255
+      color_temp_kelvin: 6535
+      color_temp: 153
+      hs_color:
+      - 54.768
+      - 1.6
+      rgb_color:
+      - 255
+      - 254
+      - 250
+      xy_color:
+      - 0.326
+      - 0.333
+      state: 'on'
+    light.front_porch_1:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch 1
+      supported_features: 40
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 225.176
+      - 100
+      rgb_color:
+      - 0
+      - 63
+      - 255
+      xy_color:
+      - 0.137
+      - 0.065
+      state: 'on'
+    light.front_porch_2:
+      min_color_temp_kelvin: 2857
+      max_color_temp_kelvin: 6666
+      min_mireds: 150
+      max_mireds: 350
+      supported_color_modes:
+      - color_temp
+      - rgb
+      friendly_name: Front Porch 2
+      supported_features: 40
+      color_mode: rgb
+      brightness: 255
+      hs_color:
+      - 0
+      - 100
+      rgb_color:
+      - 255
+      - 0
+      - 0
+      xy_color:
+      - 0.701
+      - 0.299
+      state: 'on'
+  icon: mdi:firework
+  metadata: {}
 - id: '1651438465468'
   name: Warm White
   icon: mdi:lightbulb-group-outline

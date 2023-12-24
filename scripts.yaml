@@ -115,3 +115,455 @@ test:
       - 0
   mode: single
   icon: mdi:led-strip-variant
+text_debug:
+  alias: Text - DEBUG
+  sequence:
+  - condition: state
+    entity_id: input_boolean.notify_text_debug
+    state: 'on'
+  - service: notify.ios_rodney
+    data_template:
+      title: '{{title}}'
+      message: '{{message}}'
+      data: '{{data}}'
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: data
+      description: Enter an optional message response
+notify_text_rodney:
+  alias: Notify - Text Rodney
+  description: Notify all devices assigned to Rodney
+  sequence:
+  - condition: state
+    entity_id: input_boolean.notify_text_rodney
+    state: 'on'
+  - service: notify.ios_rodney
+    data_template:
+      title: '{{title}}'
+      message: '{{message}}'
+      data: '{{data}}'
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: data
+      description: Enter an optional message response
+      default: '{}'
+      required: true
+  mode: single
+notify_text_gina:
+  alias: Notify - Text Gina
+  sequence:
+  - condition: state
+    entity_id: input_boolean.notify_text_gina
+    state: 'on'
+  - service: notify.ios_gina
+    data_template:
+      title: '{{title}}'
+      message: '{{message}}'
+      data: '{{data}}'
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: data
+      description: Enter an optional message response
+      default: '{}'
+      required: true
+  mode: single
+notify_text:
+  alias: Notify - Text
+  sequence:
+  - condition: state
+    entity_id: input_boolean.notify_text
+    state: 'on'
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: '{{who == "rodney"}}'
+      - condition: state
+        entity_id: input_boolean.notify_text_rodney
+        state: 'on'
+      sequence:
+      - service: notify.ios_rodney
+        data:
+          title: '{{title}}'
+          message: '{{message}}'
+          data: '{{data}}'
+    - conditions:
+      - condition: template
+        value_template: '{{who == "gina"}}'
+      - condition: state
+        entity_id: input_boolean.notify_text_gina
+        state: 'on'
+      sequence:
+      - service: notify.ios_gina
+        data:
+          title: '{{title}}'
+          message: '{{message}}'
+          data: '{{data}}'
+    default:
+    - service: notify.all_ios
+      data:
+        title: '{{title}}'
+        message: '{{message}}'
+        data: '{{data}}'
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: data
+      description: Enter an optional message response
+      default: '{}'
+      required: true
+text_alert:
+  alias: Text - Alert
+  sequence:
+  - service: "{% if who == 'rodney' %}\n  notify.ios_rodney\n{% elif who == 'gina'
+      %}\n  notify.ios_gina\n{% else %}\n  notify.all_ios\n{% endif %}\n"
+    data:
+      title: '{{title}}'
+      message: '{{message}}'
+      data: '{{data}}'
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: data
+      description: Enter an optional message response
+text_alert_image:
+  alias: Text - Alert Image
+  sequence:
+  - service: "{% if who == 'rodney' %}\n  notify.ios_rodney\n{% elif who == 'gina'
+      %}\n  notify.ios_gina\n{% else %}\n  notify.all_ios\n{% endif %}\n"
+    data:
+      title: '{{title}}'
+      message: '{{message}}'
+      data:
+        attachment:
+          url: '{{url}}'
+          content-type: '{{content_type}}'
+          hide-thumbnail: false
+  fields:
+    title:
+      selector:
+        text:
+      name: title
+      description: Enter the title of the notification
+      required: true
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the message of the notification
+      required: true
+    data:
+      selector:
+        text:
+      name: url
+      description: Enter the url to the attachment
+      required: true
+    content-type:
+      selector:
+        text:
+      name: content-type
+      description: Enter the content type of the attachment
+      required: true
+notify_alert:
+  alias: Notify - Alert
+  sequence:
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'off'
+  - condition: state
+    entity_id: input_boolean.notify_audible
+    state: 'on'
+  - service: script.notify_alert_gina
+    data:
+      message: '{{message}}'
+  - service: script.notify_alert_rodney
+    data:
+      message: '{{message}}'
+  fields:
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the text of the message
+      required: true
+jarvis_alert:
+  alias: Jarvis Alert
+  sequence:
+  - service: mqtt.publish
+    data_template:
+      topic: house/polly/lastmsg
+      payload: This message is from {{ now().strftime("%-I") }}:{{ now().strftime("%M")
+        }} {{ now().strftime("%p") }}. {{ message | striptags | truncate(220)}}
+      retain: true
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'main_bedroom' %}\n  media_player.bedroom_echo_dot\n{% elif who
+        == 'office' %}\n  media_player.office_echo_show\n{% elif who == 'guest1' %}\n
+        \ media_player.guest1_echo_dot\n{% elif who == 'living_room' %}\n  media_player.sound_system\n{%
+        else %}\n  {% if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.office_echo_show\n  {% endif %}\n{% endif %}\n"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'main_bedroom' %}\n  media_player.bedroom_echo_dot\n{% elif who
+        == 'office' %}\n  media_player.office_echo_show\n{% elif who == 'guest1' %}\n
+        \ media_player.guest1_echo_dot\n{% elif who == 'living_room' %}\n  media_player.sound_system\n{%
+        else %}\n  {% if states.input_boolean.notify_audible.state == 'on' %}\n    media_player.sound_system\n
+        \ {% else %}\n    media_player.office_echo_show\n  {% endif %}\n{% endif %}\n"
+      volume_level: "{% if who == 'kitchen' %}\n  .80\n{% elif who == 'main_bedroom'
+        %}\n  .50\n{% elif who == 'office' %}\n  .65\n{% elif who == 'guest1' %}\n
+        \ .50\n{% elif who == 'living_room' %}\n  .99\n{% else %}\n  {% if states.input_boolean.notify_audible.state
+        == 'on' %}\n    .75\n  {% else %}\n    .99\n  {% endif %}\n{% endif %}\n"
+speech_engine:
+  alias: Speech Engine
+  sequence:
+  - service: mqtt.publish
+    data_template:
+      topic: house/polly/lastmsg
+      payload: This message is from {{ now().strftime("%-I") }}:{{ now().strftime("%M")
+        }} {{ now().strftime("%p") }}. {{ message | striptags | truncate(220)}}
+      retain: true
+  - service: mqtt.publish
+    data_template:
+      topic: house/polly/lastloc
+      payload: '{{who}}'
+      retain: true
+  - condition: state
+    entity_id: input_boolean.notify_audible
+    state: 'on'
+  - condition: state
+    entity_id: group.family
+    state: home
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'off'
+  - service: "{% if voice == 'nabu' %}\n  script.nabu_voice      \n{% elif who in
+      ['kitchen_echo_flex','media_player.kitchen_echo_flex','kitchen'] %}\n  {% if
+      is_state('media_player.kitchen_echo_flex','playing') %}\n    {% set who = 'kitchen'
+      %}\n    script.jarvis_voice\n  {% else %}\n    {% set who = 'kitchen_echo_flex'
+      %}\n    script.alexa_voice\n  {% endif %}\n{% elif who in ['lr_echo_show5',
+      'media_player.lr_echo_show5','living_room']  %}\n  {% if is_state('media_player.lr_echo_show5','playing')
+      %}\n    {% set who = 'living_room' %}\n    script.jarvis_voice\n  {% else %}\n
+      \   {% set who = 'lr_echo_show5' %}\n    script.alexa_voice\n  {% endif %}\n{%
+      elif who in ['guest1','media_player.guest1_echo_dot']  %}\n  {% if is_state('media_player.guest1_echo_dot','playing')
+      %}\n    {% set who = 'guest1' %}\n    script.jarvis_voice\n  {% else %}\n    {%
+      set who = 'media_player.guest1_echo_dot' %}\n    script.alexa_voice\n  {% endif
+      %}\n{% elif who in ['main_bedroom']  %}\n  script.jarvis_voice\n{% else %}\n
+      \ {% set who = 'lr_echo_show5' %}\n  script.alexa_voice\n{% endif %}\n"
+    data:
+      who: '{{who}}'
+      message: '{{message}}'
+alexa_voice:
+  alias: Voice - Alexa
+  sequence:
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{% if who in ['kitchen_echo_flex','media_player.kitchen_echo_flex','kitchen']
+        %}\n  notify.alexa_media_kitchen_echo_flex\n{% elif who in ['bedroom1','media_player.guest1_echo_dot','guest1']
+        %}\n  notify.alexa_media_guest1_echo_dot\n{% elif who in ['lr_echo_show5','media_player.lr_echo_show5','living_room']
+        %}\n  notify.alexa_media_lr_echo_show5\n{% else %}\n  notify.alexa_media_lr_echo_show5\n{%
+        endif %}\n"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{% if who in ['kitchen_echo_flex','media_player.kitchen_echo_flex','kitchen']
+        %}\n  notify.alexa_media_kitchen_echo_flex\n{% elif who in ['bedroom1','media_player.guest1_echo_dot','guest1']
+        %}\n  notify.alexa_media_guest1_echo_dot\n{% elif who in ['lr_echo_show5','media_player.lr_echo_show5','living_room']
+        %}\n  notify.alexa_media_lr_echo_show5\n{% else %}\n  notify.alexa_media_lr_echo_show5\n{%
+        endif %}\n"
+      volume_level: "{% if is_state('input_boolean.notify_audible.state','on') %}\n
+        \ .6\n{% else %}\n  .4\n{% endif %}\n"
+  - service: "{% if who in ['kitchen_echo_flex','media_player.kitchen_echo_flex','kitchen']
+      %}\n  notify.alexa_media_kitchen_echo_flex\n{% elif who in ['bedroom1','media_player.guest1_echo_dot','guest1']
+      %}\n  notify.alexa_media_guest1_echo_dot\n{% elif who in ['lr_echo_show5','media_player.lr_echo_show5','living_room']
+      %} notify.alexa_media_lr_echo_show5 {% else %}\n  notify.alexa_media_lr_echo_show5\n{%
+      endif %}\n"
+    data:
+      message: '{{message}}'
+      data:
+        type: tts
+jarvis_voice:
+  alias: Voice - Jarvis
+  sequence:
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'guest1' %}\n  media_player.guest1_echo_dot\n{% elif who == 'main_bedroom'
+        %}\n  media_player.bedroom_echo_dot\n{% elif who == 'office' %}\n  media_player.office_echo_show\n{%
+        elif who == 'living_room' %}\n  media_player.sound_system\n{% else %}\n  {%
+        if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.kitchen_echo_flex\n  {% endif %}\n{% endif %}\n"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'guest1' %}\n  media_player.guest1_echo_dot\n{% elif who == 'main_bedroom'
+        %}\n  media_player.bedroom_echo_dot\n{% elif who == 'office' %}\n  media_player.office_echo_show\n{%
+        elif who == 'living_room' %}\n  media_player.sound_system\n{% else %}\n  {%
+        if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.kitchen_echo_flex\n  {% endif %}\n{% endif %}\n"
+      volume_level: "{% if states.input_boolean.notify_audible.state == 'on' %}\n
+        \ {% if who == 'main_bedroom' %}\n    {{ states('input_number.tts_echo_volume')
+        | float }}\n  {% elif who == 'living_room' %}\n    {{ states('input_number.tts_echo_volume')
+        | float }}\n  {% else %}\n    {{ states('input_number.tts_announcement_volume')
+        | float }}\n  {% endif %} \n{% else %}\n  {{ states('input_number.tts_echo_volume')
+        | float }}\n{% endif %}\n"
+nabu_voice:
+  alias: Voice - nabu casa
+  sequence:
+  - service: media_player.turn_on
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'guest1' %}\n  media_player.guest1_echo_dot\n{% elif who == 'main_bedroom'
+        %}\n  media_player.bedroom_echo_dot\n{% elif who == 'office' %}\n  media_player.office_echo_show\n{%
+        elif who == 'living_room' %}\n  media_player.sound_system\n{% else %}\n  {%
+        if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.kitchen_echo_flex\n  {% endif %}\n{% endif %}\n"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'guest1' %}\n  media_player.guest1_echo_dot\n{% elif who == 'main_bedroom'
+        %}\n  media_player.bedroom_echo_dot\n{% elif who == 'office' %}\n  media_player.office_echo_show\n{%
+        elif who == 'living_room' %}\n  media_player.sound_system\n{% else %}\n  {%
+        if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.kitchen_echo_flex\n  {% endif %}\n{% endif %}\n"
+      volume_level: "{% if states.input_boolean.notify_audible.state == 'on' %}\n
+        \ .8\n{% else %}\n  .4\n{% endif %}\n"
+  - service: tts.cloud_say
+    data_template:
+      entity_id: "{% if who == 'kitchen' %}\n  media_player.kitchen_echo_flex\n{%
+        elif who == 'guest1' %}\n  media_player.guest1_echo_dot\n{% elif who == 'main_bedroom'
+        %}\n  media_player.bedroom_echo_dot\n{% elif who == 'office' %}\n  media_player.office_echo_show\n{%
+        elif who == 'living_room' %}\n  media_player.sound_system\n{% else %}\n  {%
+        if states.input_boolean.notify_audible.state == 'on' %}\n  media_player.sound_system\n
+        \ {% else %}\n  media_player.kitchen_echo_flex\n  {% endif %}\n{% endif %}\n"
+      message: '{{ message }}'
+      cache: true
+      language: en-GB
+      options:
+        gender: male
+dim_living_room_volume:
+  alias: Volume - Down in Living Room
+  sequence:
+  - condition: state
+    entity_id: media_player.sound_system
+    state: playing
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.old_volume
+      value: '{{ states.media_player.sound_system.attributes.volume_level }}'
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.sound_system
+      volume_level: 0.2
+raise_living_room_volume:
+  alias: Volume - Up in Living Room
+  sequence:
+  - condition: state
+    entity_id: media_player.sound_system
+    state: playing
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.sound_system
+      volume_level: '{{ states.input_number.old_volume.state }}'
+notify_alert_rodney:
+  alias: Notify - Alert Rodney
+  sequence:
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'off'
+  - service: notify.{{state_attr('sensor.rodney_info','notify')}}
+    data:
+      message: '{{message}}'
+  fields:
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the text of the message
+      required: true
+  mode: single
+  icon: mdi:volume-high
+notify_alert_gina:
+  alias: Notify - Alert Gina
+  sequence:
+  - condition: state
+    entity_id: input_boolean.mode_vacation
+    state: 'off'
+  - service: notify.{{state_attr('sensor.gina_info','notify')}}
+    data:
+      message: '{{message}}'
+  fields:
+    message:
+      selector:
+        text:
+      name: message
+      description: Enter the text of the message
+      required: true
+  mode: single

@@ -18,6 +18,8 @@ views:
     cards:
       - type: custom:mushroom-chips-card
         chips:
+          - type: entity
+            entity: sensor.high_temp
           - type: weather
             entity: weather.local
             show_conditions: true
@@ -30,8 +32,10 @@ views:
             entity: alarm_control_panel.alarmo
             name: Alarmo
             content_info: state
+          - type: entity
+            entity: sensor.low_temp
         alignment: center
-      - type: vertical-stack
+      - type: horizontal-stack
         cards:
           - type: custom:mushroom-template-card
             primary: TEST SYSTEM
@@ -46,150 +50,156 @@ views:
               {% else %}
                 Hello, {{user}}!
               {% endif %}
-          - type: horizontal-stack
-            cards:
-              - type: custom:mushroom-template-card
-                primary: House
-                icon: mdi:home
-                icon_color: blue
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/house
-                layout: vertical
-              - type: custom:mushroom-template-card
-                primary: Lights
-                icon: mdi:lightbulb
-                layout: vertical
-                icon_color: |-
-                  {% if is_state('light.of_light_zb', 'on') 
-                  or is_state('light.wled_soundreactive', 'on')
-                  or is_state('light.left_floor_lamp', 'on')
-                  or is_state('light.right_floor_lamp', 'on')
-                  or is_state('light.light_strip_10fe', 'on')
-                  or is_state('light.light_strip_831a', 'on')
-                  or is_state('light.h61e1_led_strip', 'on') 
-                  or is_state('light.funhouse_light', 'on')
-                  or is_state('light.mb_ceiling_lights', 'on')
-                  or is_state('light.gina_nightstand', 'on')
-                  or is_state('light.rodney_nightstand', 'on')
-                  or is_state('light.h61e0_gina_led_strip', 'on')
-                  or is_state('light.h61e0_rodney_led_strip', 'on')
-                  or is_state('light.bedroom1_ceiling_lights', 'on')
-                  or is_state('light.bedroom1_light', 'on')
-                  or is_state('light.bedroom2_ceiling_lights', 'on')
-                  or is_state('light.bedroom2_light', 'on')
-                  or is_state('light.gina_light', 'on')
-                  or is_state('light.rodney_light', 'on')
-                  or is_state('light.kitchen_lights', 'on')
-                  or is_state('light.dining_room', 'on')
-                  or is_state('light.foyer', 'on')
-                  or is_state('light.hl_bulb_linen', 'on')
-                  or is_state('light.entrance', 'on')
-                  or is_state('light.side_porch_1', 'on')
-                  or is_state('light.side_porch_2', 'on')
-                  or is_state('light.front_porch_1', 'on')
-                  or is_state('light.front_porch_2', 'on')
-                  or is_state('light.first_light', 'on') 
-                  or is_state('switch.mj_s01_b71a3c', 'on') %}
-                    amber
-                  {% else %}
-                    grey
-                  {% endif %}
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/lights
-              - type: custom:mushroom-template-card
-                primary: Cameras
-                icon: mdi:camera
-                icon_color: green
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/cameras
-              - type: custom:mushroom-template-card
-                icon_color: red
-                primary: Smoker
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/smoker
-                icon: mdi:grill
-              - type: custom:mushroom-template-card
-                primary: Vacuum
-                icon: mdi:robot-vacuum
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/vacuum
-              - type: custom:mushroom-template-card
-                primary: Calendar
-                icon: mdi:calendar
-                icon_color: amber
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/calendar
-              - type: custom:mushroom-template-card
-                primary: Stocks
-                icon: mdi:cash
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/stocks
-                icon_color: ""
-              - type: custom:mushroom-template-card
-                primary: Sports
-                icon: mdi:baseball-bat
-                icon_color: green
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/sports
-              - type: custom:mushroom-template-card
-                primary: HA
-                icon: mdi:home-assistant
-                layout: vertical
-                icon_color: |-
-                  {% if is_state('update.home_assistant_core_update', 'on') 
-                     or is_state('update.home_assistant_operating_system_update', 'on')
-                     or is_state('update.home_assistant_supervisor_update', 'on')
-                     or is_state('update.esphome_update', 'on')
-                     or is_state('update.file_editor_update', 'on')
-                     or is_state('update.git_pull_update', 'on')
-                     or is_state('update.grafana_update', 'on')
-                     or is_state('update.influxdb_update', 'on')
-                     or is_state('update.mariadb_update', 'on')
-                     or is_state('update.phpmyadmin_update', 'on')
-                     or is_state('update.samba_share_update', 'on')
-                     or is_state('update.studio_code_server_update', 'on') 
-                     or is_state('update.tasmobackup_update', 'on') 
-                     or is_state('update.advanced_ssh_web_terminal_update', 'on')
-                     or is_state('update.home_assistant_google_drive_backup_update', 'on')
-                     or is_state('update.matter_server_update', 'on')
-                     or is_state('update.piper_update', 'on')
-                     or is_state('update.whisper_update', 'on')
-                     or is_state('update.zigbee2mqtt_update', 'on') %}
-                     orange
-                  {% elif is_state('update.pi_hole_core_update_available', 'on')
-                     or is_state('update.pi_hole_ftl_update_available', 'on')
-                     or is_state('update.pi_hole_web_update_available', 'on') %}
-                     pink
-                  {% elif is_state('update.hacs_update', 'on') %}
-                     yellow
-                  {% else %}
-                     blue
-                  {% endif %}
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/home-assistant
-              - type: custom:mushroom-template-card
-                icon_color: red
-                primary: Earth
-                layout: vertical
-                tap_action:
-                  action: navigate
-                  navigation_path: /home-dash/earth
-                icon: mdi:earth
+          - type: tile
+            entity: person.rodney
+            show_entity_picture: true
+          - type: tile
+            entity: person.gina
+            show_entity_picture: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-template-card
+            primary: House
+            icon: mdi:home
+            icon_color: blue
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/house
+            layout: vertical
+          - type: custom:mushroom-template-card
+            primary: Lights
+            icon: mdi:lightbulb
+            layout: vertical
+            icon_color: |-
+              {% if is_state('light.of_light_zb', 'on') 
+              or is_state('light.wled_soundreactive', 'on')
+              or is_state('light.left_floor_lamp', 'on')
+              or is_state('light.right_floor_lamp', 'on')
+              or is_state('light.light_strip_10fe', 'on')
+              or is_state('light.light_strip_831a', 'on')
+              or is_state('light.h61e1_led_strip', 'on') 
+              or is_state('light.funhouse_light', 'on')
+              or is_state('light.mb_ceiling_lights', 'on')
+              or is_state('light.gina_nightstand', 'on')
+              or is_state('light.rodney_nightstand', 'on')
+              or is_state('light.h61e0_gina_led_strip', 'on')
+              or is_state('light.h61e0_rodney_led_strip', 'on')
+              or is_state('light.bedroom1_ceiling_lights', 'on')
+              or is_state('light.bedroom1_light', 'on')
+              or is_state('light.bedroom2_ceiling_lights', 'on')
+              or is_state('light.bedroom2_light', 'on')
+              or is_state('light.gina_light', 'on')
+              or is_state('light.rodney_light', 'on')
+              or is_state('light.kitchen_lights', 'on')
+              or is_state('light.dining_room', 'on')
+              or is_state('light.foyer', 'on')
+              or is_state('light.hl_bulb_linen', 'on')
+              or is_state('light.entrance', 'on')
+              or is_state('light.side_porch_1', 'on')
+              or is_state('light.side_porch_2', 'on')
+              or is_state('light.front_porch_1', 'on')
+              or is_state('light.front_porch_2', 'on')
+              or is_state('light.first_light', 'on') 
+              or is_state('switch.mj_s01_b71a3c', 'on') %}
+                amber
+              {% else %}
+                grey
+              {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/lights
+          - type: custom:mushroom-template-card
+            primary: Cameras
+            icon: mdi:camera
+            icon_color: green
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/cameras
+          - type: custom:mushroom-template-card
+            icon_color: red
+            primary: Smoker
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/smoker
+            icon: mdi:grill
+          - type: custom:mushroom-template-card
+            primary: Vacuum
+            icon: mdi:robot-vacuum
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/vacuum
+          - type: custom:mushroom-template-card
+            primary: Calendar
+            icon: mdi:calendar
+            icon_color: amber
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/calendar
+          - type: custom:mushroom-template-card
+            primary: Stocks
+            icon: mdi:cash
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/stocks
+            icon_color: ""
+          - type: custom:mushroom-template-card
+            primary: Sports
+            icon: mdi:baseball-bat
+            icon_color: green
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/sports
+          - type: custom:mushroom-template-card
+            primary: HA
+            icon: mdi:home-assistant
+            layout: vertical
+            icon_color: |-
+              {% if is_state('update.home_assistant_core_update', 'on') 
+                  or is_state('update.home_assistant_operating_system_update', 'on')
+                  or is_state('update.home_assistant_supervisor_update', 'on')
+                  or is_state('update.esphome_update', 'on')
+                  or is_state('update.file_editor_update', 'on')
+                  or is_state('update.git_pull_update', 'on')
+                  or is_state('update.grafana_update', 'on')
+                  or is_state('update.influxdb_update', 'on')
+                  or is_state('update.mariadb_update', 'on')
+                  or is_state('update.phpmyadmin_update', 'on')
+                  or is_state('update.samba_share_update', 'on')
+                  or is_state('update.studio_code_server_update', 'on') 
+                  or is_state('update.tasmobackup_update', 'on') 
+                  or is_state('update.advanced_ssh_web_terminal_update', 'on')
+                  or is_state('update.home_assistant_google_drive_backup_update', 'on')
+                  or is_state('update.matter_server_update', 'on')
+                  or is_state('update.piper_update', 'on')
+                  or is_state('update.whisper_update', 'on')
+                  or is_state('update.zigbee2mqtt_update', 'on') %}
+                  orange
+              {% elif is_state('update.pi_hole_core_update_available', 'on')
+                  or is_state('update.pi_hole_ftl_update_available', 'on')
+                  or is_state('update.pi_hole_web_update_available', 'on') %}
+                  pink
+              {% elif is_state('update.hacs_update', 'on') %}
+                  yellow
+              {% else %}
+                  blue
+              {% endif %}
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/home-assistant
+          - type: custom:mushroom-template-card
+            icon_color: red
+            primary: Earth
+            layout: vertical
+            tap_action:
+              action: navigate
+              navigation_path: /home-dash/earth
+            icon: mdi:earth
       - type: vertical-stack
         cards:
           - type: custom:mushroom-title-card

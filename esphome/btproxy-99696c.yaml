@@ -33,6 +33,10 @@ api:
 ota:
   password: !secret esphome_ota
 
+# https://esphome.io/components/web_server.html
+web_server:
+  local: true
+
 esp32:
   board: esp32dev
   framework:

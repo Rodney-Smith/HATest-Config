@@ -1,3 +1,9 @@
+###############################################################################
+#  @author         :  Rodney Smith
+#  @date           :  08/14/2023
+#  @entity         :  Stats
+#  @description    :  Entity Statistics
+###############################################################################
 - platform: history_stats
   name: Rodney Driving Time
   entity_id: binary_sensor.rodney_driving

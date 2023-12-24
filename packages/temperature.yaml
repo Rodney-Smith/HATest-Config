@@ -116,24 +116,6 @@ sensor:
 
   - platform: template
     sensors:
-      outside_temperature:
-        unique_id: a5d21ebf-07e4-4525-b52b-0fe03acbd3f6
-        friendly_name: Outside Temperature
-        value_template: >
-          {% set temperatures = [
-            (state_attr('weather.kmyv_daynight','temperature') | float(default=0)),
-            (state_attr('weather.local','temperature') | float(default=0)),
-            (states('sensor.back_meter_temperature') | float(default=0)),
-            (states('sensor.patio_meter_temperature') | float(default=0)),
-            (states('sensor.wall_meter_temperature') | float(default=0)),
-            (states('sensor.blink_back_patio_temperature') | float(default=0)) ] %}
-          {% set temps = temperatures | reject("==", 0) | list %}
-          {{(temps | sum / temps | count) | round(1)}}
-        unit_of_measurement: "°F"
-        device_class: temperature
-
-  - platform: template
-    sensors:
       living_space_temperature:
         unique_id: 8e57bcee-1bca-48ff-afd9-58e77ad4cade
         friendly_name: Living Space Temperature
@@ -165,5 +147,23 @@ sensor:
             (states('sensor.blink_front_door_temperature') | float(default=0)) ] %}
           {% set temps = temperatures | reject("==", 0) | list %}
           {{ ( temps | sum / temps | count ) | round(1) }}
+        unit_of_measurement: "°F"
+        device_class: temperature
+
+  - platform: template
+    sensors:
+      outside_temperature:
+        unique_id: a5d21ebf-07e4-4525-b52b-0fe03acbd3f6
+        friendly_name: Outside Temperature
+        value_template: >
+          {% set temperatures = [
+            (state_attr('weather.kmyv_daynight','temperature') | float(default=0)),
+            (state_attr('weather.local','temperature') | float(default=0)),
+            (states('sensor.back_meter') | float(default=0)),
+            (states('sensor.patio_meter') | float(default=0)),
+            (states('sensor.wall_meter') | float(default=0)),
+            (states('sensor.blink_back_patio_temperature') | float(default=0)) ] %}
+          {% set temps = temperatures | reject("==", 0) | list %}
+          {{(temps | sum / temps | count) | round(1)}}
         unit_of_measurement: "°F"
         device_class: temperature

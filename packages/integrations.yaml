@@ -1,6 +1,6 @@
 ###############################################################################
 #  @author         :  Rodney Smith 
-#  @date           :  08/12/2023
+#  @date           :  12/10/2023
 #  @package        :  Integrations
 #  @description    :  All the Integrations 
 #
@@ -8,10 +8,18 @@
 # https://github.com/thejeffreystone/homeassistant-config/blob/main/config/packages/integrations.yaml
 ###############################################################################
 
-circadian_lighting:
+# https://www.home-assistant.io/integrations/alexa.smart_home/
+alexa:
+  smart_home:
 
-# https://www.home-assistant.io/components/config/
-config:
+# https://www.home-assistant.io/docs/automation/
+automation: !include ../automations.yaml
+
+# https://www.home-assistant.io/integrations/bluetooth/
+bluetooth:
+
+# https://github.com/claytonjn/hass-circadian_lighting/wiki/Installation-Instructions
+circadian_lighting:
 
 # Using the HACS Daily Snapshot Clean Up Plugin 
 #clean_up_snapshots_service:
@@ -19,23 +27,35 @@ config:
 #  token: !secret snapshot_token
 #  number_of_snapshots_to_keep: 3
 
-# https://www.home-assistant.io/integrations/default_config
+# https://www.home-assistant.io/components/config/
+config:
+
+# https://www.home-assistant.io/integrations/default_config/
 default_config: ~
 
-# Ecobee Thermostat
+# https://www.home-assistant.io/integrations/ecobee
 ecobee:
   api_key: !secret ecobee_token
 
-emulated_hue:
+# https://www.home-assistant.io/integrations/emulated_hue
+#emulated_hue:
   #  type: alexa
-  expose_by_default: false
+  #expose_by_default: false
+
+# https://www.home-assistant.io/integrations/frontend/
+frontend:
+  themes: !include_dir_merge_named ../themes
 
 # Depricated in 2024.2.0
+# categories: Drought, Earthquake, Flood, Tropical Cyclone, Tsunami, Volcano, Wild Fire
+# https://www.home-assistant.io/integrations/gdacs
 #gdacs:
 #  categories:
+#    - Drought
+#    - Flood
+#    - Wild Fire
 #    - Earthquake
-#    - Tropical Cyclone
-#  radius: 500
+#  radius: 250
 #  latitude: !secret ha_latitude
 #  longitude: !secret ha_longitude
 
@@ -44,6 +64,29 @@ emulated_hue:
 #  client_id: !secret google_client_id
 #  client_secret: !secret google_client_secret
 
+# https://www.home-assistant.io/integrations/http/
+http:
+  server_port: !secret ha_server_port
+  ssl_certificate: !secret ha_ssl_cert
+  ssl_key: !secret ha_ssl_key
+  # Enable parsing of the X-Forwarded-For header, passing on the client’s
+  # correct IP address, since I'm using a proxied setup.
+#  use_x_forwarded_for: true
+  # List of trusted proxies, consisting of IP addresses or networks,
+  # that are allowed to set the X-Forwarded-For header.
+#  trusted_proxies: !secret http_trusted_proxies
+  ip_ban_enabled: false
+  # Number of failed login attempts from a single IP after which it will
+  # be automatically banned.
+  login_attempts_threshold: 5
+
+# https://www.home-assistant.io/integrations/input_number/
+input_number: !include ../entities/input_number.yaml
+
+# https://www.home-assistant.io/integrations/input_text/
+input_text: !include ../entities/input_text.yaml
+
+# https://www.home-assistant.io/integrations/intent_script
 intent:
 
 intent_script:
@@ -59,16 +102,28 @@ logbook: !include ../logging/logbook.yaml
 logger: !include ../logging/logger.yaml
 recorder: !include ../logging/recorder.yaml
 
+# https://www.home-assistant.io/components/mobile_app/
+mobile_app:
+
+# https://www.home-assistant.io/components/person/
 person:
 
 # https://www.home-assistant.io/integrations/python_script/
 python_script:
 
+# https://github.com/custom-components/readme
 readme:
   convert_lovelace: true
 
 # https://www.home-assistant.io/integrations/rest_command/
 rest_command: !include_dir_merge_named ../entities/rest_command
+
+# https://www.home-assistant.io/components/scene/
+scene: !include ../scenes.yaml
+
+# https://www.home-assistant.io/integrations/script/
+script: !include ../scripts.yaml
+script split: !include_dir_merge_named ../scripts
 
 # https://www.home-assistant.io/integrations/ssdp/
 ssdp:
@@ -90,3 +145,9 @@ telegram_bot:
     allowed_chat_ids:
       - !secret telegram_id_rs
       - !secret telegram_id_ha
+
+# https://www.home-assistant.io/integrations/zeroconf/
+zeroconf:
+
+# https://www.home-assistant.io/integrations/zone/
+zone: !include_dir_list ../entities/zones
