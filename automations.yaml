@@ -20,7 +20,7 @@
       entity_id: a64c463aa76b00b6bc077cb82dd34cd6
       domain: light
       brightness_pct: 80
-    - service: notify.alexa_media_of_echo_show8
+    - service: notify.alexa_media_office_echo_show
       data:
         message: Gina has arrived home!
         data:
@@ -48,7 +48,7 @@
       device_id: f704eb5b6018c95dc378e65701b52152
       entity_id: a64c463aa76b00b6bc077cb82dd34cd6
       domain: light
-    - service: notify.alexa_media_of_echo_show8
+    - service: notify.alexa_media_office_echo_show
       data:
         message: Gina has left the house.
         data:
@@ -105,7 +105,7 @@
       device_id: 0fd9f5332eed34a6575f22bee2314753
       entity_id: light.rodney_light
       domain: light
-    - service: notify.alexa_media_lr_echo_show5
+    - service: notify.alexa_media_office_echo_show
       data:
         message: Rodney has left the house.
         data:
@@ -233,7 +233,7 @@
       data:
         text: The front door has been open for 5 mins, are you going to close it?
         event_id: actionable_notification_lock_left_unlocked
-        alexa_device: media_player.of_echo_show8
+        alexa_device: media_player.office_echo_show
   mode: single
 - id: f03d0f12fd434ad6bfcb5eeb2cb7d3e3
   alias: Front Door Open Response
@@ -272,7 +272,7 @@
       data:
         text: the office has been empty for a while. Should I turn off the lights
         event_id: actionable_notification_office_lights
-        alexa_device: media_player.of_echo_show8
+        alexa_device: media_player.office_echo_show
   mode: single
 - id: 316e573e591143318df621a2f90c2f37
   alias: Alexa Actionable Response 2 (empty office)
@@ -322,7 +322,7 @@
   use_blueprint:
     path: Community/start_music.yaml
     input:
-      alexa_entity_id: media_player.of_echo_show8
+      alexa_entity_id: media_player.office_echo_show
       song_name: Stuck in the middle with you
       source_apple: true
       tag_id: 04-A8-9A-2A-EF-6E-80
@@ -398,11 +398,11 @@
         media_content_id: Snoop Dogg Essentials
         media_content_type: playlist
       target:
-        entity_id: media_player.of_echo_show8
+        entity_id: media_player.office_echo_show
     - service: media_player.media_play
       data: {}
       target:
-        entity_id: media_player.of_echo_show8
+        entity_id: media_player.office_echo_show
   mode: single
 - id: e79b3d7a-3613-43ed-bbab-eb56d7894c74
   alias: Zone Notification
@@ -420,14 +420,14 @@
     - condition: template
       value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
     - condition: state
-      entity_id: input_boolean.text_notifications
+      entity_id: input_boolean.notify_text
       state: "on"
   action:
     - variables:
         old: "{{ trigger.from_state.state }}"
         new: "{{ trigger.to_state.state }}"
         who: "{{ trigger.to_state.name }}"
-    - device_id: 96c538d28429bc4d9bb8bcff078540bf
+    - device_id: 9fa8d0c48027387c6683f62b59ab84a9
       domain: mobile_app
       type: notify
       message:
@@ -667,7 +667,7 @@
   alias: Notification Volume Normal
   trigger:
     - platform: state
-      entity_id: input_boolean.audible_notifications
+      entity_id: input_boolean.notify_audible
       to: "on"
     - platform: state
       entity_id:
@@ -676,7 +676,7 @@
     - service: media_player.volume_set
       data:
         entity_id:
-          - media_player.of_echo_show8
+          - media_player.office_echo_show
           - media_player.left_echo_dot
           - media_player.right_echo_dot
           - media_player.lr_echo_show5
@@ -795,15 +795,17 @@
   trigger:
     - platform: state
       entity_id:
-        - sensor.blitzortung_lightning_counter
+        - sensor.home_lightning_counter
       from: "0"
   condition:
-    - condition: state
-      entity_id: sensor.home_occupied
-      state: "True"
-    - condition: numeric_state
-      entity_id: sensor.blitzortung_lightning_distance
-      below: 25
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.home_occupied
+          state: "on"
+        - condition: numeric_state
+          entity_id: sensor.home_lightning_distance
+          below: 25
   action:
     - device_id: 9fa8d0c48027387c6683f62b59ab84a9
       domain: mobile_app
@@ -981,7 +983,7 @@
             - condition: trigger
               id: Light_Needed
             - condition: state
-              entity_id: input_boolean.audible_notifications
+              entity_id: input_boolean.notify_audible
               state: "off"
           sequence:
             - service: light.turn_on
@@ -1081,7 +1083,7 @@
             - condition: trigger
               id: Light_Needed
             - condition: state
-              entity_id: input_boolean.audible_notifications
+              entity_id: input_boolean.notify_audible
               state: "off"
           sequence:
             - service: light.turn_on
@@ -1182,7 +1184,7 @@
             - condition: trigger
               id: Light_Needed
             - condition: state
-              entity_id: input_boolean.audible_notifications
+              entity_id: input_boolean.notify_audible
               state: "off"
           sequence:
             - service: light.turn_on
@@ -1283,7 +1285,7 @@
             - condition: trigger
               id: Light_Needed
             - condition: state
-              entity_id: input_boolean.audible_notifications
+              entity_id: input_boolean.notify_audible
               state: "off"
           sequence:
             - service: light.turn_on
@@ -1319,4 +1321,36 @@
   trigger: []
   condition: []
   action: []
+  mode: single
+- id: "1703453700273"
+  alias: Notify - Audible Toggle
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.audible_notification_off
+      id: AudibleOFF
+    - platform: time
+      at: input_datetime.audible_notification_on
+      id: AudibleON
+  condition: []
+  action:
+    - choose:
+        - conditions:
+            - condition: trigger
+              id:
+                - AudibleOFF
+          sequence:
+            - service: input_boolean.turn_off
+              target:
+                entity_id: input_boolean.audible_notifications
+              data: {}
+        - conditions:
+            - condition: trigger
+              id:
+                - AudibleON
+          sequence:
+            - service: input_boolean.turn_on
+              target:
+                entity_id: input_boolean.audible_notifications
+              data: {}
   mode: single
