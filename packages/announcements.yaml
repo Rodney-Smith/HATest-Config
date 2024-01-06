@@ -31,67 +31,40 @@ input_datetime:
     has_date: false
     has_time: true
 
-
 ################################
 # Announcment Automation - fires at the time of the above input_datetimes
 ################################
 automation:
-
-  - id: 81bee5ee-6820-4626-aebf-3deb8de69e4d
-    alias: Turn On Audible Notifications
-    initial_state: true
-    trigger:
-      platform: template
-      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.audible_notification_on', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
-    action:
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.audible_notifications
-
-  # Turn off audible notifications if they have't been turned off yet.
-  - id: e0e9c774-6abe-42aa-bdab-32108bebb0e9
-    alias: Turn Off Audible Notifications
-    initial_state: true
-    trigger:
-    - platform: template
-      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.audible_notification_off', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
-    condition:
-    - condition: state
-      entity_id: input_boolean.audible_notifications
-      state: 'on'
-    action:
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.audible_notifications
-
   - id: 1d8f396a-f6ec-460d-97e3-d11900418f95
     alias: Good Morning Report
     initial_state: true
     trigger:
       - platform: state
-        entity_id: binary_sensor.kitchen_occupancy
-        to: 'on'
+        entity_id: binary_sensor.office_occupancy
+        to: "on"
     condition:
       - condition: time
-        after: '06:45:00'
-        before: '08:30:00'
+        after: "06:45:00"
+        before: "08:00:00"
       - condition: state
         entity_id: input_boolean.good_morning_report
-        state: 'off'
+        state: "off"
     action:
-    - service: script.morning_briefing
-#    - service: script.twitter_notify
-      data:
-        message: >-
-          {{ [ "I just provided a morning briefing including weather, and traffic
-          conditions, and other things that ensure the residents of Anchorage House know what to expect today.",
-                "Time for the daily update. It was like that scene in Ironman where JARVIS gives the daily briefing but no one was listening. ",
-                "I have prepared a safety briefing to present to my residents but they would just ignore it.",
-                "Do you like to be prepared for the day? So do my residents. So I provided them with an update on whats happening today.",
-                "Sometimes I just like to be snarky, but this morning I decided to just tell everyone what is going on in the world.",
-                "#Homeassistant gives me the ability to make daily announcements like the one I just did using #Amazon Polly.",
-                "Each day at this time I provide the residents of this house an update that includes everything they need to know about the upcoming day. But with more snark."
-              ] | random }}
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.good_morning_report
+      - service: script.morning_briefing
+        #    - service: script.twitter_notify
+        data:
+          message: >-
+            {{ [ "I just provided a morning briefing including weather, and traffic
+            conditions, and other things that ensure the residents of Anchorage House know what to expect today.",
+                  "Time for the daily update. It was like that scene in Ironman where JARVIS gives the daily briefing but no one was listening. ",
+                  "I have prepared a safety briefing to present to my residents but they would just ignore it.",
+                  "Do you like to be prepared for the day? So do my residents. So I provided them with an update on whats happening today.",
+                  "Sometimes I just like to be snarky, but this morning I decided to just tell everyone what is going on in the world.",
+                  "#Homeassistant gives me the ability to make daily announcements like the one I just did using #Amazon Polly.",
+                  "Each day at this time I provide the residents of this house an update that includes everything they need to know about the upcoming day. But with more snark."
+                ] | random }}
+      - service: input_boolean.turn_on
+        entity_id: input_boolean.good_morning_report
 
   - id: e8580ba4-fa76-4185-818b-fba3c3cea41c
     alias: Master Bedroom Report
@@ -102,24 +75,24 @@ automation:
     condition:
       condition: state
       entity_id: binary_sensor.workday_sensor
-      state: 'on'
+      state: "on"
     action:
-    - service: script.morning_wakeup_report
+      - service: script.morning_wakeup_report
 
   - id: e1cb2f28-0423-11eb-adc1-0242ac120002
     alias: Rodney Event Starting soon
     trigger:
-    - platform: state
-      entity_id: calendar.rodney_events
-      attribute: offset_reached
-      to: True
+      - platform: state
+        entity_id: calendar.rodney_events
+        attribute: offset_reached
+        to: True
     action:
       - service: script.status_annc
         data:
-          who: '{{ states.sensor.room_presence.state }}'
+          who: "{{ states.sensor.room_presence.state }}"
           call_interuption: 1
           call_rodney_events: 1
-      - service: script.text_notify
+      - service: script.notify_text
         data_template:
           who: "all_ios"
           message: Rodney has {{ states.calendar.rodney_events.attributes.message }} in 45 minutes.
@@ -127,17 +100,17 @@ automation:
   - id: 3cfe5e98-019c-4d95-a98c-8265ade12469
     alias: Gina Event Starting soon
     trigger:
-    - platform: state
-      entity_id: calendar.gina_events
-      attribute: offset_reached
-      to: True
+      - platform: state
+        entity_id: calendar.gina_events
+        attribute: offset_reached
+        to: True
     action:
       - service: script.status_annc
         data:
-          who: '{{ states.sensor.room_presence.state }}'
+          who: "{{ states.sensor.room_presence.state }}"
           call_interuption: 1
           call_gina_events: 1
-      - service: script.text_notify
+      - service: script.notify_text
         data_template:
           who: "all_ios"
           message: Gina has {{ states.calendar.gina_events.attributes.message }} in 45 minutes.

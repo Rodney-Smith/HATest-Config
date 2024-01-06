@@ -37,37 +37,33 @@ notify:
       - service: mobile_app_gina_iphone
 
 input_boolean:
-  text_notify_rodney:
-    name: Send Texts to Rodney
-    icon: mdi:telegram
-  text_notify_gina:
-    name: Send Texts to Gina
-    icon: mdi:telegram
-  presence_text_notifications:
-    name: Presence Texts
-    icon: mdi:telegram
-  notifications_audio:
-    name: Audio Notifications
+  notify_text:
+    name: Notify Text - All
+    icon: mdi:cellphone-wireless
+  notify_text_gina:
+    name: Notify Text - Gina
+    icon: mdi:message-text
+  notify_text_rodney:
+    name: Notify Text - Rodney
+    icon: mdi:message-text
+  notify_audible:
+    name: Notify Audible - All
     icon: mdi:speaker-wireless
-  presence_audio_notifications:
-    name: Presence Audio
-    icon: mdi:speaker-wireless
-  audible_notifications:
-    name: Audible Notifications
-    icon: mdi:speaker-wireless
-  presence_notifications_rodney:
-    name: Send Rodney Presence Texts
-    icon: mdi:telegram
-  presence_notifications_gina:
-    name: Send Gina Presence Texts
-    icon: mdi:telegram
+  notify_audible_gina:
+    name: Notify Audible - Gina
+    icon: mdi:volume-high
+  notify_audible_rodney:
+    name: Notify Audible - Rodney
+    icon: mdi:volume-high
   trash_notification:
     name: Trash Notification
-    icon: mdi:telegram
+    icon: mdi:trash-can
   welcome_home:
     name: Welcome Home
-  debug_texts:
+    icon: mdi:home
+  notify_text_debug:
     name: Debug Texts
+    icon: mdi:bug
 
 tts:
   - platform: google_translate

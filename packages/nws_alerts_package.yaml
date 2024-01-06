@@ -13,6 +13,11 @@
 ########################  SENSOR  ###############################################
 
 sensor:
+  - platform: template
+    sensors:
+      nws_audio_src:
+        unique_id: c7e4decf-42ff-4156-b97f-bc55017ab4a9
+        value_template: !secret nws_audio_source
 
 ######################## BINARY SENSOR  #########################################
 
@@ -20,6 +25,7 @@ binary_sensor:
   - platform: template
     sensors:
       nws_alerts_are_active:
+        unique_id: f16ce897-c961-4a79-bc7d-706a940c08eb
         friendly_name: NWS Alerts Are Active
         value_template: >
           {{ states('sensor.nws_alerts') | int(0) > 0 }}
@@ -49,7 +55,8 @@ variable:
 ########################  AUTOMATION  ###########################################
 
 automation:
-  - alias: 'NWS Check for Multi Alerts'
+  - id: 21b18cc6-6ba4-4573-85a0-7fd3c735078f
+    alias: 'NWS Check for Multi Alerts'
     initial_state: 'on'
     trigger:
       - platform: state
@@ -73,8 +80,9 @@ automation:
             sequence:
               - service: input_boolean.turn_off
                 entity_id: input_boolean.nws_multi_alert
-  
-  - alias: 'NWS Weather Alert Pop Up Control'
+
+  - id: 9dd81426-3600-4fbd-81e4-962c004303a5
+    alias: 'NWS Weather Alert Pop Up Control'
     initial_state: 'on'
     trigger:
       - platform: state
@@ -139,23 +147,9 @@ automation:
               "{{ state_attr('sensor.nws_alerts', 'title').split(' - ')[0] }}"
             message: >
               "{{ state_attr('sensor.nws_alerts', 'display_desc').split('\n\n-\n\n')[0] }}"
-          
-  - alias: NWS Notification Weather Alert
-    initial_state: 'on'
-    trigger:
-      platform: state
-      entity_id: sensor.nws_alerts
-    condition:
-      - "{{states('sensor.nws_alerts') | int > 0}}"
-      - '{{ trigger.to_state.state|int > trigger.from_state.state|int }}'
-      - "{{ (state_attr('sensor.nws_alerts', 'event_id').split('-')[0] not in states.variable.nws_alerts_event_ids.attributes.values()|list) and (state_attr('sensor.nws_alerts', 'event_id').split('-')[0] != states('variable.nws_alerts_event_ids')) }}"
-    action:
-      - service: notify.pushbullet
-        data:
-          message: >
-            "NWS: {{ state_attr('sensor.nws_alerts', 'title').split(' - ')[0] }}"
-            
-  - alias: NWS Announce Weather Alert
+
+  - id: 1ff5ef86-db21-4a9c-a67b-e49e614c0d99
+    alias: NWS Announce Weather Alert
     initial_state: 'on'
     trigger:
       - platform: state
@@ -165,71 +159,83 @@ automation:
       conditions:
         - "{{states('sensor.nws_alerts') | int > 0}}"
         - '{{ trigger.to_state.state|int > trigger.from_state.state|int }}'
-        - "{{ ('Severe Thunderstorm Warning' in state_attr('sensor.nws_alerts', 'title')) or ('Tornado Warning' in state_attr('sensor.nws_alerts', 'title')) }}"
+        - "{{ ('Severe Thunderstorm Warning' in state_attr('sensor.nws_alerts', 'title')) or ('Tornado Warning' in state_attr('sensor.nws_alerts', 'title')) or ('Earthquake Warning' in state_attr('sensor.nws_alerts', 'title')) }}"
         - "{{ (state_attr('sensor.nws_alerts', 'event_id').split('-')[0] not in states.variable.nws_alerts_event_ids.attributes.values()|list) }}"
         - "{{ (state_attr('sensor.nws_alerts', 'event_id').split('-')[0] != states('variable.nws_alerts_event_ids')) }}"
     action:
       - service: media_player.volume_set
         data:
           entity_id:
-            - media_player.computer_room_dot
-            - media_player.kitchen_dot
-            - media_player.garage_dot
-            - media_player.basement_dot
-            - media_player.sunroom_dot
-            - media_player.livingroom_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           volume_level: 0.9
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.computer_room_dot
-            - media_player.kitchen_dot
-            - media_player.garage_dot
-            - media_player.basement_dot
-            - media_player.sunroom_dot
-            - media_player.livingroom_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
           message: >
             {% if 'Severe Thunderstorm Warning' in state_attr('sensor.nws_alerts', 'title') %}
-              Attention!,,,Attention!,,,The National Weather Service Has issued a severe thunderstorm warning for our area
+              Attention!,,,The National Weather Service has issued a severe thunderstorm warning for our area
             {% elif 'Tornado Warning' in state_attr('sensor.nws_alerts', 'title') %}
-              Attention!,,,Attention!,,,The National Weather Service Has issued a tornado warning for our area
+              Attention!,,,The National Weather Service has issued a tornado warning for our area
+            {% elif 'Earthquake Warning' in state_attr('sensor.nws_alerts', 'title') %}
+              Attention!,,,The National Weather Service has issued a earthquake warning for our area
+            {% else %}
+              This is a test of the National Weather Service Alert!
             {% endif %}
       - delay: '00:00:15'
       - service: notify.alexa_media
         data:
-          message: "<audio src='https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.ui.nabu.casa/local/mp3/nws_alert_tone.mp3' />"
+          message: "{{ states('sensor.nws_audio_src') }}"
           target: 
-            - media_player.computer_room_dot
-            - media_player.kitchen_dot
-            - media_player.garage_dot
-            - media_player.basement_dot
-            - media_player.sunroom_dot
-            - media_player.livingroom_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
       - delay: '00:00:25'
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.computer_room_dot
-            - media_player.kitchen_dot
-            - media_player.bedroom_2_dot
-            - media_player.garage_dot
-            - media_player.basement_dot
-            - media_player.sunroom_dot
-            - media_player.livingroom_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
           message: >
             {% if 'Severe Thunderstorm Warning' in state_attr('sensor.nws_alerts', 'title') %}
-              Attention!,,,Attention!,,,The National Weather Service Has issued a severe thunderstorm warning for our area
+              Attention!,,,The National Weather Service has issued a severe thunderstorm warning for our area
             {% elif 'Tornado Warning' in state_attr('sensor.nws_alerts', 'title') %}
-              Attention!,,,Attention!,,,The National Weather Service Has issued a tornado warning for our area
+              Attention!,,,The National Weather Service has issued a tornado warning for our area
+            {% elif 'Earthquake Warning' in state_attr('sensor.nws_alerts', 'title') %}
+              Attention!,,,The National Weather Service has issued a earthquake warning for our area
+            {% else %}
+              This is a test of the National Weather Service Alert!
             {% endif %}
-                  
-  - alias: NWS Announce Weather Alert for MBR
+
+  - id: 1711b581-5d8d-4768-aa19-11b0aad77897
+    alias: NWS Announce Weather Alert for MBR
     initial_state: 'on'
     trigger:
       - platform: state
@@ -247,41 +253,58 @@ automation:
       - service: media_player.volume_set
         data:
           entity_id:
-            - media_player.bedroom_2_dot
-            - media_player.master_bedroom_dot
-            - media_player.big_room_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           volume_level: 0.9
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.bedroom_2_dot
-            - media_player.master_bedroom_dot
-            - media_player.big_room_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
-          message: "Attention!,,,Attention!,,,The National Weather Service Has issued a Tornado Warning for our area."
+          message: "Attention!,,,The National Weather Service has issued a Tornado Warning for our area."
       - delay: '00:00:15'
       - service: notify.alexa_media
         data:
-          message: "<audio src='https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.ui.nabu.casa/local/mp3/nws_alert_tone.mp3' />"
+          message: "{{ states('sensor.nws_audio_src') }}"
           target: 
-            - media_player.bedroom_2_dot
-            - media_player.master_bedroom_dot
-            - media_player.big_room_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
       - delay: '00:00:25'
       - service: notify.alexa_media
         data:
           target: 
-            - media_player.bedroom_2_dot
-            - media_player.master_bedroom_dot
-            - media_player.big_room_dot
+            - media_player.bedroom_echo_dot
+            - media_player.guest1_echo_dot
+            - media_player.guest2_echo_dot
+            - media_player.hall_echo_flex
+            - media_player.kitchen_echo_flex
+            - media_player.lr_echo_show5
+            - media_player.office_echo_show
           data:
             type: tts
-          message: "Attention!,,,Attention!,,,The National Weather Service Has issued a Tornado Warning for our area."
-              
-  - alias: NWS Update Event ID Variable
+          message: "Attention!,,,The National Weather Service has issued a Tornado Warning for our area."
+
+  - id: c75e293d-4de9-450b-b80d-f2a0d838e7b8
+    alias: NWS Update Event ID Variable
     initial_state: 'on'
     trigger:
       - platform: state
@@ -305,9 +328,9 @@ automation:
         data:
           variable: nws_alerts_event_ids
           value: "{{ (trigger.to_state.attributes.event_id).split('-')[0] }}"
-          
+
 ###############################  SCRIPT  ###################################
-          
+
 script:
   nws_popup_on_wx_alert:
     alias: NWS Weather Alert Pop Up
@@ -320,4 +343,3 @@ script:
           notification_id: "nwswxalert"
           message: "{{ message }}"
           title: '{{ title }}'
-        

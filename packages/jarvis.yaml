@@ -23,7 +23,7 @@ mqtt:
     - name: "Jarvis Last Location"
       state_topic: "house/polly/lastloc"
     - name: "Jarvis Last Msg Time"
-      state_topic: "house/polly/msgtime"  
+      state_topic: "house/polly/msgtime"
 
 automation:
   #  - alias: Lightning Detected Announcement
@@ -63,7 +63,7 @@ script:
   speech_engine_demo:
     sequence:
       - condition: state
-        entity_id: input_boolean.audible_notifications
+        entity_id: input_boolean.notify_audible
         state: "on"
       #      - condition: state
       #        entity_id: group.family
@@ -94,8 +94,8 @@ script:
               media_player.kitchen_echo_flex
             {% elif who in ['all'] %}
               group.all_echos
-            {% elif who in ['office','media_player.of_echo_show8'] %}
-              media_player.of_echo_show8
+            {% elif who in ['office','media_player.office_echo_show'] %}
+              media_player.office_echo_show
             {% else %}
               media_player.lr_echo_show5
             {% endif %}
