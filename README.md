@@ -4,44 +4,44 @@ This is my Home Assistant TEST installation.
 
 [![GitHub stars](https://img.shields.io/github/stars/Rodney-Smith/HATest-Config?style=plastic)](https://github.com/Rodney-Smith/HATest-Config/stargazers)
 [![GitHub last commit](https://img.shields.io/github/last-commit/rodney-smith/HATest-Config/main?style=plastic)](https://github.com/rodney-smith/HATest-Config/commits/main)
-[![HA Version](https://img.shields.io/badge/Running_Home_Assistant-2023.12.3-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
+[![HA Version](https://img.shields.io/badge/Running_Home_Assistant-2024.1.2-darkblue)](https://github.com/home-assistant/home-assistant/releases/latest)
 [![HA Version](https://img.shields.io/badge/Original_Home_Assistant-2020.12.1-darkblue)](https://github.com/home-assistant/core/releases/2020.12.1)
 [![HA Community](https://img.shields.io/badge/HA_Community-Forum-orange)](https://community.home-assistant.io/u/rodney.delauer/summary)
 
 ### Add-ons
-[![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-17.0.0-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
-[![ESPHome](https://img.shields.io/badge/ESPHome-2023.12.3-5294E2.svg)](https://esphome.io/)
+[![Advanced SSH & Web Terminal](https://img.shields.io/badge/SSH_%26_Terminal-17.0.1-5294E2.svg)](https://github.com/hassio-addons/addon-ssh)
+[![ESPHome](https://img.shields.io/badge/ESPHome-2023.12.5-5294E2.svg)](https://esphome.io/)
 [![Grafana](https://img.shields.io/badge/Grafana-9.1.1-5294E2.svg)](https://github.com/hassio-addons/addon-grafana)
 [![Home Assistant Google Drive Backup](https://img.shields.io/badge/Google_Drive_Backup-0.112.1-5294E2.svg)](https://github.com/sabeechen/hassio-google-drive-backup)
 [![InfluxDB](https://img.shields.io/badge/InfluxDB-4.8.0-5294E2.svg)](https://github.com/hassio-addons/addon-influxdb)
 [![MariaDB](https://img.shields.io/badge/MariaDB-2.6.1-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/mariadb)
-[![Matter Server](https://img.shields.io/badge/Matter_Server-5.0.1-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/matter_server)
+[![Matter Server](https://img.shields.io/badge/Matter_Server-5.0.2-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/matter_server)
 [![openWakeWord](https://img.shields.io/badge/openWakeWord-1.8.2-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/oopenwakeword)
 [![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-0.9.0-5294E2.svg)](https://github.com/hassio-addons/addon-phpmyadmin)
 [![Piper](https://img.shields.io/badge/Piper-1.4.0-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/piper)
 [![Samba Share](https://img.shields.io/badge/Samba-12.2.0-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/samba)
-[![Silicon Labs Multiprotocol](https://img.shields.io/badge/Silabs_Multiprotocol-2.3.2-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
+[![Silicon Labs Multiprotocol](https://img.shields.io/badge/Silabs_Multiprotocol-2.4.2-5294E2.svg)](https://github.com/home-assistant/addons/tree/master/silabs-multiprotocol)
 [![Studio Code Server](https://img.shields.io/badge/Studio_Code_Server-5.14.2-5294E2.svg)](https://github.com/hassio-addons/addon-vscode)
 [![Syncthing](https://img.shields.io/badge/Syncthing-1.17.0-5294E2.svg)](https://github.com/Poeschl/Hassio-Addons/tree/main/syncthing)
 [![TasmoBackup](https://img.shields.io/badge/TasmoBackup-1.0.0-5294E2.svg)](https://github.com/danmed/TasmoBackupV1/)
 [![Whisper](https://img.shields.io/badge/Whisper-1.0.0-5294E2.svg)](https://github.com/home-assistant/addons/blob/master/whisper)
-[![Zigbee2MQTT](https://img.shields.io/badge/Zigbee2MQTT-1.34.0-5294E2.svg)](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt)
+[![Zigbee2MQTT](https://img.shields.io/badge/Zigbee2MQTT-1.35.0-5294E2.svg)](https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/tree/master/zigbee2mqtt)
 
 ## Some statistics about my installation:
 Description | value
 -- | --
-Number of entities | 2071
-Count of alarm | 2
+Number of entities | 2144
+Count of alarm | 1
 Count of alert | 4
-Count of automation | 58
-Count of binary_sensor | 121
+Count of automation | 57
+Count of binary_sensor | 103
 Count of calendar | 16
-Count of camera | 8
+Count of camera | 2
 Count of climate | 1
 Count of cover | 4
 Count of device_tracker | 11
 Count of fan | 7
-Count of input_boolean | 44
+Count of input_boolean | 43
 Count of input_datetime | 30
 Count of input_number | 14
 Count of input_select | 2
@@ -52,13 +52,13 @@ Count of number | 73
 Count of person | 6
 Count of scene | 19
 Count of script | 48
-Count of sensor | 849
+Count of sensor | 834
 Count of sun | 1
-Count of switch | 83
+Count of switch | 77
 Count of timer | 1
 Count of update | 89
 Count of vacuum | 3
-Count of weather | 4
+Count of weather | 6
 Count of zone | 29
 
 ## My installed extensions:

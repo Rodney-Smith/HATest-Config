@@ -71,13 +71,14 @@ views:
             icon: mdi:lightbulb
             layout: vertical
             icon_color: |-
-              {% if is_state('light.of_light_zb', 'on') 
+              {% if is_state('light.office_lights', 'on') 
               or is_state('light.wled_soundreactive', 'on')
               or is_state('light.left_floor_lamp', 'on')
               or is_state('light.right_floor_lamp', 'on')
               or is_state('light.light_strip_10fe', 'on')
               or is_state('light.light_strip_831a', 'on')
-              or is_state('light.h61e1_led_strip', 'on') 
+              or is_state('light.bookcase_led_strip', 'on') 
+              or is_state('light.humidor_led_strip', 'on') 
               or is_state('light.funhouse_light', 'on')
               or is_state('light.mb_ceiling_lights', 'on')
               or is_state('light.gina_nightstand', 'on')
@@ -99,7 +100,7 @@ views:
               or is_state('light.side_porch_2', 'on')
               or is_state('light.front_porch_1', 'on')
               or is_state('light.front_porch_2', 'on')
-              or is_state('light.first_light', 'on') 
+              or is_state('light.little_yard_light', 'on') 
               or is_state('switch.mj_s01_b71a3c', 'on') %}
                 amber
               {% else %}
@@ -210,7 +211,7 @@ views:
             cards:
               - type: custom:room-card
                 title: Office
-                entity: light.of_light_zb
+                entity: light.office_lights
                 tap_action:
                   action: navigate
                   navigation_path: /home-dash/office
@@ -218,13 +219,14 @@ views:
                   action: toggle
                 icon: mdi:desk
                 icon_color: |-
-                  {% if is_state('light.of_light_zb', 'on') 
+                  {% if is_state('light.office_lights', 'on') 
                      or is_state('light.wled_soundreactive', 'on')
                      or is_state('light.left_floor_lamp', 'on')
                      or is_state('light.right_floor_lamp', 'on')
                      or is_state('light.light_strip_10fe', 'on')
                      or is_state('light.light_strip_831a', 'on')
-                     or is_state('light.h61e1_led_strip', 'on') %}
+                     or is_state('light.bookcase_led_strip', 'on')
+                     or is_state('light.humidor_led_strip', 'on') %}
                      amber
                   {% endif %}
                 show_icon: true
@@ -247,8 +249,8 @@ views:
                       action: toggle
                     icon: mdi:led-strip-variant
                     show_icon: true
-                  - entity: light.h61e1_led_strip
-                    name: Humidor
+                  - entity: light.bookcase_led_strip
+                    name: Bookcase
                     tap_action:
                       action: toggle
                     icon: mdi:led-strip-variant
@@ -359,8 +361,8 @@ views:
                 icon_color: |-
                   {% if is_state('light.main_bedroom_light', 'on')
                      or is_state('light.main_bedroom_nightstands', 'on')
-                     or is_state('light.gina_led_strip', 'on')
-                     or is_state('light.rodney_led_strip', 'on') %}
+                     or is_state('light.h61e0_gina_led_strip', 'on')
+                     or is_state('light.h61e0_rodney_led_strip', 'on') %}
                      amber
                   {% endif %}
                 show_icon: true
@@ -609,7 +611,7 @@ views:
                      or is_state('light.front_porch_2', 'on')
                      or is_state('light.side_porch_1', 'on')
                      or is_state('light.side_porch_2', 'on')
-                     or is_state('light.first_light', 'on')
+                     or is_state('light.little_yard_light', 'on')
                      or is_state('switch.mj_s01_b71a3c', 'on') %}
                      amber
                   {% endif %}
@@ -645,7 +647,7 @@ views:
                       action: toggle
                     icon: mdi:lightbulb
                     show_icon: true
-                  - entity: light.first_light
+                  - entity: light.little_yard_light
                     name: Back Porch
                     tap_action:
                       action: toggle
@@ -682,7 +684,7 @@ views:
                 tap_action:
                   action: toggle
               - type: custom:mushroom-entity-card
-                entity: input_boolean.guest_mode
+                entity: input_boolean.mode_guest
                 tap_action:
                   action: toggle
 title: Tablet
