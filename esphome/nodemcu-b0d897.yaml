@@ -39,6 +39,7 @@ globals:
 # https://esphome.io/components/esphome.html
 esphome:
   name: ${name}
+  comment: Keg Scale
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
   platform: ESP8266

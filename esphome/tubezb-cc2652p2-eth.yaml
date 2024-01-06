@@ -4,6 +4,7 @@ substitutions:
 
 esphome:
   name: ${name}
+  comment: Zigbee2MQTT Gateway
   friendly_name: ${friendly_name}
   project:
     name: tubezb.cc2652p2-eth

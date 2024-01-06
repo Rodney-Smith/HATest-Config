@@ -1,23 +1,24 @@
 substitutions:
   name: btproxy-9910b8
   friendly_name: Office Bluetooth Proxy
+  ip_address: !secret ip_btproxy-9910b8
+  api_key: !secret btproxy-9910b8
 
-#packages:
+packages:
 #  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+  esphome.bluetooth-proxy: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
 
 esphome:
   name: ${name}
+  comment: ESPHome Bluetooth Proxy
   friendly_name: ${friendly_name}
   name_add_mac_suffix: false
-  project:
-    name: esphome.bluetooth-proxy
-    version: "1.0"
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   manual_ip:
-    static_ip: !secret ip_btproxy_9910b8
+    static_ip: ${ip_address}
     gateway: !secret ip_gateway
     subnet: !secret ip_subnet
     dns1: !secret ip_dns
@@ -28,7 +29,7 @@ wifi:
 
 api:
   encryption:
-    key: !secret btproxy_9910b8
+    key: ${api_key}
 
 ota:
   password: !secret esphome_ota
@@ -46,7 +47,8 @@ logger:
 improv_serial:
 
 dashboard_import:
-  package_import_url: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+#  package_import_url: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+  package_import_url: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
 
 esp32_ble_tracker:
   scan_parameters:

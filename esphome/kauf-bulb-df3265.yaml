@@ -1,28 +1,31 @@
 substitutions:
   name: kauf-bulb-df3265
   friendly_name: Gina's Nightstand
+  ip_address: !secret ip_kauf_df3265
+  api_key: !secret kauf_df3265
 
 packages:
   Kauf.RGBWW: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb.yaml
 
 esphome:
   name: ${name}
+  comment: KAUF A21 Smart Bulb with ESPHome
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
-
-api:
-  encryption:
-    key: !secret kauf_df3265
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   manual_ip:
-    static_ip: !secret ip_kauf_df3265
+    static_ip: ${ip_address}
     gateway: !secret ip_gateway
     subnet: !secret ip_subnet
     dns1: !secret ip_dns
-  ap:
+  ap: 
     ssid: ${name}_AP
     password: !secret wifi_ap_pass
     ap_timeout: 3min
+
+api:
+  encryption:
+    key: ${api_key}

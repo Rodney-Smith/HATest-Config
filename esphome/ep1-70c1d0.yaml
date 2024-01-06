@@ -7,6 +7,7 @@ packages:
 
 esphome:
   name: ${name}
+  comment: Everything Presence One
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
 
