@@ -11,7 +11,7 @@ audio_devices:
   - media_player.bedroom_echo_dot
   - media_player.guest1_echo_dot
   - media_player.guest2_echo_dot
-  - media_player.of_echo_show8
+  - media_player.office_echo_show
   - media_player.left_echo_dot
   - media_player.right_echo_dot
   - media_player.kitchen_echo_flex

@@ -23,7 +23,7 @@ all_media_players:
     # Guest Bedroom2
     - media_player.guest2_echo_dot
     # Office
-    - media_player.of_echo_show8
+    - media_player.office_echo_show
     - media_player.left_echo_dot
     - media_player.right_echo_dot
     - media_player.fire_tv_max
@@ -43,7 +43,7 @@ audio_devices:
     - media_player.lr_echo_show5
     - media_player.left_echo
     - media_player.right_echo
-    - media_player.of_echo_show8
+    - media_player.office_echo_show
     - media_player.left_echo_dot
     - media_player.right_echo_dot
     - media_player.bedroom_echo_dot
@@ -64,7 +64,7 @@ lr_media_players:
 of_media_Players:
   name: Office Media Players
   entities:
-    - media_player.of_echo_show8
+    - media_player.office_echo_show
     - media_player.left_echo_dot
     - media_player.right_echo_dot
     - media_player.fire_tv_max

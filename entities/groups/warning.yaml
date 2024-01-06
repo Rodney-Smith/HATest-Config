@@ -9,6 +9,6 @@ warning_players:
   - media_player.bedroom_echo_dot
   - media_player.guest1_echo_dot
   - media_player.guest2_echo_dot
-  - media_player.of_echo_show8
+  - media_player.office_echo_show
   - media_player.kitchen_echo_flex
   - media_player.hall_echo_flex

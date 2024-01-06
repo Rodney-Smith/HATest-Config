@@ -22,7 +22,7 @@
     days: 7
 - platform: history_stats
   name: Speech time
-  entity_id: media_player.of_echo_show8
+  entity_id: media_player.office_echo_show
   state: "playing"
   type: time
   end: "{{ now() }}"
