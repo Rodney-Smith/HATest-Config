@@ -9,7 +9,7 @@ from homeassistant.helpers.entity import Entity
 
 from custom_components.powercalc import DiscoveryManager
 from custom_components.powercalc.const import (
-    CONF_FILTER,
+    CONF_INCLUDE_NON_POWERCALC_SENSORS,
     DATA_CONFIGURED_ENTITIES,
     DATA_DISCOVERY_MANAGER,
     DOMAIN,
@@ -20,7 +20,6 @@ from custom_components.powercalc.sensors.energy import RealEnergySensor
 from custom_components.powercalc.sensors.power import RealPowerSensor
 
 from .filter import (
-    CompositeFilter,
     FilterOperator,
     create_composite_filter,
 )
@@ -29,13 +28,15 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def resolve_include_entities(
-    hass: HomeAssistant, include_config: dict,
+    hass: HomeAssistant,
+    include_config: dict,
 ) -> tuple[list[Entity], list[str]]:
     """ "
     For a given include configuration fetch all power and energy sensors from the HA instance
     """
     discovery_manager: DiscoveryManager = hass.data[DOMAIN][DATA_DISCOVERY_MANAGER]
 
+    include_non_powercalc: bool = include_config.get(CONF_INCLUDE_NON_POWERCALC_SENSORS, True)
     resolved_entities: list[Entity] = []
     discoverable_entities: list[str] = []
     source_entities = resolve_include_source_entities(hass, include_config)
@@ -51,12 +52,10 @@ async def resolve_include_entities(
 
         # When we are dealing with a non powercalc sensor, and it's a power or energy sensor,
         # we can include that in the group
-        if source_entity and source_entity.domain == sensor.DOMAIN:
-            device_class = (
-                source_entity.device_class or source_entity.original_device_class
-            )
+        if include_non_powercalc and source_entity and source_entity.domain == sensor.DOMAIN:
+            device_class = source_entity.device_class or source_entity.original_device_class
             if device_class == SensorDeviceClass.POWER:
-                resolved_entities.append(RealPowerSensor(source_entity.entity_id))
+                resolved_entities.append(RealPowerSensor(source_entity.entity_id, source_entity.unit_of_measurement))
             elif device_class == SensorDeviceClass.ENERGY:
                 resolved_entities.append(RealEnergySensor(source_entity.entity_id))
 
@@ -81,9 +80,9 @@ def find_powercalc_entities_by_source_entity(
         if entry.data.get(CONF_ENTITY_ID) != source_entity_id:
             continue
         if entry.data.get(ENTRY_DATA_POWER_ENTITY):
-            entities.append(RealPowerSensor(entry.data.get(ENTRY_DATA_POWER_ENTITY)))
+            entities.append(RealPowerSensor(str(entry.data.get(ENTRY_DATA_POWER_ENTITY))))
         if entry.data.get(ENTRY_DATA_ENERGY_ENTITY):
-            entities.append(RealEnergySensor(entry.data.get(ENTRY_DATA_ENERGY_ENTITY)))
+            entities.append(RealEnergySensor(str(entry.data.get(ENTRY_DATA_ENERGY_ENTITY))))
     return entities
 
 
@@ -92,17 +91,7 @@ def resolve_include_source_entities(
     hass: HomeAssistant,
     include_config: dict,
 ) -> dict[str, entity_registry.RegistryEntry | None]:
-    entity_filter = create_composite_filter(include_config, hass, FilterOperator.OR)
-
-    if CONF_FILTER in include_config:
-        entity_filter = CompositeFilter(
-            [entity_filter, create_composite_filter(include_config.get(CONF_FILTER), hass, FilterOperator.OR)],  # type: ignore
-            FilterOperator.AND,
-        )
+    entity_filter = create_composite_filter(include_config, hass, FilterOperator.AND)
 
     entity_reg = entity_registry.async_get(hass)
-    return {
-        entry.entity_id: entry
-        for entry in entity_reg.entities.values()
-        if entity_filter.is_valid(entry)
-    }
+    return {entry.entity_id: entry for entry in entity_reg.entities.values() if entity_filter.is_valid(entry)}

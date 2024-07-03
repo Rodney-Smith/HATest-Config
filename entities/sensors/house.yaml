@@ -184,8 +184,6 @@
       value_template: >-
         {% if is_state('calendar.holidays_in_us','on') %}
           {{ state_attr("calendar.holidays_in_us","message") }}
-        {% elif is_state('calendar.national_holidays','on') %}
-          {{ state_attr("calendar.national_holidays","message") }}
         {% else %}
           none
         {% endif %}

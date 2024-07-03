@@ -1,322 +1,317 @@
-- id: "1613259890728"
+- id: '1613259890728'
   alias: Home - Gina
   description: When Gina arrives home, turn on her light
   trigger:
-    - platform: device
-      device_id: 092725b593e9ccb0e4272f3ccd1f8685
-      domain: device_tracker
-      entity_id: device_tracker.gina_iphone
-      type: enters
-      zone: zone.home
+  - platform: device
+    device_id: 092725b593e9ccb0e4272f3ccd1f8685
+    domain: device_tracker
+    entity_id: device_tracker.gina_iphone
+    type: enters
+    zone: zone.home
   condition:
-    - condition: device
-      device_id: 092725b593e9ccb0e4272f3ccd1f8685
-      domain: device_tracker
-      entity_id: device_tracker.gina_iphone
-      type: is_home
+  - condition: device
+    device_id: 092725b593e9ccb0e4272f3ccd1f8685
+    domain: device_tracker
+    entity_id: device_tracker.gina_iphone
+    type: is_home
   action:
-    - type: turn_on
-      device_id: f704eb5b6018c95dc378e65701b52152
-      entity_id: a64c463aa76b00b6bc077cb82dd34cd6
-      domain: light
-      brightness_pct: 80
-    - service: notify.alexa_media_office_echo_show
+  - type: turn_on
+    device_id: f704eb5b6018c95dc378e65701b52152
+    entity_id: a64c463aa76b00b6bc077cb82dd34cd6
+    domain: light
+    brightness_pct: 80
+  - service: notify.alexa_media_office_echo_show
+    data:
+      message: Gina has arrived home!
       data:
-        message: Gina has arrived home!
-        data:
-          type: tts
-        title: TEST
+        type: tts
+      title: TEST
   mode: single
-- id: "1613259951758"
+- id: '1613259951758'
   alias: Away - Gina
   description: When Gina leaves the house, turn off her light
   trigger:
-    - platform: device
-      device_id: 092725b593e9ccb0e4272f3ccd1f8685
-      domain: device_tracker
-      entity_id: 7787407d856eed043125261cbb04e434
-      type: leaves
-      zone: zone.home
+  - platform: device
+    device_id: 092725b593e9ccb0e4272f3ccd1f8685
+    domain: device_tracker
+    entity_id: 7787407d856eed043125261cbb04e434
+    type: leaves
+    zone: zone.home
   condition:
-    - condition: device
-      device_id: 092725b593e9ccb0e4272f3ccd1f8685
-      domain: device_tracker
-      entity_id: 7787407d856eed043125261cbb04e434
-      type: is_not_home
+  - condition: device
+    device_id: 092725b593e9ccb0e4272f3ccd1f8685
+    domain: device_tracker
+    entity_id: 7787407d856eed043125261cbb04e434
+    type: is_not_home
   action:
-    - type: turn_off
-      device_id: f704eb5b6018c95dc378e65701b52152
-      entity_id: a64c463aa76b00b6bc077cb82dd34cd6
-      domain: light
-    - service: notify.alexa_media_office_echo_show
+  - type: turn_off
+    device_id: f704eb5b6018c95dc378e65701b52152
+    entity_id: df7a183011ba84db4102e4acf5d00270
+    domain: light
+  - service: notify.alexa_media_office_echo_show
+    data:
+      message: Gina has left the house.
       data:
-        message: Gina has left the house.
-        data:
-          type: tts
-        title: TEST
+        type: tts
+      title: TEST
   mode: single
-- id: "1613260208483"
+- id: '1613260208483'
   alias: Home - Rodney
   description: When Rodney arrives home, turn on his light
   trigger:
-    - platform: device
-      device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: device_tracker
-      entity_id: ecaa1969d02077fb71625cc05a901112
-      type: enters
-      zone: zone.home
+  - platform: device
+    device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: device_tracker
+    entity_id: ecaa1969d02077fb71625cc05a901112
+    type: enters
+    zone: zone.home
   condition:
-    - condition: device
-      device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: device_tracker
-      entity_id: ecaa1969d02077fb71625cc05a901112
-      type: is_home
+  - condition: device
+    device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: device_tracker
+    entity_id: ecaa1969d02077fb71625cc05a901112
+    type: is_home
   action:
-    - type: turn_on
-      device_id: 0fd9f5332eed34a6575f22bee2314753
-      entity_id: 165b5c59c61e21715fd9f9c297da78ef
-      domain: light
-      brightness_pct: 80
-    - service: notify.alexa_media_lr_echo_show5
+  - type: turn_on
+    device_id: 0fd9f5332eed34a6575f22bee2314753
+    entity_id: 165b5c59c61e21715fd9f9c297da78ef
+    domain: light
+    brightness_pct: 80
+  - service: notify.alexa_media_lr_echo_show5
+    data:
+      message: Rodney is home!
       data:
-        message: Rodney is home!
-        data:
-          type: tts
-        title: TEST
+        type: tts
+      title: TEST
   mode: single
-- id: "1613260259645"
+- id: '1613260259645'
   alias: Away - Rodney
   description: When Rodney leaves the house, turn off his light
   trigger:
-    - platform: device
-      device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: device_tracker
-      entity_id: ecaa1969d02077fb71625cc05a901112
-      type: leaves
-      zone: zone.home
+  - platform: device
+    device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: device_tracker
+    entity_id: ecaa1969d02077fb71625cc05a901112
+    type: leaves
+    zone: zone.home
   condition:
-    - condition: device
-      device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: device_tracker
-      entity_id: ecaa1969d02077fb71625cc05a901112
-      type: is_not_home
+  - condition: device
+    device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: device_tracker
+    entity_id: ecaa1969d02077fb71625cc05a901112
+    type: is_not_home
   action:
-    - type: turn_off
-      device_id: 0fd9f5332eed34a6575f22bee2314753
-      entity_id: light.rodney_light
-      domain: light
-    - service: notify.alexa_media_office_echo_show
+  - type: turn_off
+    device_id: 0fd9f5332eed34a6575f22bee2314753
+    entity_id: light.rodney_light
+    domain: light
+  - service: notify.alexa_media_office_echo_show
+    data:
+      message: Rodney has left the house.
       data:
-        message: Rodney has left the house.
-        data:
-          type: tts
-        title: TEST
+        type: tts
+      title: TEST
   mode: single
 - id: ce0de5fc9f5a4ea7bf38572a265994f5
   alias: Monitor Smoker Temp - Alert
   description: Smoker is outside of operating temperature
   trigger:
-    - platform: state
-      entity_id: sensor.grill_alert_temp
-      to: Alert
+  - platform: state
+    entity_id: sensor.grill_alert_temp
+    to: Alert
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: Smoker temperature outside limits. Currently {{ states.sensor.ibbq_probe_4_2.state
+        }} F
+      title: Smoker Temp
       data:
-        message:
-          Smoker temperature outside limits. Currently {{ states.sensor.ibbq_probe_4_2.state
-          }} F
-        title: Smoker Temp
-        data:
-          url: /lovelace/bbq
-          sound: pianobar
-          priority: 0
+        url: /lovelace/bbq
+        sound: pianobar
+        priority: 0
   mode: single
 - id: 7d113803d5e34dd88cbc1a122d1d0d74
   alias: Monitor Smoker Temp - Normal
   description: Smoker within monitoring temperatures
   trigger:
-    - platform: state
-      entity_id: sensor.grill_alert_temp
-      to: Normal
+  - platform: state
+    entity_id: sensor.grill_alert_temp
+    to: Normal
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: Smoker temperature within limits. Currently {{ states.sensor.ibbq_probe_4_2.state
+        }} F
+      title: Smoker Temp
       data:
-        message:
-          Smoker temperature within limits. Currently {{ states.sensor.ibbq_probe_4_2.state
-          }} F
-        title: Smoker Temp
-        data:
-          url: /lovelace/bbq
-          sound: pianobar
-          priority: 0
+        url: /lovelace/bbq
+        sound: pianobar
+        priority: 0
   mode: single
 - id: 71f542eb686c4899ad78f2d24e6f0f8f
   alias: Probe 1 Target Temp
   trigger:
-    - platform: state
-      entity_id: sensor.target_alert_temp_probe_1
-      to: Alert
-      from: Normal
+  - platform: state
+    entity_id: sensor.target_alert_temp_probe_1
+    to: Alert
+    from: Normal
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: Probe 1 has reached the target temp. Currently {{ states.sensor.ibbq_probe_1_2.state
+        }} F
+      title: Target Temperature
       data:
-        message:
-          Probe 1 has reached the target temp. Currently {{ states.sensor.ibbq_probe_1_2.state
-          }} F
-        title: Target Temperature
-        data:
-          url: /lovelace/bbq
-          sound: pianobar
-          priority: 0
+        url: /lovelace/bbq
+        sound: pianobar
+        priority: 0
   mode: single
 - id: 6ddff7a7a125465e8457aefbec7fed34
   alias: Probe 2 Target Temp
   trigger:
-    - platform: state
-      entity_id: sensor.target_alert_temp_probe_2
-      to: Alert
+  - platform: state
+    entity_id: sensor.target_alert_temp_probe_2
+    to: Alert
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: Probe 2 has reached the target temp. Currently {{ states.sensor.ibbq_probe_2_2.state
+        }} F
+      title: Target Temperature
       data:
-        message:
-          Probe 2 has reached the target temp. Currently {{ states.sensor.ibbq_probe_2_2.state
-          }} F
-        title: Target Temperature
-        data:
-          url: /lovelace/bbq
-          sound: pianobar
-          priority: 0
+        url: /lovelace/bbq
+        sound: pianobar
+        priority: 0
   mode: single
 - id: 7ec18de1ddb8434090642c3643d65ca7
   alias: Probe 3 Target Temp
   trigger:
-    - platform: state
-      entity_id: sensor.target_alert_temp_probe_3
-      to: Alert
+  - platform: state
+    entity_id: sensor.target_alert_temp_probe_3
+    to: Alert
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: Probe 3 has reached the target temp. Currently {{ states.sensor.ibbq_probe_3_2.state
+        }} F
+      title: Target Temperature
       data:
-        message:
-          Probe 3 has reached the target temp. Currently {{ states.sensor.ibbq_probe_3_2.state
-          }} F
-        title: Target Temperature
-        data:
-          url: /lovelace/bbq
-          sound: pianobar
-          priority: 0
+        url: /lovelace/bbq
+        sound: pianobar
+        priority: 0
   mode: single
 - id: 5685c3fd05144761b7e4108d21c6653c
   alias: Front Door Open
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.front_door_contact
-        - binary_sensor.back_door_contact
-      attribute: contact
-      for:
-        hours: 0
-        minutes: 3
-        seconds: 0
-      to: "on"
-      from: "off"
+  - platform: state
+    entity_id:
+    - binary_sensor.front_door_contact
+    - binary_sensor.back_door_contact
+    attribute: contact
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+    to: 'on'
+    from: 'off'
   condition:
-    - condition: state
-      entity_id: input_boolean.notify_to_close
-      state: "on"
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 30
+  - condition: state
+    entity_id: input_boolean.notify_to_close
+    state: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
   action:
-    - service: script.activate_alexa_actionable_notification
-      data:
-        text: The front door has been open for 5 mins, are you going to close it?
-        event_id: actionable_notification_lock_left_unlocked
-        alexa_device: media_player.office_echo_show
+  - service: script.activate_alexa_actionable_notification
+    data:
+      text: The front door has been open for 5 mins, are you going to close it?
+      event_id: actionable_notification_lock_left_unlocked
+      alexa_device: media_player.office_echo_show
   mode: single
 - id: f03d0f12fd434ad6bfcb5eeb2cb7d3e3
   alias: Front Door Open Response
-  description: ""
+  description: ''
   trigger:
-    - platform: event
-      event_type: alexa_actionable_notification
-      event_data:
-        event_id: actionable_notification_lock_left_unlocked
-        event_response_type: ResponseYes
+  - platform: event
+    event_type: alexa_actionable_notification
+    event_data:
+      event_id: actionable_notification_lock_left_unlocked
+      event_response_type: ResponseYes
   condition: []
   action:
-    - service: notify.mobile_app_rodney_iphone
-      data:
-        title: Notificiation
-        message: The front door is open
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      title: Notificiation
+      message: The front door is open
   mode: single
 - id: 46c4c41c91dc4734b61f93a92ae59ed2
   alias: Alexa Actionable 2 (empty office)
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.rodney_phone
-      for:
-        hours: 0
-        minutes: 5
-        seconds: 0
-      from: office
+  - platform: state
+    entity_id:
+    - sensor.rodney_phone
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    from: office
   condition:
-    - condition: state
-      entity_id: switch.of_light_zb
-      state: "on"
+  - condition: state
+    entity_id: switch.of_light_zb
+    state: 'on'
   action:
-    - service: script.activate_alexa_actionable_notification
-      data:
-        text: the office has been empty for a while. Should I turn off the lights
-        event_id: actionable_notification_office_lights
-        alexa_device: media_player.office_echo_show
+  - service: script.activate_alexa_actionable_notification
+    data:
+      text: the office has been empty for a while. Should I turn off the lights
+      event_id: actionable_notification_office_lights
+      alexa_device: media_player.office_echo_show
   mode: single
 - id: 316e573e591143318df621a2f90c2f37
   alias: Alexa Actionable Response 2 (empty office)
-  description: ""
+  description: ''
   trigger:
-    - platform: event
-      event_type: alexa_actionable_notification
-      event_data:
-        event_id: actionable_notification_office_lights
-        event_response_type: ResponseYes
+  - platform: event
+    event_type: alexa_actionable_notification
+    event_data:
+      event_id: actionable_notification_office_lights
+      event_response_type: ResponseYes
   condition: []
   action:
-    - service: switch.turn_off
-      target:
-        entity_id: switch.of_light_zb
-      data: {}
+  - service: switch.turn_off
+    target:
+      entity_id: switch.of_light_zb
+    data: {}
   mode: single
-- id: "1632354115547"
+- id: '1632354115547'
   alias: Tag - Office Lights
   description: Toggle Office Lights
   trigger:
-    - platform: tag
-      tag_id: 2b82cdf5-2302-4c66-8d10-6b1137b3e118
+  - platform: tag
+    tag_id: 2b82cdf5-2302-4c66-8d10-6b1137b3e118
   condition: []
   action:
-    - service: switch.toggle
-      target:
-        entity_id: switch.of_light_zb
-      data: {}
+  - service: switch.toggle
+    target:
+      entity_id: switch.of_light_zb
+    data: {}
   mode: single
-- id: "1632784289848"
+- id: '1632784289848'
   alias: Tag - Blue
   description: Toggle Office Lights
   trigger:
-    - platform: tag
-      tag_id: 04-72-5A-00-50-00-01
+  - platform: tag
+    tag_id: 04-72-5A-00-50-00-01
   condition: []
   action:
-    - type: toggle
-      device_id: a735b0195f6f586a055e8b0365f6d9ef
-      entity_id: switch.of_light_zb
-      domain: switch
+  - type: toggle
+    device_id: a735b0195f6f586a055e8b0365f6d9ef
+    entity_id: switch.of_light_zb
+    domain: switch
   mode: single
-- id: "1632839721933"
+- id: '1632839721933'
   alias: Tag - Stealers Wheel
   description: Play Stuck In the Middle With You
   use_blueprint:
@@ -329,7 +324,7 @@
       source_spotify: false
       source_custom: true
   mode: single
-- id: "1646511762120"
+- id: '1646511762120'
   alias: Tag - Steelers Wheel
   description: Play Stuck in the Middle with You for Gina
   use_blueprint:
@@ -342,23 +337,23 @@
       source_spotify: false
       source_custom: true
   mode: single
-- id: "1633214548237"
+- id: '1633214548237'
   alias: Tag - Office Fire TV
   description: Read Tag and Launch Plex on Office Fire TV
   trigger:
-    - platform: tag
-      tag_id: 76-2E-68-AF
-      id: RFID_tag
+  - platform: tag
+    tag_id: 76-2E-68-AF
+    id: RFID_tag
   condition: []
   action:
-    - service: media_player.select_source
-      target:
-        entity_id:
-          - media_player.fire_tv_max
-      data:
-        source: Plex
+  - service: media_player.select_source
+    target:
+      entity_id:
+      - media_player.fire_tv_max
+    data:
+      source: Plex
   mode: single
-- id: "1635117155580"
+- id: '1635117155580'
   alias: Magic Cube
   description: Control stuff using Aqara Magic Cube and zigbee2mqtt integration
   use_blueprint:
@@ -366,991 +361,1092 @@
     input:
       remote: sensor.aqara_magic_cube_action
       shake:
-        - type: toggle
-          device_id: a735b0195f6f586a055e8b0365f6d9ef
-          entity_id: switch.of_light_zb
-          domain: switch
+      - type: toggle
+        device_id: a735b0195f6f586a055e8b0365f6d9ef
+        entity_id: switch.of_light_zb
+        domain: switch
   mode: single
-- id: "1637714048757"
+- id: '1637714048757'
   alias: Tag - Front Lights
   description: Toggle Front Lights
   trigger:
-    - platform: tag
-      tag_id: f0f00156-7bda-440c-b206-c7f7c59654e1
+  - platform: tag
+    tag_id: f0f00156-7bda-440c-b206-c7f7c59654e1
   condition: []
   action:
-    - type: toggle
-      device_id: cdfe2dfa5e5666928732d6cca62de87f
-      entity_id: light.entrance
-      domain: light
+  - type: toggle
+    device_id: cdfe2dfa5e5666928732d6cca62de87f
+    entity_id: light.entrance
+    domain: light
   mode: single
-- id: "1646512732701"
+- id: '1646512732701'
   alias: Play Music
-  description: ""
+  description: ''
   trigger:
-    - platform: tag
-      tag_id: A7-45-B9-B5
-      id: A7-45-B9-B5
+  - platform: tag
+    tag_id: A7-45-B9-B5
+    id: A7-45-B9-B5
   condition: []
   action:
-    - service: media_player.play_media
-      data:
-        media_content_id: Snoop Dogg Essentials
-        media_content_type: playlist
-      target:
-        entity_id: media_player.office_echo_show
-    - service: media_player.media_play
-      data: {}
-      target:
-        entity_id: media_player.office_echo_show
+  - service: media_player.play_media
+    data:
+      media_content_id: Snoop Dogg Essentials
+      media_content_type: playlist
+    target:
+      entity_id: media_player.office_echo_show
+  - service: media_player.media_play
+    data: {}
+    target:
+      entity_id: media_player.office_echo_show
   mode: single
 - id: e79b3d7a-3613-43ed-bbab-eb56d7894c74
   alias: Zone Notification
   description: Notification when person enters or leaves a zone.
   trigger:
-    - platform: state
-      entity_id:
-        - person.rodney
-        - person.gina
-      for:
-        hours: 0
-        minutes: 2
-        seconds: 0
+  - platform: state
+    entity_id:
+    - person.rodney
+    - person.gina
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
   condition:
-    - condition: template
-      value_template: "{{ trigger.from_state.state != trigger.to_state.state }}"
-    - condition: state
-      entity_id: input_boolean.notify_text
-      state: "on"
+  - condition: template
+    value_template: '{{ trigger.from_state.state != trigger.to_state.state }}'
+  - condition: state
+    entity_id: input_boolean.notify_text
+    state: 'on'
   action:
-    - variables:
-        old: "{{ trigger.from_state.state }}"
-        new: "{{ trigger.to_state.state }}"
-        who: "{{ trigger.to_state.name }}"
-    - device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: mobile_app
-      type: notify
-      message:
-        '{% if new == "not_home" and old == "home"%} {{ who }} left home {% elif
-        new == "home" %} {{ who }} arrived at home {% elif new == "not_home" %} {{ who
-        }} left {{ old }} {% else %} {{ who }} arrived at {{ new }} {% endif %}'
-      title: Location update {{ states.sensor.time.state }}
-    - device_id: 092725b593e9ccb0e4272f3ccd1f8685
-      domain: mobile_app
-      type: notify
-      message:
-        '{% if new == "not_home" and old == "home"%} {{ who }} left home {% elif
-        new == "home" %} {{ who }} arrived at home {% elif new == "not_home" %} {{ who
-        }} left {{ old }} {% else %} {{ who }} arrived at {{ new }} {% endif %}'
-      title: Location update {{ states.sensor.time.state }}
-    - service: notify.{{ state_attr("sensor.rodney_info","notify") }}
+  - variables:
+      old: '{{ trigger.from_state.state }}'
+      new: '{{ trigger.to_state.state }}'
+      who: '{{ trigger.to_state.name }}'
+  - device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: mobile_app
+    type: notify
+    message: '{% if new == "not_home" and old == "home"%} {{ who }} left home {% elif
+      new == "home" %} {{ who }} arrived at home {% elif new == "not_home" %} {{ who
+      }} left {{ old }} {% else %} {{ who }} arrived at {{ new }} {% endif %}'
+    title: Location update {{ states.sensor.time.state }}
+  - device_id: 092725b593e9ccb0e4272f3ccd1f8685
+    domain: mobile_app
+    type: notify
+    message: '{% if new == "not_home" and old == "home"%} {{ who }} left home {% elif
+      new == "home" %} {{ who }} arrived at home {% elif new == "not_home" %} {{ who
+      }} left {{ old }} {% else %} {{ who }} arrived at {{ new }} {% endif %}'
+    title: Location update {{ states.sensor.time.state }}
+  - service: notify.{{ state_attr("sensor.rodney_info","notify") }}
+    data:
       data:
-        data:
-          type: tts
-        message:
-          '{% if new == "not_home" and old == "home"%} {{ who }} has left the
-          house {% elif new == "home" %} {{ who }} has arrived home! {% elif new ==
-          "not_home" %} {{ who }} left {{ old }} {% else %} {{ who }} has arrived at
-          {{ new }} {% endif %}'
+        type: tts
+      message: '{% if new == "not_home" and old == "home"%} {{ who }} has left the
+        house {% elif new == "home" %} {{ who }} has arrived home! {% elif new ==
+        "not_home" %} {{ who }} left {{ old }} {% else %} {{ who }} has arrived at
+        {{ new }} {% endif %}'
   mode: single
-- id: "1664062493942"
-  alias: Alarmo Armed
-  description: ""
+- id: '1664062493942'
+  alias: Alarmo
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - person.rodney
-      from: home
-    - platform: state
-      entity_id:
-        - person.gina
-      from: home
-  condition:
-    - condition: not
-      conditions:
+  - platform: state
+    entity_id:
+    - person.rodney
+    - person.gina
+    from: home
+    id: Away
+  - platform: state
+    entity_id:
+    - sensor.bday_rodney
+    - person.rodney
+    - person.gina
+    to: Home
+    id: Home
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - Away
+      - condition: not
+        conditions:
         - condition: state
           entity_id: person.rodney
           state: home
-          alias: Confirm Rodney is home
         - condition: state
           entity_id: person.gina
           state: home
-          alias: Confirm Gina is home
-  action:
-    - service: alarmo.arm
-      data:
-        entity_id: alarm_control_panel.alarmo
-        mode: away
+      sequence:
+      - service: alarmo.arm
+    - conditions:
+      - condition: trigger
+        id:
+        - Home
+      - condition: not
+        conditions:
+        - condition: state
+          entity_id: person.rodney
+          state: not_home
+        - condition: state
+          entity_id: person.gina
+          state: not_home
+      sequence:
+      - service: alarmo.disarm
+        data:
+          entity_id: alarm_control_panel.alarmo
+    - conditions: []
+      sequence: []
   mode: single
-- id: "1664062628967"
-  alias: Alarmo Disarmed
-  description: ""
-  trigger:
-    - platform: state
-      entity_id:
-        - sensor.home_occupied
-      to: "True"
-  condition: []
-  action:
-    - service: alarmo.disarm
-      data:
-        entity_id: alarm_control_panel.alarmo
-  mode: single
-- id: "1664063101764"
+- id: '1664063101764'
   alias: Illuminate Kitchen
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.gina_phone
-        - sensor.rodney_phone
-      to: Kitchen
+  - platform: state
+    entity_id:
+    - sensor.gina_phone
+    - sensor.rodney_phone
+    to: Kitchen
   condition:
-    - condition: sun
-      before: sunrise
-      after: sunset
-    - condition: or
-      conditions:
-        - condition: numeric_state
-          entity_id: sensor.kitchen_motion_illuminance
-          attribute: illuminance_lux
-          below: 20
-      alias: Lux below 20
+  - condition: sun
+    before: sunrise
+    after: sunset
+  - condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.kitchen_motion_illuminance
+      attribute: illuminance_lux
+      below: 20
+    alias: Lux below 20
   action:
-    - service: light.turn_on
-      data: {}
-      target:
-        entity_id:
-          - light.k_night_light
-          - light.kitchen_lights
-      alias: Turn on Lights
-    - delay:
-        hours: 0
-        minutes: 5
-        seconds: 0
-        milliseconds: 0
-    - service: light.turn_off
-      data: {}
-      target:
-        entity_id:
-          - light.kitchen_lights
-          - light.k_night_light
-      alias: Turn off Lights
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id:
+      - light.k_night_light
+      - light.kitchen_lights
+    alias: Turn on Lights
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+      - light.kitchen_lights
+      - light.k_night_light
+    alias: Turn off Lights
   mode: single
-- id: "1664064103258"
+- id: '1664064103258'
   alias: Illuminate Bedroom1
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom1_motion_occupancy
-      to: "on"
-      alias: When Occupancy changes to On
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom1_motion_occupancy
+    to: 'on'
+    alias: When Occupancy changes to On
   condition:
-    - condition: numeric_state
-      entity_id: sensor.bedroom1_motion_illuminance
-      below: 20
-      attribute: illuminance_lux
-      alias: Lux below 20
-    - condition: sun
-      before: sunset
-      after: sunrise
+  - condition: numeric_state
+    entity_id: sensor.bedroom1_motion_illuminance
+    below: 20
+    attribute: illuminance_lux
+    alias: Lux below 20
+  - condition: sun
+    before: sunset
+    after: sunrise
   action:
-    - service: light.turn_on
-      data: {}
-      alias: Turn on Lights
-      target:
-        entity_id: light.bedroom1_lamp
-    - delay:
-        hours: 0
-        minutes: 5
-        seconds: 0
-        milliseconds: 0
-    - service: light.turn_off
-      data: {}
-      alias: Turn off Lights
-      target:
-        entity_id: light.bedroom1_lamp
+  - service: light.turn_on
+    data: {}
+    alias: Turn on Lights
+    target:
+      entity_id: light.bedroom1_lamp
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    alias: Turn off Lights
+    target:
+      entity_id: light.bedroom1_lamp
   mode: single
-- id: "1664064268724"
+- id: '1664064268724'
   alias: Illuminate Bedroom2
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.bedroom2_motion_occupancy
-      to: "on"
-      alias: When Occupancy changes to On
+  - platform: state
+    entity_id:
+    - binary_sensor.bedroom2_motion_occupancy
+    to: 'on'
+    alias: When Occupancy changes to On
   condition:
-    - condition: numeric_state
-      entity_id: sensor.bedroom2_motion_illuminance
-      below: 20
-      attribute: illuminance_lux
-      alias: Lux below 20
-    - condition: sun
-      before: sunset
-      after: sunrise
+  - condition: numeric_state
+    entity_id: sensor.bedroom2_motion_illuminance
+    below: 20
+    attribute: illuminance_lux
+    alias: Lux below 20
+  - condition: sun
+    before: sunset
+    after: sunrise
   action:
-    - service: light.turn_on
-      data: {}
-      alias: Turn on Lights
-      target:
-        entity_id:
-          - light.bedroom2_lamp
-    - delay:
-        hours: 0
-        minutes: 5
-        seconds: 0
-        milliseconds: 0
-    - service: light.turn_off
-      data: {}
-      alias: Turn off Lights
-      target:
-        entity_id:
-          - light.bedroom2_lamp
+  - service: light.turn_on
+    data: {}
+    alias: Turn on Lights
+    target:
+      entity_id:
+      - light.bedroom2_lamp
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    alias: Turn off Lights
+    target:
+      entity_id:
+      - light.bedroom2_lamp
   mode: single
-- id: "1672788636381"
+- id: '1672788636381'
   alias: Open Front Door at Night
   description: Turn on lights for 10 minutes when the front door is opened at night
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.front_door_contact
-      from: "off"
-      to: "on"
+  - platform: state
+    entity_id:
+    - binary_sensor.front_door_contact
+    from: 'off'
+    to: 'on'
   condition:
-    - condition: time
-      after: "17:00:00"
-      before: "23:59:59"
+  - condition: time
+    after: '17:00:00'
+    before: '23:59:59'
   action:
-    - service: light.turn_on
-      data: {}
-      target:
-        entity_id:
-          - light.entrance
-          - light.foyer
-    - delay:
-        hours: 0
-        minutes: 10
-        seconds: 0
-        milliseconds: 0
-    - service: light.turn_off
-      data: {}
-      target:
-        entity_id:
-          - light.entrance
-          - light.foyer
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id:
+      - light.entrance
+      - light.foyer
+  - delay:
+      hours: 0
+      minutes: 10
+      seconds: 0
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+      - light.entrance
+      - light.foyer
   mode: single
-- id: "1675967084665"
+- id: '1675967084665'
   alias: Garbage Day
   description: Reminder to put the bins out for Garbage collection
   trigger:
-    - platform: calendar
-      event: start
-      offset: "-5:0:0"
-      entity_id: calendar.garbage_collection
+  - platform: calendar
+    event: start
+    offset: '-5:0:0'
+    entity_id: calendar.garbage_collection
   condition: []
   action:
-    - service: notify.mobile_app_rodney_iphone
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      message: TEST SYSTEM Trash Day Tomorrow!
+      title: Just to let you know...
+  - service: notify.alexa_media
+    data:
+      message: 'From the Test System: Don''t forget to put out the Trash Tomorrow!'
+      target: '{{ state_attr(''sensor.rodney_info'',''media_player'') }}'
       data:
-        message: TEST SYSTEM Trash Day Tomorrow!
-        title: Just to let you know...
-    - service: notify.alexa_media
-      data:
-        message: "From the Test System: Don't forget to put out the Trash Tomorrow!"
-        target: "{{ state_attr('sensor.rodney_info','media_player') }}"
-        data:
-          type: tts
-      alias: Announce Garbage Day to Rodney
-  mode: single
+        type: tts
+    alias: Announce Garbage Day to Rodney
+  mode: parallel
+  max: 3
 - id: f81d94d834d1444682801aa62b38e8e9
   alias: Notification Volume Normal
   trigger:
-    - platform: state
-      entity_id: input_boolean.notify_audible
-      to: "on"
-    - platform: state
-      entity_id:
-        - input_number.tts_echo_volume
+  - platform: state
+    entity_id: input_boolean.notify_audible
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_number.tts_echo_volume
   action:
-    - service: media_player.volume_set
-      data:
-        entity_id:
-          - media_player.office_echo_show
-          - media_player.left_echo_dot
-          - media_player.right_echo_dot
-          - media_player.lr_echo_show5
-          - media_player.left_echo
-          - media_player.right_echo
-          - media_player.bedroom_echo_dot
-          - media_player.office
-          - media_player.echo_show5
-          - media_player.guest1_echo_dot
-          - media_player.guest2_echo_dot
-        volume_level: "{{ states('input_number.tts_echo_volume') | float }}"
-    - service: media_player.volume_set
-      data:
-        entity_id:
-          - media_player.kitchen_echo_flex
-          - media_player.hall_echo_flex
-        volume_level: "{{ states('input_number.tts_flex_volume') | float }}"
+  - service: media_player.volume_set
+    data:
+      entity_id:
+      - media_player.office_echo_show
+      - media_player.left_echo_dot
+      - media_player.right_echo_dot
+      - media_player.lr_echo_show5
+      - media_player.left_echo
+      - media_player.right_echo
+      - media_player.bedroom_echo_dot
+      - media_player.office
+      - media_player.echo_show5
+      - media_player.guest1_echo_dot
+      - media_player.guest2_echo_dot
+      volume_level: '{{ states(''input_number.tts_echo_volume'') | float }}'
+  - service: media_player.volume_set
+    data:
+      entity_id:
+      - media_player.kitchen_echo_flex
+      - media_player.hall_echo_flex
+      volume_level: '{{ states(''input_number.tts_flex_volume'') | float }}'
   initial_state: true
-- id: "1683060213690"
+- id: '1683060213690'
   alias: Washer Notification
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id: sensor.washer_status
-      from: running
-      to: complete
-    - platform: state
-      entity_id:
-        - binary_sensor.washing_machine_complete
-      to: "on"
+  - platform: state
+    entity_id: sensor.washer_status
+    from: running
+    to: complete
+  - platform: state
+    entity_id:
+    - binary_sensor.washing_machine_complete
+    to: 'on'
   condition: []
   action:
-    - device_id: 96c538d28429bc4d9bb8bcff078540bf
-      domain: mobile_app
-      type: notify
-      message: Washing Machine Finished
-      title: ALERT - TEST
+  - device_id: 96c538d28429bc4d9bb8bcff078540bf
+    domain: mobile_app
+    type: notify
+    message: Washing Machine Finished
+    title: ALERT - TEST
   initial_state: true
-- id: "1684622797923"
+- id: '1684622797923'
   alias: Curtains - Open At Dawn
-  description: ""
+  description: ''
   trigger:
-    - platform: time
-      at: sensor.sun_next_dawn
+  - platform: time
+    at: sensor.sun_next_dawn
   condition: []
   action:
-    - service: cover.open_cover
-      data: {}
-      target:
-        device_id:
-          - b6c7f785a9ab9eee33e1eff658a764f8
-          - ca75572ea8bcf5805e59239b22c4e2c5
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id:
+      - b6c7f785a9ab9eee33e1eff658a764f8
+      - ca75572ea8bcf5805e59239b22c4e2c5
   mode: single
-- id: "1684623000701"
+- id: '1684623000701'
   alias: Curtains - Close 1HR After Sunrise on Days over 80
   description: Going to be over 80
   trigger:
-    - platform: sun
-      event: sunrise
-      offset: +01:00:00
+  - platform: sun
+    event: sunrise
+    offset: +01:00:00
   condition:
+  - condition: numeric_state
+    entity_id: sensor.high_temp
+    above: 80
+  action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id:
+      - b6c7f785a9ab9eee33e1eff658a764f8
+      - ca75572ea8bcf5805e59239b22c4e2c5
+  mode: single
+- id: '1684624039109'
+  alias: Curtains - Open at Solar Noon
+  description: ''
+  trigger:
+  - platform: time
+    at: sensor.sun_next_noon
+  condition:
+  - condition: and
+    conditions:
+    - condition: sun
+      after: sunrise
+      before: sunset
+    - condition: template
+      value_template: '{{ state_attr(''sun.sun'', ''elevation'') | float > 0 }}'
     - condition: numeric_state
       entity_id: sensor.high_temp
       above: 80
   action:
-    - service: cover.close_cover
-      data: {}
-      target:
-        device_id:
-          - b6c7f785a9ab9eee33e1eff658a764f8
-          - ca75572ea8bcf5805e59239b22c4e2c5
+  - service: cover.open_cover
+    data: {}
+    target:
+      device_id:
+      - b6c7f785a9ab9eee33e1eff658a764f8
+      - ca75572ea8bcf5805e59239b22c4e2c5
   mode: single
-- id: "1684624039109"
-  alias: Curtains - Open at Solar Noon
-  description: ""
-  trigger:
-    - platform: time
-      at: sensor.sun_next_noon
-  condition:
-    - condition: and
-      conditions:
-        - condition: sun
-          after: sunrise
-          before: sunset
-        - condition: template
-          value_template: "{{ state_attr('sun.sun', 'elevation') | float > 0 }}"
-        - condition: numeric_state
-          entity_id: sensor.high_temp
-          above: 80
-  action:
-    - service: cover.open_cover
-      data: {}
-      target:
-        device_id:
-          - b6c7f785a9ab9eee33e1eff658a764f8
-          - ca75572ea8bcf5805e59239b22c4e2c5
-  mode: single
-- id: "1684624306853"
+- id: '1684624306853'
   alias: Curtains - Close at Dusk
-  description: ""
+  description: ''
   trigger:
-    - platform: time
-      at: sensor.sun_next_dusk
+  - platform: time
+    at: sensor.sun_next_dusk
   condition: []
   action:
-    - service: cover.close_cover
-      data: {}
-      target:
-        device_id:
-          - b6c7f785a9ab9eee33e1eff658a764f8
-          - ca75572ea8bcf5805e59239b22c4e2c5
+  - service: cover.close_cover
+    data: {}
+    target:
+      device_id:
+      - b6c7f785a9ab9eee33e1eff658a764f8
+      - ca75572ea8bcf5805e59239b22c4e2c5
   mode: single
-- id: "1685081476590"
+- id: '1685081476590'
   alias: Lightning Warning
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - sensor.home_lightning_counter
-      from: "0"
+  - platform: state
+    entity_id:
+    - sensor.home_lightning_counter
+    from: '0'
   condition:
-    - condition: and
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.home_occupied
-          state: "on"
-        - condition: numeric_state
-          entity_id: sensor.home_lightning_distance
-          below: 25
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.home_occupied
+      state: 'on'
+    - condition: numeric_state
+      entity_id: sensor.home_lightning_distance
+      below: 25
   action:
-    - device_id: 9fa8d0c48027387c6683f62b59ab84a9
-      domain: mobile_app
-      type: notify
-      message: Lightning Strike!
-      title: WARNING
+  - device_id: 9fa8d0c48027387c6683f62b59ab84a9
+    domain: mobile_app
+    type: notify
+    message: Lightning Strike!
+    title: 'TEST: WARNING'
   mode: single
-- id: "1686843511538"
+- id: '1686843511538'
   alias: Backup Notification
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - binary_sensor.backups_stale
-      to: "on"
+  - platform: state
+    entity_id:
+    - binary_sensor.backups_stale
+    to: 'on'
   condition: []
   action:
-    - service: notify.mobile_app_rodney_iphone
-      data:
-        title: ALERT
-        message: There is a problem with the ha-test.iot.local Backup State
+  - service: notify.mobile_app_rodney_iphone
+    data:
+      title: ALERT
+      message: There is a problem with the ha-test.iot.local Backup State
   mode: single
-- id: "1687819748504"
+- id: '1687819748504'
   alias: MacroPad - Office Party
   description: Launch the Office Party Scene
   trigger: []
   action:
-    - service: mqtt.publish
-      data:
-        topic: macropad/peripheral
-        payload_template: '{"key_number": 1}'
+  - service: mqtt.publish
+    data:
+      topic: macropad/peripheral
+      payload_template: '{"key_number": 1}'
   mode: single
-- id: "1688708956743"
+- id: '1688708956743'
   alias: Communication - Phone
   description: Open FaceTime or Phone Apps
   trigger:
-    - platform: webhook
-      allowed_methods:
-        - POST
-        - PUT
-      local_only: true
-      webhook_id: phone-rodney
+  - platform: webhook
+    allowed_methods:
+    - POST
+    - PUT
+    local_only: true
+    webhook_id: phone-rodney
   condition:
-    - condition: state
-      entity_id: sensor.rodney_info
-      state: office
-      attribute: room
+  - condition: state
+    entity_id: sensor.rodney_info
+    state: office
+    attribute: room
   action:
-    - service: scene.turn_on
-      data: {}
-      target:
-        entity_id: scene.led_strip_color
-      enabled: false
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 3
-        milliseconds: 0
-      enabled: false
-    - service: script.turn_on
-      data: {}
-      target:
-        entity_id: script.1688849174042
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.led_strip_color
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+    enabled: false
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.1688849174042
   mode: single
-- id: "1688711487768"
+- id: '1688711487768'
   alias: Communication - End
   description: Close FaceTime, Phone, Teams, Skype, Zoom, Meet, or WebEx Apps
   trigger:
-    - platform: webhook
-      allowed_methods:
-        - POST
-        - PUT
-      local_only: true
-      webhook_id: reset-rodney
+  - platform: webhook
+    allowed_methods:
+    - POST
+    - PUT
+    local_only: true
+    webhook_id: reset-rodney
   condition:
-    - condition: state
-      entity_id: sensor.rodney_info
-      attribute: room
-      state: office
+  - condition: state
+    entity_id: sensor.rodney_info
+    attribute: room
+    state: office
   action:
-    - service: script.turn_on
-      data: {}
-      target:
-        entity_id:
-          - script.1688849217022
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id:
+      - script.1688849217022
   mode: single
-- id: "1688712596362"
+- id: '1688712596362'
   alias: Communication - Meeting
   description: Open Teams, Skype, Zoom, Meet, or WebEx Apps
   trigger:
-    - platform: webhook
-      allowed_methods:
-        - POST
-        - PUT
-      local_only: true
-      webhook_id: meeting-rodney
+  - platform: webhook
+    allowed_methods:
+    - POST
+    - PUT
+    local_only: true
+    webhook_id: meeting-rodney
   condition:
-    - condition: state
-      entity_id: sensor.rodney_info
-      state: office
-      attribute: room
+  - condition: state
+    entity_id: sensor.rodney_info
+    state: office
+    attribute: room
   action:
-    - service: scene.turn_on
-      data: {}
-      target:
-        entity_id: scene.led_strip_color
-      enabled: false
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 3
-        milliseconds: 0
-      alias: Wait 3s
-      enabled: false
-    - service: script.turn_on
-      data: {}
-      target:
-        entity_id: script.1688849062577
+  - service: scene.turn_on
+    data: {}
+    target:
+      entity_id: scene.led_strip_color
+    enabled: false
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 3
+      milliseconds: 0
+    alias: Wait 3s
+    enabled: false
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.1688849062577
   mode: single
 - id: 618bd49f-3b0a-4b09-85ce-52f4e3b2f38c
   alias: Smart Kitchen Lighting
   description: Automation from Jeffrey Stone (https://github.com/thejeffreystone/SlackerLabVideoExamples/blob/main/2023-ResponseVariables/automations.yaml)
   trigger:
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      id: Light_Needed
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: lights_dim
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: light_not_needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    id: Light_Needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: lights_dim
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('kitchen'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: light_not_needed
   condition: []
   action:
-    - service: script.get_room_lights
-      data:
-        room: kitchen
-      response_variable: room
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 100
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: state
-              entity_id: input_boolean.notify_audible
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 50
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: lights_dim
-            - condition: numeric_state
-              entity_id: sun.sun
-              attribute: elevation
-              below: 8
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 20
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: light_not_needed
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: "{{room.lights}}"
-      default: []
+  - service: script.get_room_lights
+    data:
+      room: kitchen
+    response_variable: room
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: state
+        entity_id: input_boolean.notify_audible
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 50
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: lights_dim
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 8
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: light_not_needed
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id: '{{room.lights}}'
+    default: []
   mode: restart
 - id: 557e425f-8f38-4d03-9774-2d6b5fafed61
   alias: Smart Office Lighting
   description: Automation from Jeffrey Stone (https://github.com/thejeffreystone/SlackerLabVideoExamples/blob/main/2023-ResponseVariables/automations.yaml)
   trigger:
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      id: Light_Needed
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: lights_dim
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-      id: light_not_needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    id: Light_Needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: lights_dim
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('office'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+    id: light_not_needed
   condition: []
   action:
-    - service: script.get_room_lights
-      data:
-        room: office
-      response_variable: room
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: numeric_state
-              entity_id: sensor.office_lux
-              below: 20
-            - condition: and
-              conditions:
-                - condition: or
-                  conditions:
-                    - condition: state
-                      entity_id: sensor.season
-                      state: autumn
-                    - condition: state
-                      entity_id: sensor.season
-                      state: winter
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 100
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: state
-              entity_id: input_boolean.notify_audible
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 50
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: lights_dim
-            - condition: numeric_state
-              entity_id: sun.sun
-              below: 8
-              attribute: elevation
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 20
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: light_not_needed
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: "{{room.lights}}"
-      default: []
+  - service: script.get_room_lights
+    data:
+      room: office
+    response_variable: room
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: numeric_state
+        entity_id: sensor.office_lux
+        below: 20
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: sensor.season
+            state: autumn
+          - condition: state
+            entity_id: sensor.season
+            state: winter
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: state
+        entity_id: input_boolean.notify_audible
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 50
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: lights_dim
+      - condition: numeric_state
+        entity_id: sun.sun
+        below: 8
+        attribute: elevation
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: light_not_needed
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id: '{{room.lights}}'
+    default: []
   mode: restart
 - id: 255968ea-5ad9-4cd7-86c8-b48a42b60a4e
   alias: Smart Living Room Lighting
   description: Automation from Jeffrey Stone (https://github.com/thejeffreystone/SlackerLabVideoExamples/blob/main/2023-ResponseVariables/automations.yaml)
   trigger:
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      id: Light_Needed
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: lights_dim
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: light_not_needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    id: Light_Needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: lights_dim
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('living_room'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: light_not_needed
   condition: []
   action:
-    - service: script.get_room_lights
-      data:
-        room: living_room
-      response_variable: room
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: numeric_state
-              entity_id: sensor.office_lux
-              below: 20
-            - condition: and
-              conditions:
-                - condition: or
-                  conditions:
-                    - condition: state
-                      entity_id: sensor.season
-                      state: autumn
-                    - condition: state
-                      entity_id: sensor.season
-                      state: winter
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 100
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: state
-              entity_id: input_boolean.notify_audible
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 50
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: lights_dim
-            - condition: numeric_state
-              entity_id: sun.sun
-              attribute: elevation
-              below: 8
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 20
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: light_not_needed
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: "{{room.lights}}"
-      default: []
+  - service: script.get_room_lights
+    data:
+      room: living_room
+    response_variable: room
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: numeric_state
+        entity_id: sensor.office_lux
+        below: 20
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: sensor.season
+            state: autumn
+          - condition: state
+            entity_id: sensor.season
+            state: winter
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: state
+        entity_id: input_boolean.notify_audible
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 50
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: lights_dim
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 8
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: light_not_needed
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id: '{{room.lights}}'
+    default: []
   mode: restart
 - id: f7d633cd-13e4-48ce-afc0-2becdca5e212
   alias: Smart Main Bedroom Lighting
   description: Automation from Jeffrey Stone (https://github.com/thejeffreystone/SlackerLabVideoExamples/blob/main/2023-ResponseVariables/automations.yaml)
   trigger:
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      id: Light_Needed
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: lights_dim
-    - platform: template
-      value_template:
-        "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
-        |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
-        'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
-        | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
-        count > 0 }}"
-      for:
-        hours: 0
-        minutes: 1
-        seconds: 0
-        milliseconds: 0
-      id: light_not_needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    id: Light_Needed
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'on') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: lights_dim
+  - platform: template
+    value_template: "{{ states.binary_sensor | selectattr('entity_id', 'in', area_entities('main_bedroom'))
+      |\n   rejectattr('state', 'eq', 'unavailable') | rejectattr('attributes.device_class',
+      'undefined') |\n   selectattr('attributes.device_class', 'search', '(occupancy|motion)')
+      | selectattr('state', 'eq', 'off') |\n   map(attribute='entity_id') | list |
+      count > 0 }}"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+    id: light_not_needed
   condition: []
   action:
-    - service: script.get_room_lights
-      data:
-        room: main_bedroom
-      response_variable: room
-    - choose:
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: numeric_state
-              entity_id: sensor.office_lux
-              below: 20
-            - condition: and
-              conditions:
-                - condition: or
-                  conditions:
-                    - condition: state
-                      entity_id: sensor.season
-                      state: autumn
-                    - condition: state
-                      entity_id: sensor.season
-                      state: winter
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 100
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: Light_Needed
-            - condition: state
-              entity_id: input_boolean.notify_audible
-              state: "off"
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 50
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: lights_dim
-            - condition: numeric_state
-              entity_id: sun.sun
-              attribute: elevation
-              below: 8
-          sequence:
-            - service: light.turn_on
-              data:
-                brightness_pct: 20
-              target:
-                entity_id: "{{room.lights}}"
-        - conditions:
-            - condition: trigger
-              id: light_not_needed
-          sequence:
-            - service: light.turn_off
-              target:
-                entity_id: "{{room.lights}}"
-      default: []
+  - service: script.get_room_lights
+    data:
+      room: main_bedroom
+    response_variable: room
+  - choose:
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: numeric_state
+        entity_id: sensor.office_lux
+        below: 20
+      - condition: and
+        conditions:
+        - condition: or
+          conditions:
+          - condition: state
+            entity_id: sensor.season
+            state: autumn
+          - condition: state
+            entity_id: sensor.season
+            state: winter
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: Light_Needed
+      - condition: state
+        entity_id: input_boolean.notify_audible
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 50
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: lights_dim
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: 8
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness_pct: 20
+        target:
+          entity_id: '{{room.lights}}'
+    - conditions:
+      - condition: trigger
+        id: light_not_needed
+      sequence:
+      - service: light.turn_off
+        target:
+          entity_id: '{{room.lights}}'
+    default: []
   mode: restart
-- id: "1702144780254"
+- id: '1702144780254'
   alias: Test - Automation
-  description: ""
+  description: ''
   trigger: []
   condition: []
   action: []
   mode: single
-- id: "1703453700273"
+- id: '1703453700273'
   alias: Notify - Audible Toggle
-  description: ""
+  description: ''
   trigger:
-    - platform: time
-      at: input_datetime.audible_notification_off
-      id: AudibleOFF
-    - platform: time
-      at: input_datetime.audible_notification_on
-      id: AudibleON
+  - platform: time
+    at: input_datetime.audible_notification_off
+    id: AudibleOFF
+  - platform: time
+    at: input_datetime.audible_notification_on
+    id: AudibleON
   condition: []
   action:
-    - choose:
-        - conditions:
-            - condition: trigger
-              id:
-                - AudibleOFF
-          sequence:
-            - service: input_boolean.turn_off
-              target:
-                entity_id: input_boolean.audible_notifications
-              data: {}
-        - conditions:
-            - condition: trigger
-              id:
-                - AudibleON
-          sequence:
-            - service: input_boolean.turn_on
-              target:
-                entity_id: input_boolean.audible_notifications
-              data: {}
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - AudibleOFF
+      sequence:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.audible_notifications
+        data: {}
+    - conditions:
+      - condition: trigger
+        id:
+        - AudibleON
+      sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.audible_notifications
+        data: {}
+  mode: single
+- id: '1704931812687'
+  alias: Update Zone List
+  description: Keep Destination drop-down updated
+  trigger:
+  - platform: event
+    event_type: entity_registry_updated
+  condition:
+  - condition: template
+    value_template: '{{ trigger.event.data.action in [''create'', ''delete''] and
+      trigger.event.data.entity_id.startswith(''zone.'') }}'
+  action:
+  - service: input_select.set_options
+    target:
+      entity_id: input_select.destination_location
+    data:
+      options: '{{ states.zone | map(attribute=''name'') | list }}'
+  - service: notify.rodney_ios
+    data:
+      title: Zones
+      message: Waze destination list updated
+  mode: parallel
+  max: 20
+- id: '1705258307289'
+  alias: Proximity - Home
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id:
+    - sensor.home_nearest_distance
+    above: 5000
+    id: LeavingHome
+  - platform: state
+    entity_id:
+    - zone.home
+    to: '0'
+    id: LeavingHome
+  - platform: numeric_state
+    entity_id:
+    - sensor.home_nearest_distance
+    below: 5000
+    id: ArrivingHome
+  - platform: numeric_state
+    entity_id:
+    - zone.home
+    above: 0
+    id: ArrivingHome
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: trigger
+        id:
+        - LeavingHome
+      sequence:
+      - service: climate.set_temperature
+        metadata: {}
+        data:
+          temperature: 60
+        target:
+          entity_id: climate.my_ecobee
+        enabled: false
+      - service: script.text_alert
+        metadata: {}
+        data:
+          title: ALERT
+          message: The house is now unoccupied.
+    - conditions:
+      - condition: trigger
+        id:
+        - ArrivingHome
+      sequence:
+      - service: climate.set_temperature
+        metadata: {}
+        data:
+          temperature: 65
+        target:
+          entity_id: climate.my_ecobee
+        enabled: false
+      - service: script.text_alert
+        metadata: {}
+        data:
+          title: ALERT
+          message: Someone is headed home.
+  mode: single
+- id: '1711848500363'
+  alias: System Maintenance
+  description: Generate Watchman Report and Purge the Database every other month on
+    the 1st of the month
+  trigger:
+  - platform: time
+    at: 00:00:00
+  condition:
+  - alias: Every other month on the 1st day of the month
+    condition:
+    - condition: template
+      value_template: '{{ now().day == 1 and now().month % 2 == 1 }}'
+  action:
+  - service: recorder.purge
+    data:
+      keep_days: 90
+      repack: true
+  - service: watchman.report
+    data:
+      create_file: true
   mode: single

@@ -50,12 +50,14 @@ views:
               {% else %}
                 Hello, {{user}}!
               {% endif %}
+              Today is {{ now().strftime('%A') }}, {{ now().strftime('%B') }} {{ now().day }}, {{ now().year }}
           - type: tile
             entity: person.rodney
             show_entity_picture: true
           - type: tile
             entity: person.gina
             show_entity_picture: true
+          # - type: custom:button-card
       - type: horizontal-stack
         cards:
           - type: custom:mushroom-template-card
@@ -83,12 +85,12 @@ views:
               or is_state('light.mb_ceiling_lights', 'on')
               or is_state('light.gina_nightstand', 'on')
               or is_state('light.rodney_nightstand', 'on')
-              or is_state('light.h61e0_gina_led_strip', 'on')
-              or is_state('light.h61e0_rodney_led_strip', 'on')
-              or is_state('light.bedroom1_ceiling_lights', 'on')
-              or is_state('light.bedroom1_light', 'on')
-              or is_state('light.bedroom2_ceiling_lights', 'on')
-              or is_state('light.bedroom2_light', 'on')
+              or is_state('light.gina_led_strip', 'on')
+              or is_state('light.rodney_led_strip', 'on')
+              or is_state('light.bedroom1_lights', 'on')
+              or is_state('light.bedroom1_lamp', 'on')
+              or is_state('light.bedroom2_lights', 'on')
+              or is_state('light.bedroom2_lamp', 'on')
               or is_state('light.gina_light', 'on')
               or is_state('light.rodney_light', 'on')
               or is_state('light.kitchen_lights', 'on')
@@ -100,7 +102,8 @@ views:
               or is_state('light.side_porch_2', 'on')
               or is_state('light.front_porch_1', 'on')
               or is_state('light.front_porch_2', 'on')
-              or is_state('light.little_yard_light', 'on') 
+              or is_state('light.little_yard_light', 'on')
+              or is_state('light.backyard', 'on')
               or is_state('switch.mj_s01_b71a3c', 'on') %}
                 amber
               {% else %}
@@ -147,7 +150,7 @@ views:
             tap_action:
               action: navigate
               navigation_path: /home-dash/stocks
-            icon_color: ""
+            icon_color: white
           - type: custom:mushroom-template-card
             primary: Sports
             icon: mdi:baseball-bat
@@ -235,37 +238,31 @@ views:
                     name: Left
                     tap_action:
                       action: toggle
-                    icon: mdi:floor-lamp
                     show_icon: true
                   - entity: light.right_floor_lamp
                     name: Right
                     tap_action:
                       action: toggle
-                    icon: mdi:floor-lamp
                     show_icon: true
                   - entity: light.wled_soundreactive
                     name: Desk
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
                   - entity: light.bookcase_led_strip
                     name: Bookcase
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
                   - entity: light.light_strip_831a
                     name: Left Window
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
                   - entity: light.light_strip_10fe
                     name: Right Window
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
                   - entity: fan.office_fans
                     name: Fans
@@ -306,13 +303,11 @@ views:
                     name: Gina
                     tap_action:
                       action: toggle
-                    icon: mdi:floor-lamp
                     show_icon: true
                   - entity: light.rodney_light
                     name: Rodney
                     tap_action:
                       action: toggle
-                    icon: mdi:floor-lamp
                     show_icon: true
                   - entity: fan.maxx_air
                     name: Fan
@@ -361,8 +356,8 @@ views:
                 icon_color: |-
                   {% if is_state('light.main_bedroom_light', 'on')
                      or is_state('light.main_bedroom_nightstands', 'on')
-                     or is_state('light.h61e0_gina_led_strip', 'on')
-                     or is_state('light.h61e0_rodney_led_strip', 'on') %}
+                     or is_state('light.gina_led_strip', 'on')
+                     or is_state('light.rodney_led_strip', 'on') %}
                      amber
                   {% endif %}
                 show_icon: true
@@ -371,13 +366,11 @@ views:
                     name: Gina
                     tap_action:
                       action: toggle
-                    icon: mdi:lamp
                     show_icon: true
                   - entity: light.rodney_nightstand
                     name: Rodney
                     tap_action:
                       action: toggle
-                    icon: mdi:lamp
                     show_icon: true
                   - entity: light.mb_ceiling_lights
                     name: Ceiling
@@ -389,17 +382,15 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                  - entity: light.h61e0_gina_led_strip
+                  - entity: light.gina_led_strip
                     name: Gina
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
-                  - entity: light.h61e0_rodney_led_strip
+                  - entity: light.rodney_led_strip
                     name: Rodney
                     tap_action:
                       action: toggle
-                    icon: mdi:led-strip-variant
                     show_icon: true
                   - entity: switch.mb_plug1_zb
                     name: Plug
@@ -484,7 +475,7 @@ views:
                   - sensor.kitchen_motion_illuminance
               - type: custom:room-card
                 title: Guest Room1
-                entity: light.bedroom1_ceiling_lights
+                entity: light.bedroom1_lights
                 tap_action:
                   action: navigate
                   navigation_path: /home-dash/guest1
@@ -492,19 +483,19 @@ views:
                   action: toggle
                 icon: mdi:bed-outline
                 icon_color: |-
-                  {% if is_state('light.bedroom1_ceiling_lights', 'on'),
-                     or is_state('light.bedroom1_light', 'on') %}
+                  {% if is_state('light.bedroom1_lights', 'on'),
+                     or is_state('light.bedroom1_lamp', 'on') %}
                      amber
                   {% endif %}
                 show_icon: true
                 entities:
-                  - entity: light.bedroom1_ceiling_lights
+                  - entity: light.bedroom1_lights
                     name: Ceiling
                     tap_action:
                       action: toggle
                     icon: mdi:lightbulb-group
                     show_icon: true
-                  - entity: light.bedroom1_light
+                  - entity: light.bedroom1_lamp
                     name: Lamp
                     tap_action:
                       action: toggle
@@ -514,7 +505,7 @@ views:
                     name: Fan
                     tap_action:
                       action: toggle
-                  - entity: switch.bedroom1_s31_zb
+                  - entity: switch.bedroom1_plug1
                     name: Heater
                     tap_action:
                       action: toggle
@@ -532,7 +523,7 @@ views:
                   - sensor.bedroom1_motion_illuminance
               - type: custom:room-card
                 title: Guest Room2
-                entity: light.bedroom2_ceiling_lights
+                entity: light.bedroom2_lights
                 tap_action:
                   action: navigate
                   navigation_path: /home-dash/guest1
@@ -540,23 +531,25 @@ views:
                   action: toggle
                 icon: mdi:bed-outline
                 icon_color: |-
-                  {% if is_state('light.bedroom2_ceiling_lights', 'on'),
-                     or is_state('light.bedroom2_light', 'on') %}
+                  {% if is_state('light.bedroom2_lights', 'on'),
+                     or is_state('light.bedroom2_lamp', 'on') %}
                      amber
                   {% endif %}
                 show_icon: true
                 entities:
-                  - entity: light.bedroom2_ceiling_lights
+                  - entity: light.bedroom2_lights
                     name: Ceiling
                     tap_action:
                       action: toggle
-                    icon: mdi:lightbulb-group
                     show_icon: true
-                  - entity: light.bedroom2_light
+                  - entity: light.bedroom2_lamp
                     name: Lamp
                     tap_action:
                       action: toggle
-                    icon: mdi:lamp
+                    show_icon: true
+                  - entity: switch.bedroom2_plug1
+                    tap_action:
+                      action: toggle
                     show_icon: true
                 info_entities:
                   - entity: binary_sensor.bedroom2_occupied

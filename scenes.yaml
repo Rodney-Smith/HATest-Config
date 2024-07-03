@@ -1930,3 +1930,34 @@
       state: 'on'
   icon: mdi:cigar
   metadata: {}
+- id: '1708462616344'
+  name: Bookcase LED Strip
+  entities:
+    light.bookcase_led_strip:
+      min_color_temp_kelvin: 2000
+      max_color_temp_kelvin: 9000
+      min_mireds: 111
+      max_mireds: 500
+      supported_color_modes:
+      - color_temp
+      - rgb
+      color_mode: rgb
+      brightness: 255
+      color_temp_kelvin:
+      color_temp:
+      hs_color:
+      - 170.816
+      - 72.059
+      rgb_color:
+      - 38
+      - 136
+      - 121
+      xy_color:
+      - 0.175
+      - 0.383
+      icon: mdi:led-strip-variant
+      friendly_name: Bookcase LED Strip
+      supported_features: 0
+      state: 'on'
+  icon: mdi:led-strip-variant
+  metadata: {}

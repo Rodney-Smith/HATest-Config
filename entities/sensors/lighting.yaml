@@ -4,9 +4,9 @@
         friendly_name: 'Light Brightness'
         value_template: >
           {% if (now().hour >= 23) or (now().hour <= 7) %}
-            10
-          {% else %}
             30
+          {% else %}
+            65
           {% endif %}
 
       light_color_temp:

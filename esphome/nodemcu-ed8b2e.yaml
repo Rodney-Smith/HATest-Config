@@ -4,6 +4,7 @@ substitutions:
   # ESPHome dashboard.  The better approach is to incorporate this file as a
   # package.
   name: nodemcu-ed8b2e
+  comment: Keg Scale
   room: Laundry
   friendly_name: Orange and Green Kegs
   update_raw: 0.5s
@@ -39,7 +40,7 @@ globals:
 # https://esphome.io/components/esphome.html
 esphome:
   name: ${name}
-  comment: Keg Scale
+  comment: ${comment}
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
   platform: ESP8266
@@ -72,22 +73,23 @@ logger:
 
 # https://esphome.io/components/ota.html
 ota:
-  id: nodemcu_ota
-  password: !secret esphome_ota
-  on_begin:
-    then:
-      - logger.log: "OTA start"
-  on_progress:
-    then:
-      - logger.log:
-          format: "OTA progress %0.1f%%"
-          args: ["x"]
-  on_end:
-    then:
-      - logger.log: "OTA end"
-#  on_error:
-#    then:
-#      - button.press: restart_button
+  - platform: esphome
+    id: nodemcu_ota
+    password: !secret esphome_ota
+    on_begin:
+      then:
+        - logger.log: "OTA start"
+    on_progress:
+      then:
+        - logger.log:
+            format: "OTA progress %0.1f%%"
+            args: ["x"]
+    on_end:
+      then:
+        - logger.log: "OTA end"
+  #  on_error:
+  #    then:
+  #      - button.press: restart_button
 
 # https://esphome.io/components/web_server.html
 web_server:

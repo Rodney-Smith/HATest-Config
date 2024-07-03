@@ -15,7 +15,7 @@ sensor:
     county: 101
 
   - platform: nws_alerts
-    zone_id: 'CAZ016,CAC101,CAZ216'
+    zone_id: "CAZ016,CAC101,CAZ216"
     # "forecastZone": "https://api.weather.gov/zones/forecast/CAZ016",
     # "county": "https://api.weather.gov/zones/county/CAC101",
     # "fireWeatherZone": "https://api.weather.gov/zones/fire/CAZ216",
@@ -24,89 +24,93 @@ sensor:
 
 template:
   - trigger:
+      - platform: event
+        event_type:
+          - homeassistant_started
       - platform: time_pattern
         hours: /1
     action:
-      - service: weather.get_forecast
+      - service: weather.get_forecasts
         data:
           type: daily
         target:
           entity_id: weather.local
-        response_variable: daily_weather
+        response_variable: daily
     sensor:
       - name: Daily Forecast
         unique_id: 54d1c835-293e-4c53-a48c-70d869bdb9b4
         state: "{{ now().isoformat() }}"
         icon: mdi:hours-24
         attributes:
-          forecast: "{{ daily_weather.forecast }}"
+          forecast: "{{ daily['weather.local'].forecast }}"
       - name: Tomorrow Forecast
         unique_id: 64f0740f-82d3-4131-af06-74f3693beca3
         icon: mdi:weather-sunny
         state: >
-            {{ daily_weather.forecast[1].condition }}
+          {{ daily['weather.local'].forecast[1].condition }}
       - name: Tomorrow High Temp
         unique_id: 828df292-6e89-4154-ac4e-115aed204031
         icon: mdi:thermometer-high
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ daily_weather.forecast[1].temperature }}
+          {{ daily['weather.local'].forecast[1].temperature }}
       - name: Tomorrow Low
         unique_id: 9d38b083-afc1-4198-a8d6-56ddc98397ad
         icon: mdi:thermometer-low
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ daily_weather.forecast[1].templow }}
+          {{ daily['weather.local'].forecast[1].templow }}
       - name: Tomorrow Wind Bearing
         unique_id: d10a682a-fffb-43f0-b804-db6dba2371a2
         icon: mdi:windsock
         state: >
-            {{ daily_weather.forecast[1].wind_bearing }}
+          {{ daily['weather.local'].forecast[1].wind_bearing }}
       - name: Tomorrow Wind Speed
         unique_id: 06b9647b-006c-46d9-82b4-0147fce838a3
         icon: mdi:weather-windy
         unit_of_measurement: mph
         device_class: wind_speed
         state: >
-            {{ daily_weather.forecast[1].wind_speed }}
+          {{ daily['weather.local'].forecast[1].wind_speed }}
       - name: Tomorrow Precipitation
         unique_id: 92dfd5db-b3d7-496f-916e-f08f7ee6b368
         icon: mdi:weather-rainy
         device_class: precipitation
         state: >
-            {{ daily_weather.forecast[1].precipitation }}
+          {{ daily['weather.local'].forecast[1].precipitation }}
+        unit_of_measurement: in
       - name: Tomorrow Rain Probability
         unique_id: 533076f0-bf12-4e29-abd0-d4e13f96fd5c
         icon: mdi:weather-rainy
         state: >
-            {{ daily_weather.forecast[1].precipitation_probability }}
+          {{ daily['weather.local'].forecast[1].precipitation_probability }}
       - name: Tomorrow Cloud Coverage
         unique_id: 68647955-ba7e-4292-8990-c24869629eb5
         icon: mdi:cloud
         state: >
-            {{ daily_weather.forecast[1].cloud_coverage }}
+          {{ daily['weather.local'].forecast[1].cloud_coverage }}
       - name: Tomorrow Humidity
         unique_id: 50f2b515-38f6-4819-ab61-331054d09d7b
         icon: mdi:water-percent
         device_class: humidity
         state: >
-            {{ daily_weather.forecast[1].humidity }}
+          {{ daily['weather.local'].forecast[1].humidity }}
       - name: High Temp
         unique_id: 917c4584-356d-4a96-8824-80a9085ca794
         icon: mdi:thermometer-high
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ daily_weather.forecast[0].temperature }}
+          {{ daily['weather.local'].forecast[0].temperature }}
       - name: Low Temp
         unique_id: d748a9f6-59b1-42d3-a16e-99b19d32a809
         icon: mdi:thermometer-low
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ daily_weather.forecast[0].templow }}
+          {{ daily['weather.local'].forecast[0].templow }}
       - name: Today Expected Precipitation
         unique_id: b263b0d7-997f-450c-b96a-f7c1b67f75e5
         icon: mdi:weather-pouring
@@ -114,8 +118,8 @@ template:
         state: >
           {% set ns = namespace() %}
           {% set ns.totalprecipitation = 0 %}
-          {% set precipitation = daily_weather.forecast[0].precipitation %}
-          {% set precipitation_probability = daily_weather.forecast[0].precipitation_probability %}
+          {% set precipitation = daily['weather.local'].forecast[0].precipitation %}
+          {% set precipitation_probability = daily['weather.local'].forecast[0].precipitation_probability %}
           {% if precipitation_probability > 0 %}
             {% set ns.totalprecipitation = precipitation * precipitation_probability %}
           {% endif %}
@@ -127,30 +131,33 @@ template:
         state: >
           {% set ns = namespace() %}
           {% set ns.totalprecipitation = 0 %}
-          {% set precipitation = daily_weather.forecast[1].precipitation %}
-          {% set precipitation_probability = daily_weather.forecast[1].precipitation_probability %}
+          {% set precipitation = daily['weather.local'].forecast[1].precipitation %}
+          {% set precipitation_probability = daily['weather.local'].forecast[1].precipitation_probability %}
           {% if precipitation_probability > 0 %}
             {% set ns.totalprecipitation = precipitation * precipitation_probability %}
           {% endif %}
           {{ ns.totalprecipitation | float(0) | round(2) }}
 
   - trigger:
+      - platform: event
+        event_type:
+          - homeassistant_started
       - platform: time_pattern
         hours: /1
     action:
-      - service: weather.get_forecast
+      - service: weather.get_forecasts
         data:
           type: hourly
         target:
           entity_id: weather.local
-        response_variable: hourly_weather
+        response_variable: hourly
     sensor:
       - name: Hourly Forecast
         unique_id: 062716f3-7108-4922-96b2-bece62843325
         state: "{{ now().isoformat() }}"
         icon: mdi:hours-24
         attributes:
-          forecast: "{{ hourly_weather.forecast }}"
+          forecast: "{{ hourly['weather.local'].forecast }}"
       - name: Expected Precipitation
         unique_id: 3d9d1968-9d0c-4aa4-a3bb-f1c0af3a4675
         icon: mdi:weather-pouring
@@ -159,8 +166,8 @@ template:
           {% set ns = namespace() %}
           {% set ns.totalprecipitation = 0 %}
           {% for daypart in range(0, 1) %}
-            {% set precipitation = hourly_weather.forecast[daypart].precipitation %}
-            {% set precipitation_probability = hourly_weather.forecast[daypart].precipitation_probability %}
+            {% set precipitation = hourly['weather.local'].forecast[daypart].precipitation %}
+            {% set precipitation_probability = hourly['weather.local'].forecast[daypart].precipitation_probability %}
             {% if precipitation_probability > 0 %}
               {% set ns.totalprecipitation = precipitation * precipitation_probability %}
             {% endif %}
@@ -170,66 +177,66 @@ template:
         unique_id: fc95b5e7-03c3-4d29-9ca3-1a8e32fd3f0e
         icon: mdi:weather-sunny
         state: >
-            {{ hourly_weather.forecast[0].condition }}
+          {{ hourly['weather.local'].forecast[0].condition }}
       - name: Current Temp
         unique_id: 36e95fc0-ea99-4458-9552-443c50abe3e2
         icon: mdi:thermometer
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ hourly_weather.forecast[0].temperature }}
+          {{ hourly['weather.local'].forecast[0].temperature }}
       - name: Feels Like
         unique_id: 3067a8e2-4418-4866-8e9d-8cab4050b7b3
         icon: mdi:thermometer
         unit_of_measurement: °F
         device_class: temperature
         state: >
-            {{ hourly_weather.forecast[0].apparent_temperature }}
+          {{ hourly['weather.local'].forecast[0].apparent_temperature }}
       - name: Wind Bearing
         unique_id: d33464a3-f6f2-478b-9f39-afa4766d89f0
         icon: mdi:windsock
         state: >
-            {{ hourly_weather.forecast[0].wind_bearing }}
+          {{ hourly['weather.local'].forecast[0].wind_bearing }}
       - name: Wind Speed
         unique_id: f91de136-c92b-48d1-aac4-fec2262c3a46
         icon: mdi:weather-windy
         unit_of_measurement: mph
         device_class: wind_speed
         state: >
-            {{ hourly_weather.forecast[0].wind_speed }}
+          {{ hourly['weather.local'].forecast[0].wind_speed }}
       - name: Precipitation
         unique_id: 89f4db3c-d2a0-435d-a227-cf8785a973f0
         icon: mdi:weather-rainy
         device_class: precipitation
         state: >
-            {{ hourly_weather.forecast[0].precipitation }}
+          {{ hourly['weather.local'].forecast[0].precipitation }}
       - name: Cloud Coverage
         unique_id: 96b821e1-f5d5-444b-b8f3-7d3fd3d7d37a
         icon: mdi:cloud
         state: >
-            {{ hourly_weather.forecast[0].cloud_coverage }}
+          {{ hourly['weather.local'].forecast[0].cloud_coverage }}
       - name: Humidity
         unique_id: 6354254e-07b4-4acc-9c06-e5f2c8f55946
         icon: mdi:water-percent
         device_class: humidity
         state: >
-            {{ hourly_weather.forecast[0].humidity }}
+          {{ hourly['weather.local'].forecast[0].humidity }}
       - name: UV Index
         unique_id: 0713a46c-1d04-4c1d-80af-21613c0dc940
         icon: mdi:sun-wireless
         state: >
-            {{ hourly_weather.forecast[0].uv_index }}
+          {{ hourly['weather.local'].forecast[0].uv_index }}
       - name: Dew Point
         unique_id: 818a172b-f21a-4fc0-83fd-bffd36a6e958
         icon: mdi:water-thermometer
         state: >
-            {{ hourly_weather.forecast[0].dew_point }}
+          {{ hourly['weather.local'].forecast[0].dew_point }}
       - name: Pressure
         unique_id: 9a4fba81-6547-4b8d-9e53-88b5889c8b48
         unit_of_measurement: psi
         device_class: pressure
         state: >
-            {{ hourly_weather.forecast[0].pressure }}
+          {{ hourly['weather.local'].forecast[0].pressure }}
 
 #weather:
 #  - platform: pirateweather

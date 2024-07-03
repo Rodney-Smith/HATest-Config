@@ -1,5 +1,5 @@
 rodney_heading_home:
-  name: Rodney will arrive in {{states.sensor.rodney_ett_home | round}} minutes.
+  name: "Rodney will arrive in {{state_attr('sensor.rodney_ett_home','duration') | round}} minutes."
   entity_id: input_boolean.rodney_travel_monitor
   state: "on"
   repeat: 20

@@ -35,35 +35,7 @@ notify:
     platform: group
     services:
       - service: mobile_app_gina_iphone
-
-input_boolean:
-  notify_text:
-    name: Notify Text - All
-    icon: mdi:cellphone-wireless
-  notify_text_gina:
-    name: Notify Text - Gina
-    icon: mdi:message-text
-  notify_text_rodney:
-    name: Notify Text - Rodney
-    icon: mdi:message-text
-  notify_audible:
-    name: Notify Audible - All
-    icon: mdi:speaker-wireless
-  notify_audible_gina:
-    name: Notify Audible - Gina
-    icon: mdi:volume-high
-  notify_audible_rodney:
-    name: Notify Audible - Rodney
-    icon: mdi:volume-high
-  trash_notification:
-    name: Trash Notification
-    icon: mdi:trash-can
-  welcome_home:
-    name: Welcome Home
-    icon: mdi:home
-  notify_text_debug:
-    name: Debug Texts
-    icon: mdi:bug
+      - service: mobile_app_macbook_pro
 
 tts:
   - platform: google_translate

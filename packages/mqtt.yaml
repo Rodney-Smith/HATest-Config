@@ -53,109 +53,133 @@ mqtt:
       state_topic: "zigbee2mqtt/bridge/state"
       icon: mdi:router-wireless
 
-    - name: "Pi0dev Temperature"
+    - name: "pi0usb Temperature"
       unique_id: 7745f652-1baa-4f90-b52c-70fade5c7520
-      state_topic: "linux/pi0dev/temp"
-      value_template: >-
-        {{ (states('sensor.pi0dev_temperature') | float(default=0)) | round(1) }}
+      state_topic: "linux/pi0usb/temp" # "linux/pi0dev/temp"
+      #value_template: >-
+      #  {{ (states('sensor.pi0usb_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi0w1 Temperature"
+    - name: "Office Satellite Temperature"
       unique_id: 2e46c4df-1465-4535-9034-b6dd193a1bad
-      state_topic: "linux/pi0w1/temp"
-      value_template: >-
-        {{ (states('sensor.pi0w1_temperature') | float(default=0)) | round(1) }}
+      state_topic: "linux/office-satellite/temp" # "linux/pi0w1/temp"
+      #value_template: >-
+      #  {{ (states('sensor.office_satellite_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi0w2 Temperature"
+    - name: "pi0w2 Temperature"
       unique_id: 0724e801-29a3-4bff-81e6-fbdd6503c384
       state_topic: "linux/pi0w2/temp"
-      value_template: >-
-        {{ (states('sensor.pi0w2_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.pi0w2_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi0wh1 Temperature"
+    - name: "pi0wh1 Temperature"
       unique_id: eb6bb275-8c47-47d2-a184-887455196ab8
       state_topic: "linux/pi0wh1/temp"
-      value_template: >-
-        {{ (states('sensor.pi0wh1_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.pi0wh1_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi0wh2 Temperature"
+    - name: "pi0desk Temperature"
       unique_id: 941f77db-f5b7-4bcd-91f1-0a24656db0b5
-      state_topic: "linux/pi0wh2/temp"
-      value_template: >-
-        {{ (states('sensor.pi0wh2_temperature') | float(default=0)) | round(1) }}
+      state_topic: "linux/pi0desk/temp" # "linux/pi0wh2/temp"
+      #value_template: >-
+      #  {{ (states('sensor.pi0desk_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi3 Temperature"
+    - name: "pi3 Temperature"
       unique_id: 211ccd1f-a3b1-4642-a634-e3271243193f
       state_topic: "linux/pi3/temp"
-      value_template: >-
-        {{ (states('sensor.pi3_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.pi3_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
-    - name: "Pi4 Temperature"
+    - name: "pi4 Temperature"
       unique_id: a89c0757-081e-4343-8c3b-9c21317dfc62
       state_topic: "linux/pi4/temp"
-      value_template: >-
-        {{ (states('sensor.pi4_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.pi4_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
+
+    - name: "pi5 Temperature"
+      unique_id: 66586029-2083-4bf1-b7ca-1878ae837ed1
+      state_topic: "linux/pi5/temp"
+      #value_template: >-
+      #  {{ (states('sensor.pi5_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      #device_class: temperature
+
+    - name: "CM4-Box Temperature"
+      unique_id: 4c288aa5-adf8-4dcc-b791-90e0493b867a
+      state_topic: "linux/cm4-box/temp"
+      #value_template: >-
+      #  {{ (states('sensor.cm4_box_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      #device_class: temperature
+
+    - name: "argon40 Temperature"
+      unique_id: 8361e1d6-ddb6-44d2-82e5-54dbd0470707
+      state_topic: "linux/argon40/temp"
+      #value_template: >-
+      #  {{ (states('sensor.argon40_temperature') | float(default=0)) | round(1) }}
+      unit_of_measurement: "°F"
+      #device_class: temperature
 
     - name: "Node1 Temperature"
       unique_id: 266eda12-3fde-4a01-a52a-bd4d7e02a0f0
       state_topic: "linux/node1/temperature"
-      value_template: >-
-        {{ (states('sensor.node1_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node1_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     - name: "Node2 Temperature"
       unique_id: 3d907f72-a13d-4df3-b1f9-ed0c4f403904
       state_topic: "linux/node2/temperature"
-      value_template: >-
-        {{ (states('sensor.node2_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node2_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     - name: "Node3 Temperature"
       unique_id: a239a276-1c39-4290-9ce4-ae461b4ddfd8
       state_topic: "linux/node3/temperature"
-      value_template: >-
-        {{ (states('sensor.node3_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node3_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     - name: "Node4 Temperature"
       unique_id: 52911b8e-cb13-453c-b370-a91c3f7b5da4
       state_topic: "linux/node4/temperature"
-      value_template: >-
-        {{ (states('sensor.node4_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node4_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     - name: "Node5 Temperature"
       unique_id: 7d4e57e1-8ffb-4414-a7e2-a1b39808e1a3
       state_topic: "linux/node5/temperature"
-      value_template: >-
-        {{ (states('sensor.node5_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node5_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     - name: "Node6 Temperature"
       unique_id: 562a58e9-b348-409c-90fd-115261308b1a
       state_topic: "linux/node6/temperature"
-      value_template: >-
-        {{ (states('sensor.node6_temperature') | float(default=0)) | round(1) }}
+      #value_template: >-
+      #  {{ (states('sensor.node6_temperature') | float(default=0)) | round(1) }}
       unit_of_measurement: "°F"
-      device_class: temperature
+      #device_class: temperature
 
     # - name: "Macropad Blank"
     #   unique_id: e1d0aac0-387e-4e9f-ac89-7bd1dc1a0e04

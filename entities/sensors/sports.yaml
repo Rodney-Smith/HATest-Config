@@ -307,3 +307,99 @@
       friendly_name: Raiders Next Opponent
       value_template: >-
         {{ states.calendar.las_vegas_raiders.attributes.message }}
+
+# UFL
+- platform: template
+  sensors:
+    ufl_schedule:
+      unique_id: f98e55a3-f3f7-4c26-9bff-d4561596ce93
+      friendly_name: UFL Schedule
+      value_template: >-
+        {% if is_state('calendar.ufl', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.ufl', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No game scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.ufl', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.ufl', 'start_time') }}
+# UFL Next Up Date
+- platform: template
+  sensors:
+    ufl_date:
+      unique_id: d06df576-67a4-4ecc-961b-5cd7bf1065ae
+      friendly_name: UFL Next Game
+      value_template: >-
+        {% if is_state('calendar.ufl', 'on') %}
+          Playing Now
+        {% else %}
+          {% set st = state_attr('calendar.ufl', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No game scheduled
+          {% endif %}
+        {% endif %}
+# UFL Next Game
+- platform: template
+  sensors:
+    ufl_opponent:
+      unique_id: e1c101e6-255e-4419-bc7a-1dc397232f82
+      friendly_name: UFL Next Game
+      value_template: >-
+        {{ states.calendar.ufl.attributes.message }}
+
+# Formula1
+- platform: template
+  sensors:
+    formula1_schedule:
+      unique_id: 26faa270-db2f-4fad-8c3d-82c9e9c861a1
+      friendly_name: Formula1 Schedule
+      value_template: >-
+        {% if is_state('calendar.racingnews365_2024', 'on') %}
+          Racing Now
+        {% else %}
+          {% set st = state_attr('calendar.racingnews365_2024', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No race scheduled
+          {% endif %}
+        {% endif %}
+      attribute_templates:
+        opponent: >-
+          {{ state_attr('calendar.racingnews365_2024', 'message') }}
+        date_sortable: >-
+          {{ state_attr('calendar.racingnews365_2024', 'start_time') }}
+# Formula1 Next Up Date
+- platform: template
+  sensors:
+    formula1_date:
+      unique_id: acd0f331-db41-4f9d-aaff-2226487d8f7d
+      friendly_name: Formula1 Next Race
+      value_template: >-
+        {% if is_state('calendar.racingnews365_2024', 'on') %}
+          Racing Now
+        {% else %}
+          {% set st = state_attr('calendar.racingnews365_2024', 'start_time') %}
+          {% if st != None %}
+            {{ as_timestamp(st)  | timestamp_custom("%A, %b %d at %-I:%M %p") }}
+          {% else %}
+            No race scheduled
+          {% endif %}
+        {% endif %}
+# Formula1 Next Race
+- platform: template
+  sensors:
+    formula1_opponent:
+      unique_id: 9b760c79-5e54-4f84-a9de-3667baaa954d
+      friendly_name: Formula1 Next Race
+      value_template: >-
+        {{ states.calendar.racingnews365_2024.attributes.message }}

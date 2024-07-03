@@ -18,6 +18,7 @@ binary_sensor:
           {% set lon = state_attr('person.rodney', 'longitude') %}
           {% set zoom = 10 %}
           https://embed.waze.com/en/iframe?zoom={{ zoom }}&lat={{ lat }}&lon={{ lon }}&pin=1&desc=1
+
     person_gina_url:
       value_template: "{{ state_attr('person.gina', 'latitude') and state_attr('person.gina', 'longitude') }}"
       attribute_templates:
@@ -30,6 +31,7 @@ binary_sensor:
 template:
   - sensor:
     - name: "Destination Address"
+      unique_id: d036fd0f-478e-472e-bfc8-6b91c16e0afa
       state: >-
         {%- if is_state("input_select.destination", "Bel-Air")  -%}
           zone.bel_air
@@ -51,3 +53,43 @@ template:
           Unknown
         {%- endif %}
 
+    - name: "Rodney Speed"
+      unique_id: 972585c8-648c-43e0-9119-427a1cd02756
+      state: "{{state_attr('device_tracker.rodney_iphone', 'speed') | float / 1.609 | round(0)}}"
+      unit_of_measurement: "mph"
+    - name: Rodney County
+      unique_id: b7f5f3b6-af75-4019-9f8f-59d5b3dc2acf
+      state: "{{state_attr('sensor.rodney_iphone_geocoded_location', 'Sub Administrative Area')}}"
+    - name: "Rodney Location"
+      unique_id: 412fcea0-2eb9-4b3a-b45c-cefec9855813
+      state: "{{state_attr('sensor.rodney_iphone_geocoded_location', 'Location') | trim('[ ]')}}"
+      #{{state_attr('person.rodney','latitude')}},{{state_attr('person.rodney','longitude')}}
+      #{{state_attr('sensor.rodney_iphone_geocoded_location', 'Location') | trim('[ ]')}}
+
+    - name: "Gina Speed"
+      state: "{{ state_attr('device_tracker.gina_iphone', 'speed') | float / 1.609 | round(0) }}"
+      unit_of_measurement: "mph"
+    - name: "Gina County"
+      unique_id: 7fdc097d-c96b-43da-b8d5-58578578db44
+      state: "{{ state_attr('sensor.gina_iphone_geocoded_location', 'Sub Administrative Area') }}"
+    - name: "Gina Location"
+      unique_id: ec207326-be2a-481b-aba1-3dcc23ec15d1
+      state: "{{state_attr('device_tracker.gina_iphone','latitude')}},{{state_attr('device_tracker.gina_iphone','longitude')}}"
+
+    - name: "People Home"
+      unique_id: abe036a6-92a8-46b5-8783-f74c5d2ede72
+      state: >-
+        {{ states['person'] | selectattr('state','eq','home') | list | count }}
+      unit_of_measurement: "home"
+    - name: "People Away"
+      unique_id: 51e198ba-f3fc-4201-a89a-be424fedbd29
+      state: >-
+        {{ states['person'] | selectattr('state','ne','home') | list | count }}
+      unit_of_measurement: "away"
+
+    - name: "Zone List"
+      unique_id: b47350ea-05e6-4ffb-bef6-535a788f18f4
+      state: '{{ states.zone | count }}'
+      attributes:
+        entities: >-
+          {{ states.zone | map(attribute='entity_id')|select|list }}

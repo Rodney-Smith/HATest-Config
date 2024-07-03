@@ -44,3 +44,12 @@ panel_custom:
     require_admin: true
     config:
       ingress: core_configurator
+  - name: supervisor
+    sidebar_title: Supervisor
+    sidebar_icon: mdi:home-assistant
+    module_url: /local/panel-redirect.js
+    url_path: 'hassio/system'
+    embed_iframe: true
+    require_admin: true
+    config:
+      ingress: core_configurator

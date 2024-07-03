@@ -1,5 +1,5 @@
 rodney_bad_traffic_home:
-  name: Leave Now! Currently {{states.sensor.rodney_ett_home | round}} mins home!
+  name: "Leave Now! Currently {{state_attr('sensor.rodney_ett_home','duration') | round}} mins home!"
   done_message: Canceling Traffic Alert
   entity_id: input_boolean.rodney_traffic_alert_home
   state: "on"

@@ -5,7 +5,8 @@ substitutions:
   api_key: !secret kauf_df3286
 
 packages:
-  Kauf.RGBWW: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb.yaml
+#  Kauf.RGBWW: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb.yaml
+  Kauf.RGBWW: github://KaufHA/kauf-rgbww-bulbs/kauf-bulb-lite.yaml
 
 esphome:
   name: ${name}
@@ -29,3 +30,8 @@ wifi:
 api:
   encryption:
     key: ${api_key}
+
+ota:
+  - platform: esphome
+    id: my_ota
+    password: !secret esphome_ota

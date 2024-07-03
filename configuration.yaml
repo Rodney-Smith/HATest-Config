@@ -24,23 +24,6 @@ media_player: !include entities/media_players.yaml
 
 notify: !include notify.yaml
 
-proximity:
-  home:
-    devices:
-      - device_tracker.rodney_iphone
-      - device_tracker.rodney_iphone_icloud
-      - device_tracker.gina_iphone
-      - device_tracker.gina_iphone_icloud
-    tolerance: 10
-    unit_of_measurement: 'mi'
-  work:
-    devices:
-      - device_tracker.rodney_iphone
-      - device_tracker.rodney_iphone_icloud
-      - device_tracker.work_phone
-    tolerance: 10
-    unit_of_measurement: 'mi'
-
 sensor: !include_dir_merge_list entities/sensors
 
 switch: !include_dir_merge_list entities/switches

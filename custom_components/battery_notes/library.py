@@ -1,6 +1,8 @@
 """Battery Type library for battery_notes."""
 from __future__ import annotations
 
+from typing import Any, cast
+
 import json
 import logging
 import os
@@ -27,14 +29,23 @@ class Library:  # pylint: disable=too-few-public-methods
 
     def __init__(self, hass: HomeAssistant) -> None:
         """Init."""
+        self.hass = hass
+
+    async def load_libraries(self):
+        """Load the user and default libraries."""
+
+        def _load_library_json(library_file: str) -> dict[str, Any]:
+            """Load library json file."""
+            with open(library_file, encoding="utf-8") as file:
+                return cast(dict[str, Any], json.load(file))
 
         # User Library
         if (
-            DOMAIN_CONFIG in hass.data[DOMAIN]
-            and CONF_USER_LIBRARY in hass.data[DOMAIN][DOMAIN_CONFIG]
+            DOMAIN_CONFIG in self.hass.data[DOMAIN]
+            and CONF_USER_LIBRARY in self.hass.data[DOMAIN][DOMAIN_CONFIG]
             ):
-            user_library_filename = hass.data[DOMAIN][DOMAIN_CONFIG].get(CONF_USER_LIBRARY)
-            if  user_library_filename != "":
+            user_library_filename = self.hass.data[DOMAIN][DOMAIN_CONFIG].get(CONF_USER_LIBRARY)
+            if user_library_filename != "":
                 json_user_path = os.path.join(
                     BUILT_IN_DATA_DIRECTORY,
                     user_library_filename,
@@ -42,10 +53,10 @@ class Library:  # pylint: disable=too-few-public-methods
                 _LOGGER.debug("Using user library file at %s", json_user_path)
 
                 try:
-                    with open(json_user_path, encoding="utf-8") as user_file:
-                        user_json_data = json.load(user_file)
-                        self._devices = user_json_data["devices"]
-                        user_file.close()
+                    user_json_data = await self.hass.async_add_executor_job(_load_library_json, json_user_path)
+
+                    self._devices = user_json_data["devices"]
+                    _LOGGER.debug("Loaded %s user devices", len(user_json_data["devices"]))
 
                 except FileNotFoundError:
                     _LOGGER.error(
@@ -61,10 +72,9 @@ class Library:  # pylint: disable=too-few-public-methods
         _LOGGER.debug("Using library file at %s", json_default_path)
 
         try:
-            with open(json_default_path, encoding="utf-8") as default_file:
-                default_json_data = json.load(default_file)
-                self._devices.extend(default_json_data["devices"])
-                default_file.close()
+            default_json_data = await self.hass.async_add_executor_job(_load_library_json, json_default_path)
+            self._devices.extend(default_json_data["devices"])
+            _LOGGER.debug("Loaded %s default devices", len(default_json_data["devices"]))
 
         except FileNotFoundError:
             _LOGGER.error(
@@ -73,7 +83,7 @@ class Library:  # pylint: disable=too-few-public-methods
             )
 
     @staticmethod
-    def factory(hass: HomeAssistant) -> Library:
+    async def factory(hass: HomeAssistant) -> Library:
         """Return the library or create."""
 
         if DOMAIN not in hass.data:
@@ -83,31 +93,77 @@ class Library:  # pylint: disable=too-few-public-methods
             return hass.data[DOMAIN][DATA_LIBRARY]  # type: ignore
 
         library = Library(hass)
+        await library.load_libraries()
         hass.data[DOMAIN][DATA_LIBRARY] = library
         return library
 
     async def get_device_battery_details(
         self,
-        manufacturer: str,
-        model: str,
+        model_info: ModelInfo,
     ) -> DeviceBatteryDetails | None:
         """Create a battery details object from the JSON devices data."""
 
         if self._devices is not None:
-            for device in self._devices:
-                if (
-                    str(device["manufacturer"] or "").casefold()
-                    == str(manufacturer or "").casefold()
-                    and str(device["model"] or "").casefold()
-                    == str(model or "").casefold()
-                ):
-                    device_battery_details = DeviceBatteryDetails(
-                        manufacturer=device["manufacturer"],
-                        model=device["model"],
-                        battery_type=device["battery_type"],
-                        battery_quantity=device.get("battery_quantity", 1),
-                    )
-                    return device_battery_details
+
+            # If a hw_version is present try find that first
+            if model_info.hw_version:
+                matching_devices = []
+
+                # Find all devices that match the manufacturer and model
+                for device in self._devices:
+                    if (
+                        str(device["manufacturer"] or "").casefold()
+                        == str(model_info.manufacturer or "").casefold()
+                        and str(device["model"] or "").casefold()
+                        == str(model_info.model or "").casefold()
+                    ):
+                        matching_devices.append(device)
+
+                if matching_devices is None or not matching_devices or len(matching_devices) == 0:
+                    return None
+
+                # Check if any matching devices have specified hw_version
+                for device in matching_devices:
+                    if device.get("hw_version", "").casefold() == str(model_info.hw_version or "").casefold():
+                        matched_device = device
+                        device_battery_details = DeviceBatteryDetails(
+                            manufacturer=matched_device["manufacturer"],
+                            model=matched_device["model"],
+                            hw_version=matched_device["hw_version"],
+                            battery_type=matched_device["battery_type"],
+                            battery_quantity=matched_device.get("battery_quantity", 1),
+                        )
+                        break
+                else:
+                    # Return first item in list, the non hw_version one
+                    matched_device = matching_devices[0]
+
+                device_battery_details = DeviceBatteryDetails(
+                    manufacturer=matched_device["manufacturer"],
+                    model=matched_device["model"],
+                    hw_version=matched_device.get("hw_version", None),
+                    battery_type=matched_device["battery_type"],
+                    battery_quantity=matched_device.get("battery_quantity", 1),
+                )
+                return device_battery_details
+
+            else:
+                # For devices that don't have hw_version
+                for device in self._devices:
+                    if (
+                        str(device["manufacturer"] or "").casefold()
+                        == str(model_info.manufacturer or "").casefold()
+                        and str(device["model"] or "").casefold()
+                        == str(model_info.model or "").casefold()
+                    ):
+                        device_battery_details = DeviceBatteryDetails(
+                            manufacturer=device["manufacturer"],
+                            model=device["model"],
+                            hw_version=device.get("hw_version", None),
+                            battery_type=device["battery_type"],
+                            battery_quantity=device.get("battery_quantity", 1),
+                        )
+                        return device_battery_details
 
         return None
 
@@ -121,6 +177,7 @@ class DeviceBatteryDetails(NamedTuple):
 
     manufacturer: str
     model: str
+    hw_version: str
     battery_type: str
     battery_quantity: int
 
@@ -140,7 +197,7 @@ class DeviceBatteryDetails(NamedTuple):
             quantity = 0
 
         if quantity > 1:
-            batteries = str(quantity) + "x " + self.battery_type
+            batteries = str(quantity) + "× " + self.battery_type
         else:
             batteries = self.battery_type
 
@@ -152,3 +209,4 @@ class ModelInfo(NamedTuple):
 
     manufacturer: str
     model: str
+    hw_version: str

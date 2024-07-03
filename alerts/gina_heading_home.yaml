@@ -1,5 +1,5 @@
 gina_heading_home:
-  name: Gina will be home in {{states.sensor.gina_ett_home | round}} minutes.
+  name: "Gina will be home in {{state_attr('sensor.gina_ett_home','duration') | round}} minutes."
   done_message: Gina Travel Monitor Disabled
   entity_id: input_boolean.gina_travel_monitor
   state: "on"

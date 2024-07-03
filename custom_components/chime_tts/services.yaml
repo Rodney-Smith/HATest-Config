@@ -1,638 +1,510 @@
 clear_cache:
-  name: "Clear Cache"
-  description: "Removes all locally cached TTS audio files created from Chime TTS"
+  name: Clear Cache
+  description: Remove text-to-speech cache files from Chime TTS and/or Home Assistant.
+  fields:
+    clear_chimes_cache:
+      default: true
+      description: Remove the cached local chime files downloaded by Chime TTS
+      example: 'True'
+      name: Temporary Chimes Cache
+      required: false
+      selector:
+        boolean: null
+    clear_ha_tts_cache:
+      default: true
+      description: Remove the TTS audio files stored in the Home Assistant TTS cache
+      example: 'True'
+      name: Home Assistant TTS Cache
+      required: false
+      selector:
+        boolean: null
+    clear_temp_tts_cache:
+      default: true
+      description: Remove the local temporary audio files stored in the Chime TTS
+        cache
+      example: 'True'
+      name: Temporary Chime TTS Cache
+      required: false
+      selector:
+        boolean: null
+    clear_www_tts_cache:
+      default: true
+      description: Remove the publicly accessible audio files stored in the Chime
+        TTS cache
+      example: 'True'
+      name: Publicly Accessible Chime TTS Cache
+      required: false
+      selector:
+        boolean:
+    clear_ha_tts_cache:
+      name: Home Assistant TTS Cache
+      description: "Remove the TTS audio files stored in the Home Assistant TTS cache"
+      default: True
+      example: "True"
+      required: false
+      selector:
+        boolean:
+
+replay:
+  name: "Replay"
+  description: "Replay the last service call to chime_tts.say with the same parameters"
 
 say:
-  name: "Say"
-  description: "Play an audio file before TTS audio"
+  name: Say
+  description: Play an audio file before TTS audio
   target:
     entity:
       domain: media_player
       supported_features:
-        - media_player.MediaPlayerEntityFeature.PLAY_MEDIA
+      - media_player.MediaPlayerEntityFeature.PLAY_MEDIA
   fields:
     chime_path:
-      name: "Chime Path"
-      description: "A preset or custom audio file to be played before TTS audio"
-      example: "custom_components/chime_tts/mp3s/bells.mp3"
-      default: ""
+      description: A preset or custom audio file to be played before TTS audio
+      example: custom_components/chime_tts/mp3s/bells.mp3
+      name: Chime Path
       required: false
       selector:
         select:
-          translation_key: "chime_paths"
-          multiple: false
           custom_value: true
           mode: dropdown
-          options:
-            - label: "Bells"
-              value: "bells"
-            - label: "Bells 2"
-              value: "bells_2"
-            - label: "Bright"
-              value: "bright"
-            - label: "Chirp"
-              value: "chirp"
-            - label: "Choir"
-              value: "choir"
-            - label: "Chord"
-              value: "chord"
-            - label: "Classical"
-              value: "classical"
-            - label: "Ding Dong"
-              value: "ding_dong"
-            - label: "Drum Roll"
-              value: "drumroll"
-            - label: "Dun dun DUUUN!"
-              value: "dun_dun_dun"
-            - label: "Error"
-              value: "error"
-            - label: "Glockenspiel"
-              value: "glockenspiel"
-            - label: "Hail"
-              value: "hail"
-            - label: "Marimba"
-              value: "marimba"
-            - label: "Mario Coin"
-              value: "mario_coin"
-            - label: "Microphone Tap"
-              value: "microphone_tap"
-            - label: "Ta-da!"
-              value: "tada"
-            - label: "Toast"
-              value: "toast"
-            - label: "Twenty Four"
-              value: "twenty_four"
-            - label: "Sad Trombone"
-              value: "sad_trombone"
-            - label: "Whistle"
-              value: "whistle"
-            - label: "Custom 1"
-              value: "custom_chime_path_1"
-            - label: "Custom 2"
-              value: "custom_chime_path_2"
-            - label: "Custom 3"
-              value: "custom_chime_path_3"
-            - label: "Custom 4"
-              value: "custom_chime_path_5"
-            - label: "Custom 5"
-              value: "custom_chime_path_5"
+          multiple: false
+          options: []
+          translation_key: chime_paths
     end_chime_path:
-      name: "End Chime Path"
-      description: "A preset or custom audio file to be played after TTS audio"
-      example: "custom_components/chime_tts/mp3s/tada.mp3"
-      default: ""
+      description: A preset or custom audio file to be played after TTS audio
+      example: custom_components/chime_tts/mp3s/tada.mp3
+      name: End Chime Path
       required: false
       selector:
         select:
-          translation_key: "chime_paths"
-          multiple: false
           custom_value: true
           mode: dropdown
-          options:
-            - label: "Bells"
-              value: "bells"
-            - label: "Bells 2"
-              value: "bells_2"
-            - label: "Bright"
-              value: "bright"
-            - label: "Chirp"
-              value: "chirp"
-            - label: "Choir"
-              value: "choir"
-            - label: "Chord"
-              value: "chord"
-            - label: "Classical"
-              value: "classical"
-            - label: "Ding Dong"
-              value: "ding_dong"
-            - label: "Drum Roll"
-              value: "drumroll"
-            - label: "Dun dun DUUUN!"
-              value: "dun_dun_dun"
-            - label: "Error"
-              value: "error"
-            - label: "Glockenspiel"
-              value: "glockenspiel"
-            - label: "Hail"
-              value: "hail"
-            - label: "Marimba"
-              value: "marimba"
-            - label: "Mario Coin"
-              value: "mario_coin"
-            - label: "Microphone Tap"
-              value: "microphone_tap"
-            - label: "Ta-da!"
-              value: "tada"
-            - label: "Toast"
-              value: "toast"
-            - label: "Twenty Four"
-              value: "twenty_four"
-            - label: "Sad Trombone"
-              value: "sad_trombone"
-            - label: "Whistle"
-              value: "whistle"
-            - label: "Custom 1"
-              value: "custom_chime_path_1"
-            - label: "Custom 2"
-              value: "custom_chime_path_2"
-            - label: "Custom 3"
-              value: "custom_chime_path_3"
-            - label: "Custom 4"
-              value: "custom_chime_path_$"
-            - label: "Custom 5"
-              value: "custom_chime_path_5"
-    delay:
-      name: Delay
-      description: "Delay (ms) between the chime/s and the TTS message"
+          multiple: false
+          options: []
+          translation_key: chime_paths
+    offset:
+      description: Adds a delay between audio segments when value > 0, or overlays
+        audio segments when value < 0.
       example: 450
+      name: Offset
       required: false
-      default: 450
       selector:
         number:
-          mode: box
-          min: 0
           max: 10000
-          step: 1
+          min: -10000
+          mode: box
+          step: 10
           unit_of_measurement: ms
     final_delay:
-      name: Final Delay
-      description: "Final delay (ms) added to the end of the audio"
+      description: Final delay (in milliseconds) added to the end of the audio
       example: 100
+      name: Final Delay
       required: false
-      default: 0
       selector:
         number:
-          mode: box
-          min: 0
           max: 10000
+          min: 0
+          mode: box
           step: 1
           unit_of_measurement: ms
     message:
+      description: Text converted into TTS audio
+      example: Hello world!
       name: Message
-      description: "Text converted into TTS audio"
-      example: "Hello world!"
-      required: true
+      required: false
       selector:
         text:
           multiline: true
     tts_platform:
-      name: "TTS Platform"
-      description: "TTS platform used to generate TTS audio"
-      example: "google_translate"
-      required: true
+      description: TTS platform used to generate TTS audio
+      example: google_translate
+      name: TTS Platform
+      required: false
       selector:
         select:
-          multiple: false
           custom_value: true
           mode: dropdown
+          multiple: false
           options:
-            - label: "Amazon Polly"
-              value: "amazon_polly"
-            - label: "Baidu"
-              value: "baidu"
-            - label: "Google Cloud"
-              value: "google_cloud"
-            - label: "Google Translate"
-              value: "google_translate"
-            - label: "IBM Watson TTS"
-              value: "watson_tts"
-            - label: "MaryTTS"
-              value: "marytts"
-            - label: "Microsoft Edge TTS"
-              value: "edge_tts"
-            - label: "Microsoft Text-to-Speech (TTS)"
-              value: "microsoft"
-            - label: "Nabu Casa Cloud TTS"
-              value: "cloud"
-            - label: "OpenAI TTS"
-              value: "openai_tts"
-            - label: "Pico TTS"
-              value: "picotts"
-            - label: "Piper"
-              value: "tts.piper"
-            - label: "VoiceRSS"
-              value: "voicerss"
-            - label: "Yandex TTS"
-              value: "yandextts"
-    tts_playback_speed:
-      name: TTS Playback Speed
-      description: "Playback speed of the TTS audio, between 100% - 200%"
+          - label: Amazon Polly
+            value: amazon_polly
+          - label: Baidu
+            value: baidu
+          - label: ElevenLabs TTS
+            value: tts.elevenlabs_tts
+          - label: Google Cloud
+            value: google_cloud
+          - label: Google Translate
+            value: google_translate
+          - label: IBM Watson TTS
+            value: watson_tts
+          - label: MaryTTS
+            value: marytts
+          - label: Microsoft Edge TTS
+            value: edge_tts
+          - label: Microsoft Text-to-Speech (TTS)
+            value: microsoft
+          - label: Nabu Casa Cloud TTS
+            value: cloud
+          - label: OpenAI TTS
+            value: openai_tts
+          - label: Pico TTS
+            value: picotts
+          - label: Piper
+            value: tts.piper
+          - label: VoiceRSS
+            value: voicerss
+          - label: Yandex TTS
+            value: yandextts
+    tts_speed:
+      description: Set the speed of the TTS audio to between 1% and 500% of the original
       example: 125
+      name: TTS Speed
       required: false
-      default: 100
       selector:
         number:
+          max: 500
+          min: 1
           mode: slider
-          min: 100
-          max: 200
           step: 5
           unit_of_measurement: '%'
-    volume_level:
-      name: Volume Level
-      description: "The volume to use when playing audio"
+    tts_pitch:
+      description: Change the the TTS pitch in semitones. Negative values for lower,
+        positive for higher
+      example: 3
+      name: TTS Pitch
       required: false
-      default: 1.0
       selector:
         number:
-          min: 0.0
-          max: 1.0
-          step: 0.01
+          max: 100
+          min: -100
           mode: slider
+          step: 1
+          unit_of_measurement: semitones
+    volume_level:
+      description: The volume to use when playing audio
       example: 0.75
+      name: Volume Level
+      required: false
+      selector:
+        number:
+          max: 1.0
+          min: 0.0
+          mode: slider
+          step: 0.01
     join_players:
+      description: Join media_players for simultaneous playback (for supported speakers)
+      example: 'True'
       name: Join Players
-      description: "Join media_players for simultaneous playback (for supported speakers)"
-      example: "True"
       required: false
       selector:
-        boolean:
+        boolean: null
     unjoin_players:
+      description: Release the joined media_players after playback
+      example: 'True'
       name: Unjoin Players
-      description: "Release the joined media_players after playback"
-      example: "True"
       required: false
       selector:
-        boolean:
+        boolean: null
     cache:
+      description: Whether or not to save/reuse the generated audio file in a local
+        cache
+      example: 'True'
       name: Cache
-      description: "Whether or not to save/reuse the generated audio file in a local cache"
-      example: "True"
       required: false
       selector:
-        boolean:
+        boolean: null
     announce:
+      description: Reduce volume of currently playing audio during during announcement
+        (on supported devices)
+      example: 'True'
       name: Announce
-      description: "Stops current media during the announcement and then resume (on supported devices)"
-      example: "True"
       required: false
       selector:
-        boolean:
+        boolean: null
+    fade_audio:
+      description: Fade out playing audio during announcement, fade back in when completed
+        (on supported devices)
+      example: 'True'
+      name: Fade Audio
+      required: false
+      selector:
+        boolean: null
     audio_conversion:
+      description: Convert the audio to match Alexa speaker requirements, or use your
+        own FFmpeg arguments
+      example: Alexa
       name: Audio Conversion
-      description: "Convert the audio to match Alexa speaker requirements, or use your own FFmpeg arguments"
-      example: "Alexa"
       required: false
       selector:
         select:
-          custom_value: True
+          custom_value: true
+          options:
+          - label: Alexa
+            value: Alexa
+          - label: 'Volume x% (replace this text, eg: "Volume 125%")'
+            value: Volume 100%
+          - label: Custom (replace this text with your FFmpeg arguments)
+            value: Custom
           translation_key: audio_conversion
-          options:
-            - label: Alexa
-              value: Alexa
-            - label: Custom (replace this text with your FFmpeg arguments)
-              value: Custom
     language:
+      description: The TTS language (supported by Google Translate, Microsoft Edge TTS, Amazon Polly and Nabu Casa Cloud TTS)
+      example: en
       name: Language
-      description: "The TTS language (supported by Google Translate, Microsoft Edge TTS and Nabu Casa Cloud TTS)"
-      example: "en"
       required: false
       selector:
-        text:
+        text: null
     tld:
+      description: The dialect Domain (supported by Google Translate)
+      example: com.au
       name: TLD
-      description: "The dialect Domain (supported by Google Translate)"
-      example: "com.au"
       required: false
       selector:
         select:
           options:
-            - label: com
-              value: com
-            - label: co.uk
-              value: co.uk
-            - label: com.au
-              value: com.au
-            - label: ca
-              value: ca
-            - label: co.in
-              value: co.in
-            - label: ie
-              value: ie
-            - label: co.za
-              value: co.za
-            - label: fr
-              value: fr
-            - label: com.br
-              value: com.br
-            - label: pt
-              value: pt
-            - label: es
-              value: es
-    gender:
-      name: Gender
-      description: "Use a male or female voice (Nabu Casa)"
-      example: "female"
+          - label: com
+            value: com
+          - label: co.uk
+            value: co.uk
+          - label: com.au
+            value: com.au
+          - label: ca
+            value: ca
+          - label: co.in
+            value: co.in
+          - label: ie
+            value: ie
+          - label: co.za
+            value: co.za
+          - label: fr
+            value: fr
+          - label: com.br
+            value: com.br
+          - label: pt
+            value: pt
+          - label: es
+            value: es
+    voice:
+      description: Define the voice for the TTS audio (on supported TTS platforms)
+      example: en-AU
+      name: Voice
       required: false
       selector:
-        select:
-          options:
-            - label: "Male"
-              value: "male"
-            - label: "Female"
-              value: "female"
+        text: null
     options:
+      description: YAML Options to pass to TTS services (will override `tld` and `voice`
+        fields)
+      example: "tld: com.au\voice: en-AU"
       name: Options
-      description: "YAML Options to pass to TTS services (will override `tld` and `gender` fields)"
-      example: "tld: com.au\ngender: female"
       required: false
       selector:
         text:
           multiline: true
 
 say_url:
-  name: "Say URL"
-  description: "Creates a public URL to an audio file generated with the `chime_tts.say` service"
+  name: Say URL
+  description: Generates an audio file with the `chime_tts.say` service and returns
+    either an external URL or a local file path, depending on the folder set in the
+    configuration
   fields:
     chime_path:
-      name: "Chime Path"
-      description: "A preset or custom audio file to be played before TTS audio"
-      example: "custom_components/chime_tts/mp3s/bells.mp3"
-      default: ""
+      description: A preset or custom audio file to be played before TTS audio
+      example: custom_components/chime_tts/mp3s/bells.mp3
+      name: Chime Path
       required: false
       selector:
         select:
-          translation_key: "chime_paths"
-          multiple: false
           custom_value: true
           mode: dropdown
-          options:
-            - label: "Bells"
-              value: "bells"
-            - label: "Bells 2"
-              value: "bells_2"
-            - label: "Bright"
-              value: "bright"
-            - label: "Chirp"
-              value: "chirp"
-            - label: "Choir"
-              value: "choir"
-            - label: "Chord"
-              value: "chord"
-            - label: "Classical"
-              value: "classical"
-            - label: "Ding Dong"
-              value: "ding_dong"
-            - label: "Drum Roll"
-              value: "drumroll"
-            - label: "Dun dun DUUUN!"
-              value: "dun_dun_dun"
-            - label: "Error"
-              value: "error"
-            - label: "Glockenspiel"
-              value: "glockenspiel"
-            - label: "Hail"
-              value: "hail"
-            - label: "Marimba"
-              value: "marimba"
-            - label: "Mario Coin"
-              value: "mario_coin"
-            - label: "Microphone Tap"
-              value: "microphone_tap"
-            - label: "Ta-da!"
-              value: "tada"
-            - label: "Toast"
-              value: "toast"
-            - label: "Twenty Four"
-              value: "twenty_four"
-            - label: "Sad Trombone"
-              value: "sad_trombone"
-            - label: "Whistle"
-              value: "whistle"
-            - label: "Custom 1"
-              value: "custom_chime_path_1"
-            - label: "Custom 2"
-              value: "custom_chime_path_2"
-            - label: "Custom 3"
-              value: "custom_chime_path_3"
-            - label: "Custom 4"
-              value: "custom_chime_path_$"
-            - label: "Custom 5"
-              value: "custom_chime_path_5"
+          multiple: false
+          options: []
+          translation_key: chime_paths
     end_chime_path:
-      name: "End Chime Path"
-      description: "A preset or custom audio file to be played after TTS audio"
-      example: "custom_components/chime_tts/mp3s/tada.mp3"
-      default: ""
+      description: A preset or custom audio file to be played after TTS audio
+      example: custom_components/chime_tts/mp3s/tada.mp3
+      name: End Chime Path
       required: false
       selector:
         select:
-          translation_key: "chime_paths"
-          multiple: false
           custom_value: true
           mode: dropdown
-          options:
-            - label: "Bells"
-              value: "bells"
-            - label: "Bells 2"
-              value: "bells_2"
-            - label: "Bright"
-              value: "bright"
-            - label: "Chirp"
-              value: "chirp"
-            - label: "Choir"
-              value: "choir"
-            - label: "Chord"
-              value: "chord"
-            - label: "Classical"
-              value: "classical"
-            - label: "Ding Dong"
-              value: "ding_dong"
-            - label: "Drum Roll"
-              value: "drumroll"
-            - label: "Dun dun DUUUN!"
-              value: "dun_dun_dun"
-            - label: "Error"
-              value: "error"
-            - label: "Glockenspiel"
-              value: "glockenspiel"
-            - label: "Hail"
-              value: "hail"
-            - label: "Marimba"
-              value: "marimba"
-            - label: "Mario Coin"
-              value: "mario_coin"
-            - label: "Microphone Tap"
-              value: "microphone_tap"
-            - label: "Ta-da!"
-              value: "tada"
-            - label: "Toast"
-              value: "toast"
-            - label: "Twenty Four"
-              value: "twenty_four"
-            - label: "Sad Trombone"
-              value: "sad_trombone"
-            - label: "Whistle"
-              value: "whistle"
-            - label: "Custom 1"
-              value: "custom_chime_path_1"
-            - label: "Custom 2"
-              value: "custom_chime_path_2"
-            - label: "Custom 3"
-              value: "custom_chime_path_3"
-            - label: "Custom 4"
-              value: "custom_chime_path_$"
-            - label: "Custom 5"
-              value: "custom_chime_path_5"
-    delay:
-      name: Delay
-      description: "Delay (ms) between the chime/s and the TTS message"
+          multiple: false
+          options: []
+          translation_key: chime_paths
+    offset:
+      description: Adds a delay between audio segments when value > 0, or overlays
+        audio segments when value < 0.
       example: 450
+      name: Offset
       required: false
-      default: 450
       selector:
         number:
-          mode: box
-          min: 0
           max: 10000
-          step: 1
+          min: -10000
+          mode: box
+          step: 10
           unit_of_measurement: ms
     final_delay:
-      name: Final Delay
-      description: "Final delay (ms) added to the end of the audio"
+      description: Final delay (in milliseconds) added to the end of the audio
       example: 100
+      name: Final Delay
       required: false
-      default: 0
       selector:
         number:
-          mode: box
-          min: 0
           max: 10000
+          min: 0
+          mode: box
           step: 1
           unit_of_measurement: ms
     message:
+      description: Text converted into TTS audio
+      example: Hello world!
       name: Message
-      description: "Text converted into TTS audio"
-      example: "Hello world!"
-      required: true
+      required: false
       selector:
         text:
           multiline: true
     tts_platform:
-      name: "TTS Platform"
-      description: "TTS platform used to generate TTS audio"
-      example: "google_translate"
-      required: true
+      description: TTS platform used to generate TTS audio
+      example: google_translate
+      name: TTS Platform
+      required: false
       selector:
         select:
-          multiple: false
           custom_value: true
           mode: dropdown
+          multiple: false
           options:
-            - label: "Amazon Polly"
-              value: "amazon_polly"
-            - label: "Baidu"
-              value: "baidu"
-            - label: "Google Cloud"
-              value: "google_cloud"
-            - label: "Google Translate"
-              value: "google_translate"
-            - label: "IBM Watson TTS"
-              value: "watson_tts"
-            - label: "MaryTTS"
-              value: "marytts"
-            - label: "Microsoft Edge TTS"
-              value: "edge_tts"
-            - label: "Microsoft Text-to-Speech (TTS)"
-              value: "microsoft"
-            - label: "Nabu Casa Cloud TTS"
-              value: "cloud"
-            - label: "OpenAI TTS"
-              value: "openai_tts"
-            - label: "Pico TTS"
-              value: "picotts"
-            - label: "Piper"
-              value: "tts.piper"
-            - label: "VoiceRSS"
-              value: "voicerss"
-            - label: "Yandex TTS"
-              value: "yandextts"
-    tts_playback_speed:
-      name: TTS Playback Speed
-      description: "Playback speed of the TTS audio, between 100% - 200%"
+          - label: Amazon Polly
+            value: amazon_polly
+          - label: Baidu
+            value: baidu
+          - label: ElevenLabs TTS
+            value: tts.elevenlabs_tts
+          - label: Google Cloud
+            value: google_cloud
+          - label: Google Translate
+            value: google_translate
+          - label: IBM Watson TTS
+            value: watson_tts
+          - label: MaryTTS
+            value: marytts
+          - label: Microsoft Edge TTS
+            value: edge_tts
+          - label: Microsoft Text-to-Speech (TTS)
+            value: microsoft
+          - label: Nabu Casa Cloud TTS
+            value: cloud
+          - label: OpenAI TTS
+            value: openai_tts
+          - label: Pico TTS
+            value: picotts
+          - label: Piper
+            value: tts.piper
+          - label: VoiceRSS
+            value: voicerss
+          - label: Yandex TTS
+            value: yandextts
+    tts_speed:
+      description: Set the speed of the TTS audio to between 1% and 500% of the original
       example: 125
+      name: TTS Speed
       required: false
-      default: 100
       selector:
         number:
+          max: 500
+          min: 1
           mode: slider
-          min: 100
-          max: 200
           step: 5
           unit_of_measurement: '%'
+    tts_pitch:
+      description: Change the the TTS pitch in semitones. Negative values for lower,
+        positive for higher
+      example: 3
+      name: TTS Pitch
+      required: false
+      selector:
+        number:
+          max: 100
+          min: -100
+          mode: slider
+          step: 1
+          unit_of_measurement: semitones
     cache:
+      description: Whether or not to save/reuse the generated audio file in a local
+        cache
+      example: 'True'
       name: Cache
-      description: "Whether or not to save/reuse the generated audio file in a local cache"
-      example: "True"
       required: false
       selector:
-        boolean:
+        boolean: null
     audio_conversion:
+      description: Convert the audio to match Alexa speaker requirements, or use your
+        own FFmpeg arguments
+      example: Alexa
       name: Audio Conversion
-      description: "Convert the audio to match Alexa speaker requirements, or use your own FFmpeg arguments"
-      example: "Alexa"
       required: false
       selector:
         select:
-          custom_value: True
+          custom_value: true
+          options:
+          - label: Alexa
+            value: Alexa
+          - label: 'Volume x% (replace this text, eg: "Volume 125%")'
+            value: Volume 100%
+          - label: Custom (replace this text with your FFmpeg arguments)
+            value: Custom
           translation_key: audio_conversion
-          options:
-            - label: Alexa
-              value: Alexa
-            - label: Custom (replace this text with your FFmpeg arguments)
-              value: Custom
     language:
+      description: The TTS language (supported by Google Translate, Microsoft Edge
+        TTS and Nabu Casa Cloud TTS)
+      example: en
       name: Language
-      description: "The TTS language (supported by Google Translate, Microsoft Edge TTS and Nabu Casa Cloud TTS)"
-      example: "en"
       required: false
       selector:
-        text:
+        text: null
     tld:
+      description: The dialect Domain (supported by Google Translate)
+      example: com.au
       name: TLD
-      description: "The dialect Domain (supported by Google Translate)"
-      example: "com.au"
       required: false
       selector:
         select:
           options:
-            - label: com
-              value: com
-            - label: co.uk
-              value: co.uk
-            - label: com.au
-              value: com.au
-            - label: ca
-              value: ca
-            - label: co.in
-              value: co.in
-            - label: ie
-              value: ie
-            - label: co.za
-              value: co.za
-            - label: fr
-              value: fr
-            - label: com.br
-              value: com.br
-            - label: pt
-              value: pt
-            - label: es
-              value: es
-    gender:
-      name: Gender
-      description: "Use a male or female voice (Nabu Casa)"
-      example: "female"
+          - label: com
+            value: com
+          - label: co.uk
+            value: co.uk
+          - label: com.au
+            value: com.au
+          - label: ca
+            value: ca
+          - label: co.in
+            value: co.in
+          - label: ie
+            value: ie
+          - label: co.za
+            value: co.za
+          - label: fr
+            value: fr
+          - label: com.br
+            value: com.br
+          - label: pt
+            value: pt
+          - label: es
+            value: es
+    voice:
+      description: Define the voice for the TTS audio (on supported TTS platforms)
+      example: en-AU
+      name: Voice
       required: false
       selector:
-        select:
-          options:
-            - label: "Male"
-              value: "male"
-            - label: "Female"
-              value: "female"
+        text: null
     options:
+      description: YAML Options to pass to TTS services (will override `tld` and `voice`
+        fields)
+      example: "tld: com.au\voice: en-AU"
       name: Options
-      description: "YAML Options to pass to TTS services (will override `tld` and `gender` fields)"
-      example: "tld: com.au\ngender: female"
       required: false
       selector:
         text:

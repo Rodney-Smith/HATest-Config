@@ -64,13 +64,13 @@ views:
                   or is_state('light.right_floor_lamp', 'on')
                   or is_state('light.light_strip_10fe', 'on')
                   or is_state('light.light_strip_831a', 'on')
-                  or is_state('light.h61e1_led_strip', 'on') 
+                  or is_state('light.bookcase_led_strip', 'on') 
                   or is_state('light.funhouse_light', 'on')
                   or is_state('light.mb_ceiling_lights', 'on')
                   or is_state('light.gina_nightstand', 'on')
                   or is_state('light.rodney_nightstand', 'on')
-                  or is_state('light.h61e0_gina_led_strip', 'on')
-                  or is_state('light.h61e0_rodney_led_strip', 'on')
+                  or is_state('light.gina_led_strip', 'on')
+                  or is_state('light.rodney_led_strip', 'on')
                   or is_state('light.br1_ceiling_lights', 'on')
                   or is_state('light.bedroom1_light', 'on')
                   or is_state('light.br2_ceiling_lights', 'on')
@@ -147,7 +147,7 @@ views:
                   or is_state('light.left_floor_lamp', 'on')
                   or is_state('light.right_floor_lamp', 'on')
                   or is_state('light.light_strip_10fe', 'on')
-                  or is_state('light.h61e1_led_strip', 'on') %}
+                  or is_state('light.bookcase_led_strip', 'on') %}
                     amber
                   {% endif %}
                 secondary: >-
@@ -1428,13 +1428,13 @@ views:
                 tap_action:
                   action: toggle
               - type: tile
-                entity: light.h61e0_gina_led_strip
+                entity: light.gina_led_strip
                 tap_action:
                   action: toggle
                 icon_tap_action:
                   action: more-info
               - type: tile
-                entity: light.h61e0_rodney_led_strip
+                entity: light.rodney_led_strip
                 tap_action:
                   action: toggle
                 icon_tap_action:
@@ -2106,13 +2106,13 @@ views:
                 tap_action:
                   action: toggle
               - type: tile
-                entity: light.h61e0_gina_led_strip
+                entity: light.gina_led_strip
                 tap_action:
                   action: toggle
                 icon_tap_action:
                   action: more-info
               - type: tile
-                entity: light.h61e0_rodney_led_strip
+                entity: light.rodney_led_strip
                 tap_action:
                   action: toggle
                 icon_tap_action:

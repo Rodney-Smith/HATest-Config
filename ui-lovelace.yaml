@@ -8,235 +8,217 @@ swipe_nav:
   wrap: true
 title: HASS OS
 views:
-- badges:
-  - entity: person.rodney_smith
-  - entity: sun.sun
-  - entity: sensor.my_ecobee_temperature
-  - entity: sensor.bedrooms_temperature
-  - entity: sensor.livingroom_temperature
-  - entity: sensor.office_temperature
-  cards:
-  - entity: climate.my_ecobee
-    type: thermostat
-  - entity: weather.home
-    secondary_info_attribute: wind_speed
-    type: weather-forecast
-  - entities:
-    - entity: light.ginas_light
-    - entity: light.rodneys_light
-    - entity: switch.p2_171df2_outlet1
-    - entity: switch.p2_171df2_usb
-    - entity: fan.maxx_air
-    - entity: fan.black_fan
-    - entity: light.foyer
-    show_header_toggle: false
-    state_color: true
-    title: Living Room
-    type: entities
-  - entities:
-    - entity: light.main_bedroom_light
-    - entity: light.ginas_nightstand
-    - entity: light.rodneys_nightstand
-    - entity: switch.big_fan
-    - entity: switch.wp9_145829_usb
-    - entity: switch.wp9_145829_outlet1
-    - entity: switch.wp9_145829_outlet3
-    - entity: switch.ahr_083_outlet1
-    - entity: switch.ahr_083_outlet2
-    - entity: switch.ahr_083_outlet4
-    show_header_toggle: false
-    state_color: true
-    title: Main Bedroom
-    type: entities
-  - entities:
-    - entity: switch.wp6_ae7ac1
-    - entity: switch.wp9_1580ef_outlet1
-    - entity: switch.wp9_1580ef_outlet2
-    - entity: switch.wp9_1580ef_outlet3
-    - entity: switch.wp9_1580ef_usb
-    - entity: switch.br1_s31_zb
-    - entity: light.br1_bulb_cl
-    - entity: binary_sensor.br1_snzb03_cl_occupancy
-    - entity: sensor.br1_motion_device_temperature
-    - entity: binary_sensor.br1_motion_occupancy
-    - entity: sensor.br1_motion_illuminance_lux
-    show_header_toggle: false
-    state_color: true
-    title: Bedroom1
-    type: entities
-  - entities:
-    - entity: light.br2_ceiling_light
-    - entity: switch.wp9_2415be_outlet1
-    - entity: switch.wp9_2415be_outlet2
-    - entity: switch.wp9_2415be_outlet3
-    - entity: switch.wp9_2415be_usb
-    - entity: light.br2_bulb_cf1
-    - entity: light.br2_bulb_cf2
-    - entity: light.br2_bulb_cf3
-    - entity: sensor.br2_motion_illuminance_lux
-    - entity: binary_sensor.br2_motion_occupancy
-    - entity: sensor.br2_motion_device_temperature
-    show_header_toggle: false
-    state_color: true
-    title: Bedroom2
-    type: entities
-  - entities:
-    - entity: sensor.funhouse_temperature
-    - entity: switch.of_light_zb
-    - entity: light.desk
-    - entity: light.funhouse_light
-    - entity: switch.ahr_085_outlet1
-    - entity: switch.ahr_085_outlet3
-    - entity: fan.office_fans
-    - entity: switch.ahr_085_outlet2
-    - entity: sensor.funhouse_humidity
-    - entity: sensor.funhouse_pressure
-    - entity: binary_sensor.espresense_office_motion
-    - entity: binary_sensor.p1_motion_occupancy
-    - entity: sensor.p1_motion_illuminance_lux
-    - entity: sensor.funhouse_motion_sensor
-    show_header_toggle: false
-    state_color: true
-    title: Office
-    type: entities
-  - entities:
-    - entity: light.foyer
-    - entity: light.hl_bulb_linen
-    - entity: switch.hl_plug1_zb
-    - entity: switch.hl_plug2_zb
-    - entity: light.h_night_light
-    - entity: switch.wp6_b06e16
-    - entity: light.k_night_light
-    - entity: switch.kn_s31_zb
-    - entity: binary_sensor.espresense_kitchen_motion
-    - entity: binary_sensor.kn_motion_occupancy
-    - entity: sensor.kn_motion_illuminance_lux
-    - entity: binary_sensor.k_pir_sensor
-    - entity: sensor.kn_motion_device_temperature
-    show_header_toggle: false
-    state_color: true
-    title: Kitchen / Hallway
-    type: entities
-  - entities:
-    - entity: switch.kennel_top
-    - entity: switch.kennel_bottom
-    - entity: sensor.wemosd1minipro_status
-    show_header_toggle: false
-    title: Kennel
-    type: entities
-  - entities:
-    - vacuum.bert
-    type: entities
-  - entities:
-    - entity: input_boolean.big_fan_override
-    - entity: input_boolean.black_fan_override
-    - entity: input_boolean.maxxair_override
-    - entity: input_boolean.officefans_override
-    show_header_toggle: false
-    state_color: true
-    title: Automation Override
-    type: entities
-  - entities:
-    - entity: light.entrance
-    - entity: light.front_porch_1
-    - entity: light.front_porch_2
-    - entity: switch.mj_s01_b71a3c
-    - entity: light.side_porch_1
-    - entity: light.side_porch_2
-    - entity: light.front
-    - entity: light.side
-    show_header_toggle: false
-    state_color: true
-    title: Patio Lights
-    type: entities
-  - entities:
-    - entity: binary_sensor.h_pir_sensor
-    - entity: light.h_night_light
-    - entity: binary_sensor.k_pir_sensor
-    - entity: light.k_night_light
-    show_header_toggle: false
-    title: Echo Flex
-    type: entities
-  - entities:
-    - entity: switch.ly_sonoff_s31
-    - entity: sensor.washing_machine_energy_apparentpower
-    - entity: sensor.washing_machine_energy_current
-    - entity: sensor.washing_machine_energy_factor
-    - entity: sensor.washing_machine_energy_power
-    - entity: sensor.washing_machine_energy_reactivepower
-    - entity: sensor.washing_machine_energy_today
-    - entity: sensor.washing_machine_energy_total
-    - entity: sensor.washing_machine_energy_totalstarttime
-    - entity: sensor.washing_machine_energy_voltage
-    - entity: sensor.washing_machine_energy_yesterday
-    - entity: sensor.washing_machine_status
-    - entity: sensor.ly_dryer_aqara_action
-    - entity: sensor.ly_dryer_aqara_angle_x
-    - entity: sensor.ly_dryer_aqara_angle_y
-    - entity: sensor.ly_dryer_aqara_angle_z
-    - entity: sensor.ly_dryer_aqara_strength
-    type: entities
-  - entities:
-    - entity: sensor.my_ecobee_temperature
-    - entity: sensor.my_ecobee_humidity
-    - entity: sensor.living_room_temperature
-    - entity: sensor.mainbedroom_temperature
-    - entity: sensor.br1_motion_device_temperature
-    - entity: sensor.br2_motion_device_temperature
-    - entity: sensor.funhouse_temperature
-    - entity: sensor.funhouse_humidity
-    - entity: sensor.funhouse_pressure
-    - entity: sensor.kn_motion_device_temperature
-    - entity: sensor.p1_motion_device_temperature
-    show_header_toggle: false
-    title: Temperature Sensors
-    type: entities
-  - entities:
-    - entity: switch.wp9_153c58_outlet1
-    - entity: switch.wp9_153c58_outlet2
-    - entity: switch.wp9_153c58_outlet3
-    - entity: switch.wp9_153c58_usb
-    show_header_toggle: false
-    state_color: true
-    type: entities
-  - entities:
-    - switch.sonoff_s31_2
-    - sensor.sonoff_9ecda3_energy_apparentpower_2
-    - sensor.sonoff_9ecda3_energy_current_2
-    - sensor.sonoff_9ecda3_energy_factor_2
-    - sensor.sonoff_9ecda3_energy_power_2
-    - sensor.sonoff_9ecda3_energy_reactivepower_2
-    - sensor.sonoff_9ecda3_energy_today_2
-    - sensor.sonoff_9ecda3_energy_total_2
-    - sensor.sonoff_9ecda3_energy_totalstarttime_2
-    - sensor.sonoff_9ecda3_energy_voltage_2
-    - sensor.sonoff_9ecda3_energy_yesterday_2
-    - sensor.sonoff_9ecda3_status
-    type: entities
-  - entities:
-    - entity: binary_sensor.living_room_occupancy
-    - entity: binary_sensor.main_bedroom_occupancy
-    - entity: binary_sensor.br1_motion_occupancy
-    - entity: binary_sensor.br2_motion_occupancy
-    - entity: binary_sensor.h_pir_sensor
-    - entity: binary_sensor.k_pir_sensor
-    - entity: sensor.living_room_occupied
-    - entity: sensor.main_bedroom_occupied
-    - entity: binary_sensor.espresense_office_motion
-    - entity: binary_sensor.espresense_kitchen_motion
-    - entity: binary_sensor.p1_motion_occupancy
-    - entity: sensor.funhouse_motion_sensor
-    - entity: binary_sensor.kn_motion_occupancy
-    show_header_toggle: false
-    title: Occupancy Sensors
-    type: entities
+- cards: []
   icon: mdi:home
   path: default_view
-  theme: Backend-selected
+  sections:
+  - cards:
+    - entity: weather.local
+      forecast_type: daily
+      secondary_info_attribute: wind_speed
+      show_current: true
+      show_forecast: true
+      type: weather-forecast
+    - entity: climate.my_ecobee
+      features:
+      - hvac_modes:
+        - heat_cool
+        - heat
+        - cool
+        - 'off'
+        type: climate-hvac-modes
+      type: thermostat
+    - entity: sensor.pirateweather_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.outside_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.living_space_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.inside_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.livingroom_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.mainbedroom_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.bedrooms_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.bedroom1_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.bedroom2_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.kitchen_temperature
+      show_entity_picture: false
+      type: tile
+    - entity: sensor.office_temperature
+      show_entity_picture: false
+      type: tile
+    title: Climate
+  - cards:
+    - detail: 1
+      entity: sensor.office_temperature
+      graph: line
+      hours_to_show: 24
+      name: Temperature
+      type: sensor
+    - detail: 1
+      entity: sensor.office_humidity
+      graph: line
+      hours_to_show: 24
+      icon: mdi:water-percent
+      name: Humidity
+      type: sensor
+    - entity: sensor.office_lux
+      name: Lux
+      type: tile
+    - entity: binary_sensor.office_occupied
+      name: Occupancy
+      type: tile
+    - entity: light.wled_soundreactive
+      show_entity_picture: false
+      type: tile
+    - entity: light.bookcase_led_strip
+      show_entity_picture: false
+      type: tile
+    - entity: light.left_floor_lamp
+      show_entity_picture: false
+      type: tile
+    - entity: light.right_floor_lamp
+      show_entity_picture: false
+      type: tile
+    - entity: light.led_strip_831a
+      show_entity_picture: false
+      type: tile
+    - entity: light.led_strip_10fe
+      show_entity_picture: false
+      type: tile
+    title: Office
+    type: grid
+  - cards:
+    - detail: 1
+      entity: sensor.livingroom_temperature
+      graph: line
+      hours_to_show: 24
+      name: Temperature
+      type: sensor
+    - detail: 1
+      entity: sensor.livingroom_humidity
+      graph: line
+      hours_to_show: 24
+      icon: mdi:water-percent
+      name: Humidity
+      type: sensor
+    - entity: sensor.living_room_lux
+      name: Lux
+      type: tile
+    - entity: binary_sensor.living_room_occupied
+      name: Occupancy
+      type: tile
+    - entity: light.gina_light
+      show_entity_picture: false
+      type: tile
+    - entity: light.rodney_light
+      show_entity_picture: false
+      type: tile
+    - entity: light.living_room_lamps
+      show_entity_picture: false
+      type: tile
+    title: Living Room
+    type: grid
+  - cards:
+    - detail: 1
+      entity: sensor.mainbedroom_temperature
+      graph: line
+      hours_to_show: 24
+      name: Temperature
+      type: sensor
+    - detail: 1
+      entity: sensor.mainbedroom_humidity
+      graph: line
+      hours_to_show: 24
+      icon: mdi:water-percent
+      name: Humidity
+      type: sensor
+    - entity: sensor.main_bedroom_lux
+      name: Lux
+      type: tile
+    - entity: binary_sensor.main_bedroom_occupied
+      name: Occupancy
+      type: tile
+    - entity: light.gina_nightstand
+      show_entity_picture: false
+      type: tile
+    - entity: light.rodney_nightstand
+      show_entity_picture: false
+      type: tile
+    - entity: light.main_bedroom_nightstands
+      show_entity_picture: false
+      type: tile
+    title: Main Bedroom
+    type: grid
+  - cards:
+    - detail: 1
+      entity: sensor.bedroom1_temperature
+      graph: line
+      hours_to_show: 24
+      name: Temperature
+      type: sensor
+    - detail: 1
+      entity: sensor.bedroom1_humidity
+      graph: line
+      hours_to_show: 24
+      icon: mdi:water-percent
+      name: Humidity
+      type: sensor
+    - entity: sensor.bedroom1_lux
+      name: Lux
+      type: tile
+    - entity: binary_sensor.bedroom1_occupied
+      name: Occupancy
+      type: tile
+    - entity: switch.br1_s31_zb
+      type: tile
+    - entity: light.br1_bulb_cl
+      type: tile
+    - entity: binary_sensor.br1_snzb03_cl_occupancy
+      type: tile
+    title: Bedroom1
+    type: grid
+  - cards:
+    - detail: 1
+      entity: sensor.beroom2_temperature
+      graph: line
+      hours_to_show: 24
+      name: Temperature
+      type: sensor
+    - detail: 1
+      entity: sensor.bedroom2_humidity
+      graph: line
+      hours_to_show: 24
+      icon: mdi:water-percent
+      name: Humidity
+      type: sensor
+    - entity: sensor.bedroom2_lux
+      name: Lux
+      type: tile
+    - entity: binary_sensor.bedroom2_occupied
+      name: Occupancy
+      type: tile
+    title: Bedroom2
+    type: grid
+  - cards: []
+    title: Kitchen/Hall
+    type: grid
   title: Home
-  visible:
-  - user: d2fcb98b323e47cfa359ef19282d91e9
-  - user: 0490f5256ca34bffa055bab3a33e0f6e
+  type: sections
 - badges: []
   cards:
   - entity: light.hl_bulb_linen
@@ -862,4 +844,159 @@ views:
   path: monitor
   title: Monitor
   visible:
+  - user: 0490f5256ca34bffa055bab3a33e0f6e
+- badges:
+  - entity: person.rodney_smith
+  - entity: sun.sun
+  - entity: sensor.my_ecobee_temperature
+  - entity: sensor.bedrooms_temperature
+  - entity: sensor.livingroom_temperature
+  - entity: sensor.office_temperature
+  cards:
+  - entities:
+    - entity: light.ginas_light
+    - entity: light.rodneys_light
+    - entity: switch.p2_171df2_outlet1
+    - entity: switch.p2_171df2_usb
+    - entity: fan.maxx_air
+    - entity: fan.black_fan
+    - entity: light.foyer
+    show_header_toggle: false
+    state_color: true
+    title: Living Room
+    type: entities
+  - entities:
+    - entity: light.main_bedroom_light
+    - entity: light.ginas_nightstand
+    - entity: light.rodneys_nightstand
+    - entity: switch.big_fan
+    - entity: switch.wp9_145829_usb
+    - entity: switch.wp9_145829_outlet1
+    - entity: switch.wp9_145829_outlet3
+    - entity: switch.ahr_083_outlet1
+    - entity: switch.ahr_083_outlet2
+    - entity: switch.ahr_083_outlet4
+    show_header_toggle: false
+    state_color: true
+    title: Main Bedroom
+    type: entities
+  - entities:
+    - entity: sensor.funhouse_temperature
+    - entity: switch.of_light_zb
+    - entity: light.desk
+    - entity: light.funhouse_light
+    - entity: switch.ahr_085_outlet1
+    - entity: switch.ahr_085_outlet3
+    - entity: fan.office_fans
+    - entity: switch.ahr_085_outlet2
+    - entity: sensor.funhouse_humidity
+    - entity: sensor.funhouse_pressure
+    - entity: binary_sensor.espresense_office_motion
+    - entity: binary_sensor.p1_motion_occupancy
+    - entity: sensor.p1_motion_illuminance_lux
+    - entity: sensor.funhouse_motion_sensor
+    show_header_toggle: false
+    state_color: true
+    title: Office
+    type: entities
+  - entities:
+    - entity: light.foyer
+    - entity: light.hl_bulb_linen
+    - entity: switch.hl_plug1_zb
+    - entity: switch.hl_plug2_zb
+    - entity: light.h_night_light
+    - entity: switch.wp6_b06e16
+    - entity: light.k_night_light
+    - entity: switch.kn_s31_zb
+    - entity: binary_sensor.espresense_kitchen_motion
+    - entity: binary_sensor.kn_motion_occupancy
+    - entity: sensor.kn_motion_illuminance_lux
+    - entity: binary_sensor.k_pir_sensor
+    - entity: sensor.kn_motion_device_temperature
+    show_header_toggle: false
+    state_color: true
+    title: Kitchen / Hallway
+    type: entities
+  - entities:
+    - entity: switch.kennel_top
+    - entity: switch.kennel_bottom
+    - entity: sensor.wemosd1minipro_status
+    show_header_toggle: false
+    title: Kennel
+    type: entities
+  - entities:
+    - vacuum.bert
+    type: entities
+  - entities:
+    - entity: input_boolean.big_fan_override
+    - entity: input_boolean.black_fan_override
+    - entity: input_boolean.maxxair_override
+    - entity: input_boolean.officefans_override
+    show_header_toggle: false
+    state_color: true
+    title: Automation Override
+    type: entities
+  - entities:
+    - entity: light.entrance
+    - entity: light.front_porch_1
+    - entity: light.front_porch_2
+    - entity: switch.mj_s01_b71a3c
+    - entity: light.side_porch_1
+    - entity: light.side_porch_2
+    - entity: light.front
+    - entity: light.side
+    show_header_toggle: false
+    state_color: true
+    title: Patio Lights
+    type: entities
+  - entities:
+    - entity: switch.ly_sonoff_s31
+    - entity: sensor.washing_machine_energy_apparentpower
+    - entity: sensor.washing_machine_energy_current
+    - entity: sensor.washing_machine_energy_factor
+    - entity: sensor.washing_machine_energy_power
+    - entity: sensor.washing_machine_energy_reactivepower
+    - entity: sensor.washing_machine_energy_today
+    - entity: sensor.washing_machine_energy_total
+    - entity: sensor.washing_machine_energy_totalstarttime
+    - entity: sensor.washing_machine_energy_voltage
+    - entity: sensor.washing_machine_energy_yesterday
+    - entity: sensor.washing_machine_status
+    - entity: sensor.ly_dryer_aqara_action
+    - entity: sensor.ly_dryer_aqara_angle_x
+    - entity: sensor.ly_dryer_aqara_angle_y
+    - entity: sensor.ly_dryer_aqara_angle_z
+    - entity: sensor.ly_dryer_aqara_strength
+    type: entities
+  - entities:
+    - entity: switch.wp9_153c58_outlet1
+    - entity: switch.wp9_153c58_outlet2
+    - entity: switch.wp9_153c58_outlet3
+    - entity: switch.wp9_153c58_usb
+    show_header_toggle: false
+    state_color: true
+    type: entities
+  - entities:
+    - entity: binary_sensor.living_room_occupancy
+    - entity: binary_sensor.main_bedroom_occupancy
+    - entity: binary_sensor.br1_motion_occupancy
+    - entity: binary_sensor.br2_motion_occupancy
+    - entity: binary_sensor.h_pir_sensor
+    - entity: binary_sensor.k_pir_sensor
+    - entity: sensor.living_room_occupied
+    - entity: sensor.main_bedroom_occupied
+    - entity: binary_sensor.espresense_office_motion
+    - entity: binary_sensor.espresense_kitchen_motion
+    - entity: binary_sensor.p1_motion_occupancy
+    - entity: sensor.funhouse_motion_sensor
+    - entity: binary_sensor.kn_motion_occupancy
+    show_header_toggle: false
+    title: Occupancy Sensors
+    type: entities
+  icon: ''
+  path: home_view
+  theme: Backend-selected
+  title: Old Home
+  visible:
+  - user: d2fcb98b323e47cfa359ef19282d91e9
   - user: 0490f5256ca34bffa055bab3a33e0f6e

@@ -1,13 +1,15 @@
 substitutions:
   name: ep1-70c1d0
+  comment: Everything Presence One
   friendly_name: Main Bedroom EP1
 
 packages:
-  Everything_Smart_Technology.Everything_Presence_One: github://everythingsmarthome/presence-one/everything-presence-one.yaml@main
+#  Everything_Smart_Technology.Everything_Presence_One: github://everythingsmarthome/everything-presence-one/everything-presence-one.yaml@main
+  Everything_Smart_Technology.Everything_Presence_One: github://Rodney-Smith/everything-presence-one/everything-presence-one.yaml@main
 
 esphome:
   name: ${name}
-  comment: Everything Presence One
+  comment: ${comment}
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
 
@@ -29,13 +31,5 @@ api:
     key: !secret ep1_70c1d0
 
 ota:
-  password: !secret esphome_ota
-
-esp32_ble_tracker:
-  scan_parameters:
-    interval: 1100ms
-    window: 1100ms
-    active: true
-
-bluetooth_proxy:
-  active: true
+  - platform: esphome
+    password: !secret esphome_ota

@@ -9,7 +9,7 @@ packages:
 
 esphome:
   name: ${name}
-  comment: Athon.tech 15W Color Bulb for ESPHome
+  comment: Athom.tech 15W Color Bulb for ESPHome
   name_add_mac_suffix: false
   friendly_name: ${friendly_name}
 
@@ -29,3 +29,8 @@ wifi:
 api:
   encryption:
     key: ${api_key}
+
+ota:
+  - platform: esphome
+    id: my_ota
+    password: !secret esphome_ota

@@ -4,15 +4,19 @@ substitutions:
   ip_address: !secret ip_btproxy-9910b8
   api_key: !secret btproxy-9910b8
 
-packages:
-#  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
-  esphome.bluetooth-proxy: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
+# packages:
+# #  esphome.bluetooth-proxy: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
+#   esphome.bluetooth-proxy: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
 
 esphome:
   name: ${name}
   comment: ESPHome Bluetooth Proxy
   friendly_name: ${friendly_name}
+  min_version: 2024.6.0
   name_add_mac_suffix: false
+  project:
+    name: esphome.bluetooth-proxy
+    version: "1.0"
 
 wifi:
   ssid: !secret wifi_ssid
@@ -32,11 +36,8 @@ api:
     key: ${api_key}
 
 ota:
-  password: !secret esphome_ota
-
-# https://esphome.io/components/web_server.html
-web_server:
-  local: true
+  - platform: esphome
+    password: !secret esphome_ota
 
 esp32:
   board: esp32dev
@@ -47,7 +48,6 @@ logger:
 improv_serial:
 
 dashboard_import:
-#  package_import_url: github://esphome/bluetooth-proxies/esp32-generic.yaml@main
   package_import_url: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
 
 esp32_ble_tracker:
@@ -61,6 +61,11 @@ bluetooth_proxy:
   active: true
 
 button:
-- platform: safe_mode
-  name: Safe Mode Boot
-  entity_category: diagnostic
+  - platform: safe_mode
+    name: Safe Mode Boot
+    entity_category: diagnostic
+
+# https://esphome.io/components/web_server.html
+# web_server:
+#   local: true
+

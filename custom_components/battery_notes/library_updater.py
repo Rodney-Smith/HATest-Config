@@ -1,31 +1,38 @@
 """Sample API Client."""
+
 from __future__ import annotations
 
+from typing import Any
 import logging
-import asyncio
 import socket
 import json
 import os
 from datetime import datetime, timedelta
 
 import aiohttp
+import asyncio
 import async_timeout
 
 from homeassistant.exceptions import ConfigEntryNotReady
 
-from homeassistant.core import callback
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_track_utc_time_change
+
+from .discovery import DiscoveryManager
 
 from .const import (
     CONF_LIBRARY_URL,
     DOMAIN,
     DATA_LIBRARY_LAST_UPDATE,
+    DOMAIN_CONFIG,
+    CONF_ENABLE_AUTODISCOVERY,
 )
 
 _LOGGER = logging.getLogger(__name__)
 
 BUILT_IN_DATA_DIRECTORY = os.path.join(os.path.dirname(__file__), "data")
+
 
 class LibraryUpdaterClientError(Exception):
     """Exception to indicate a general API error."""
@@ -34,21 +41,19 @@ class LibraryUpdaterClientError(Exception):
 class LibraryUpdaterClientCommunicationError(LibraryUpdaterClientError):
     """Exception to indicate a communication error."""
 
+
 class LibraryUpdater:
     """Library updater."""
 
-    def __init__(self, hass):
+    def __init__(self, hass: HomeAssistant):
         """Initialize the library updater."""
         self.hass = hass
         self._client = LibraryUpdaterClient(session=async_get_clientsession(hass))
 
         # Fire the library check every 24 hours from now
         async_track_utc_time_change(
-            hass,
-            self.timer_update,
-            hour = datetime.now().hour,
-            minute = 1,
-            second=1)
+            hass, self.timer_update, hour=datetime.now().hour, minute=1, second=1
+        )
 
     @callback
     async def timer_update(self, time):
@@ -58,9 +63,27 @@ class LibraryUpdater:
 
         await self.get_library_updates(time)
 
+        if DOMAIN_CONFIG not in self.hass.data[DOMAIN]:
+            return
+
+        domain_config: dict = self.hass.data[DOMAIN][DOMAIN_CONFIG]
+
+        if domain_config.get(CONF_ENABLE_AUTODISCOVERY):
+            discovery_manager = DiscoveryManager(self.hass, self.hass.config)
+            await discovery_manager.start_discovery()
+        else:
+            _LOGGER.debug("Auto discovery disabled")
+
     @callback
-    async def get_library_updates(self, time): # pylint: disable=unused-argument
+    async def get_library_updates(self, time):
+        # pylint: disable=unused-argument
         """Make a call to GitHub to get the latest library.json."""
+
+        def _update_library_json(library_file: str, content: str) -> dict[str, Any]:
+            with open(library_file, mode="w", encoding="utf-8") as file:
+                file.write(content)
+                file.close()
+
         try:
             _LOGGER.debug("Getting library updates")
 
@@ -72,9 +95,7 @@ class LibraryUpdater:
                     "library.json",
                 )
 
-                with open(json_path, "w", encoding="utf-8") as file:
-                    file.write(content)
-                    file.close()
+                await self.hass.async_add_executor_job(_update_library_json, json_path, content)
 
                 self.hass.data[DOMAIN][DATA_LIBRARY_LAST_UPDATE] = datetime.now()
 
@@ -83,7 +104,9 @@ class LibraryUpdater:
                 _LOGGER.error("Library file is invalid, not updated")
 
         except LibraryUpdaterClientError:
-            _LOGGER.error("Library update failed")
+            _LOGGER.warning(
+                "Unable to update library, this could be a GitHub or internet connectivity issue, will retry later."
+            )
 
     async def time_to_update_library(self) -> bool:
         """Check when last updated and if OK to do a new library update."""
@@ -117,6 +140,7 @@ class LibraryUpdater:
         except ValueError:
             return False
         return True
+
 
 class LibraryUpdaterClient:
     """Library downloader."""
